@@ -1,0 +1,13 @@
+---
+label: Home
+hide_body: true
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Title
+  default: Home
+  hidden: false
+pages:
+- content/pages/home.md

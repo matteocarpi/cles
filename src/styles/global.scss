@@ -1,0 +1,12 @@
+ @import '_constants.scss';
+
+h1 {
+    font-family: Helvetica;
+    font-size: 10vw;
+    color: $blue;
+    text-align: center;
+}
+
+body {
+    background-color: $yellow;
+}
