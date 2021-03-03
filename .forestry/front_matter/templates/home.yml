@@ -2,17 +2,20 @@
 label: Home
 hide_body: true
 fields:
-- name: title_it
-  type: text
-  config:
-    required: false
-  label: Title IT
-  default: Home
-  hidden: false
-- name: title_en
-  type: text
-  config:
-    required: false
-  label: Title EN
+- name: title
+  type: field_group
+  config: {}
+  fields:
+  - name: it
+    type: text
+    config:
+      required: false
+    label: IT
+  - name: en
+    type: text
+    config:
+      required: false
+    label: EN
+  label: Title
 pages:
 - content/pages/home.md
