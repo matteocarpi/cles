@@ -1,61 +1,45 @@
-/* eslint-env node */
-/* eslint no-unused-vars: [ "error", { "varsIgnorePattern": "off|warn|error" } ] */
-
-const off = 0;
-const warn = 1;
-const error = 2;
+const off = 0
+const warn = 1
+const error = 2
 
 module.exports = {
-  'extends': [
-    'eslint:recommended',
-    'plugin:react/recommended',
-  ],
-
-  'plugins': [
-    'react',
-    'react-hooks',
-  ],
-
-  'parserOptions': {
-    'ecmaVersion': 2018,
-    'sourceType': 'module',
-    'ecmaFeatures': { 'jsx': true },
+  env: {
+    browser: true,
+    es2021: true,
   },
-
-  'settings': {
-    // https://github.com/yannickcr/eslint-plugin-react#configuration
-    'react': {
-      'createClass': 'createReactClass',
-      'pragma': 'React',
-      'version': 'detect',
+  globals: {
+    test: true,
+    expect: true,
+  },
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  parserOptions: {
+    ecmaVersion: 12,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    sourceType: 'module',
+  },
+  plugins: ['react', 'react-hooks', 'prettier'],
+  settings: {
+    // Cf. https://github.com/yannickcr/eslint-plugin-react#configuration
+    react: {
+      version: 'detect',
     },
   },
-
-  'rules': {
-    // https://eslint.org/docs/rules/#best-practices
-    'curly': [ error, 'multi-line' ],
-    'eqeqeq': [ error, 'always', { 'null': 'ignore' } ],
-    'no-implied-eval': error,
-    'no-eval': error,
-
-    // https://eslint.org/docs/rules/#stylistic-issues
-    'array-bracket-newline': [ warn, 'consistent' ],
-    'block-spacing': [ warn, 'always' ],
-    'brace-style': [ warn, '1tbs' ],
-    'comma-dangle': [ warn, 'always-multiline' ],
-    'comma-spacing': warn,
-    'comma-style': warn,
-    'indent': [ warn, 2 ],
-    'jsx-quotes': [ warn, 'prefer-double' ],
-    'quotes': [ warn, 'single' ],
-    'semi': [ warn, 'always' ],
-    'semi-spacing': warn,
-    'semi-style': warn,
-    'space-unary-ops': warn,
-    'space-infix-ops': warn,
-    'unicode-bom': warn,
-
+  rules: {
+    semi: [warn, 'never'],
     'react-hooks/rules-of-hooks': error,
-    'react-hooks/exhaustive-deps': error,
+    'react-hooks/exhaustive-deps': warn,
+    'react/react-in-jsx-scope': off,
+    'react/jsx-filename-extension': [warn, { extensions: ['.jsx', '.tsx'] }],
+    'react/jsx-props-no-spreading': off,
+    'react/prop-types': off,
+    'no-use-before-define': off,
+    'consistent-return': off,
+    'no-plusplus': off,
+    'no-unused-vars': warn,
+    'react/jsx-one-expression-per-line': off,
+    'react/jsx-curly-newline': off,
+    'array-callback-return': off,
   },
-};
+}

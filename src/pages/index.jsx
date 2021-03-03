@@ -1,11 +1,10 @@
-import React from "react"
+import React from 'react'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { graphql, useStaticQuery } from 'gatsby'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
-import styles from "../styles/Home.module.scss"
-import { graphql, useStaticQuery } from "gatsby"
-import PropTypes from "prop-types"
+import styles from '../styles/Home.module.scss'
 
 const Home = () => {
   const data = useStaticQuery(graphql`
