@@ -1,24 +1,29 @@
 /* eslint-disable no-undef */
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions;
+  const { createNodeField } = actions
   if (node.internal.type === 'MarkdownRemark') {
-    const longSlug = createFilePath({ node, getNode, basePath: 'content/pages' });
-    const slug = longSlug.split('/');
+    const longSlug = createFilePath({
+      node,
+      getNode,
+      basePath: 'content/pages',
+    })
+    const slug = longSlug.split('/')
     createNodeField({
       node,
       name: 'slug',
       value: `/${slug[slug.length - 2]}/`,
-    });
+    })
   }
-};
+}
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   const result = await graphql(`
     query {
-      allFile(filter: {relativeDirectory: {eq: "posts"}}) {
+      allFile(filter: { relativeDirectory: { eq: "posts" } }) {
         edges {
           node {
             childMarkdownRemark {
@@ -30,7 +35,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `);
+  `)
   result.data.allFile.edges.forEach(({ node }) => {
     createPage({
       path: node.childMarkdownRemark.fields.slug,
@@ -38,6 +43,6 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: node.childMarkdownRemark.fields.slug,
       },
-    });
-  });
-};
+    })
+  })
+}
