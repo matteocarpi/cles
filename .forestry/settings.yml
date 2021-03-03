@@ -5,7 +5,7 @@ admin_path: ''
 webhook_url: 
 sections:
 - type: document
-  path: content/home.md
+  path: content/pages/home.md
   label: Home
 - type: directory
   path: content/posts
