@@ -24,3 +24,5 @@ fields:
   label: id
   hidden: true
   default: home
+pages:
+- content/pages/home.md
