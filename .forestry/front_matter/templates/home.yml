@@ -2,21 +2,6 @@
 label: Home
 hide_body: true
 fields:
-- name: title
-  type: field_group
-  config: {}
-  fields:
-  - name: it
-    type: text
-    config:
-      required: false
-    label: IT
-  - name: en
-    type: text
-    config:
-      required: false
-    label: EN
-  label: Title
 - name: id
   type: text
   config:
@@ -24,20 +9,5 @@ fields:
   label: id
   hidden: true
   default: home
-- name: oggetto
-  type: field_group
-  config: {}
-  fields:
-  - name: chiave_uno
-    type: text
-    config:
-      required: false
-    label: Chiave uno
-  - name: chiave_due
-    type: text
-    config:
-      required: false
-    label: Chiave due
-  label: Oggetto
 pages:
 - content/pages/home.md
