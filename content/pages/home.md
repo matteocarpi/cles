@@ -4,7 +4,9 @@ title:
   it: Casa
   en: Home
 oggetto:
-  chiave_uno: "1"
-  chiave_due: "2"
+  chiave_uno: '1'
+  chiave_due: '2'
+it: Titulo
+en: Titule
 
 ---
