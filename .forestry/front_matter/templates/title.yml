@@ -1,4 +1,14 @@
 ---
 label: Title
 hide_body: true
-fields: []
+fields:
+- name: it
+  type: text
+  config:
+    required: false
+  label: IT
+- name: en
+  type: text
+  config:
+    required: false
+  label: EN
