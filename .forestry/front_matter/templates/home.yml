@@ -10,9 +10,19 @@ fields:
   hidden: true
   default: home
 - name: titulo
-  type: include
+  type: field_group
   config: {}
-  template: title
-  label: Titolo
+  fields:
+  - name: it
+    type: text
+    config:
+      required: false
+    label: IT
+  - name: en
+    type: text
+    config:
+      required: false
+    label: EN
+  label: Title
 pages:
 - content/pages/home.md
