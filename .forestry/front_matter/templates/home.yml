@@ -9,5 +9,10 @@ fields:
   label: id
   hidden: true
   default: home
+- name: titulo
+  type: include
+  config: {}
+  template: title
+  label: Titolo
 pages:
 - content/pages/home.md
