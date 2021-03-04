@@ -24,5 +24,20 @@ fields:
   label: id
   hidden: true
   default: home
+- name: oggetto
+  type: field_group
+  config: {}
+  fields:
+  - name: chiave_uno
+    type: text
+    config:
+      required: false
+    label: Chiave uno
+  - name: chiave_due
+    type: text
+    config:
+      required: false
+    label: Chiave due
+  label: Oggetto
 pages:
 - content/pages/home.md
