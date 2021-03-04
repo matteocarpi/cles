@@ -18,4 +18,10 @@ fields:
       required: false
     label: EN
     description: Titolo in Inglese
+  - name: fr
+    type: text
+    config:
+      required: false
+    label: FR
+    description: Titolo in Francese
   label: Title
