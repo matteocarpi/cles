@@ -12,9 +12,8 @@ const defaultTheme = {
 export default function Layout({ children }) {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle>
-        <main>{children}</main>
-      </GlobalStyle>
+      <GlobalStyle />
+      <main>{children}</main>
     </ThemeProvider>
   )
 }
