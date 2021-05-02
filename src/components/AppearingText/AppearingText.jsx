@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useRef, useLayoutEffect } from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
+import useElementInView from '../../hooks/useElementInView'
 
-const Container = styled.div`
-  overflow: hidden;
-`
+const Wrapper = styled.div``
+
+const Container = styled.div``
 
 const TextContainer = styled.div`
   overflow: hidden;
@@ -31,19 +32,35 @@ export default function AppearingText({ children, numberOfLines = 2 }) {
 
   const linesArr = Array.from(Array(numberOfLines).keys())
 
+  const ref = useRef()
+
+  const inView = useElementInView({ ref })
+
+  const controls = useAnimation()
+
+  useLayoutEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    } else {
+      controls.start('hidden')
+    }
+  }, [controls, inView])
+
   return (
-    <Container>
-      {linesArr.map((_, index) => {
-        const start = wordsPerLine * index
-        const end = start + wordsPerLine
-        return (
-          <TextContainer key={textArr[start]}>
-            <Text variants={textVariants} initial="hidden" animate="visible">
-              {textArr.slice(start, end).map(word => `${word} `)}
-            </Text>
-          </TextContainer>
-        )
-      })}
-    </Container>
+    <Wrapper ref={ref}>
+      <Container>
+        {linesArr.map((_, index) => {
+          const start = wordsPerLine * index
+          const end = start + wordsPerLine
+          return (
+            <TextContainer key={textArr[start]}>
+              <Text variants={textVariants} initial="hidden" animate={controls}>
+                {textArr.slice(start, end).map(word => `${word} `)}
+              </Text>
+            </TextContainer>
+          )
+        })}
+      </Container>
+    </Wrapper>
   )
 }
