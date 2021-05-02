@@ -4,6 +4,11 @@ import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
+
+h1 {
+  font-size: 60px;
+  font-weight: bold;
+}
 `
 
 const defaultTheme = {
