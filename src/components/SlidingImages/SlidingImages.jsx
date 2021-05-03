@@ -91,14 +91,14 @@ export default function SlidingImages() {
         initial="hidden"
         animate={controls}
       >
-        <GatsbyImage image={graphic} />
+        <GatsbyImage image={graphic} alt="" />
       </GraphicContainer>
       <PhotoContainer
         variants={photoVariants}
         initial="hidden"
         animate={controls}
       >
-        <GatsbyImage image={photo} />
+        <GatsbyImage image={photo} alt="" />
       </PhotoContainer>
     </Container>
   )

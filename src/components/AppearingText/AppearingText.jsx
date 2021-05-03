@@ -28,7 +28,7 @@ const textVariants = {
 export default function AppearingText({ children, numberOfLines = 2 }) {
   const textArr = children.split(' ')
 
-  const wordsPerLine = textArr.length / numberOfLines
+  const wordsPerLine = Math.ceil(textArr.length / numberOfLines)
 
   const linesArr = Array.from(Array(numberOfLines).keys())
 
@@ -52,6 +52,7 @@ export default function AppearingText({ children, numberOfLines = 2 }) {
         {linesArr.map((_, index) => {
           const start = wordsPerLine * index
           const end = start + wordsPerLine
+
           return (
             <TextContainer key={textArr[start]}>
               <Text variants={textVariants} initial="hidden" animate={controls}>
