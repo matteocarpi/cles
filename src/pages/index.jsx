@@ -9,7 +9,7 @@ import SlidingImages from '../components/SlidingImages/SlidingImages'
 const Rectangle = styled.div`
   height: 100vh;
   width: 100%;
-  background-color: red;
+  background-color: salmon;
 `
 const IndexPage = () => (
   <Layout>
