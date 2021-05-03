@@ -11,6 +11,7 @@ const Rectangle = styled.div`
   width: 100%;
   background-color: salmon;
 `
+
 const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
