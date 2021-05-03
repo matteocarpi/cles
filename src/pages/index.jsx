@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import AppearingText from '../components/AppearingText'
+import SlidingImages from '../components/SlidingImages/SlidingImages'
 
 const Rectangle = styled.div`
   height: 100vh;
@@ -17,6 +18,7 @@ const IndexPage = () => (
     <AppearingText>Look how I slide in!</AppearingText>
     <Rectangle />
     <AppearingText>Look how I slide in!</AppearingText>
+    <SlidingImages />
   </Layout>
 )
 
