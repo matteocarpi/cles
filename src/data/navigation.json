@@ -1,0 +1,91 @@
+{
+  "pages": [
+    {
+      "label": {
+        "it": "Home",
+        "en": "Home"
+      },
+      "url": "/"
+    },
+    {
+      "label": {
+        "it": "Chi Siamo",
+        "en": "About"
+      },
+      "url": {
+        "it": "#",
+        "en": "#"
+      }
+    },
+    {
+      "label": {
+        "it": "Servizi",
+        "en": "Services"
+      },
+      "url": {
+        "it": "#",
+        "en": "#"
+      }
+    },
+    {
+      "label": {
+        "it": "Clienti",
+        "en": "Clients"
+      },
+      "url": {
+        "it": "#",
+        "en": "#"
+      }
+    },
+    {
+      "label": {
+        "it": "News",
+        "en": "News"
+      },
+      "url": {
+        "it": "#",
+        "en": "#"
+      }
+    },
+    {
+      "label": {
+        "it": "Paolo Leon",
+        "en": "Paolo Leon"
+      },
+      "url": {
+        "it": "#",
+        "en": "#"
+      }
+    },
+    {
+      "label": {
+        "it": "Lavora con noi",
+        "en": "Work with us"
+      },
+      "url": {
+        "it": "#",
+        "en": "#"
+      }
+    },
+    {
+      "label": {
+        "it": "Contatti",
+        "en": "Contacts"
+      },
+      "url": {
+        "it": "#",
+        "en": "#"
+      }
+    }
+  ],
+  "languages": {
+    "it": {
+      "label": "EN",
+      "url": "/en"
+    },
+    "en": {
+      "label": "IT",
+      "url": "/it"
+    }
+  }
+}

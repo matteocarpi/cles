@@ -1,7 +1,15 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
+/* eslint-disable func-names */
 
-// You can delete this file if you're not using it
+const languages = ['it', 'en']
+
+exports.createPages = async function ({ actions }) {
+  languages.forEach(lang => {
+    actions.createPage({
+      path: `/${lang}`,
+      component: require.resolve(`./src/templates/Home.jsx`),
+      context: {
+        lang,
+      },
+    })
+  })
+}

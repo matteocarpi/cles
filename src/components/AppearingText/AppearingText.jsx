@@ -25,7 +25,11 @@ const textVariants = {
   },
 }
 
-export default function AppearingText({ children, numberOfLines = 2 }) {
+export default function AppearingText({
+  children,
+  numberOfLines = 2,
+  component: Component = Text,
+}) {
   const textArr = children.split(' ')
 
   const wordsPerLine = Math.ceil(textArr.length / numberOfLines)
@@ -37,6 +41,15 @@ export default function AppearingText({ children, numberOfLines = 2 }) {
   const inView = useElementInView({ ref })
 
   const controls = useAnimation()
+
+  const emptyLines =
+    numberOfLines > textArr.length
+      ? Array.from(Array(numberOfLines - textArr.length).keys())
+      : Array(0)
+
+  const emptyStrings = emptyLines.map(() => '_')
+
+  const filledTextArr = [...textArr, ...emptyStrings]
 
   useLayoutEffect(() => {
     if (inView) {
@@ -55,9 +68,21 @@ export default function AppearingText({ children, numberOfLines = 2 }) {
 
           return (
             <TextContainer key={textArr[start]}>
-              <Text variants={textVariants} initial="hidden" animate={controls}>
-                {textArr.slice(start, end).map(word => `${word} `)}
-              </Text>
+              <Component
+                variants={textVariants}
+                initial="hidden"
+                animate={controls}
+              >
+                {filledTextArr
+                  .slice(start, end)
+                  .map(word =>
+                    word === '_' ? (
+                      <span style={{ opacity: 0 }}>_</span>
+                    ) : (
+                      `${word} `
+                    ),
+                  )}
+              </Component>
             </TextContainer>
           )
         })}
