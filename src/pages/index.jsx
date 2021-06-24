@@ -7,11 +7,9 @@ const IndexPage = () => {
 
   const locale = isBrowser && (navigator.language || navigator.userLanguage)
 
-  const lang = locale.substring(0, 2)
+  const lang = isBrowser && locale.substring(0, 2)
 
-  useEffect(() => {
-    navigate(`/${lang}`)
-  }, [lang])
+  useEffect(() => isBrowser && navigate(`/${lang}`), [isBrowser, lang])
 
   return <div>loading...</div>
 }

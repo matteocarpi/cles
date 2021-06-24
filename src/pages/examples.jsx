@@ -12,7 +12,7 @@ const Rectangle = styled.div`
 
 export default function examples() {
   return (
-    <Layout>
+    <Layout lang="it">
       <AppearingText>Look how I slide in!</AppearingText>
       <Rectangle />
       <AppearingText>Look how I slide in!</AppearingText>
