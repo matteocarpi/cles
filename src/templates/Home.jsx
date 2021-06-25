@@ -161,8 +161,6 @@ const StyledButtonLink = styled(ButtonLink)`
 `
 
 const SectionTitleDesktop = styled.h2`
-  display: none;
-
   ${({ light, theme }) =>
     light &&
     css`
@@ -170,9 +168,32 @@ const SectionTitleDesktop = styled.h2`
     `}
   &.section-title {
     display: none;
+    transition: 1s;
   }
   &.active {
     display: block;
+    animation: fadeIn 1s linear;
+  }
+  &.passed {
+    animation: fadeOut 1s linear;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 `
 
@@ -301,6 +322,7 @@ export default function Home({ pageContext }) {
         <Scrollspy
           items={['about', 'services', 'clients', 'news']}
           currentClassName="active"
+          scrolledPastClassName="passed"
           offset={-200}
         >
           <SectionTitleDesktop className="section-title">
