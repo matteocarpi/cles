@@ -44,11 +44,13 @@ const Text = styled.h4`
 export default function WatchAllNews({ lang, className }) {
   const repetition = Array.from(Array(20).keys())
 
+  const mapper = repetition.map(i => ({ i, key: Math.random() }))
+
   return (
     <Wrapper className={className} to="#">
       <Container>
-        {repetition.map(() => (
-          <ItemContainer>
+        {mapper.map(i => (
+          <ItemContainer key={i.key}>
             <Text>
               {lang === 'it' ? 'Guarda tutte le news' : 'Watch all news'}
             </Text>

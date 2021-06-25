@@ -55,6 +55,7 @@ export default function MobileMenu({ lang, setIsMenuOpen }) {
       <Navigation>
         {navigation.pages.map(item => (
           <NavItem key={item.label[lang]} to={item.url[lang]}>
+            {console.log({ item })}
             <NavItemText>{item.label[lang]}</NavItemText>
           </NavItem>
         ))}

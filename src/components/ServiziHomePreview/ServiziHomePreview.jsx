@@ -98,7 +98,11 @@ export default function ServiziHomePreview({ lang, title, description }) {
         {aree.map((titolo, index) => (
           <>
             {currentIndex === index && (
-              <AppearingText numberOfLines={2} component={AreaTitle}>
+              <AppearingText
+                key={aree[index].titolo}
+                numberOfLines={2}
+                component={AreaTitle}
+              >
                 {aree[currentIndex].titolo}
               </AppearingText>
             )}
