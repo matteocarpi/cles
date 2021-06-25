@@ -20,7 +20,8 @@ const HomeSection = styled.section`
 
   @media (min-width: 768px) {
     border: none;
-    padding-right: 40px;
+    margin-top: 200px;
+    padding: 0 40px;
   }
 `
 
@@ -38,7 +39,21 @@ const AreaTitle = styled(motion.h3)`
   text-align: right;
 `
 
-export default function ServiziHomePreview({ lang, title, description, id }) {
+const TextContainer = styled.article`
+  display: flex;
+  flex-direction: column;
+`
+
+const AnimatedSubtitle = styled(AppearingText)`
+  margin-bottom: 40px;
+`
+const ServiceSubtitle = styled(motion.h4)`
+  margin-bottom: 40px;
+`
+
+const ServiceDescription = styled.article``
+
+export default function ServiziHomePreview({ lang, id }) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const data = useStaticQuery(graphql`
@@ -93,20 +108,37 @@ export default function ServiziHomePreview({ lang, title, description, id }) {
           {lang === 'en' ? 'Services' : 'Servizi'}
         </SectionTitleMobile>
 
-        <h3>{title}</h3>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: description,
-          }}
-        />
+        <TextContainer>
+          {aree.map((_, index) => (
+            <>
+              {currentIndex === index && (
+                <AnimatedSubtitle
+                  key={aree[index].sottotitolo}
+                  numberOfLines={1}
+                  component={ServiceSubtitle}
+                >
+                  {aree[currentIndex].sottotitolo}
+                </AnimatedSubtitle>
+              )}
+            </>
+          ))}
 
-        <ButtonLink to="#">
-          {lang === 'en' ? 'Continue' : 'Continua'}
-        </ButtonLink>
+          <ServiceDescription
+            dangerouslySetInnerHTML={{
+              __html: aree[currentIndex].descrizione,
+            }}
+          />
+          {/* <TextContainer>
+        </TextContainer> */}
+
+          <ButtonLink to="#">
+            {lang === 'en' ? 'Continue' : 'Continua'}
+          </ButtonLink>
+        </TextContainer>
 
         <BoxedImages images={images} setCurrentIndex={setCurrentIndex} />
 
-        {aree.map((titolo, index) => (
+        {aree.map((_, index) => (
           <>
             {currentIndex === index && (
               <AppearingText

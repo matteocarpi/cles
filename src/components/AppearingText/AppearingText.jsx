@@ -29,6 +29,7 @@ export default function AppearingText({
   children,
   numberOfLines = 2,
   component: Component = Text,
+  className,
 }) {
   const textArr = children.split(' ')
 
@@ -60,7 +61,7 @@ export default function AppearingText({
   }, [controls, inView])
 
   return (
-    <Wrapper ref={ref}>
+    <Wrapper ref={ref} className={className}>
       <Container>
         {linesArr.map((_, index) => {
           const start = wordsPerLine * index
