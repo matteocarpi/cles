@@ -5,6 +5,7 @@ import BackgroundImage from 'gatsby-background-image'
 import { motion } from 'framer-motion'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import Scrollspy from 'react-scrollspy'
 
 import { stripHTML } from '../utils'
 
@@ -159,6 +160,28 @@ const StyledButtonLink = styled(ButtonLink)`
   margin-left: auto;
 `
 
+const SectionTitleDesktop = styled.h2`
+  display: none;
+
+  ${({ light, theme }) =>
+    light &&
+    css`
+      color: ${theme.white};
+    `}
+  &.section-title {
+    display: none;
+  }
+  &.active {
+    display: block;
+  }
+`
+
+const ScrollSpyContainer = styled.div`
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+`
+
 export default function Home({ pageContext }) {
   const { lang } = pageContext
 
@@ -274,6 +297,27 @@ export default function Home({ pageContext }) {
         </IntroContainer>
       </IntroWrapper>
 
+      <ScrollSpyContainer>
+        <Scrollspy
+          items={['about', 'services', 'clients', 'news']}
+          currentClassName="active"
+          offset={-200}
+        >
+          <SectionTitleDesktop className="section-title">
+            {lang === 'en' ? 'About' : 'Chi Siamo'}
+          </SectionTitleDesktop>
+          <SectionTitleDesktop className="section-title">
+            {lang === 'en' ? 'Services' : 'Servizi'}
+          </SectionTitleDesktop>
+          <SectionTitleDesktop className="section-title">
+            {lang === 'en' ? 'Clients' : 'Clienti'}
+          </SectionTitleDesktop>
+          <SectionTitleDesktop light className="section-title">
+            {lang === 'en' ? 'News' : 'News'}
+          </SectionTitleDesktop>
+        </Scrollspy>
+      </ScrollSpyContainer>
+
       {/* Chi Siamo */}
 
       <HomeSectionWrapper>
@@ -292,12 +336,12 @@ export default function Home({ pageContext }) {
 
       {/* Servizi */}
 
-      <ServiziHomePreview lang={lang} />
+      <ServiziHomePreview id="services" lang={lang} />
 
       {/* Clienti */}
 
       <HomeSectionWrapper>
-        <HomeSection>
+        <HomeSection id="clients">
           <SectionTitleMobile>
             {lang === 'en' ? 'Clientis' : 'Clienti'}
           </SectionTitleMobile>
@@ -326,7 +370,7 @@ export default function Home({ pageContext }) {
       </HomeSectionWrapper>
 
       <HomeSectionWrapper dark>
-        <HomeSection>
+        <HomeSection id="news">
           <SectionTitleMobile>News</SectionTitleMobile>
           <Bio>{homeData.news.titolo[lang]}</Bio>
 

@@ -17,9 +17,17 @@ const HomeSectionWrapper = styled.section`
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
   width: 100%;
+
+  @media (min-width: 768px) {
+    border: none;
+  }
 `
 
-const SectionTitle = styled(MenuText)``
+const SectionTitleMobile = styled(MenuText)`
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
 
 const AreaTitle = styled(motion.h3)`
   font-style: italic;
@@ -29,7 +37,7 @@ const AreaTitle = styled(motion.h3)`
   text-align: right;
 `
 
-export default function ServiziHomePreview({ lang, title, description }) {
+export default function ServiziHomePreview({ lang, title, description, id }) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const data = useStaticQuery(graphql`
@@ -79,8 +87,10 @@ export default function ServiziHomePreview({ lang, title, description }) {
 
   return (
     <HomeSectionWrapper>
-      <HomeSection id="about">
-        <SectionTitle>{lang === 'en' ? 'Services' : 'Servizi'}</SectionTitle>
+      <HomeSection id={id}>
+        <SectionTitleMobile>
+          {lang === 'en' ? 'Services' : 'Servizi'}
+        </SectionTitleMobile>
 
         <h3>{title}</h3>
         <div
