@@ -2,24 +2,28 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import BgImage from 'gatsby-background-image'
-
 import { useStaticQuery, graphql } from 'gatsby'
 import { Carousel } from 'react-responsive-carousel'
+
+import useResponsiveness from '../../hooks/useResponsiveness'
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
-const mobileProportion = 0.54
+// const mobileProportion = 0.54
 
 const Wrapper = styled.div`
   position: relative;
   margin-top: 56px;
   margin-bottom: 26px;
-  height: calc(840px * ${mobileProportion});
+  height: calc(840px * ${({ mobileProportion }) => mobileProportion});
   display: flex;
   justify-content: center;
 `
 
 const Container = styled.div`
-  transform: translateX(calc(-630px * ${mobileProportion} / 2));
+  transform: translateX(
+    calc(-630px * ${({ mobileProportion }) => mobileProportion} / 2)
+  );
 `
 
 const Front = styled.div`
@@ -29,8 +33,8 @@ const Front = styled.div`
 const Back = styled.div`
   position: relative;
   transform: translate(
-    calc(90px * ${mobileProportion}),
-    calc(90px * ${mobileProportion})
+    calc(90px * ${({ mobileProportion }) => mobileProportion}),
+    calc(90px * ${({ mobileProportion }) => mobileProportion})
   );
 `
 
@@ -38,8 +42,8 @@ const imageContainerStyles = css`
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(500px * ${mobileProportion});
-  height: calc(700px * ${mobileProportion});
+  width: calc(500px * ${({ mobileProportion }) => mobileProportion});
+  height: calc(700px * ${({ mobileProportion }) => mobileProportion});
   overflow: hidden;
   border: 3px solid ${({ theme }) => theme.yellow};
 `
@@ -50,20 +54,23 @@ const Above = styled.div`
 
 const Below = styled.div`
   ${imageContainerStyles}
-  width: calc(550px * ${mobileProportion});
-  height: calc(750px * ${mobileProportion});
+  width: calc(550px * ${({ mobileProportion }) => mobileProportion});
+  height: calc(750px * ${({ mobileProportion }) => mobileProportion});
   clip-path: polygon(
-    calc(500px * ${mobileProportion}) 0,
-    calc(550px * ${mobileProportion}) calc(50px * ${mobileProportion}),
-    calc(550px * ${mobileProportion}) calc(750px * ${mobileProportion}),
-    calc(50px * ${mobileProportion}) calc(750px * ${mobileProportion}),
-    0 calc(700px * ${mobileProportion})
+    calc(500px * ${({ mobileProportion }) => mobileProportion}) 0,
+    calc(550px * ${({ mobileProportion }) => mobileProportion})
+      calc(50px * ${({ mobileProportion }) => mobileProportion}),
+    calc(550px * ${({ mobileProportion }) => mobileProportion})
+      calc(750px * ${({ mobileProportion }) => mobileProportion}),
+    calc(50px * ${({ mobileProportion }) => mobileProportion})
+      calc(750px * ${({ mobileProportion }) => mobileProportion}),
+    0 calc(700px * ${({ mobileProportion }) => mobileProportion})
   );
 `
 
 const cornerStyles = css`
   position: absolute;
-  width: calc(70px * ${mobileProportion});
+  width: calc(70px * ${({ mobileProportion }) => mobileProportion});
   height: 3px;
   background: gold;
   transform: rotate(45deg);
@@ -71,18 +78,18 @@ const cornerStyles = css`
 
 const CornerTop = styled.div`
   ${cornerStyles}
-  top: calc(24px * ${mobileProportion});
-  left: calc(488px * ${mobileProportion});
+  top: calc(24px * ${({ mobileProportion }) => mobileProportion});
+  left: calc(488px * ${({ mobileProportion }) => mobileProportion});
 `
 const CornerMiddle = styled.div`
   ${cornerStyles}
-  top: calc(720px * ${mobileProportion});
-  left: calc(488px * ${mobileProportion});
+  top: calc(720px * ${({ mobileProportion }) => mobileProportion});
+  left: calc(488px * ${({ mobileProportion }) => mobileProportion});
 `
 const CornerBottom = styled.div`
   ${cornerStyles}
-  top: calc(720px * ${mobileProportion});
-  left: calc(-10px * ${mobileProportion});
+  top: calc(720px * ${({ mobileProportion }) => mobileProportion});
+  left: calc(-10px * ${({ mobileProportion }) => mobileProportion});
 `
 
 const Img = styled(BgImage)`
@@ -126,6 +133,8 @@ export default function BoxedImages({ images, setCurrentIndex }) {
     }
   `)
 
+  const { isMobile } = useResponsiveness()
+
   const maskImage = getImage(maskData.file)
 
   const images1 = [...images.slice(1), images[0]]
@@ -142,64 +151,87 @@ export default function BoxedImages({ images, setCurrentIndex }) {
     onChange: index => setCurrentIndex(index),
     interval: 4000,
   }
+
+  const mobileProportion = isMobile ? 0.54 : 0.8
+
   return (
     <>
-      <Wrapper>
-        <Container>
-          <Back>
-            <Below>
-              <StyledCarousel {...carouselProps}>
+      <Wrapper mobileProportion={mobileProportion}>
+        <Container mobileProportion={mobileProportion}>
+          <Back mobileProportion={mobileProportion}>
+            <Below mobileProportion={mobileProportion}>
+              <StyledCarousel
+                {...carouselProps}
+                mobileProportion={mobileProportion}
+              >
                 {images3.map(image => (
                   <Img
                     key="fsdfsd"
                     alt=""
                     fluid={image.childImageSharp.fluid}
+                    mobileProportion={mobileProportion}
                   />
                 ))}
               </StyledCarousel>
             </Below>
-            <Above>
-              <StyledCarousel {...carouselProps}>
+            <Above mobileProportion={mobileProportion}>
+              <StyledCarousel
+                {...carouselProps}
+                mobileProportion={mobileProportion}
+              >
                 {images2.map(image => (
                   <Img
                     key="fsdfsd"
                     alt=""
                     fluid={image.childImageSharp.fluid}
+                    mobileProportion={mobileProportion}
                   />
                 ))}
               </StyledCarousel>
             </Above>
-            <CornerTop />
-            <CornerMiddle />
-            <CornerBottom />
+            <CornerTop mobileProportion={mobileProportion} />
+            <CornerMiddle mobileProportion={mobileProportion} />
+            <CornerBottom mobileProportion={mobileProportion} />
           </Back>
-          <Front>
-            <Below>
-              <StyledCarousel {...carouselProps}>
+          <Front mobileProportion={mobileProportion}>
+            <Below mobileProportion={mobileProportion}>
+              <StyledCarousel
+                {...carouselProps}
+                mobileProportion={mobileProportion}
+              >
                 {images1.map(image => (
                   <Img
                     key="fsdfsd"
                     alt=""
                     fluid={image.childImageSharp.fluid}
+                    mobileProportion={mobileProportion}
                   />
                 ))}
               </StyledCarousel>
             </Below>
-            <Above>
-              <Mask alt="" image={maskImage} />
-              <StyledCarousel {...carouselProps}>
+            <Above mobileProportion={mobileProportion}>
+              <Mask
+                alt=""
+                image={maskImage}
+                mobileProportion={mobileProportion}
+              />
+              <StyledCarousel
+                {...carouselProps}
+                mobileProportion={mobileProportion}
+              >
                 {images.map(image => (
                   <Img
                     key="fsdfsd"
                     alt=""
                     fluid={image.childImageSharp.fluid}
+                    mobileProportion={mobileProportion}
                   />
                 ))}
               </StyledCarousel>
             </Above>
-            <CornerTop />
-            <CornerMiddle />
-            <CornerBottom />
+            <CornerTop mobileProportion={mobileProportion} />
+            <CornerMiddle mobileProportion={mobileProportion} />
+            <CornerBottom mobileProportion={mobileProportion} />
           </Front>
         </Container>
       </Wrapper>
