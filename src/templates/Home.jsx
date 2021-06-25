@@ -33,6 +33,10 @@ const IntroContainer = styled(BackgroundImage)`
   justify-content: center;
   align-items: center;
   margin-bottom: 74px;
+
+  @media (min-width: 768px) {
+    min-height: 500px;
+  }
 `
 
 const Slogan = styled(motion.h1)`
@@ -81,14 +85,29 @@ const HomeSectionWrapper = styled.section`
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
   width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+
+  @media (min-width: 768px) {
+    border: none;
+    margin-top: 200px;
+  }
 `
 
-const SectionTitle = styled(MenuText)``
+const SectionTitleMobile = styled(MenuText)`
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
 
 const Bio = styled.h3``
 
 const StyledVideo = styled(Video)`
   margin: -2rem 0;
+
+  @media (min-width: 768px) {
+    margin: 0;
+  }
 `
 
 const ClientList = styled.section`
@@ -263,7 +282,9 @@ export default function Home({ pageContext }) {
 
       <HomeSectionWrapper>
         <HomeSection id="about">
-          <SectionTitle>{lang === 'en' ? 'About' : 'Chi Siamo'}</SectionTitle>
+          <SectionTitleMobile>
+            {lang === 'en' ? 'About' : 'Chi Siamo'}
+          </SectionTitleMobile>
           <Bio>{homeData.bio[lang]}</Bio>
           <StyledVideo url={homeData.video[lang]} />
 
@@ -281,7 +302,9 @@ export default function Home({ pageContext }) {
 
       <HomeSectionWrapper>
         <HomeSection>
-          <SectionTitle>{lang === 'en' ? 'Clientis' : 'Clienti'}</SectionTitle>
+          <SectionTitleMobile>
+            {lang === 'en' ? 'Clientis' : 'Clienti'}
+          </SectionTitleMobile>
           <Bio>{homeData.clienti.titolo[lang]}</Bio>
 
           <ClientList>
@@ -308,7 +331,7 @@ export default function Home({ pageContext }) {
 
       <HomeSectionWrapper dark>
         <HomeSection>
-          <SectionTitle>News</SectionTitle>
+          <SectionTitleMobile>News</SectionTitleMobile>
           <Bio>{homeData.news.titolo[lang]}</Bio>
 
           <NewsList>
