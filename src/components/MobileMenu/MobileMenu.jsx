@@ -14,6 +14,10 @@ const Container = styled.section`
   z-index: 2;
   background-color: ${({ theme }) => theme.black};
   padding: 2rem 1rem;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `
 
 const Top = styled.div`
@@ -55,7 +59,6 @@ export default function MobileMenu({ lang, setIsMenuOpen }) {
       <Navigation>
         {navigation.pages.map(item => (
           <NavItem key={item.label[lang]} to={item.url[lang]}>
-            {console.log({ item })}
             <NavItemText>{item.label[lang]}</NavItemText>
           </NavItem>
         ))}
