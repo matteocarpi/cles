@@ -18,6 +18,12 @@ const Wrapper = styled.div`
   height: calc(840px * ${({ mobileProportion }) => mobileProportion});
   display: flex;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: 10px;
+  }
 `
 
 const Container = styled.div`

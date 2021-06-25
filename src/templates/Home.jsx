@@ -88,10 +88,10 @@ const HomeSection = styled.section`
   width: 100%;
   max-width: 800px;
   margin-left: auto;
-
   @media (min-width: 768px) {
     border: none;
     margin-top: 200px;
+    padding: 0 40px;
   }
 `
 

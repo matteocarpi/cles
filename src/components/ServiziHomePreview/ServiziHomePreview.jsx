@@ -20,6 +20,7 @@ const HomeSection = styled.section`
 
   @media (min-width: 768px) {
     border: none;
+    padding-right: 40px;
   }
 `
 
