@@ -160,47 +160,46 @@ const StyledButtonLink = styled(ButtonLink)`
   margin-left: auto;
 `
 
+const SectionTitleWrapper = styled.div`
+  overflow: hidden;
+
+  &.section-title {
+    ${SectionTitleDesktop} {
+      display: none;
+    }
+  }
+  &.active {
+    ${SectionTitleDesktop} {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      transform: translateY(150px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+`
+
 const SectionTitleDesktop = styled.h2`
   ${({ light, theme }) =>
     light &&
     css`
       color: ${theme.white};
     `}
-  &.section-title {
-    display: none;
-    transition: 1s;
-  }
-  &.active {
-    display: block;
-    animation: fadeIn 1s linear;
-  }
-  &.passed {
-    animation: fadeOut 1s linear;
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
 `
 
 const ScrollSpyContainer = styled.div`
   position: fixed;
   bottom: 40px;
   left: 40px;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `
 
 export default function Home({ pageContext }) {
@@ -322,21 +321,28 @@ export default function Home({ pageContext }) {
         <Scrollspy
           items={['about', 'services', 'clients', 'news']}
           currentClassName="active"
-          scrolledPastClassName="passed"
           offset={-200}
         >
-          <SectionTitleDesktop className="section-title">
-            {lang === 'en' ? 'About' : 'Chi Siamo'}
-          </SectionTitleDesktop>
-          <SectionTitleDesktop className="section-title">
-            {lang === 'en' ? 'Services' : 'Servizi'}
-          </SectionTitleDesktop>
-          <SectionTitleDesktop className="section-title">
-            {lang === 'en' ? 'Clients' : 'Clienti'}
-          </SectionTitleDesktop>
-          <SectionTitleDesktop light className="section-title">
-            {lang === 'en' ? 'News' : 'News'}
-          </SectionTitleDesktop>
+          <SectionTitleWrapper className="section-title">
+            <SectionTitleDesktop>
+              {lang === 'en' ? 'About' : 'Chi Siamo'}
+            </SectionTitleDesktop>
+          </SectionTitleWrapper>
+          <SectionTitleWrapper className="section-title">
+            <SectionTitleDesktop>
+              {lang === 'en' ? 'Services' : 'Servizi'}
+            </SectionTitleDesktop>
+          </SectionTitleWrapper>
+          <SectionTitleWrapper className="section-title">
+            <SectionTitleDesktop>
+              {lang === 'en' ? 'Clients' : 'Clienti'}
+            </SectionTitleDesktop>
+          </SectionTitleWrapper>
+          <SectionTitleWrapper className="section-title">
+            <SectionTitleDesktop light>
+              {lang === 'en' ? 'News' : 'News'}
+            </SectionTitleDesktop>
+          </SectionTitleWrapper>
         </Scrollspy>
       </ScrollSpyContainer>
 
