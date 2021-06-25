@@ -1,17 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import ReactPlayer from 'react-player'
 
 const Container = styled.div`
-  div {
-    width: 100% !important;
+  iframe {
+    height: 300px;
+    @media (min-width: 768px) {
+      height: 500px;
+    }
   }
 `
 
-export default function Video({ url, className }) {
+export default function Video({ url }) {
+  const splitUrl = url.split('/')
+
+  const code = splitUrl[splitUrl.length - 1]
   return (
-    <Container className={className}>
-      <ReactPlayer url={url} />
+    <Container>
+      <iframe
+        title="video"
+        src={`https://player.vimeo.com/video/${code}`}
+        width="100%"
+        frameBorder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+      />
     </Container>
   )
 }

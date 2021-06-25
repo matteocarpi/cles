@@ -102,15 +102,6 @@ const SectionTitleMobile = styled(MenuText)`
 
 const Bio = styled.h3``
 
-const StyledVideo = styled(Video)`
-  margin: -2rem 0;
-
-  @media (min-width: 768px) {
-    margin: 0;
-    margin-bottom: 40px;
-  }
-`
-
 const ClientList = styled.section`
   display: flex;
   flex-wrap: wrap;
@@ -291,7 +282,7 @@ export default function Home({ pageContext }) {
             {lang === 'en' ? 'About' : 'Chi Siamo'}
           </SectionTitleMobile>
           <Bio>{homeData.bio[lang]}</Bio>
-          <StyledVideo url={homeData.video[lang]} />
+          <Video url={homeData.video[lang]} />
 
           <StyledButtonLink to="#">
             {lang === 'en' ? 'Continue' : 'Continua'}
