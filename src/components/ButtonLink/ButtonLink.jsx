@@ -29,6 +29,10 @@ const Container = styled(Link)`
   }
 `
 
-export default function ButtonLink({ to, children }) {
-  return <Container to={to}>{children}</Container>
+export default function ButtonLink({ to, children, className }) {
+  return (
+    <Container className={className} to={to}>
+      {children}
+    </Container>
+  )
 }

@@ -107,6 +107,7 @@ const StyledVideo = styled(Video)`
 
   @media (min-width: 768px) {
     margin: 0;
+    margin-bottom: 40px;
   }
 `
 
@@ -161,6 +162,10 @@ const SeeAllClients = styled(Link)`
     margin-right: 1rem;
     white-space: nowrap;
   }
+`
+
+const StyledButtonLink = styled(ButtonLink)`
+  margin-left: auto;
 `
 
 export default function Home({ pageContext }) {
@@ -288,9 +293,9 @@ export default function Home({ pageContext }) {
           <Bio>{homeData.bio[lang]}</Bio>
           <StyledVideo url={homeData.video[lang]} />
 
-          <ButtonLink to="#">
+          <StyledButtonLink to="#">
             {lang === 'en' ? 'Continue' : 'Continua'}
-          </ButtonLink>
+          </StyledButtonLink>
         </HomeSection>
       </HomeSectionWrapper>
 
