@@ -42,6 +42,11 @@ const AreaTitle = styled(motion.h3)`
 const TextContainer = styled.article`
   display: flex;
   flex-direction: column;
+  max-width: 300px;
+
+  @media (min-width: 768px) {
+    margin: 55px;
+  }
 `
 
 const AnimatedSubtitle = styled(AppearingText)`
@@ -52,6 +57,21 @@ const ServiceSubtitle = styled(motion.h4)`
 `
 
 const ServiceDescription = styled.article``
+
+const ContentContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
+  }
+`
+
+const ImagesContainer = styled.section`
+  width: 30%;
+`
 
 export default function ServiziHomePreview({ lang, id }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -108,49 +128,51 @@ export default function ServiziHomePreview({ lang, id }) {
           {lang === 'en' ? 'Services' : 'Servizi'}
         </SectionTitleMobile>
 
-        <TextContainer>
-          {aree.map((_, index) => (
-            <>
-              {currentIndex === index && (
-                <AnimatedSubtitle
-                  key={aree[index].sottotitolo}
-                  numberOfLines={1}
-                  component={ServiceSubtitle}
-                >
-                  {aree[currentIndex].sottotitolo}
-                </AnimatedSubtitle>
-              )}
-            </>
-          ))}
+        <ContentContainer>
+          <TextContainer>
+            {aree.map((_, index) => (
+              <>
+                {currentIndex === index && (
+                  <AnimatedSubtitle
+                    key={aree[index].sottotitolo}
+                    numberOfLines={1}
+                    component={ServiceSubtitle}
+                  >
+                    {aree[currentIndex].sottotitolo}
+                  </AnimatedSubtitle>
+                )}
+              </>
+            ))}
 
-          <ServiceDescription
-            dangerouslySetInnerHTML={{
-              __html: aree[currentIndex].descrizione,
-            }}
-          />
-          {/* <TextContainer>
-        </TextContainer> */}
+            <ServiceDescription
+              dangerouslySetInnerHTML={{
+                __html: aree[currentIndex].descrizione,
+              }}
+            />
 
-          <ButtonLink to="#">
-            {lang === 'en' ? 'Continue' : 'Continua'}
-          </ButtonLink>
-        </TextContainer>
+            <ButtonLink to="#">
+              {lang === 'en' ? 'Continue' : 'Continua'}
+            </ButtonLink>
+          </TextContainer>
 
-        <BoxedImages images={images} setCurrentIndex={setCurrentIndex} />
+          <ImagesContainer>
+            <BoxedImages images={images} setCurrentIndex={setCurrentIndex} />
 
-        {aree.map((_, index) => (
-          <>
-            {currentIndex === index && (
-              <AppearingText
-                key={aree[index].titolo}
-                numberOfLines={2}
-                component={AreaTitle}
-              >
-                {aree[currentIndex].titolo}
-              </AppearingText>
-            )}
-          </>
-        ))}
+            {aree.map((_, index) => (
+              <>
+                {currentIndex === index && (
+                  <AppearingText
+                    key={aree[index].titolo}
+                    numberOfLines={2}
+                    component={AreaTitle}
+                  >
+                    {aree[currentIndex].titolo}
+                  </AppearingText>
+                )}
+              </>
+            ))}
+          </ImagesContainer>
+        </ContentContainer>
       </HomeSection>
     </HomeSectionWrapper>
   )

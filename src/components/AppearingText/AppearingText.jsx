@@ -3,12 +3,19 @@ import styled from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import useElementInView from '../../hooks/useElementInView'
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  overflow-y: hidden;
+  overflow-x: visible;
+`
 
-const Container = styled.div``
+const Container = styled.div`
+  overflow-y: hidden;
+  overflow-x: visible;
+`
 
 const TextContainer = styled.div`
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: visible;
 `
 
 const Text = styled(motion.h1)``
@@ -73,7 +80,7 @@ export default function AppearingText({
                 variants={textVariants}
                 initial="hidden"
                 animate={controls}
-                style={{ marginBottom: '0.3rem', marginRight: '0.3rem' }}
+                style={{ marginBottom: '0.3rem', paddingRight: '1rem' }}
               >
                 {filledTextArr
                   .slice(start, end)
