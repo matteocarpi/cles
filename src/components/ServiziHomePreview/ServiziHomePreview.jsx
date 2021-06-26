@@ -70,7 +70,10 @@ const ContentContainer = styled.section`
 `
 
 const ImagesContainer = styled.section`
-  width: 30%;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 30%;
+  }
 `
 
 export default function ServiziHomePreview({ lang, id }) {
