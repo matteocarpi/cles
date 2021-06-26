@@ -9,7 +9,6 @@ import SmallText from '../SmallText'
 const Wrapper = styled.article`
   display: none;
   width: 100%;
-  overflow-x: hidden;
   @media (min-width: 768px) {
     display: block;
     margin-bottom: 40px;
@@ -27,10 +26,20 @@ const TextContainer = styled.article`
   }
 `
 const Separator = styled.div`
-  position: relative;
   height: 40px;
+  display: flex;
 `
 
+const CWrapper = styled.div`
+  width: 100%;
+  position: relative;
+
+  ${({ right }) =>
+    right &&
+    css`
+      overflow-x: hidden;
+    `}
+`
 const C = styled.div`
   position: absolute;
   border: solid 5px ${({ theme }) => theme.yellow};
@@ -76,10 +85,6 @@ const Image = styled(GatsbyImage)`
 `
 
 export default function FirstNews({ lang, news }) {
-  console.log({ news })
-
-  console.log({ image })
-
   const data = useStaticQuery(graphql`
     query FirsNewsImage {
       defaultImage: file(name: { eq: "default-image" }) {
@@ -106,8 +111,12 @@ export default function FirstNews({ lang, news }) {
           </ReadMore>
         </TextContainer>
         <Separator>
-          <C left />
-          <C />
+          <CWrapper>
+            <C left />
+          </CWrapper>
+          <CWrapper right>
+            <C />
+          </CWrapper>
         </Separator>
         <Image image={image} />
       </Container>

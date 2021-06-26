@@ -10,8 +10,11 @@ import SectionTitleMobile from '../SectionTitleMobile'
 
 const HomeSectionWrapper = styled.section`
   width: 100%;
-  padding: 24px;
   padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow-x: hidden;
 
   ${({ dark, theme }) =>
     dark &&
@@ -43,7 +46,6 @@ const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
   width: 100%;
   max-width: 900px;
-  margin-left: auto;
   @media (min-width: 768px) {
     border: none;
     margin-top: 200px;
