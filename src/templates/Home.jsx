@@ -105,7 +105,7 @@ const SectionTitleMobile = styled(MenuText)`
   }
 `
 
-const Bio = styled.h3``
+const Bio = styled(motion.h3)``
 
 const ClientList = styled.section`
   display: flex;
@@ -357,7 +357,9 @@ export default function Home({ pageContext }) {
           <SectionTitleMobile>
             {lang === 'en' ? 'About' : 'Chi Siamo'}
           </SectionTitleMobile>
-          <Bio>{homeData.bio[lang]}</Bio>
+          <AppearingText numberOfLines={1} component={Bio} maxStrLength={40}>
+            {homeData.bio[lang]}
+          </AppearingText>
           <Video url={homeData.video[lang]} />
 
           <StyledButtonLink to="#">

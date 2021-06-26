@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react'
+import React, { useRef, useLayoutEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import useElementInView from '../../hooks/useElementInView'
@@ -37,6 +37,7 @@ export default function AppearingText({
   numberOfLines = 2,
   component: Component = Text,
   className,
+  maxStrLength,
 }) {
   const textArr = children.split(' ')
 
@@ -57,7 +58,27 @@ export default function AppearingText({
 
   const emptyStrings = emptyLines.map(() => '_')
 
-  const filledTextArr = [...textArr, ...emptyStrings]
+  const filledTextArr = useMemo(() => [...textArr, ...emptyStrings], [
+    emptyStrings,
+    textArr,
+  ])
+
+  const lines = useMemo(() => {
+    let lineNumber = 0
+
+    const obj = {}
+
+    filledTextArr.forEach(word => {
+      if (obj[lineNumber]?.length + word.length > maxStrLength) {
+        lineNumber += 1
+      }
+      obj[lineNumber] = `${obj[lineNumber] ?? ''}${
+        obj[lineNumber] ? ' ' : ''
+      }${word}`
+    })
+
+    return Object.values(obj)
+  }, [filledTextArr, maxStrLength])
 
   useLayoutEffect(() => {
     if (inView) {
@@ -70,31 +91,44 @@ export default function AppearingText({
   return (
     <Wrapper ref={ref} className={className}>
       <Container>
-        {linesArr.map((_, index) => {
-          const start = wordsPerLine * index
-          const end = start + wordsPerLine
+        {maxStrLength
+          ? lines.map(line => (
+              <TextContainer key={line}>
+                <Component
+                  variants={textVariants}
+                  initial="hidden"
+                  animate={controls}
+                  style={{ marginBottom: '0.3rem', paddingRight: '1rem' }}
+                >
+                  {line}
+                </Component>
+              </TextContainer>
+            ))
+          : linesArr.map((_, index) => {
+              const start = wordsPerLine * index
+              const end = start + wordsPerLine
 
-          return (
-            <TextContainer key={textArr[start]}>
-              <Component
-                variants={textVariants}
-                initial="hidden"
-                animate={controls}
-                style={{ marginBottom: '0.3rem', paddingRight: '1rem' }}
-              >
-                {filledTextArr
-                  .slice(start, end)
-                  .map(word =>
-                    word === '_' ? (
-                      <span style={{ opacity: 0 }}>_</span>
-                    ) : (
-                      `${word} `
-                    ),
-                  )}
-              </Component>
-            </TextContainer>
-          )
-        })}
+              return (
+                <TextContainer key={textArr[start]}>
+                  <Component
+                    variants={textVariants}
+                    initial="hidden"
+                    animate={controls}
+                    style={{ marginBottom: '0.3rem', paddingRight: '1rem' }}
+                  >
+                    {filledTextArr
+                      .slice(start, end)
+                      .map(word =>
+                        word === '_' ? (
+                          <span style={{ opacity: 0 }}>_</span>
+                        ) : (
+                          `${word} `
+                        ),
+                      )}
+                  </Component>
+                </TextContainer>
+              )
+            })}
       </Container>
     </Wrapper>
   )
