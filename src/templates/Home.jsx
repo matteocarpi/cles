@@ -81,17 +81,21 @@ const HomeSectionWrapper = styled.section`
         border-top: solid 2px ${theme.yellow};
       }
     `}
+  @media (min-width: 768px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 `
 
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   margin-left: auto;
   @media (min-width: 768px) {
     border: none;
     margin-top: 200px;
-    padding: 0 40px;
+    padding: 0;
   }
 `
 
