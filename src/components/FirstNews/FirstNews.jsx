@@ -6,16 +6,36 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { stripHTML } from '../../utils'
 import SmallText from '../SmallText'
 
-const Wrapper = styled.article`
+const Wrapper = styled.div`
   display: none;
+  box-sizing: border-box;
   width: 100%;
   @media (min-width: 768px) {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     margin-bottom: 40px;
   }
 `
 
-const Container = styled.div``
+const Container = styled.div`
+  position: relative;
+  max-width: 900px;
+`
+
+const Arch = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 3px;
+  right: 150px;
+  left: 0;
+  transform: translateX(-50%);
+  border: solid 5px ${({ theme }) => theme.yellow};
+  border-right: none;
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 50%;
+  z-index: 1;
+`
 
 const TextContainer = styled.article`
   border: solid 5px ${({ theme }) => theme.yellow};
@@ -26,7 +46,7 @@ const TextContainer = styled.article`
   }
 `
 const Separator = styled.div`
-  height: 40px;
+  height: 80px;
   display: flex;
 `
 
@@ -40,23 +60,24 @@ const CWrapper = styled.div`
       overflow-x: hidden;
     `}
 `
+
 const C = styled.div`
   position: absolute;
   border: solid 5px ${({ theme }) => theme.yellow};
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 90px;
   top: -5px;
-  border-bottom-left-radius: 25px;
-  border-top-left-radius: 25px;
+  border-bottom-left-radius: 45px;
+  border-top-left-radius: 45px;
   border-right: none;
 
   ${({ left }) =>
     left
       ? css`
-          left: -20px;
+          left: -40px;
         `
       : css`
-          right: -20px;
+          right: -40px;
         `};
 `
 
@@ -102,6 +123,7 @@ export default function FirstNews({ lang, news }) {
   return (
     <Wrapper>
       <Container>
+        <Arch />
         <TextContainer key={news.id}>
           <NewsDate>{news.date}</NewsDate>
           <NewsTitle>{news.title}</NewsTitle>

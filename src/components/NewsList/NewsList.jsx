@@ -45,7 +45,6 @@ const HomeSectionWrapper = styled.section`
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
   width: 100%;
-  max-width: 900px;
   @media (min-width: 768px) {
     border: none;
     margin-top: 200px;
@@ -53,12 +52,17 @@ const HomeSection = styled.section`
   }
 `
 
-const NewsListContainer = styled.section``
+const NewsListContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`
 
 const NewsPreview = styled.article`
   border: solid 5px ${({ theme }) => theme.yellow};
   padding: 24px;
   margin-bottom: 40px;
+  max-width: 900px;
 `
 
 const NewsDate = styled(SmallText)`
