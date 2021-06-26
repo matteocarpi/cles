@@ -7,20 +7,17 @@ import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Scrollspy from 'react-scrollspy'
 
-import { stripHTML } from '../utils'
-
 import ArrowDown from '../assets/arrow-down.svg'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import SmallText from '../components/SmallText'
 import AppearingText from '../components/AppearingText'
-import MenuText from '../components/MenuText'
 import Video from '../components/Video'
 import ButtonLink from '../components/ButtonLink'
 import ServiziHomePreview from '../components/ServiziHomePreview'
-import WatchAllNews from '../components/WatchAllNews'
 import ArrowRight from '../components/Arrow'
-import FirstNews from '../components/FirstNews'
+import NewsList from '../components/NewsList'
+import SectionTitleMobile from '../components/SectionTitleMobile'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -110,12 +107,6 @@ const HomeSection = styled.section`
   }
 `
 
-const SectionTitleMobile = styled(MenuText)`
-  @media (min-width: 768px) {
-    display: none;
-  }
-`
-
 const Bio = styled(motion.h3)``
 
 const ClientList = styled.section`
@@ -135,33 +126,6 @@ const Client = styled(GatsbyImage)`
     max-width: 250px;
     max-height: unset;
   }
-`
-
-const NewsList = styled.section``
-
-const NewsPreview = styled.article`
-  border: solid 5px ${({ theme }) => theme.yellow};
-  padding: 24px;
-  margin-bottom: 40px;
-`
-
-const NewsDate = styled(SmallText)`
-  padding-bottom: 40px;
-`
-
-const NewsTitle = styled.h5`
-  margin: 40px 0;
-`
-
-const NewsExcerpt = styled.p``
-
-const ReadMore = styled(Link)`
-  color: ${({ theme }) => theme.yellow};
-  &:visited {
-    color: ${({ theme }) => theme.yellow};
-  }
-  font-weight: 600;
-  text-decoration: underline;
 `
 
 const SeeAllClients = styled(Link)`
@@ -299,6 +263,15 @@ export default function Home({ pageContext }) {
           node {
             id
             title
+            featuredImage {
+              node {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 1920)
+                  }
+                }
+              }
+            }
             slug
             excerpt
             date(formatString: "DD.MM.YYYY")
@@ -428,26 +401,7 @@ export default function Home({ pageContext }) {
         </HomeSection>
       </HomeSectionWrapper>
 
-      <HomeSectionWrapper dark>
-        <HomeSection id="news">
-          <SectionTitleMobile>News</SectionTitleMobile>
-          <Bio>{homeData.news.titolo[lang]}</Bio>
-
-          <NewsList>
-            <FirstNews news={news[0]} />
-            {news.map(n => (
-              <NewsPreview key={n.id}>
-                <NewsDate>{n.date}</NewsDate>
-                <NewsTitle>{n.title}</NewsTitle>
-                <NewsExcerpt>{`${stripHTML(n.excerpt)}...`}</NewsExcerpt>
-                <ReadMore to="#">Leggi Tutto</ReadMore>
-              </NewsPreview>
-            ))}
-          </NewsList>
-        </HomeSection>
-
-        <WatchAllNews />
-      </HomeSectionWrapper>
+      <NewsList news={news} title={homeData.news.titolo[lang]} />
     </Layout>
   )
 }
