@@ -20,6 +20,7 @@ import ButtonLink from '../components/ButtonLink'
 import ServiziHomePreview from '../components/ServiziHomePreview'
 import WatchAllNews from '../components/WatchAllNews'
 import ArrowRight from '../components/Arrow'
+import FirstNews from '../components/FirstNews'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -433,8 +434,7 @@ export default function Home({ pageContext }) {
           <Bio>{homeData.news.titolo[lang]}</Bio>
 
           <NewsList>
-                
-
+            <FirstNews news={news[0]} />
             {news.map(n => (
               <NewsPreview key={n.id}>
                 <NewsDate>{n.date}</NewsDate>
