@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import Logo from '../Logo'
+import LogoWord from '../LogoWord'
 
 const Container = styled.footer`
   position: relative;
@@ -10,16 +11,28 @@ const Container = styled.footer`
   padding: 40px 20px 10px 20px;
 `
 
-const StyledLogo = styled(Logo)`
+const LogoMobile = styled(Logo)`
   width: 100%;
   height: 60px;
   margin: 0 auto;
+
+  @media (min-width: 1110px) {
+    display: none;
+  }
+`
+
+const LogoDesktop = styled(LogoWord)`
+  height: 180px;
+  padding-left: 360px;
+  display: none;
+  @media (min-width: 1110px) {
+    display: block;
+  }
 `
 
 const Content = styled.p`
   color: ${({ theme }) => theme.white};
   margin-top: 40px;
-
 
   a {
     color: ${({ theme }) => theme.white};
@@ -72,7 +85,8 @@ export default function Footer({ lang }) {
 
   return (
     <Container>
-      <StyledLogo />
+      <LogoDesktop />
+      <LogoMobile />
       <Content>
         <strong>{contatti.nome}</strong>
         <br />

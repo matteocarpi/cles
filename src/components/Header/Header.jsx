@@ -18,13 +18,13 @@ const ContainerMobile = styled.header`
   justify-content: space-between;
   align-items: flex-start;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1110px) {
     display: none;
   }
 `
 
 const WrapperDesktop = styled.header`
-  @media (max-width: 767px) {
+  @media (max-width: 1110px) {
     display: none;
   }
 
