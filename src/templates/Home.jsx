@@ -19,7 +19,7 @@ import Video from '../components/Video'
 import ButtonLink from '../components/ButtonLink'
 import ServiziHomePreview from '../components/ServiziHomePreview'
 import WatchAllNews from '../components/WatchAllNews'
-import ArrowRight from '../assets/arrow-right.svg'
+import ArrowRight from '../components/Arrow'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -118,6 +118,12 @@ const Client = styled(GatsbyImage)`
   width: 45%;
   max-height: 50px;
   margin: 1rem 0;
+
+  @media (min-width: 768px) {
+    width: 30%;
+    max-width: 250px;
+    max-height: unset;
+  }
 `
 
 const NewsList = styled.section``
@@ -206,6 +212,14 @@ const ScrollSpyContainer = styled.div`
   }
 `
 
+const StyledArrowRight = styled(ArrowRight)`
+  max-width: 30px;
+
+  @media (min-width: 768px) {
+    max-width: 50px;
+  }
+`
+
 export default function Home({ pageContext }) {
   const { lang } = pageContext
 
@@ -256,7 +270,7 @@ export default function Home({ pageContext }) {
             loghi {
               localFile {
                 childImageSharp {
-                  gatsbyImageData(width: 200)
+                  gatsbyImageData(width: 400, pngOptions: { quality: 100 })
                 }
               }
             }
@@ -398,7 +412,7 @@ export default function Home({ pageContext }) {
             <h5>
               {lang === 'en' ? 'See all clients' : 'Scopri tutti i clienti'}
             </h5>
-            <ArrowRight />
+            <StyledArrowRight />
           </SeeAllClients>
         </HomeSection>
       </HomeSectionWrapper>
