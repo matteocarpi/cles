@@ -44,6 +44,7 @@ const Copyright = styled.span`
   padding-bottom: 1rem;
   font-weight: 100;
 `
+
 export default function Footer({ lang }) {
   const data = useStaticQuery(graphql`
     query FooterQuery {

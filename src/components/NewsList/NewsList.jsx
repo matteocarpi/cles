@@ -89,7 +89,7 @@ const Title = styled.h3`
   margin-left: auto;
 `
 
-export default function NewsList({ news, title }) {
+export default function NewsList({ news, title, lang }) {
   return (
     <Wrapper dark>
       <HomeSection id="news">
@@ -103,7 +103,9 @@ export default function NewsList({ news, title }) {
               <NewsDate>{n.date}</NewsDate>
               <NewsTitle>{n.title}</NewsTitle>
               <NewsExcerpt>{`${stripHTML(n.excerpt)}...`}</NewsExcerpt>
-              <ReadMore to="#">Leggi Tutto</ReadMore>
+              <ReadMore to="#">
+                {lang === 'it' ? ' Leggi Tutto ' : 'Read More'}{' '}
+              </ReadMore>
             </NewsPreview>
           ))}
         </NewsListContainer>
