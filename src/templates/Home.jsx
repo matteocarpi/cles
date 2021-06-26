@@ -82,6 +82,16 @@ const HomeSectionWrapper = styled.section`
       }
     `}
   @media (min-width: 768px) {
+    ${({ dark, theme }) =>
+      dark &&
+      css`
+        ${Bio} {
+          color: ${theme.yellow};
+        }
+        ${HomeSection} {
+          border-top: none;
+        }
+      `}
     padding-left: 40px;
     padding-right: 40px;
   }
@@ -423,6 +433,8 @@ export default function Home({ pageContext }) {
           <Bio>{homeData.news.titolo[lang]}</Bio>
 
           <NewsList>
+                
+
             {news.map(n => (
               <NewsPreview key={n.id}>
                 <NewsDate>{n.date}</NewsDate>
