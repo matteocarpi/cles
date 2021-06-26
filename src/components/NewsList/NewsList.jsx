@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
 import { stripHTML } from '../../utils'
 
@@ -8,8 +7,9 @@ import SmallText from '../SmallText'
 import FirstNews from '../FirstNews'
 import SectionTitleMobile from '../SectionTitleMobile'
 
-const HomeSectionWrapper = styled.section`
+const Wrapper = styled.section`
   width: 100%;
+  padding: 24px;
   padding-bottom: 60px;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ const HomeSectionWrapper = styled.section`
     ${({ dark, theme }) =>
       dark &&
       css`
-        ${Bio} {
+        ${Title} {
           color: ${theme.yellow};
         }
         ${HomeSection} {
@@ -84,14 +84,17 @@ const ReadMore = styled(Link)`
   text-decoration: underline;
 `
 
-const Bio = styled(motion.h3)``
+const Title = styled.h3`
+  max-width: 900px;
+  margin-left: auto;
+`
 
 export default function NewsList({ news, title }) {
   return (
-    <HomeSectionWrapper dark>
+    <Wrapper dark>
       <HomeSection id="news">
         <SectionTitleMobile>News</SectionTitleMobile>
-        <Bio>{title}</Bio>
+        <Title>{title}</Title>
 
         <NewsListContainer>
           <FirstNews news={news[0]} />
@@ -105,6 +108,6 @@ export default function NewsList({ news, title }) {
           ))}
         </NewsListContainer>
       </HomeSection>
-    </HomeSectionWrapper>
+    </Wrapper>
   )
 }
