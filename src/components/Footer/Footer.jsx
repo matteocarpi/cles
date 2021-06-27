@@ -1,16 +1,26 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
-
 import styled from 'styled-components'
+
+import navigation from '../../data/navigation.json'
 
 import Logo from '../Logo'
 import LogoWord from '../LogoWord'
+import MenuText from '../MenuText'
 
 const Container = styled.footer`
   position: relative;
   height: 100vh;
   background-color: ${({ theme }) => theme.black};
   padding: 40px 20px 10px 20px;
+
+  @media (min-width: 768px) {
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 `
 
 const LogoMobile = styled(Logo)`
@@ -25,6 +35,7 @@ const LogoMobile = styled(Logo)`
 
 const LogoDesktop = styled(LogoWord)`
   height: 180px;
+  min-height: 180px;
   padding-left: 360px;
   display: none;
   @media (min-width: 1110px) {
@@ -47,9 +58,16 @@ const Copyright = styled.span`
   text-align: center;
   padding-bottom: 1rem;
   font-weight: 100;
+
+  @media (min-width: 768px) {
+    position: relative;
+  }
 `
 
-const Content = styled.p`
+const Content = styled.div`
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 56px;
   color: ${({ theme }) => theme.white};
   margin-top: 40px;
 
@@ -60,14 +78,39 @@ const Content = styled.p`
 
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+  }
 `
 
 const Column = styled.div`
   &:not(:first-child) {
     margin-top: 24px;
   }
+
+  @media (min-width: 768px) {
+    width: 30%;
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+  }
 `
-const Navigation = styled.nav``
+const Navigation = styled.nav`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`
+
+const NavItem = styled(MenuText)`
+  margin: 0;
+  color: ${({ theme }) => theme.yellow};
+  line-height: 24px;
+`
 
 const Contacts = styled.div``
 
@@ -115,9 +158,15 @@ export default function Footer({ lang }) {
       <LogoDesktop />
       <LogoMobile />
       <Content>
-        <Navigation>
-          <Column />
-        </Navigation>
+        <Column>
+          <Navigation>
+            {navigation.pages.map(page => (
+              <Link to={page.url[lang]}>
+                <NavItem>{page.label[lang]}</NavItem>
+              </Link>
+            ))}
+          </Navigation>
+        </Column>
         <Column>
           <Contacts>
             <strong>{contatti.nome}</strong>
