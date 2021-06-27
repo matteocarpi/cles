@@ -21,6 +21,7 @@ const Container = styled.footer`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    min-height: 600px;
   }
 `
 

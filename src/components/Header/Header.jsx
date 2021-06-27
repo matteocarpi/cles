@@ -37,7 +37,7 @@ const WrapperDesktop = styled.header`
   display: flex;
   justify-content: flex-end;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 
   .headroom {
     width: 100vw;
