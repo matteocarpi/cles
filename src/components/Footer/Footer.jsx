@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link, useStaticQuery, graphql } from 'gatsby'
+
 import styled from 'styled-components'
-import { useStaticQuery, graphql } from 'gatsby'
+
 import Logo from '../Logo'
 import LogoWord from '../LogoWord'
 
@@ -30,18 +32,7 @@ const LogoDesktop = styled(LogoWord)`
   }
 `
 
-const Content = styled.p`
-  color: ${({ theme }) => theme.white};
-  margin-top: 40px;
-
-  a {
-    color: ${({ theme }) => theme.white};
-    text-decoration: none;
-  }
-`
-
 const Document = styled.a`
-  font-weight: 600;
   text-decoration: underline !important;
 `
 
@@ -56,6 +47,42 @@ const Copyright = styled.span`
   text-align: center;
   padding-bottom: 1rem;
   font-weight: 100;
+`
+
+const Content = styled.p`
+  color: ${({ theme }) => theme.white};
+  margin-top: 40px;
+
+  a {
+    color: ${({ theme }) => theme.white};
+    text-decoration: none;
+  }
+
+  display: flex;
+  flex-direction: column;
+`
+
+const Column = styled.div`
+  &:not(:first-child) {
+    margin-top: 24px;
+  }
+`
+const Navigation = styled.nav``
+
+const Contacts = styled.div``
+
+const Quality = styled.div``
+
+const Links = styled.div`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+`
+
+const SecondaryLink = styled(Link)`
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: underline !important;
 `
 
 export default function Footer({ lang }) {
@@ -88,30 +115,47 @@ export default function Footer({ lang }) {
       <LogoDesktop />
       <LogoMobile />
       <Content>
-        <strong>{contatti.nome}</strong>
-        <br />
-        Via Costanza Baudana Vaccolini n. 14
-        <br />
-        00153 Roma
-        <br />
-        <br />
-        T.
-        <a href={`tel:${contatti.telefono}`}>{contatti.telefono}</a>
-        <br />
-        F. {contatti.fax}
-        <br />
-        <a href={`mailto:${contatti.email}`}>{contatti.email}</a>
-        <br />
-        <br />
-        <strong>Qualità</strong>
-        <br />
-        <Document href="#">
-          {lang === 'it' ? 'Certificazioni ISO 9001' : 'ISO Certification 9001'}
-        </Document>
-        <br />
-        <Document href="#">
-          {lang === 'it' ? 'Codice Etico' : 'Ethical Code'}
-        </Document>
+        <Navigation>
+          <Column />
+        </Navigation>
+        <Column>
+          <Contacts>
+            <strong>{contatti.nome}</strong>
+            <br />
+            Via Costanza Baudana Vaccolini n. 14
+            <br />
+            00153 Roma
+            <br />
+            <br />
+            T.
+            <a href={`tel:${contatti.telefono}`}>{contatti.telefono}</a>
+            <br />
+            F. {contatti.fax}
+            <br />
+            <a href={`mailto:${contatti.email}`}>{contatti.email}</a>
+          </Contacts>
+        </Column>
+
+        <Column>
+          <Quality>
+            <strong>Qualità</strong>
+            <br />
+            <Document href="#">
+              {lang === 'it'
+                ? 'Certificazioni ISO 9001'
+                : 'ISO Certification 9001'}
+            </Document>
+            <br />
+            <Document href="#">
+              {lang === 'it' ? 'Codice Etico' : 'Ethical Code'}
+            </Document>
+          </Quality>
+
+          <Links>
+            <SecondaryLink to="#">Privacy Policy</SecondaryLink>
+            <SecondaryLink to="#">Cookie Policy</SecondaryLink>
+          </Links>
+        </Column>
       </Content>
       <Copyright>{contatti.copyright[lang]}</Copyright>
     </Container>
