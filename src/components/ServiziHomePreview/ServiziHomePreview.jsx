@@ -12,7 +12,6 @@ const HomeSectionWrapper = styled.section`
   width: 100%;
   padding: 0 1rem;
   margin-bottom: 60px;
-  min-height: 1000px;
 `
 
 const HomeSection = styled.section`
@@ -141,7 +140,7 @@ export default function ServiziHomePreview({ lang, id }) {
                 {currentIndex === index && (
                   <AnimatedSubtitle
                     key={aree[index].sottotitolo}
-                    numberOfLines={1}
+                    numberOfLines={2}
                     component={ServiceSubtitle}
                   >
                     {aree[currentIndex].sottotitolo}
