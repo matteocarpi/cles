@@ -5,7 +5,8 @@ const Container = styled.div`
   iframe {
     height: 300px;
     @media (min-width: 768px) {
-      height: 500px;
+      height: 505px;
+      margin: 100px 0 56px 0;
     }
   }
 `
