@@ -12,6 +12,7 @@ const HomeSectionWrapper = styled.section`
   width: 100%;
   padding: 0 1rem;
   margin-bottom: 60px;
+  min-height: 1000px;
 `
 
 const HomeSection = styled.section`
@@ -73,6 +74,7 @@ const ImagesContainer = styled.section`
   width: 100%;
   @media (min-width: 768px) {
     width: 30%;
+    margin: 0 40px;
   }
 `
 
