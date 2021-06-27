@@ -7,9 +7,8 @@ import ArrowRight from '../../assets/arrow-right.svg'
 const Wrapper = styled(Link)`
   display: flex;
   justify-content: flex-start;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   width: 100vw;
-  transform: translateX(-24px);
 `
 
 const speed = 3

@@ -6,6 +6,7 @@ import { stripHTML } from '../../utils'
 import SmallText from '../SmallText'
 import FirstNews from '../FirstNews'
 import SectionTitleMobile from '../SectionTitleMobile'
+import WatchAllNews from '../WatchAllNews'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -91,25 +92,28 @@ const Title = styled.h3`
 
 export default function NewsList({ news, title, lang }) {
   return (
-    <Wrapper dark>
-      <HomeSection id="news">
-        <SectionTitleMobile>News</SectionTitleMobile>
-        <Title>{title}</Title>
+    <>
+      <Wrapper dark>
+        <HomeSection id="news">
+          <SectionTitleMobile>News</SectionTitleMobile>
+          <Title>{title}</Title>
 
-        <NewsListContainer>
-          <FirstNews news={news[0]} />
-          {news.map(n => (
-            <NewsPreview key={n.id}>
-              <NewsDate>{n.date}</NewsDate>
-              <NewsTitle>{n.title}</NewsTitle>
-              <NewsExcerpt>{`${stripHTML(n.excerpt)}...`}</NewsExcerpt>
-              <ReadMore to="#">
-                {lang === 'it' ? ' Leggi Tutto ' : 'Read More'}{' '}
-              </ReadMore>
-            </NewsPreview>
-          ))}
-        </NewsListContainer>
-      </HomeSection>
-    </Wrapper>
+          <NewsListContainer>
+            <FirstNews news={news[0]} />
+            {news.map(n => (
+              <NewsPreview key={n.id}>
+                <NewsDate>{n.date}</NewsDate>
+                <NewsTitle>{n.title}</NewsTitle>
+                <NewsExcerpt>{`${stripHTML(n.excerpt)}...`}</NewsExcerpt>
+                <ReadMore to="#">
+                  {lang === 'it' ? ' Leggi Tutto ' : 'Read More'}{' '}
+                </ReadMore>
+              </NewsPreview>
+            ))}
+          </NewsListContainer>
+        </HomeSection>
+        <WatchAllNews />
+      </Wrapper>
+    </>
   )
 }
