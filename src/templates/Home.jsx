@@ -35,7 +35,7 @@ const IntroContainer = styled(BackgroundImage)`
   margin-bottom: 74px;
 
   @media (min-width: 768px) {
-    min-height: 500px;
+    min-height: 560px;
   }
 `
 

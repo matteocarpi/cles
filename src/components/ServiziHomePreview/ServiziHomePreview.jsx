@@ -44,7 +44,8 @@ const TextContainer = styled.article`
   display: flex;
   flex-direction: column;
   max-width: 300px;
-
+  margin: 0 auto;
+  transform: translateX(-19px);
   @media (min-width: 768px) {
     margin: 55px;
   }
