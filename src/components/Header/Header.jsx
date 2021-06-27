@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect, useMemo } from 'react'
+import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import HeadRoom from 'react-headroom'
+
+import useViewportScroll from '../../hooks/useViewportScroll'
 
 import Logo from '../LogoIcon'
 import Burger from '../../assets/burger.svg'
@@ -68,8 +70,14 @@ const NavigationMobile = styled.nav`
 const NavigationDesktop = styled.nav`
   display: flex;
   justify-content: flex-end;
-  margin-top: 40px;
-  margin-right: 40px;
+  padding: 46px 0;
+  padding-right: 40px;
+
+  ${({ hasScrolled }) =>
+    hasScrolled &&
+    css`
+      background-color: ${({ theme }) => theme.white};
+    `}
 `
 
 const LogoMobile = styled(Logo)`
@@ -81,6 +89,7 @@ const LogoDesktop = styled(Logo)`
   top: 40px;
   left: 40px;
   width: 300px;
+  z-index: 2;
 `
 
 const NavItem = styled(Link)`
@@ -91,8 +100,6 @@ const NavItem = styled(Link)`
   }
 
   white-space: nowrap;
-  margin-top: 30px;
-  margin-bottom: 60px;
   font-size: 16px;
   line-height: 20px;
   text-transform: uppercase;
@@ -111,6 +118,10 @@ export default function Header({ lang }) {
   useEffect(() => {
     setIsMenuOpen(false)
   }, [])
+
+  const scrollY = useViewportScroll()
+
+  const hasScrolled = useMemo(() => scrollY > 400, [scrollY])
 
   return (
     <>
@@ -136,7 +147,7 @@ export default function Header({ lang }) {
 
         <HeadRoom>
           <NavigationWrapper>
-            <NavigationDesktop>
+            <NavigationDesktop hasScrolled={hasScrolled}>
               {navigation.pages.map(page => (
                 <NavItem to={page.url[lang]} key={page.url[lang]}>
                   {page.label[lang]}
