@@ -18,6 +18,7 @@ import ServiziHomePreview from '../components/ServiziHomePreview'
 import ArrowRight from '../components/Arrow'
 import NewsList from '../components/NewsList'
 import SectionTitleMobile from '../components/SectionTitleMobile'
+import useResponsiveness from '../hooks/useResponsiveness'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -178,7 +179,6 @@ const SectionTitleWrapper = styled.div`
   }
 `
 
-
 const ScrollSpyContainer = styled.div`
   position: fixed;
   bottom: 40px;
@@ -303,6 +303,8 @@ export default function Home({ pageContext }) {
         },
   )
 
+  const { isMobile } = useResponsiveness()
+
   return (
     <Layout lang={lang}>
       <Seo title={data.wpPage.homeData.title[lang]} />
@@ -356,7 +358,7 @@ export default function Home({ pageContext }) {
           <SectionTitleMobile>
             {lang === 'en' ? 'About' : 'Chi Siamo'}
           </SectionTitleMobile>
-          <AppearingText numberOfLines={1} component={Bio} maxStrLength={40}>
+          <AppearingText component={Bio} maxStrLength={isMobile ? 22 : 40}>
             {homeData.bio[lang]}
           </AppearingText>
           <Video url={homeData.video[lang]} />
