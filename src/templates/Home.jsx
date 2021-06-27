@@ -145,6 +145,14 @@ const StyledButtonLink = styled(ButtonLink)`
   margin-left: auto;
 `
 
+const SectionTitleDesktop = styled.h2`
+  ${({ light, theme }) =>
+    light &&
+    css`
+      color: ${theme.white};
+    `}
+`
+
 const SectionTitleWrapper = styled.div`
   overflow: hidden;
 
@@ -170,13 +178,6 @@ const SectionTitleWrapper = styled.div`
   }
 `
 
-const SectionTitleDesktop = styled.h2`
-  ${({ light, theme }) =>
-    light &&
-    css`
-      color: ${theme.white};
-    `}
-`
 
 const ScrollSpyContainer = styled.div`
   position: fixed;
