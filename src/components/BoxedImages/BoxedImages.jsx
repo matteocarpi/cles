@@ -8,7 +8,7 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
 const mobileProportion = 0.54
-const desktopProportion = 0.8
+const desktopProportion = 0.7
 
 const Wrapper = styled.div`
   position: relative;
