@@ -5,8 +5,9 @@ import HeadRoom from 'react-headroom'
 
 import Logo from '../LogoIcon'
 import Burger from '../../assets/burger.svg'
-import MenuText from '../MenuText'
 import MobileMenu from '../MobileMenu'
+import MenuText from '../MenuText'
+
 import navigation from '../../data/navigation.json'
 
 const ContainerMobile = styled.header`
@@ -90,10 +91,11 @@ const NavItem = styled(Link)`
   }
 
   white-space: nowrap;
-`
-
-const NavItemText = styled(MenuText)`
-  margin: 0;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
 `
 
 const MenuButton = styled.button``
@@ -137,7 +139,7 @@ export default function Header({ lang }) {
             <NavigationDesktop>
               {navigation.pages.map(page => (
                 <NavItem to={page.url[lang]} key={page.url[lang]}>
-                  <NavItemText>{page.label[lang]}</NavItemText>
+                  {page.label[lang]}
                 </NavItem>
               ))}
             </NavigationDesktop>
