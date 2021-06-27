@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
+import HeadRoom from 'react-headroom'
 
 import Logo from '../LogoIcon'
 import Burger from '../../assets/burger.svg'
@@ -34,6 +35,21 @@ const WrapperDesktop = styled.header`
   justify-content: flex-end;
   top: 0;
   z-index: 1;
+
+  .headroom {
+    width: 100vw;
+  }
+`
+
+const NavigationWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  &:before {
+    content: '';
+    background-color: pink;
+    width: 350px;
+    height: 50px;
+  }
 `
 
 const ContainerDesktop = styled.div`
@@ -51,8 +67,8 @@ const NavigationMobile = styled.nav`
 const NavigationDesktop = styled.nav`
   display: flex;
   justify-content: flex-end;
-  margin-left: 350px;
-  width: calc(100% - 350px);
+  margin-top: 40px;
+  margin-right: 40px;
 `
 
 const LogoMobile = styled(Logo)`
@@ -74,6 +90,10 @@ const NavItem = styled(Link)`
   }
 
   white-space: nowrap;
+`
+
+const NavItemText = styled(MenuText)`
+  margin: 0;
 `
 
 const MenuButton = styled.button``
@@ -110,14 +130,19 @@ export default function Header({ lang }) {
           <Link to={lang === 'it' ? '/' : `/${lang}`}>
             <LogoDesktop />
           </Link>
-          <NavigationDesktop>
-            {navigation.pages.map(page => (
-              <NavItem to={page.url[lang]} key={page.url[lang]}>
-                <MenuText>{page.label[lang]}</MenuText>
-              </NavItem>
-            ))}
-          </NavigationDesktop>
         </ContainerDesktop>
+
+        <HeadRoom>
+          <NavigationWrapper>
+            <NavigationDesktop>
+              {navigation.pages.map(page => (
+                <NavItem to={page.url[lang]} key={page.url[lang]}>
+                  <NavItemText>{page.label[lang]}</NavItemText>
+                </NavItem>
+              ))}
+            </NavigationDesktop>
+          </NavigationWrapper>
+        </HeadRoom>
       </WrapperDesktop>
     </>
   )
