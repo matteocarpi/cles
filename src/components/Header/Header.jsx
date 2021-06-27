@@ -107,7 +107,9 @@ export default function Header({ lang }) {
 
       <WrapperDesktop>
         <ContainerDesktop>
-          <LogoDesktop />
+          <Link to={lang === 'it' ? '/' : `/${lang}`}>
+            <LogoDesktop />
+          </Link>
           <NavigationDesktop>
             {navigation.pages.map(page => (
               <NavItem to={page.url[lang]} key={page.url[lang]}>
