@@ -11,6 +11,7 @@ import MenuText from '../MenuText'
 const Container = styled.footer`
   position: relative;
   height: 100vh;
+  width: 100vw;
   background-color: ${({ theme }) => theme.black};
   padding: 40px 20px 10px 20px;
 
@@ -58,6 +59,7 @@ const Copyright = styled.span`
   text-align: center;
   padding-bottom: 1rem;
   font-weight: 100;
+  width: 100%;
 
   @media (min-width: 768px) {
     position: relative;
