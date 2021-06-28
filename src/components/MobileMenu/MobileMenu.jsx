@@ -6,7 +6,7 @@ import navigation from '../../data/navigation.json'
 import Close from '../../assets/close.svg'
 
 const Container = styled.section`
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -35,6 +35,7 @@ const NavItem = styled(Link)``
 
 const NavItemText = styled.h3`
   color: ${({ theme }) => theme.yellow};
+  margin: 0;
 `
 
 const Lang = styled.h4`
