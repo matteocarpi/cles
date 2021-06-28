@@ -16,12 +16,14 @@ const HomeSectionWrapper = styled.section`
 
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
-  width: 100%;
+  /* width: 100%; */
 
   @media (min-width: 768px) {
     border: none;
     margin-top: 200px;
     padding: 0 40px;
+    display: flex;
+    justify-content: flex-end;
   }
 `
 
@@ -67,10 +69,13 @@ const ContentContainer = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 768px) {
+  @media (min-width: 940px) {
     flex-direction: row;
     justify-content: flex-end;
     align-items: stretch;
+    width: 70%;
+    min-width: 860px;
+    margin-right: 0;
   }
 `
 
@@ -88,16 +93,18 @@ export default function ServiziHomePreview({ lang, id }) {
     query ServiziPreview {
       wpPage(id: { eq: "cG9zdDo3Ng==" }) {
         chiSiamoData {
-          areeAttivit {
+          servizi {
             titolo {
               it
               en
             }
-            sottotitolo {
+            descrizione {
               it
               en
             }
-            descrizione {
+          }
+          areeAttivit {
+            titolo {
               it
               en
             }
@@ -122,8 +129,6 @@ export default function ServiziHomePreview({ lang, id }) {
   const aree = areeAttivit.map(area => ({
     ...area,
     titolo: area.titolo[lang],
-    sottotitolo: area.sottotitolo[lang],
-    descrizione: area.descrizione[lang],
     immagine: area.immagine.localFile,
   }))
 
@@ -138,23 +143,13 @@ export default function ServiziHomePreview({ lang, id }) {
 
         <ContentContainer>
           <TextContainer>
-            {aree.map((_, index) => (
-              <>
-                {currentIndex === index && (
-                  <AnimatedSubtitle
-                    key={aree[index].sottotitolo}
-                    numberOfLines={2}
-                    component={ServiceSubtitle}
-                  >
-                    {aree[currentIndex].sottotitolo}
-                  </AnimatedSubtitle>
-                )}
-              </>
-            ))}
+            <AnimatedSubtitle numberOfLines={2} component={ServiceSubtitle}>
+              {data.wpPage.chiSiamoData.servizi.titolo[lang]}
+            </AnimatedSubtitle>
 
             <ServiceDescription
               dangerouslySetInnerHTML={{
-                __html: aree[currentIndex].descrizione,
+                __html: data.wpPage.chiSiamoData.servizi.descrizione[lang],
               }}
             />
 
