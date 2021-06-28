@@ -31,12 +31,16 @@ const SectionTitleMobile = styled(MenuText)`
   }
 `
 
+const AnimatedAreaTitle = styled(AppearingText)``
+
 const AreaTitle = styled(motion.h3)`
   font-style: italic;
   color: ${({ theme }) => theme.red};
   margin: 0;
   padding-right: 3px;
   text-align: right;
+  font-size: 28px;
+  line-height: 32px;
 `
 
 const TextContainer = styled.article`
@@ -73,7 +77,6 @@ const ContentContainer = styled.section`
 const ImagesContainer = styled.section`
   width: 100%;
   @media (min-width: 768px) {
-    width: 30%;
     margin: 0 40px;
   }
 `
@@ -166,13 +169,13 @@ export default function ServiziHomePreview({ lang, id }) {
             {aree.map((_, index) => (
               <>
                 {currentIndex === index && (
-                  <AppearingText
+                  <AnimatedAreaTitle
                     key={aree[index].titolo}
                     numberOfLines={2}
                     component={AreaTitle}
                   >
                     {aree[currentIndex].titolo}
-                  </AppearingText>
+                  </AnimatedAreaTitle>
                 )}
               </>
             ))}

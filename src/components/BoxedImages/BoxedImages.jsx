@@ -16,20 +16,19 @@ const Wrapper = styled.div`
   margin-bottom: 26px;
   height: calc(840px * ${mobileProportion});
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 
   @media (min-width: 1100px) {
     height: calc(840px * ${desktopProportion});
     max-width: 500px;
     margin-left: auto;
-    margin-right: 10px;
   }
 `
 
 const Container = styled.div`
-  transform: translateX(calc(-630px * ${mobileProportion} / 2));
+  transform: translateX(calc(-1315px * ${mobileProportion} / 2));
   @media (min-width: 1100px) {
-    transform: translateX(calc(-630px * ${desktopProportion} / 2));
+    transform: translateX(calc(-1315px * ${desktopProportion} / 2));
   }
 `
 
