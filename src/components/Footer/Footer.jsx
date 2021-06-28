@@ -3,6 +3,7 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import navigation from '../../data/navigation.json'
+import useLang from '../../hooks/useLang'
 
 import Logo from '../Logo'
 import LogoWord from '../LogoWord'
@@ -131,7 +132,9 @@ const SecondaryLink = styled(Link)`
   text-decoration: underline !important;
 `
 
-export default function Footer({ lang }) {
+export default function Footer() {
+  const { lang } = useLang()
+
   const data = useStaticQuery(graphql`
     query FooterQuery {
       wpPage(id: { eq: "cG9zdDoyMw==" }) {

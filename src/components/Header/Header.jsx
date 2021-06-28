@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 import HeadRoom from 'react-headroom'
 
 import useViewportScroll from '../../hooks/useViewportScroll'
+import useLang from '../../hooks/useLang'
 
 import Logo from '../LogoIcon'
 import Burger from '../../assets/burger.svg'
@@ -112,8 +113,10 @@ const PageTitle = styled(MenuText)`
   margin-right: 0.5rem;
 `
 
-export default function Header({ lang }) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(true)
+
+  const { lang } = useLang()
 
   useEffect(() => {
     setIsMenuOpen(false)

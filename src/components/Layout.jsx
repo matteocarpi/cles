@@ -1,6 +1,8 @@
-import * as React from 'react'
+import React from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
+
+import LangProvider from '../LangContext'
 
 import Header from './Header'
 import Footer from './Footer'
@@ -134,10 +136,12 @@ const defaultTheme = {
 export default function Layout({ lang, children }) {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle />
-      <Header lang={lang} />
-      <Container>{children}</Container>
-      <Footer lang={lang} />
+      <LangProvider lang={lang}>
+        <GlobalStyle />
+        <Header />
+        <Container>{children}</Container>
+        <Footer />
+      </LangProvider>
     </ThemeProvider>
   )
 }
