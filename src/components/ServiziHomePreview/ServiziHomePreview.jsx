@@ -17,9 +17,19 @@ const HomeSectionWrapper = styled.section`
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
   width: 100%;
+
+  @media (min-width: 768px) {
+    border: none;
+    margin-top: 200px;
+    padding: 0 40px;
+  }
 `
 
-const SectionTitle = styled(MenuText)``
+const SectionTitleMobile = styled(MenuText)`
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
 
 const AreaTitle = styled(motion.h3)`
   font-style: italic;
@@ -29,7 +39,46 @@ const AreaTitle = styled(motion.h3)`
   text-align: right;
 `
 
-export default function ServiziHomePreview({ lang, title, description }) {
+const TextContainer = styled.article`
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+  transform: translateX(-19px);
+  @media (min-width: 768px) {
+    margin: 55px;
+  }
+`
+
+const AnimatedSubtitle = styled(AppearingText)`
+  margin-bottom: 40px;
+`
+const ServiceSubtitle = styled(motion.h4)`
+  margin-bottom: 40px;
+`
+
+const ServiceDescription = styled.article``
+
+const ContentContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
+  }
+`
+
+const ImagesContainer = styled.section`
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 30%;
+    margin: 0 40px;
+  }
+`
+
+export default function ServiziHomePreview({ lang, id }) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const data = useStaticQuery(graphql`
@@ -79,31 +128,56 @@ export default function ServiziHomePreview({ lang, title, description }) {
 
   return (
     <HomeSectionWrapper>
-      <HomeSection id="about">
-        <SectionTitle>{lang === 'en' ? 'Services' : 'Servizi'}</SectionTitle>
+      <HomeSection id={id}>
+        <SectionTitleMobile>
+          {lang === 'en' ? 'Services' : 'Servizi'}
+        </SectionTitleMobile>
 
-        <h3>{title}</h3>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: description,
-          }}
-        />
+        <ContentContainer>
+          <TextContainer>
+            {aree.map((_, index) => (
+              <>
+                {currentIndex === index && (
+                  <AnimatedSubtitle
+                    key={aree[index].sottotitolo}
+                    numberOfLines={2}
+                    component={ServiceSubtitle}
+                  >
+                    {aree[currentIndex].sottotitolo}
+                  </AnimatedSubtitle>
+                )}
+              </>
+            ))}
 
-        <ButtonLink to="#">
-          {lang === 'en' ? 'Continue' : 'Continua'}
-        </ButtonLink>
+            <ServiceDescription
+              dangerouslySetInnerHTML={{
+                __html: aree[currentIndex].descrizione,
+              }}
+            />
 
-        <BoxedImages images={images} setCurrentIndex={setCurrentIndex} />
+            <ButtonLink to="#">
+              {lang === 'en' ? 'Continue' : 'Continua'}
+            </ButtonLink>
+          </TextContainer>
 
-        {aree.map((titolo, index) => (
-          <>
-            {currentIndex === index && (
-              <AppearingText numberOfLines={2} component={AreaTitle}>
-                {aree[currentIndex].titolo}
-              </AppearingText>
-            )}
-          </>
-        ))}
+          <ImagesContainer>
+            <BoxedImages images={images} setCurrentIndex={setCurrentIndex} />
+
+            {aree.map((_, index) => (
+              <>
+                {currentIndex === index && (
+                  <AppearingText
+                    key={aree[index].titolo}
+                    numberOfLines={2}
+                    component={AreaTitle}
+                  >
+                    {aree[currentIndex].titolo}
+                  </AppearingText>
+                )}
+              </>
+            ))}
+          </ImagesContainer>
+        </ContentContainer>
       </HomeSection>
     </HomeSectionWrapper>
   )

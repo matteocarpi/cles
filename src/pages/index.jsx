@@ -2,6 +2,10 @@ import React, { useEffect } from 'react'
 
 import { navigate } from 'gatsby'
 
+import Home from '../components/Home'
+
+const defaultLang = 'it'
+
 const IndexPage = () => {
   const isBrowser = typeof window !== 'undefined'
 
@@ -9,9 +13,12 @@ const IndexPage = () => {
 
   const lang = isBrowser && locale.substring(0, 2)
 
-  useEffect(() => isBrowser && navigate(`/${lang}`), [isBrowser, lang])
+  useEffect(
+    () => isBrowser && navigate(lang === defaultLang ? '/' : `/${lang}`),
+    [isBrowser, lang],
+  )
 
-  return <div>loading...</div>
+  return <Home lang={defaultLang} />
 }
 
 export default IndexPage

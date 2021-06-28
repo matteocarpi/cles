@@ -54,7 +54,7 @@ module.exports = {
         fonts: [
           {
             family: 'Poppins',
-            weights: ['200', '400', '600', '700'],
+            weights: ['200', '300', '400', '600', '700'],
           },
         ],
       },

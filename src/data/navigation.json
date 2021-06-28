@@ -2,13 +2,6 @@
   "pages": [
     {
       "label": {
-        "it": "Home",
-        "en": "Home"
-      },
-      "url": "/"
-    },
-    {
-      "label": {
         "it": "Chi Siamo",
         "en": "About"
       },
@@ -85,7 +78,7 @@
     },
     "en": {
       "label": "IT",
-      "url": "/it"
+      "url": "/"
     }
   }
 }

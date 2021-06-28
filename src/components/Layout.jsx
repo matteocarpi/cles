@@ -34,8 +34,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 32px;
     line-height: 40px;
     letter-spacing: -0.03em;
-
-
+    font-weight: 300;
 
     @media(min-width: 768px ) {
       font-size: 60px;
@@ -116,7 +115,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-
+    color: ${({ theme }) => theme.black};
     &:visited {
       color: inherit;
     }

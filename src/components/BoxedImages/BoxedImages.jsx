@@ -2,12 +2,13 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import BgImage from 'gatsby-background-image'
-
 import { useStaticQuery, graphql } from 'gatsby'
 import { Carousel } from 'react-responsive-carousel'
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
 const mobileProportion = 0.54
+const desktopProportion = 0.7
 
 const Wrapper = styled.div`
   position: relative;
@@ -16,10 +17,20 @@ const Wrapper = styled.div`
   height: calc(840px * ${mobileProportion});
   display: flex;
   justify-content: center;
+
+  @media (min-width: 1100px) {
+    height: calc(840px * ${desktopProportion});
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: 10px;
+  }
 `
 
 const Container = styled.div`
   transform: translateX(calc(-630px * ${mobileProportion} / 2));
+  @media (min-width: 1100px) {
+    transform: translateX(calc(-630px * ${desktopProportion} / 2));
+  }
 `
 
 const Front = styled.div`
@@ -32,6 +43,12 @@ const Back = styled.div`
     calc(90px * ${mobileProportion}),
     calc(90px * ${mobileProportion})
   );
+  @media (min-width: 1100px) {
+    transform: translate(
+      calc(90px * ${desktopProportion}),
+      calc(90px * ${desktopProportion})
+    );
+  }
 `
 
 const imageContainerStyles = css`
@@ -42,6 +59,11 @@ const imageContainerStyles = css`
   height: calc(700px * ${mobileProportion});
   overflow: hidden;
   border: 3px solid ${({ theme }) => theme.yellow};
+
+  @media (min-width: 1100px) {
+    width: calc(500px * ${desktopProportion});
+    height: calc(700px * ${desktopProportion});
+  }
 `
 
 const Above = styled.div`
@@ -59,6 +81,17 @@ const Below = styled.div`
     calc(50px * ${mobileProportion}) calc(750px * ${mobileProportion}),
     0 calc(700px * ${mobileProportion})
   );
+  @media (min-width: 1100px) {
+    width: calc(550px * ${desktopProportion});
+    height: calc(750px * ${desktopProportion});
+    clip-path: polygon(
+      calc(500px * ${desktopProportion}) 0,
+      calc(550px * ${desktopProportion}) calc(50px * ${desktopProportion}),
+      calc(550px * ${desktopProportion}) calc(750px * ${desktopProportion}),
+      calc(50px * ${desktopProportion}) calc(750px * ${desktopProportion}),
+      0 calc(700px * ${desktopProportion})
+    );
+  }
 `
 
 const cornerStyles = css`
@@ -67,22 +100,39 @@ const cornerStyles = css`
   height: 3px;
   background: gold;
   transform: rotate(45deg);
+
+  @media (min-width: 1100px) {
+    width: calc(70px * ${desktopProportion});
+  }
 `
 
 const CornerTop = styled.div`
   ${cornerStyles}
   top: calc(24px * ${mobileProportion});
   left: calc(488px * ${mobileProportion});
+  @media (min-width: 1100px) {
+    top: calc(24px * ${desktopProportion});
+    left: calc(488px * ${desktopProportion});
+  }
 `
 const CornerMiddle = styled.div`
   ${cornerStyles}
+
   top: calc(720px * ${mobileProportion});
   left: calc(488px * ${mobileProportion});
+  @media (min-width: 1100px) {
+    top: calc(720px * ${desktopProportion});
+    left: calc(488px * ${desktopProportion});
+  }
 `
 const CornerBottom = styled.div`
   ${cornerStyles}
   top: calc(720px * ${mobileProportion});
   left: calc(-10px * ${mobileProportion});
+  @media (min-width: 1100px) {
+    top: calc(720px * ${desktopProportion});
+    left: calc(-10px * ${desktopProportion});
+  }
 `
 
 const Img = styled(BgImage)`
@@ -139,16 +189,19 @@ export default function BoxedImages({ images, setCurrentIndex }) {
     showThumbs: false,
     showArrows: false,
     showStatus: false,
-    onChange: index => setCurrentIndex(index),
     interval: 4000,
   }
+
   return (
     <>
       <Wrapper>
         <Container>
           <Back>
             <Below>
-              <StyledCarousel {...carouselProps}>
+              <StyledCarousel
+                {...carouselProps}
+                onChange={index => setCurrentIndex(index)}
+              >
                 {images3.map(image => (
                   <Img
                     key="fsdfsd"
