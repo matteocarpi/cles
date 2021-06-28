@@ -129,6 +129,7 @@ const GlobalStyle = createGlobalStyle`
 const defaultTheme = {
   black: '#1D1D1B',
   white: '#F6F3EA',
+  halfWhite: 'rgba(246, 243, 234, 0.7)',
   yellow: '#FFCD1C',
   gray: '#8C8A89',
   red: '#AE474B',

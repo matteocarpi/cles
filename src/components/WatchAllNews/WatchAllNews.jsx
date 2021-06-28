@@ -38,6 +38,10 @@ const ItemContainer = styled.div`
 const Text = styled.h4`
   color: ${({ theme }) => theme.yellow};
   margin: 0 2rem;
+
+  @media (min-width: 768px) {
+    font-size: 68px;
+  }
 `
 
 export default function WatchAllNews({ lang, className }) {
