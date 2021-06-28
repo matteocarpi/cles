@@ -123,7 +123,6 @@ const GlobalStyle = createGlobalStyle`
       color: inherit;
     }
   }
-  
 `
 
 const defaultTheme = {
