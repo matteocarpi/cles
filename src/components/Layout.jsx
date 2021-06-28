@@ -6,6 +6,7 @@ import LangProvider from '../LangContext'
 
 import Header from './Header'
 import Footer from './Footer'
+import Seo from './Seo'
 
 const Container = styled.main``
 const GlobalStyle = createGlobalStyle`
@@ -137,6 +138,7 @@ export default function Layout({ lang, children }) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <LangProvider lang={lang}>
+        <Seo lang={lang} />
         <GlobalStyle />
         <Header />
         <Container>{children}</Container>

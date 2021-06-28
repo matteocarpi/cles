@@ -11,7 +11,6 @@ import useResponsiveness from '../../hooks/useResponsiveness'
 
 import ArrowDown from '../../assets/arrow-down.svg'
 import Layout from '../Layout'
-import Seo from '../Seo'
 import SmallText from '../SmallText'
 import AppearingText from '../AppearingText'
 import Video from '../Video'
@@ -305,8 +304,7 @@ export default function Home({ lang }) {
   const { isMobile } = useResponsiveness()
 
   return (
-    <Layout lang={lang}>
-      <Seo title={data.wpPage.homeData.title[lang]} />
+    <Layout lang={lang} title={data.wpPage.homeData.title[lang]}>
       <IntroWrapper>
         <IntroContainer
           fluid={homeData.immagine.localFile.childImageSharp.fluid}
