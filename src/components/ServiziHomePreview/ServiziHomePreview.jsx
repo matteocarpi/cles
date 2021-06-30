@@ -102,18 +102,18 @@ export default function ServiziHomePreview({ lang, id }) {
               it
               en
             }
-          }
-          areeAttivit {
-            titolo {
-              it
-              en
-            }
-            immagine {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(width: 600)
-                  fluid {
-                    ...GatsbyImageSharpFluid
+            areeAttivit {
+              titolo {
+                it
+                en
+              }
+              immagine {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 600)
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
                   }
                 }
               }
@@ -124,7 +124,7 @@ export default function ServiziHomePreview({ lang, id }) {
     }
   `)
 
-  const { areeAttivit } = data.wpPage.chiSiamoData
+  const { areeAttivit } = data.wpPage.chiSiamoData.servizi
 
   const aree = areeAttivit.map(area => ({
     ...area,
