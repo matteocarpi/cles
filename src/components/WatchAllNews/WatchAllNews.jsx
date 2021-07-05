@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import ArrowRight from '../../assets/arrow-right.svg'
+import useLang from '../../hooks/useLang'
 
 const Wrapper = styled(Link)`
   display: flex;
@@ -44,8 +45,10 @@ const Text = styled.h4`
   }
 `
 
-export default function WatchAllNews({ lang, className }) {
+export default function WatchAllNews({ className }) {
   const repetition = Array.from(Array(20).keys())
+
+  const { lang } = useLang()
 
   const mapper = repetition.map(i => ({ i, key: Math.random() }))
 
