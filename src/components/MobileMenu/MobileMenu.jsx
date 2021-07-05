@@ -36,6 +36,8 @@ const NavItem = styled(Link)``
 const NavItemText = styled.h3`
   color: ${({ theme }) => theme.yellow};
   margin: 0;
+  font-size: 40px;
+  line-height: 45px;
 `
 
 const Lang = styled.h4`
