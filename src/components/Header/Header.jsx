@@ -105,6 +105,9 @@ const NavItem = styled(Link)`
   font-size: 16px;
   line-height: 20px;
   text-transform: uppercase;
+
+  text-decoration: ${({ isLangSwitch }) =>
+    isLangSwitch ? 'underline' : 'none'};
 `
 
 const MenuButton = styled.button``
@@ -157,6 +160,10 @@ export default function Header() {
                   {page.label[lang]}
                 </NavItem>
               ))}
+
+              <NavItem to={lang === 'it' ? '/en' : '/'} isLangSwitch>
+                {lang === 'it' ? 'EN' : 'IT'}
+              </NavItem>
             </NavigationDesktop>
           </NavigationWrapper>
         </HeadRoom>
