@@ -7,28 +7,39 @@ import { Carousel } from 'react-responsive-carousel'
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
-const mobileProportion = 0.54
-const desktopProportion = 0.7
+const mobile = 0.54
+const desktop = 0.7
+const bigScreen = 0.9
 
 const Wrapper = styled.div`
   position: relative;
   margin-top: 56px;
   margin-bottom: 26px;
-  height: calc(840px * ${mobileProportion});
+  height: calc(840px * ${mobile});
   display: flex;
   justify-content: flex-end;
 
   @media (min-width: 1100px) {
-    height: calc(840px * ${desktopProportion});
+    height: calc(840px * ${desktop});
+    max-width: 500px;
+    margin-left: auto;
+  }
+
+  @media (min-width: 1680px) {
+    height: calc(840px * ${bigScreen});
     max-width: 500px;
     margin-left: auto;
   }
 `
 
 const Container = styled.div`
-  transform: translateX(calc(-1315px * ${mobileProportion} / 2));
+  transform: translateX(calc(-1315px * ${mobile} / 2));
   @media (min-width: 1100px) {
-    transform: translateX(calc(-1315px * ${desktopProportion} / 2));
+    transform: translateX(calc(-1315px * ${desktop} / 2));
+  }
+
+  @media (min-width: 1680px) {
+    transform: translateX(calc(-1260px * ${bigScreen} / 2));
   }
 `
 
@@ -38,15 +49,13 @@ const Front = styled.div`
 
 const Back = styled.div`
   position: relative;
-  transform: translate(
-    calc(90px * ${mobileProportion}),
-    calc(90px * ${mobileProportion})
-  );
+  transform: translate(calc(90px * ${mobile}), calc(90px * ${mobile}));
   @media (min-width: 1100px) {
-    transform: translate(
-      calc(90px * ${desktopProportion}),
-      calc(90px * ${desktopProportion})
-    );
+    transform: translate(calc(90px * ${desktop}), calc(90px * ${desktop}));
+  }
+
+  @media (min-width: 1680) {
+    transform: translate(calc(90px * ${bigScreen}), calc(90px * ${bigScreen}));
   }
 `
 
@@ -54,14 +63,19 @@ const imageContainerStyles = css`
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(500px * ${mobileProportion});
-  height: calc(700px * ${mobileProportion});
+  width: calc(500px * ${mobile});
+  height: calc(700px * ${mobile});
   overflow: hidden;
   border: 3px solid ${({ theme }) => theme.yellow};
 
   @media (min-width: 1100px) {
-    width: calc(500px * ${desktopProportion});
-    height: calc(700px * ${desktopProportion});
+    width: calc(500px * ${desktop});
+    height: calc(700px * ${desktop});
+  }
+
+  @media (min-width: 1680px) {
+    width: calc(500px * ${bigScreen});
+    height: calc(700px * ${bigScreen});
   }
 `
 
@@ -71,66 +85,98 @@ const Above = styled.div`
 
 const Below = styled.div`
   ${imageContainerStyles}
-  width: calc(550px * ${mobileProportion});
-  height: calc(750px * ${mobileProportion});
+  width: calc(550px * ${mobile});
+  height: calc(750px * ${mobile});
   clip-path: polygon(
-    calc(500px * ${mobileProportion}) 0,
-    calc(550px * ${mobileProportion}) calc(50px * ${mobileProportion}),
-    calc(550px * ${mobileProportion}) calc(750px * ${mobileProportion}),
-    calc(50px * ${mobileProportion}) calc(750px * ${mobileProportion}),
-    0 calc(700px * ${mobileProportion})
+    calc(500px * ${mobile}) 0,
+    calc(550px * ${mobile}) calc(50px * ${mobile}),
+    calc(550px * ${mobile}) calc(750px * ${mobile}),
+    calc(50px * ${mobile}) calc(750px * ${mobile}),
+    0 calc(700px * ${mobile})
   );
+
   @media (min-width: 1100px) {
-    width: calc(550px * ${desktopProportion});
-    height: calc(750px * ${desktopProportion});
+    width: calc(550px * ${desktop});
+    height: calc(750px * ${desktop});
     clip-path: polygon(
-      calc(500px * ${desktopProportion}) 0,
-      calc(550px * ${desktopProportion}) calc(50px * ${desktopProportion}),
-      calc(550px * ${desktopProportion}) calc(750px * ${desktopProportion}),
-      calc(50px * ${desktopProportion}) calc(750px * ${desktopProportion}),
-      0 calc(700px * ${desktopProportion})
+      calc(500px * ${desktop}) 0,
+      calc(550px * ${desktop}) calc(50px * ${desktop}),
+      calc(550px * ${desktop}) calc(750px * ${desktop}),
+      calc(50px * ${desktop}) calc(750px * ${desktop}),
+      0 calc(700px * ${desktop})
+    );
+  }
+
+  @media (min-width: 1680px) {
+    width: calc(550px * ${bigScreen});
+    height: calc(750px * ${bigScreen});
+    clip-path: polygon(
+      calc(500px * ${bigScreen}) 0,
+      calc(550px * ${bigScreen}) calc(50px * ${bigScreen}),
+      calc(550px * ${bigScreen}) calc(750px * ${bigScreen}),
+      calc(50px * ${bigScreen}) calc(750px * ${bigScreen}),
+      0 calc(700px * ${bigScreen})
     );
   }
 `
 
 const cornerStyles = css`
   position: absolute;
-  width: calc(70px * ${mobileProportion});
+  width: calc(70px * ${mobile});
   height: 3px;
   background: gold;
   transform: rotate(45deg);
 
   @media (min-width: 1100px) {
-    width: calc(70px * ${desktopProportion});
+    width: calc(70px * ${desktop});
+  }
+
+  @media (min-width: 1680px) {
+    width: calc(70px * ${bigScreen});
   }
 `
 
 const CornerTop = styled.div`
   ${cornerStyles}
-  top: calc(24px * ${mobileProportion});
-  left: calc(488px * ${mobileProportion});
+  top: calc(24px * ${mobile});
+  left: calc(488px * ${mobile});
   @media (min-width: 1100px) {
-    top: calc(24px * ${desktopProportion});
-    left: calc(488px * ${desktopProportion});
+    top: calc(24px * ${desktop});
+    left: calc(488px * ${desktop});
+  }
+
+  @media (min-width: 1680px) {
+    top: calc(24px * ${bigScreen});
+    left: calc(488px * ${bigScreen});
   }
 `
 const CornerMiddle = styled.div`
   ${cornerStyles}
 
-  top: calc(720px * ${mobileProportion});
-  left: calc(488px * ${mobileProportion});
+  top: calc(720px * ${mobile});
+  left: calc(488px * ${mobile});
   @media (min-width: 1100px) {
-    top: calc(720px * ${desktopProportion});
-    left: calc(488px * ${desktopProportion});
+    top: calc(720px * ${desktop});
+    left: calc(488px * ${desktop});
+  }
+
+  @media (min-width: 1680px) {
+    top: calc(720px * ${bigScreen});
+    left: calc(488px * ${bigScreen});
   }
 `
 const CornerBottom = styled.div`
   ${cornerStyles}
-  top: calc(720px * ${mobileProportion});
-  left: calc(-10px * ${mobileProportion});
+  top: calc(720px * ${mobile});
+  left: calc(-10px * ${mobile});
   @media (min-width: 1100px) {
-    top: calc(720px * ${desktopProportion});
-    left: calc(-10px * ${desktopProportion});
+    top: calc(720px * ${desktop});
+    left: calc(-10px * ${desktop});
+  }
+
+  @media (min-width: 1680px) {
+    top: calc(720px * ${bigScreen});
+    left: calc(-10px * ${bigScreen});
   }
 `
 

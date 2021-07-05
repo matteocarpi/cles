@@ -54,6 +54,10 @@ const TextContainer = styled.article`
   @media (min-width: 768px) {
     margin: 55px;
   }
+
+  @media (min-width: 1680px) {
+    margin-right: 200px;
+  }
 `
 
 const AnimatedSubtitle = styled(AppearingText)`
