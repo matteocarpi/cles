@@ -196,6 +196,10 @@ const StyledArrowRight = styled(ArrowRight)`
   }
 `
 
+const AppearingSectionSubtitle = styled(AppearingText)`
+  margin-bottom: 40px;
+`
+
 export default function Home({ lang }) {
   const data = useStaticQuery(graphql`
     query HomeQuery {
@@ -377,7 +381,9 @@ export default function Home({ lang }) {
           <SectionTitleMobile>
             {lang === 'en' ? 'Clientis' : 'Clienti'}
           </SectionTitleMobile>
-          <Bio>{homeData.clienti.titolo[lang]}</Bio>
+          <AppearingSectionSubtitle maxStrLength={39} component={Bio}>
+            {homeData.clienti.titolo[lang]}
+          </AppearingSectionSubtitle>
 
           <ClientList>
             <>

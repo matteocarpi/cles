@@ -1,12 +1,14 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
+import { motion } from 'framer-motion'
 import { stripHTML } from '../../utils'
 
 import SmallText from '../SmallText'
 import FirstNews from '../FirstNews'
 import SectionTitleMobile from '../SectionTitleMobile'
 import WatchAllNews from '../WatchAllNews'
+import AppearingText from '../AppearingText'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -85,9 +87,13 @@ const ReadMore = styled(Link)`
   text-decoration: underline;
 `
 
-const Title = styled.h3`
+const Title = styled(motion.h3)`
   max-width: 900px;
   margin-left: auto;
+`
+
+const AppearingTitle = styled(AppearingText)`
+  margin-bottom: 40px;
 `
 
 export default function NewsList({ news, title, lang }) {
@@ -96,7 +102,9 @@ export default function NewsList({ news, title, lang }) {
       <Wrapper dark>
         <HomeSection id="news">
           <SectionTitleMobile>News</SectionTitleMobile>
-          <Title>{title}</Title>
+          <AppearingTitle component={Title} maxStrLength={40}>
+            {title}
+          </AppearingTitle>
 
           <NewsListContainer>
             <FirstNews news={news[0]} />
