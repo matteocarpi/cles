@@ -89,7 +89,7 @@ const LogoDesktop = styled(Logo)`
   position: fixed;
   top: 40px;
   left: 40px;
-  width: 300px;
+  width: 25.5vw;
   z-index: 2;
 `
 
