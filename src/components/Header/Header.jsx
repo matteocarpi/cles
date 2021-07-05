@@ -71,8 +71,9 @@ const NavigationMobile = styled.nav`
 const NavigationDesktop = styled.nav`
   display: flex;
   justify-content: flex-end;
-  padding: 46px 0;
+  align-items: center;
   padding-right: 40px;
+  height: 9vw;
 
   ${({ hasScrolled }) =>
     hasScrolled &&
@@ -89,7 +90,7 @@ const LogoDesktop = styled(Logo)`
   position: fixed;
   top: 40px;
   left: 40px;
-  width: 25.5vw;
+  height: 15.5vw;
   z-index: 2;
 `
 
