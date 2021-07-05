@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import BgImage from 'gatsby-background-image'
@@ -221,6 +221,8 @@ export default function BoxedImages({ images, setCurrentIndex }) {
     }
   `)
 
+  const [currentSlide, setCurrentSlide] = useState(0)
+
   const maskImage = getImage(maskData.file)
 
   const images1 = [...images.slice(1), images[0]]
@@ -230,11 +232,9 @@ export default function BoxedImages({ images, setCurrentIndex }) {
   const carouselProps = {
     styles: { height: '100%' },
     infiniteLoop: true,
-    autoPlay: true,
     showThumbs: false,
     showArrows: false,
     showStatus: false,
-    interval: 4000,
   }
 
   return (
@@ -243,13 +243,10 @@ export default function BoxedImages({ images, setCurrentIndex }) {
         <Container>
           <Back>
             <Below>
-              <StyledCarousel
-                {...carouselProps}
-                onChange={index => setCurrentIndex(index)}
-              >
+              <StyledCarousel {...carouselProps} selectedItem={currentSlide}>
                 {images3.map(image => (
                   <Img
-                    key="fsdfsd"
+                    key={image.childImageSharp.fluid.base64}
                     alt=""
                     fluid={image.childImageSharp.fluid}
                   />
@@ -257,10 +254,10 @@ export default function BoxedImages({ images, setCurrentIndex }) {
               </StyledCarousel>
             </Below>
             <Above>
-              <StyledCarousel {...carouselProps}>
+              <StyledCarousel {...carouselProps} selectedItem={currentSlide}>
                 {images2.map(image => (
                   <Img
-                    key="fsdfsd"
+                    key={image.childImageSharp.fluid.base64}
                     alt=""
                     fluid={image.childImageSharp.fluid}
                   />
@@ -273,10 +270,10 @@ export default function BoxedImages({ images, setCurrentIndex }) {
           </Back>
           <Front>
             <Below>
-              <StyledCarousel {...carouselProps}>
+              <StyledCarousel {...carouselProps} selectedItem={currentSlide}>
                 {images1.map(image => (
                   <Img
-                    key="fsdfsd"
+                    key={image.childImageSharp.fluid.base64}
                     alt=""
                     fluid={image.childImageSharp.fluid}
                   />
@@ -285,10 +282,18 @@ export default function BoxedImages({ images, setCurrentIndex }) {
             </Below>
             <Above>
               <Mask alt="" image={maskImage} />
-              <StyledCarousel {...carouselProps}>
+              <StyledCarousel
+                {...carouselProps}
+                autoPlay
+                interval={4000}
+                onChange={index => {
+                  setCurrentSlide(index)
+                  setCurrentIndex(index)
+                }}
+              >
                 {images.map(image => (
                   <Img
-                    key="fsdfsd"
+                    key={image.childImageSharp.fluid.base64}
                     alt=""
                     fluid={image.childImageSharp.fluid}
                   />
