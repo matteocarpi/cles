@@ -39,7 +39,7 @@ const IntroContainer = styled(BackgroundImage)`
   }
 `
 
-const Slogan = styled(motion.h1)`
+const Slogan = styled(motion.h2)`
   max-width: 900px;
   text-align: center;
   color: ${({ theme }) => theme.white};
@@ -313,7 +313,7 @@ export default function Home({ lang }) {
         <IntroContainer
           fluid={homeData.immagine.localFile.childImageSharp.fluid}
         >
-          <AppearingText numberOfLines={5} component={Slogan}>
+          <AppearingText numberOfLines={6} component={Slogan}>
             {homeData.slogan[lang]}
           </AppearingText>
           <ScrollDown to={lang === 'en' ? '/en#about' : '#about'}>
