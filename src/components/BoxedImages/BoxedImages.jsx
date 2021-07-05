@@ -54,7 +54,7 @@ const Back = styled.div`
     transform: translate(calc(90px * ${desktop}), calc(90px * ${desktop}));
   }
 
-  @media (min-width: 1680) {
+  @media (min-width: 1680px) {
     transform: translate(calc(90px * ${bigScreen}), calc(90px * ${bigScreen}));
   }
 `
