@@ -79,8 +79,16 @@ const ContentContainer = styled.section`
   }
 `
 
-const ImagesContainer = styled.section`
+const ImagesWrapper = styled.section`
   width: 100%;
+  @media (min-width: 768px) {
+    margin: 0 40px;
+  }
+`
+
+const ImagesContainer = styled.section`
+  width: 355px;
+  margin: 0 auto;
   @media (min-width: 768px) {
     margin: 0 40px;
   }
@@ -158,23 +166,25 @@ export default function ServiziHomePreview({ lang, id }) {
             </ButtonLink>
           </TextContainer>
 
-          <ImagesContainer>
-            <BoxedImages images={images} setCurrentIndex={setCurrentIndex} />
+          <ImagesWrapper>
+            <ImagesContainer>
+              <BoxedImages images={images} setCurrentIndex={setCurrentIndex} />
 
-            {aree.map((_, index) => (
-              <>
-                {currentIndex === index && (
-                  <AnimatedAreaTitle
-                    key={aree[index].titolo}
-                    numberOfLines={2}
-                    component={AreaTitle}
-                  >
-                    {aree[currentIndex].titolo}
-                  </AnimatedAreaTitle>
-                )}
-              </>
-            ))}
-          </ImagesContainer>
+              {aree.map((_, index) => (
+                <>
+                  {currentIndex === index && (
+                    <AnimatedAreaTitle
+                      key={aree[index].titolo}
+                      numberOfLines={2}
+                      component={AreaTitle}
+                    >
+                      {aree[currentIndex].titolo}
+                    </AnimatedAreaTitle>
+                  )}
+                </>
+              ))}
+            </ImagesContainer>
+          </ImagesWrapper>
         </ContentContainer>
       </HomeSection>
     </HomeSectionWrapper>
