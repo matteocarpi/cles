@@ -15,11 +15,22 @@ const Container = styled.footer`
   width: 100vw;
   background-color: ${({ theme }) => theme.black};
   padding: 40px 20px 10px 20px;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${({ theme }) => theme.white};
+  display: flex;
+  flex-direction: column;
 
-  @media (min-width: 768px) {
+  a {
+    color: ${({ theme }) => theme.white};
+    text-decoration: none;
+  }
+
+  @media (min-width: 1100px) {
+    display: grid;
     padding-left: 40px;
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 0.2fr;
     justify-content: space-between;
     align-items: flex-start;
     min-height: 600px;
@@ -37,10 +48,9 @@ const LogoMobile = styled(Logo)`
 `
 
 const LogoDesktop = styled(LogoWord)`
-  height: 180px;
-  min-height: 180px;
-  padding-left: 360px;
   display: none;
+  grid-column: 2/4;
+
   @media (min-width: 1110px) {
     display: block;
   }
@@ -63,29 +73,10 @@ const Copyright = styled.span`
   font-weight: 100;
   width: 100%;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1100px) {
     position: relative;
-  }
-`
-
-const Content = styled.div`
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 56px;
-  color: ${({ theme }) => theme.white};
-  margin-top: 40px;
-
-  a {
-    color: ${({ theme }) => theme.white};
-    text-decoration: none;
-  }
-
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    width: 100%;
+    text-align: left;
+    grid-column: 2/4;
   }
 `
 
@@ -95,7 +86,6 @@ const Column = styled.div`
   }
 
   @media (min-width: 768px) {
-    width: 30%;
     &:not(:first-child) {
       margin-top: 0;
     }
@@ -103,10 +93,10 @@ const Column = styled.div`
 `
 const Navigation = styled.nav`
   display: none;
-  @media (min-width: 768px) {
+  @media (min-width: 1100px) {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
   }
 `
 
@@ -163,55 +153,54 @@ export default function Footer() {
     <Container>
       <LogoDesktop />
       <LogoMobile />
-      <Content>
-        <Column>
-          <Navigation>
-            {navigation.pages.map(page => (
-              <Link to={page.url[lang]}>
-                <NavItem>{page.label[lang]}</NavItem>
-              </Link>
-            ))}
-          </Navigation>
-        </Column>
-        <Column>
-          <Contacts>
-            <strong>{contatti.nome}</strong>
-            <br />
-            Via Costanza Baudana Vaccolini n. 14
-            <br />
-            00153 Roma
-            <br />
-            <br />
-            T.
-            <a href={`tel:${contatti.telefono}`}>{contatti.telefono}</a>
-            <br />
-            F. {contatti.fax}
-            <br />
-            <a href={`mailto:${contatti.email}`}>{contatti.email}</a>
-          </Contacts>
-        </Column>
+      <Column>
+        <Navigation>
+          {navigation.pages.map(page => (
+            <Link to={page.url[lang]}>
+              <NavItem>{page.label[lang]}</NavItem>
+            </Link>
+          ))}
+        </Navigation>
+      </Column>
+      <Column>
+        <Contacts>
+          <strong>{contatti.nome}</strong>
+          <br />
+          Via Costanza Baudana Vaccolini n. 14
+          <br />
+          00153 Roma
+          <br />
+          <br />
+          T.
+          <a href={`tel:${contatti.telefono}`}>{contatti.telefono}</a>
+          <br />
+          F. {contatti.fax}
+          <br />
+          <a href={`mailto:${contatti.email}`}>{contatti.email}</a>
+        </Contacts>
+      </Column>
 
-        <Column>
-          <Quality>
-            <strong>Qualità</strong>
-            <br />
-            <Document href="#">
-              {lang === 'it'
-                ? 'Certificazioni ISO 9001'
-                : 'ISO Certification 9001'}
-            </Document>
-            <br />
-            <Document href="#">
-              {lang === 'it' ? 'Codice Etico' : 'Ethical Code'}
-            </Document>
-          </Quality>
+      <Column>
+        <Quality>
+          <strong>Qualità</strong>
+          <br />
+          <Document href="#">
+            {lang === 'it'
+              ? 'Certificazioni ISO 9001'
+              : 'ISO Certification 9001'}
+          </Document>
+          <br />
+          <Document href="#">
+            {lang === 'it' ? 'Codice Etico' : 'Ethical Code'}
+          </Document>
+        </Quality>
 
-          <Links>
-            <SecondaryLink to="#">Privacy Policy</SecondaryLink>
-            <SecondaryLink to="#">Cookie Policy</SecondaryLink>
-          </Links>
-        </Column>
-      </Content>
+        <Links>
+          <SecondaryLink to="#">Privacy Policy</SecondaryLink>
+          <SecondaryLink to="#">Cookie Policy</SecondaryLink>
+        </Links>
+      </Column>
+
       <Copyright>{contatti.copyright[lang]}</Copyright>
     </Container>
   )
