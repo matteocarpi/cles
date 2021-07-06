@@ -2,14 +2,16 @@ import React, { useRef, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { graphql, useStaticQuery } from 'gatsby'
 
 import useElementInView from '../../hooks/useElementInView'
 
 const Container = styled.div`
   display: flex;
   align-items: center;
-  width: 70%;
+  padding: 24px;
+  @media (min-width: 768px) {
+    width: 70%;
+  }
 `
 
 const GraphicContainer = styled(motion.div)`
@@ -36,37 +38,16 @@ const graphicVariants = {
 const photoVariants = {
   hidden: {
     translateX: '30%',
-    opacity: 0,
   },
   visible: {
     translateX: 0,
-    opacity: 1,
     transition: {
       duration: 2,
     },
   },
 }
 
-export default function SlidingImages() {
-  const data = useStaticQuery(graphql`
-    query Graphic {
-      graphic: allFile(filter: { name: { eq: "first-level-graphic" } }) {
-        nodes {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-      }
-      photo: allFile(filter: { name: { eq: "first-level-photo" } }) {
-        nodes {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-      }
-    }
-  `)
-
+export default function SlidingImages({ graphic, image }) {
   const ref = useRef()
 
   const inView = useElementInView({ ref })
@@ -81,8 +62,8 @@ export default function SlidingImages() {
     }
   }, [controls, inView])
 
-  const graphic = getImage(data.graphic.nodes[0])
-  const photo = getImage(data.photo.nodes[0])
+  const graphicData = getImage(graphic)
+  const imageData = getImage(image)
 
   return (
     <Container ref={ref}>
@@ -91,14 +72,14 @@ export default function SlidingImages() {
         initial="hidden"
         animate={controls}
       >
-        <GatsbyImage image={graphic} alt="" />
+        <GatsbyImage image={graphicData} alt="" />
       </GraphicContainer>
       <PhotoContainer
         variants={photoVariants}
         initial="hidden"
         animate={controls}
       >
-        <GatsbyImage image={photo} alt="" />
+        <GatsbyImage image={imageData} alt="" />
       </PhotoContainer>
     </Container>
   )

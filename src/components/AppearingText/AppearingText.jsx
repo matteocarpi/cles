@@ -98,7 +98,7 @@ export default function AppearingText({
                   variants={textVariants}
                   initial="hidden"
                   animate={controls}
-                  style={{ marginBottom: '0.3rem', paddingRight: '1rem' }}
+                  style={{ marginBottom: '0.3rem' }}
                 >
                   {line}
                 </Component>
@@ -114,7 +114,7 @@ export default function AppearingText({
                     variants={textVariants}
                     initial="hidden"
                     animate={controls}
-                    style={{ marginBottom: '0.3rem', paddingRight: '1rem' }}
+                    style={{ marginBottom: '0.3rem' }}
                   >
                     {filledTextArr
                       .slice(start, end)

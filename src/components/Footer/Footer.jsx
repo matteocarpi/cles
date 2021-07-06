@@ -50,7 +50,6 @@ const LogoMobile = styled(Logo)`
 const LogoDesktop = styled(LogoWord)`
   display: none;
   grid-column: 2/4;
-
   @media (min-width: 1110px) {
     display: block;
   }

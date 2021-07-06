@@ -309,8 +309,6 @@ export default function Home({ lang }) {
   const { isMobile } = useResponsiveness()
   const scrollY = useScrollPosition(60 /* fps */)
 
-  console.log({ scrollY })
-
   return (
     <Layout lang={lang} title={data.wpPage.homeData.title[lang]}>
       <IntroWrapper>

@@ -39,7 +39,7 @@ const AreaTitle = styled(motion.h3)`
   font-style: italic;
   color: ${({ theme }) => theme.red};
   margin: 0;
-  padding-right: 3px;
+  padding-right: 18px;
   text-align: right;
   font-size: 28px;
   line-height: 32px;

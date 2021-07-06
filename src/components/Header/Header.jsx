@@ -65,7 +65,7 @@ const ContainerDesktop = styled.div`
 
 const NavigationMobile = styled.nav`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `
 
 const NavigationDesktop = styled.nav`
@@ -156,7 +156,7 @@ export default function Header() {
           <NavigationWrapper>
             <NavigationDesktop hasScrolled={hasScrolled}>
               {navigation.pages.map(page => (
-                <NavItem to={page.url[lang]} key={page.url[lang]}>
+                <NavItem to={page.url[lang]} key={page.label[lang]}>
                   {page.label[lang]}
                 </NavItem>
               ))}

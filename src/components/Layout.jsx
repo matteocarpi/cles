@@ -114,6 +114,9 @@ const GlobalStyle = createGlobalStyle`
   button {
     border: none;
     background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
   }
 
   a {
@@ -132,13 +135,15 @@ const defaultTheme = {
   yellow: '#FFCD1C',
   gray: '#8C8A89',
   red: '#AE474B',
+  transparentRed: 'rgba(173, 71, 75, 0.8)',
+  transparentYellow: 'rgba(247, 207, 76, 0.8)',
 }
 
-export default function Layout({ lang, children }) {
+export default function Layout({ lang, children, title }) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <LangProvider lang={lang}>
-        <Seo lang={lang} />
+        <Seo lang={lang} title={title} />
         <GlobalStyle />
         <Header />
         <Container>{children}</Container>
