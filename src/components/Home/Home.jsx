@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Scrollspy from 'react-scrollspy'
+import useScrollPosition from '@react-hook/window-scroll'
 
 import useResponsiveness from '../../hooks/useResponsiveness'
 
@@ -306,6 +307,9 @@ export default function Home({ lang }) {
   )
 
   const { isMobile } = useResponsiveness()
+  const scrollY = useScrollPosition(60 /* fps */)
+
+  console.log({ scrollY })
 
   return (
     <Layout lang={lang} title={data.wpPage.homeData.title[lang]}>
@@ -323,34 +327,36 @@ export default function Home({ lang }) {
         </IntroContainer>
       </IntroWrapper>
 
-      <ScrollSpyContainer>
-        <Scrollspy
-          items={['about', 'services', 'clients', 'news']}
-          currentClassName="active"
-          offset={-200}
-        >
-          <SectionTitleWrapper className="section-title">
-            <SectionTitleDesktop>
-              {lang === 'en' ? 'About' : 'Chi Siamo'}
-            </SectionTitleDesktop>
-          </SectionTitleWrapper>
-          <SectionTitleWrapper className="section-title">
-            <SectionTitleDesktop>
-              {lang === 'en' ? 'Services' : 'Servizi'}
-            </SectionTitleDesktop>
-          </SectionTitleWrapper>
-          <SectionTitleWrapper className="section-title">
-            <SectionTitleDesktop>
-              {lang === 'en' ? 'Clients' : 'Clienti'}
-            </SectionTitleDesktop>
-          </SectionTitleWrapper>
-          <SectionTitleWrapper className="section-title">
-            <SectionTitleDesktop light>
-              {lang === 'en' ? 'News' : 'News'}
-            </SectionTitleDesktop>
-          </SectionTitleWrapper>
-        </Scrollspy>
-      </ScrollSpyContainer>
+      {scrollY > 50 && (
+        <ScrollSpyContainer>
+          <Scrollspy
+            items={['about', 'services', 'clients', 'news']}
+            currentClassName="active"
+            offset={-450}
+          >
+            <SectionTitleWrapper className="section-title">
+              <SectionTitleDesktop>
+                {lang === 'en' ? 'About' : 'Chi Siamo'}
+              </SectionTitleDesktop>
+            </SectionTitleWrapper>
+            <SectionTitleWrapper className="section-title">
+              <SectionTitleDesktop>
+                {lang === 'en' ? 'Services' : 'Servizi'}
+              </SectionTitleDesktop>
+            </SectionTitleWrapper>
+            <SectionTitleWrapper className="section-title">
+              <SectionTitleDesktop>
+                {lang === 'en' ? 'Clients' : 'Clienti'}
+              </SectionTitleDesktop>
+            </SectionTitleWrapper>
+            <SectionTitleWrapper className="section-title">
+              <SectionTitleDesktop light>
+                {lang === 'en' ? 'News' : 'News'}
+              </SectionTitleDesktop>
+            </SectionTitleWrapper>
+          </Scrollspy>
+        </ScrollSpyContainer>
+      )}
 
       {/* Chi Siamo */}
 

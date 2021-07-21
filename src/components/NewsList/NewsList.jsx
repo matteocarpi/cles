@@ -99,8 +99,8 @@ const AppearingTitle = styled(AppearingText)`
 export default function NewsList({ news, title, lang }) {
   return (
     <>
-      <Wrapper dark>
-        <HomeSection id="news">
+      <Wrapper id="news" dark>
+        <HomeSection>
           <SectionTitleMobile>News</SectionTitleMobile>
           <AppearingTitle component={Title} maxStrLength={40}>
             {title}
