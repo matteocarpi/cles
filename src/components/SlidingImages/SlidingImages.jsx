@@ -11,6 +11,7 @@ const Container = styled.div`
   padding: 24px;
   @media (min-width: 768px) {
     width: 70%;
+    justify-content: flex-end;
   }
 `
 
@@ -47,7 +48,7 @@ const photoVariants = {
   },
 }
 
-export default function SlidingImages({ graphic, image }) {
+export default function SlidingImages({ graphic, image, className }) {
   const ref = useRef()
 
   const inView = useElementInView({ ref })
@@ -66,7 +67,7 @@ export default function SlidingImages({ graphic, image }) {
   const imageData = getImage(image)
 
   return (
-    <Container ref={ref}>
+    <Container ref={ref} className={className}>
       <GraphicContainer
         variants={graphicVariants}
         initial="hidden"
