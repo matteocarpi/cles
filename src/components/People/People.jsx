@@ -5,12 +5,29 @@ import useLang from '../../hooks/useLang'
 import PeopleGrid from '../PeopleGrid'
 
 const Container = styled.section`
-  margin-bottom: 56px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 24px 56px 24px;
+  @media (min-width: 768px) {
+    padding: 0 40px 80px 40px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 `
 
 const DepartmentList = styled.ul`
   border-bottom: solid 2px ${({ theme }) => theme.gray};
   margin-bottom: 56px;
+
+  @media (min-width: 768px) {
+    position: sticky;
+    top: 21vw;
+    left: 40px;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
 `
 
 const Department = styled.li``

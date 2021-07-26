@@ -4,13 +4,24 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import PageIntro from '../components/PageIntro/PageIntro'
-import SectionTitleMobile from '../components/SectionTitleMobile'
 import PageSection from '../components/PageSection'
-import PeopleGrid from '../components/People'
+import People from '../components/People'
+import ScrollSpy from '../components/ScrollSpy'
+import useClientRect from '../hooks/useClientRect'
 
-const Text = styled.article``
+const Text = styled.article`
+  @media (min-width: 768px) {
+    columns: 100px 2;
+  }
+`
 
-const BigText = styled.h3``
+const BigText = styled.h4`
+  margin-bottom: 56px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 80px;
+  }
+`
 
 const ActivityList = styled.article``
 
@@ -66,12 +77,30 @@ const departments = [
     },
   },
 ]
+
 export default function ChiSiamo({ pageContext, data: pageData }) {
   const { lang } = pageContext
 
   const { chiSiamoData: data } = pageData.chiSiamoPage
 
+  const [rect, ref] = useClientRect()
+
   const people = data.persone.map(p => p.persona)
+
+  const sections = [
+    {
+      id: data.storia.fieldGroupName,
+      label: data.storia.titolo,
+    },
+    {
+      id: data.servizi.fieldGroupName,
+      label: data.servizi.metaTitolo,
+    },
+    {
+      id: data.team.fieldGroupName,
+      label: data.team.titolo,
+    },
+  ]
 
   return (
     <Layout lang={lang} title={data.titolo[lang]}>
@@ -81,10 +110,15 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
         text={data.descrizione[lang]}
       />
 
+      <ScrollSpy offset={-400} sections={sections} firstSectionTop={rect?.y} />
+
       {/* Storia */}
 
-      <PageSection>
-        <SectionTitleMobile>{data.storia.titolo[lang]}</SectionTitleMobile>
+      <PageSection
+        title={data.storia.titolo[lang]}
+        id={data.storia.fieldGroupName}
+        ref={ref}
+      >
         <Text
           dangerouslySetInnerHTML={{ __html: data.storia.descrizione[lang] }}
         />
@@ -92,8 +126,10 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
       {/* Aree Attività */}
 
-      <PageSection>
-        <SectionTitleMobile>{data.servizi.metaTitolo[lang]}</SectionTitleMobile>
+      <PageSection
+        title={data.servizi.metaTitolo[lang]}
+        id={data.servizi.fieldGroupName}
+      >
         <BigText>{data.servizi.titolo[lang]}</BigText>
 
         <ActivityList>
@@ -109,13 +145,12 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
       </PageSection>
 
       {/* Persone */}
-
-      <PageSection noCollapse id="team">
-        <SectionTitleMobile>{data.team.titolo[lang]}</SectionTitleMobile>
-        <BigText>{data.team.descrizione[lang]}</BigText>
-
-        <PeopleGrid departments={departments} people={people} />
-      </PageSection>
+      <div id="team">
+        <PageSection title={data.team.titolo[lang]} noCollapse>
+          <BigText>{data.team.descrizione[lang]}</BigText>
+        </PageSection>
+        <People departments={departments} people={people} />
+      </div>
     </Layout>
   )
 }
@@ -133,6 +168,7 @@ export const data = graphql`
           en
         }
         servizi {
+          fieldGroupName
           metaTitolo {
             it
             en
@@ -149,6 +185,7 @@ export const data = graphql`
           }
         }
         storia {
+          fieldGroupName
           titolo {
             it
             en
@@ -159,6 +196,7 @@ export const data = graphql`
           }
         }
         team {
+          fieldGroupName
           titolo {
             it
             en
@@ -180,14 +218,14 @@ export const data = graphql`
               seria {
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(width: 450)
+                    gatsbyImageData(width: 450, layout: FULL_WIDTH)
                   }
                 }
               }
               scherzosa {
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(width: 450)
+                    gatsbyImageData(width: 450, layout: FULL_WIDTH)
                   }
                 }
               }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import styled from 'styled-components'
+import useScrollPosition from '@react-hook/window-scroll'
 
 import PersonThumb from '../PersonThumb'
 
@@ -7,6 +8,15 @@ const Container = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
+  position: relative;
+
+  @media (min-width: 768px) {
+    width: 71%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  background-color: ${({ theme, isSelectedPerson }) =>
+    isSelectedPerson ? theme.transparentRed : 'transparent'};
 `
 
 export default function PeopleGrid({ people, selectedDepartment }) {
@@ -15,6 +25,8 @@ export default function PeopleGrid({ people, selectedDepartment }) {
   const [selectedPerson, setSelectedPerson] = useState(null)
 
   const ref = useRef()
+
+  const scrollY = useScrollPosition()
 
   useEffect(() => {
     if (selectedDepartment) {
@@ -42,22 +54,25 @@ export default function PeopleGrid({ people, selectedDepartment }) {
 
       if (typeof window !== 'undefined') {
         window.scrollTo({
-          top: ref.current.offsetTop - 200,
+          top: ref.current.getBoundingClientRect().top + scrollY - 120,
           behavior: `smooth`,
         })
       }
     },
-    [selectedPeople, selectedPerson],
+    [scrollY, selectedPeople, selectedPerson],
   )
 
   return (
-    <Container ref={ref}>
+    <Container ref={ref} isSelectedPerson={selectedPerson != null}>
       {selectedPeople.map((person, index) => (
         <PersonThumb
           {...person}
           setSelectedPeople={setSelectedPeople}
           onClick={() => handlePersonClick(person, index)}
           isSelected={selectedPerson === person.nomeECognome}
+          isOtherSelected={
+            selectedPerson && selectedPerson !== person.nomeECognome
+          }
         />
       ))}
     </Container>
