@@ -6,7 +6,6 @@ import useLang from '../../hooks/useLang'
 import Plus from '../../assets/plus.svg'
 import Minus from '../../assets/minus.svg'
 import SectionTitleMobile from '../SectionTitleMobile'
-import SectionTitle from '../SectionTitle'
 
 const Wrapper = styled.section`
   margin: 0 24px;
@@ -48,24 +47,28 @@ const ReadMore = styled.button`
   text-decoration: underline;
 `
 
-export default function PageSection({ title, children, noCollapse, id }) {
-  const [expanded, setExpanded] = useState(false)
+const PageSection = React.forwardRef(
+  ({ title, children, noCollapse, id }, ref) => {
+    const [expanded, setExpanded] = useState(false)
 
-  const { lang } = useLang()
+    const { lang } = useLang()
 
-  return (
-    <Wrapper id={id}>
-      <Container noCollapse={noCollapse} expanded={expanded}>
-        <SectionTitleMobile>{title}</SectionTitleMobile>
-        {children}
-      </Container>
-      {!noCollapse && (
-        <ReadMore type="button" onClick={() => setExpanded(!expanded)}>
-          {!expanded && (lang === 'it' ? 'Leggi tutto' : 'Read more')}
-          {expanded && (lang === 'it' ? 'Leggi meno' : 'Read less')}
-          {!expanded ? <Plus /> : <Minus />}
-        </ReadMore>
-      )}
-    </Wrapper>
-  )
-}
+    return (
+      <Wrapper id={id} ref={ref}>
+        <Container noCollapse={noCollapse} expanded={expanded}>
+          <SectionTitleMobile>{title}</SectionTitleMobile>
+          {children}
+        </Container>
+        {!noCollapse && (
+          <ReadMore type="button" onClick={() => setExpanded(!expanded)}>
+            {!expanded && (lang === 'it' ? 'Leggi tutto' : 'Read more')}
+            {expanded && (lang === 'it' ? 'Leggi meno' : 'Read less')}
+            {!expanded ? <Plus /> : <Minus />}
+          </ReadMore>
+        )}
+      </Wrapper>
+    )
+  },
+)
+
+export default PageSection

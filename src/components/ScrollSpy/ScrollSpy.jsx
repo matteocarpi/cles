@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ReactScrollSpy from 'react-scrollspy'
 import useScrollPosition from '@react-hook/window-scroll'
 import useLang from '../../hooks/useLang'
+import useViewportHeight from '../../hooks/useViewportHeight'
 
 import SectionTitle from '../SectionTitle'
 
@@ -23,6 +24,7 @@ const SectionTitleWrapper = styled.div`
       display: none;
     }
   }
+
   &.active {
     .title {
       display: block;
@@ -41,17 +43,19 @@ const SectionTitleWrapper = styled.div`
 `
 
 export default function ScrollSpy({
-  offset,
+  firstSectionTop,
+  offset = 0,
   sections = [],
-  threshold = 0,
   titleComponent: Title = SectionTitle,
 }) {
   const { lang } = useLang()
 
   const scrollY = useScrollPosition(60 /* fps */)
 
+  const viewPortHeight = useViewportHeight()
+
   return (
-    scrollY > threshold && (
+    scrollY + viewPortHeight >= firstSectionTop && (
       <ScrollSpyContainer>
         <ReactScrollSpy
           items={sections.map(section => section.id)}

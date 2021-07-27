@@ -9,6 +9,6 @@ const Title = styled.h4`
     display: block;
   }
 `
-export default function SectionTitle({ children }) {
-  return <Title>{children}</Title>
+export default function SectionTitle({ children, className }) {
+  return <Title className={className}>{children}</Title>
 }

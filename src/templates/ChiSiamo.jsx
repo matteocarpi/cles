@@ -6,6 +6,8 @@ import Layout from '../components/Layout'
 import PageIntro from '../components/PageIntro/PageIntro'
 import PageSection from '../components/PageSection'
 import PeopleGrid from '../components/People'
+import ScrollSpy from '../components/ScrollSpy'
+import useClientRect from '../hooks/useClientRect'
 
 const Text = styled.article`
   @media (min-width: 768px) {
@@ -69,12 +71,30 @@ const departments = [
     },
   },
 ]
+
 export default function ChiSiamo({ pageContext, data: pageData }) {
   const { lang } = pageContext
 
   const { chiSiamoData: data } = pageData.chiSiamoPage
 
+  const [rect, ref] = useClientRect()
+
   const people = data.persone.map(p => p.persona)
+
+  const sections = [
+    {
+      id: data.storia.fieldGroupName,
+      label: data.storia.titolo,
+    },
+    {
+      id: data.servizi.fieldGroupName,
+      label: data.servizi.metaTitolo,
+    },
+    {
+      id: data.team.fieldGroupName,
+      label: data.team.titolo,
+    },
+  ]
 
   return (
     <Layout lang={lang} title={data.titolo[lang]}>
@@ -84,9 +104,15 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
         text={data.descrizione[lang]}
       />
 
+      <ScrollSpy offset={-400} sections={sections} firstSectionTop={rect?.y} />
+
       {/* Storia */}
 
-      <PageSection title={data.storia.titolo[lang]} id="history">
+      <PageSection
+        title={data.storia.titolo[lang]}
+        id={data.storia.fieldGroupName}
+        ref={ref}
+      >
         <Text
           dangerouslySetInnerHTML={{ __html: data.storia.descrizione[lang] }}
         />
@@ -94,7 +120,10 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
       {/* Aree Attività */}
 
-      <PageSection title={data.servizi.metaTitolo[lang]} id="areas">
+      <PageSection
+        title={data.servizi.metaTitolo[lang]}
+        id={data.servizi.fieldGroupName}
+      >
         <BigText>{data.servizi.titolo[lang]}</BigText>
 
         <ActivityList>
@@ -133,6 +162,7 @@ export const data = graphql`
           en
         }
         servizi {
+          fieldGroupName
           metaTitolo {
             it
             en
@@ -149,6 +179,7 @@ export const data = graphql`
           }
         }
         storia {
+          fieldGroupName
           titolo {
             it
             en
@@ -159,6 +190,7 @@ export const data = graphql`
           }
         }
         team {
+          fieldGroupName
           titolo {
             it
             en

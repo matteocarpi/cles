@@ -7,6 +7,7 @@ import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import useResponsiveness from '../../hooks/useResponsiveness'
+import useClientRect from '../../hooks/useClientRect'
 
 import ArrowDown from '../../assets/arrow-down.svg'
 import Layout from '../Layout'
@@ -289,6 +290,8 @@ export default function Home({ lang }) {
     }
   `)
 
+  const [rect, ref] = useClientRect()
+
   const { homeData } = data.wpPage
 
   const clients = homeData.clienti.loghi.map(logo => getImage(logo.localFile))
@@ -323,7 +326,7 @@ export default function Home({ lang }) {
 
       <ScrollSpy
         sections={sections}
-        threshold={50}
+        firstSectionTop={rect?.y}
         offset={-450}
         titleComponent={SectionTitleDesktop}
       />
@@ -331,7 +334,7 @@ export default function Home({ lang }) {
       {/* Chi Siamo */}
 
       <HomeSectionWrapper>
-        <HomeSection id="about">
+        <HomeSection id="about" ref={ref}>
           <SectionTitleMobile>
             {lang === 'en' ? 'About' : 'Chi Siamo'}
           </SectionTitleMobile>
