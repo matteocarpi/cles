@@ -35,16 +35,42 @@ const Container = styled.section`
   }
 `
 
-const ReadMore = styled.button`
-  margin: 40px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const ReadMoreText = styled.span`
   color: ${({ theme }) => theme.yellow};
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
   text-decoration: underline;
+`
+
+const ReadMore = styled.button`
+  margin: 40px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+
+    ${ReadMoreText} {
+      margin-right: 40px;
+    }
+  }
+`
+
+const readMoreIconStyles = css`
+  @media (min-width: 768px) {
+    width: 56px;
+    height: 56px;
+  }
+`
+
+const StyledPlus = styled(Plus)`
+  ${readMoreIconStyles}
+`
+
+const StyledMinus = styled(Minus)`
+  ${readMoreIconStyles}
 `
 
 const PageSection = React.forwardRef(
@@ -61,9 +87,11 @@ const PageSection = React.forwardRef(
         </Container>
         {!noCollapse && (
           <ReadMore type="button" onClick={() => setExpanded(!expanded)}>
-            {!expanded && (lang === 'it' ? 'Leggi tutto' : 'Read more')}
-            {expanded && (lang === 'it' ? 'Leggi meno' : 'Read less')}
-            {!expanded ? <Plus /> : <Minus />}
+            <ReadMoreText>
+              {!expanded && (lang === 'it' ? 'Leggi tutto' : 'Read more')}
+              {expanded && (lang === 'it' ? 'Leggi meno' : 'Read less')}
+            </ReadMoreText>
+            {!expanded ? <StyledPlus /> : <StyledMinus />}
           </ReadMore>
         )}
       </Wrapper>
