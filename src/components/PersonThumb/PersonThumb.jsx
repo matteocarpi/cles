@@ -1,14 +1,31 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState, useMemo } from 'react'
+import styled, { css } from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import useLang from '../../hooks/useLang'
+import useResponsiveness from '../../hooks/useResponsiveness'
 
 const Container = styled.button`
   position: relative;
+
   &:first-child {
     grid-column: 1/3;
     grid-row: 1/3;
   }
+  
+  ${({ isOtherSelected }) =>
+    isOtherSelected &&
+    css`
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: ${({ theme }) => theme.transparentRed};
+        z-index: 1;
+      }
+    `}
 `
 
 const InfoWrapper = styled.div`
@@ -23,6 +40,12 @@ const InfoWrapper = styled.div`
   justify-content: flex-end;
 
   background-color: ${({ theme }) => theme.transparentRed};
+
+  @media (min-width: 768px) {
+    width: 200%;
+    z-index: 2;
+    background-color: transparent;
+  }
 `
 
 const InfoContainer = styled.div`
@@ -30,6 +53,10 @@ const InfoContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    margin-left: 50%;
+  }
 `
 
 const Circle = styled.div`
@@ -55,6 +82,14 @@ const Role = styled.h6`
 
 const Foto = styled(GatsbyImage)`
   display: block;
+
+  @media (min-width: 768px) {
+    ${({ isSelected }) =>
+      isSelected &&
+      css`
+        z-index: 2;
+      `}
+  }
 `
 
 export default function PersonThumb({
@@ -63,16 +98,32 @@ export default function PersonThumb({
   ruolo,
   onClick,
   isSelected,
+  isOtherSelected,
 }) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  const { isMobile } = useResponsiveness()
   const { lang } = useLang()
 
-  const mood = isSelected ? 'scherzosa' : 'seria'
+  const mood = useMemo(() => {
+    if (!isMobile) {
+      return isHovered ? 'scherzosa' : 'seria'
+    }
+    return isSelected ? 'scherzosa' : 'seria'
+  }, [isHovered, isMobile, isSelected])
 
   const image = getImage(foto[mood].localFile.childImageSharp)
 
   return (
-    <Container onClick={onClick}>
-      <Foto alt={nomeECognome} image={image} aspectRatio={1} />
+    <Container onClick={onClick} isOtherSelected={isOtherSelected}>
+      <Foto
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        isSelected={isSelected}
+        alt={nomeECognome}
+        image={image}
+        aspectRatio={1}
+      />
       {isSelected && (
         <InfoWrapper>
           <InfoContainer>
@@ -80,7 +131,6 @@ export default function PersonThumb({
               <Name>{nomeECognome}</Name>
               <Role>{ruolo[lang]}</Role>
             </Info>
-
             <Circle />
           </InfoContainer>
         </InfoWrapper>
