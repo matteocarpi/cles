@@ -7,6 +7,10 @@ const Container = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    width: 71%;
+  }
 `
 
 export default function PeopleGrid({ people, selectedDepartment }) {

@@ -5,7 +5,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import PageIntro from '../components/PageIntro/PageIntro'
 import PageSection from '../components/PageSection'
-import PeopleGrid from '../components/People'
+import People from '../components/People'
 import ScrollSpy from '../components/ScrollSpy'
 import useClientRect from '../hooks/useClientRect'
 
@@ -15,7 +15,13 @@ const Text = styled.article`
   }
 `
 
-const BigText = styled.h3``
+const BigText = styled.h4`
+  margin-bottom: 56px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 80px;
+  }
+`
 
 const ActivityList = styled.article``
 
@@ -139,12 +145,12 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
       </PageSection>
 
       {/* Persone */}
-
-      <PageSection title={data.team.titolo[lang]} noCollapse id="team">
-        <BigText>{data.team.descrizione[lang]}</BigText>
-
-        <PeopleGrid departments={departments} people={people} />
-      </PageSection>
+      <div id="team">
+        <PageSection title={data.team.titolo[lang]} noCollapse>
+          <BigText>{data.team.descrizione[lang]}</BigText>
+        </PageSection>
+        <People departments={departments} people={people} />
+      </div>
     </Layout>
   )
 }
