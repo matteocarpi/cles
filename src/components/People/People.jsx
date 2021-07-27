@@ -23,9 +23,10 @@ const DepartmentList = styled.ul`
 
   @media (min-width: 768px) {
     position: sticky;
-    top: 25vw;
+    top: 21vw;
     left: 40px;
     border-bottom: none;
+    margin-bottom: 0;
   }
 `
 

@@ -10,6 +10,7 @@ const Container = styled.section`
 
   @media (min-width: 768px) {
     width: 71%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `
 

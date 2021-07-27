@@ -218,7 +218,7 @@ export const data = graphql`
               seria {
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(width: 450)
+                    gatsbyImageData(width: 450, layout: FULL_WIDTH)
                   }
                 }
               }

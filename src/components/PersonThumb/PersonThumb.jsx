@@ -7,6 +7,7 @@ const Container = styled.button`
   position: relative;
   &:first-child {
     grid-column: 1/3;
+    grid-row: 1/3;
   }
 `
 
