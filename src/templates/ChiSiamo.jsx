@@ -110,7 +110,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
         text={data.descrizione[lang]}
       />
 
-      <ScrollSpy offset={-400} sections={sections} firstSectionTop={rect?.y} />
+      <ScrollSpy offset={-800} sections={sections} firstSectionTop={rect?.y} />
 
       {/* Storia */}
 
