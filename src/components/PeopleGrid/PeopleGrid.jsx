@@ -14,6 +14,9 @@ const Container = styled.section`
     width: 71%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  background-color: ${({ theme, isSelectedPerson }) =>
+    isSelectedPerson ? theme.transparentRed : 'transparent'};
 `
 
 export default function PeopleGrid({ people, selectedDepartment }) {
@@ -60,7 +63,7 @@ export default function PeopleGrid({ people, selectedDepartment }) {
   )
 
   return (
-    <Container ref={ref}>
+    <Container ref={ref} isSelectedPerson={selectedPerson != null}>
       {selectedPeople.map((person, index) => (
         <PersonThumb
           {...person}
