@@ -138,13 +138,17 @@ export default function Header() {
 
   const hasScrolled = useMemo(() => scrollY > 400, [scrollY])
 
+  const pageTitle = navigation.pages.find(
+    p => p.url[lang] === location.pathname,
+  )
+
   return (
     <>
       <ContainerMobile>
         <LogoMobile />
 
         <NavigationMobile>
-          <PageTitle>Home</PageTitle>
+          <PageTitle>{pageTitle?.label[lang] ?? 'Home'}</PageTitle>
 
           <MenuButton onClick={() => setIsMenuOpen(true)}>
             <Burger />
