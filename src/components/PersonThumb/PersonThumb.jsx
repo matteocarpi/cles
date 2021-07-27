@@ -92,6 +92,19 @@ const Foto = styled(GatsbyImage)`
           z-index: 1;
         }
       `}
+     
+    &:hover {
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: ${({ theme }) => theme.transparentYellow};
+        z-index: 1;
+      }
+    }
   }
 `
 
@@ -121,7 +134,7 @@ export default function PersonThumb({
     <Container
       onClick={onClick}
       onMouseEnter={() => !isSelected && setIsHovered(true)}
-      onMouseLeave={() => !isSelected && setIsHovered(false)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <Foto
         isSelected={isSelected}
@@ -129,6 +142,8 @@ export default function PersonThumb({
         image={image}
         aspectRatio={1}
         isOtherSelected={isOtherSelected}
+        onMouseEnter={() => !isSelected && setIsHovered(true)}
+        onMouseLeave={() => !isSelected && setIsHovered(false)}
       />
       {isSelected && (
         <InfoWrapper>
