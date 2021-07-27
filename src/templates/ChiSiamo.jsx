@@ -4,11 +4,14 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import PageIntro from '../components/PageIntro/PageIntro'
-import SectionTitleMobile from '../components/SectionTitleMobile'
 import PageSection from '../components/PageSection'
 import PeopleGrid from '../components/People'
 
-const Text = styled.article``
+const Text = styled.article`
+  @media (min-width: 768px) {
+    columns: 100px 2;
+  }
+`
 
 const BigText = styled.h3``
 
@@ -83,8 +86,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
       {/* Storia */}
 
-      <PageSection>
-        <SectionTitleMobile>{data.storia.titolo[lang]}</SectionTitleMobile>
+      <PageSection title={data.storia.titolo[lang]} id="history">
         <Text
           dangerouslySetInnerHTML={{ __html: data.storia.descrizione[lang] }}
         />
@@ -92,8 +94,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
       {/* Aree Attività */}
 
-      <PageSection>
-        <SectionTitleMobile>{data.servizi.metaTitolo[lang]}</SectionTitleMobile>
+      <PageSection title={data.servizi.metaTitolo[lang]} id="areas">
         <BigText>{data.servizi.titolo[lang]}</BigText>
 
         <ActivityList>
@@ -110,8 +111,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
       {/* Persone */}
 
-      <PageSection noCollapse id="team">
-        <SectionTitleMobile>{data.team.titolo[lang]}</SectionTitleMobile>
+      <PageSection title={data.team.titolo[lang]} noCollapse id="team">
         <BigText>{data.team.descrizione[lang]}</BigText>
 
         <PeopleGrid departments={departments} people={people} />

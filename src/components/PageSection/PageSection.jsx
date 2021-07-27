@@ -5,11 +5,17 @@ import useLang from '../../hooks/useLang'
 
 import Plus from '../../assets/plus.svg'
 import Minus from '../../assets/minus.svg'
+import SectionTitleMobile from '../SectionTitleMobile'
+import SectionTitle from '../SectionTitle'
 
 const Wrapper = styled.section`
   margin: 0 24px;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 768px) {
+    margin: 96px 40px 0 40px;
+  }
 `
 
 const Container = styled.section`
@@ -22,6 +28,12 @@ const Container = styled.section`
     css`
       max-height: unset;
     `}
+
+  @media (min-width: 768px) {
+    width: 71%;
+    padding-top: 96px;
+    align-self: flex-end;
+  }
 `
 
 const ReadMore = styled.button`
@@ -36,7 +48,7 @@ const ReadMore = styled.button`
   text-decoration: underline;
 `
 
-export default function PageSection({ children, noCollapse, id }) {
+export default function PageSection({ title, children, noCollapse, id }) {
   const [expanded, setExpanded] = useState(false)
 
   const { lang } = useLang()
@@ -44,6 +56,7 @@ export default function PageSection({ children, noCollapse, id }) {
   return (
     <Wrapper id={id}>
       <Container noCollapse={noCollapse} expanded={expanded}>
+        <SectionTitleMobile>{title}</SectionTitleMobile>
         {children}
       </Container>
       {!noCollapse && (

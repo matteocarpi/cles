@@ -5,8 +5,6 @@ import BackgroundImage from 'gatsby-background-image'
 import { motion } from 'framer-motion'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import Scrollspy from 'react-scrollspy'
-import useScrollPosition from '@react-hook/window-scroll'
 
 import useResponsiveness from '../../hooks/useResponsiveness'
 
@@ -20,6 +18,7 @@ import ServiziHomePreview from '../ServiziHomePreview'
 import ArrowRight from '../Arrow'
 import NewsList from '../NewsList'
 import SectionTitleMobile from '../SectionTitleMobile'
+import ScrollSpy from '../ScrollSpy'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -155,40 +154,6 @@ const SectionTitleDesktop = styled.h2`
     `}
 `
 
-const SectionTitleWrapper = styled.div`
-  overflow: hidden;
-
-  &.section-title {
-    ${SectionTitleDesktop} {
-      display: none;
-    }
-  }
-  &.active {
-    ${SectionTitleDesktop} {
-      display: block;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-  }
-
-  @keyframes fadeIn {
-    0% {
-      transform: translateY(150px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-`
-
-const ScrollSpyContainer = styled.div`
-  position: fixed;
-  bottom: 40px;
-  left: 40px;
-  @media (max-width: 767px) {
-    display: none;
-  }
-`
-
 const StyledArrowRight = styled(ArrowRight)`
   max-width: 30px;
 
@@ -200,6 +165,38 @@ const StyledArrowRight = styled(ArrowRight)`
 const AppearingSectionSubtitle = styled(AppearingText)`
   margin-bottom: 40px;
 `
+
+const sections = [
+  {
+    id: 'about',
+    label: {
+      en: 'About',
+      it: 'Chi Siamo',
+    },
+  },
+  {
+    id: 'services',
+    label: {
+      en: 'Services',
+      it: 'Servizi',
+    },
+  },
+  {
+    id: 'clients',
+    label: {
+      en: 'Clients',
+      it: 'Clienti',
+    },
+  },
+  {
+    id: 'news',
+    label: {
+      en: 'News',
+      it: 'News',
+    },
+    isLight: true,
+  },
+]
 
 export default function Home({ lang }) {
   const data = useStaticQuery(graphql`
@@ -307,7 +304,6 @@ export default function Home({ lang }) {
   )
 
   const { isMobile } = useResponsiveness()
-  const scrollY = useScrollPosition(60 /* fps */)
 
   return (
     <Layout lang={lang} title={data.wpPage.homeData.title[lang]}>
@@ -325,36 +321,12 @@ export default function Home({ lang }) {
         </IntroContainer>
       </IntroWrapper>
 
-      {scrollY > 50 && (
-        <ScrollSpyContainer>
-          <Scrollspy
-            items={['about', 'services', 'clients', 'news']}
-            currentClassName="active"
-            offset={-450}
-          >
-            <SectionTitleWrapper className="section-title">
-              <SectionTitleDesktop>
-                {lang === 'en' ? 'About' : 'Chi Siamo'}
-              </SectionTitleDesktop>
-            </SectionTitleWrapper>
-            <SectionTitleWrapper className="section-title">
-              <SectionTitleDesktop>
-                {lang === 'en' ? 'Services' : 'Servizi'}
-              </SectionTitleDesktop>
-            </SectionTitleWrapper>
-            <SectionTitleWrapper className="section-title">
-              <SectionTitleDesktop>
-                {lang === 'en' ? 'Clients' : 'Clienti'}
-              </SectionTitleDesktop>
-            </SectionTitleWrapper>
-            <SectionTitleWrapper className="section-title">
-              <SectionTitleDesktop light>
-                {lang === 'en' ? 'News' : 'News'}
-              </SectionTitleDesktop>
-            </SectionTitleWrapper>
-          </Scrollspy>
-        </ScrollSpyContainer>
-      )}
+      <ScrollSpy
+        sections={sections}
+        threshold={50}
+        offset={-450}
+        titleComponent={SectionTitleDesktop}
+      />
 
       {/* Chi Siamo */}
 
