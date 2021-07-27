@@ -83,6 +83,8 @@ const NavigationDesktop = styled.nav`
     `}
 `
 
+const LogoMobileLink = styled(Link)``
+
 const LogoMobile = styled(Logo)`
   width: 100px;
 `
@@ -145,7 +147,9 @@ export default function Header() {
   return (
     <>
       <ContainerMobile>
-        <LogoMobile />
+        <LogoMobileLink to={lang === 'it' ? '/' : '/en'}>
+          <LogoMobile />
+        </LogoMobileLink>
 
         <NavigationMobile>
           <PageTitle>{pageTitle?.label[lang] ?? 'Home'}</PageTitle>
