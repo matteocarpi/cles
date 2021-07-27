@@ -11,21 +11,6 @@ const Container = styled.button`
     grid-column: 1/3;
     grid-row: 1/3;
   }
-  
-  ${({ isOtherSelected }) =>
-    isOtherSelected &&
-    css`
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        background-color: ${({ theme }) => theme.transparentRed};
-        z-index: 1;
-      }
-    `}
 `
 
 const InfoWrapper = styled.div`
@@ -42,7 +27,6 @@ const InfoWrapper = styled.div`
   background-color: ${({ theme }) => theme.transparentRed};
 
   @media (min-width: 768px) {
-    width: 200%;
     z-index: 2;
     background-color: transparent;
   }
@@ -55,7 +39,8 @@ const InfoContainer = styled.div`
   margin-bottom: 2rem;
 
   @media (min-width: 768px) {
-    margin-left: 50%;
+    margin-left: 100%;
+    width: 100%;
   }
 `
 
@@ -65,6 +50,9 @@ const Circle = styled.div`
   background-color: ${({ theme }) => theme.transparentYellow};
   border-radius: 50%;
   transform: translateX(50%);
+  @media (min-width: 768px) {
+    z-index: 6;
+  }
 `
 
 const Info = styled.div`
@@ -88,6 +76,21 @@ const Foto = styled(GatsbyImage)`
       isSelected &&
       css`
         z-index: 2;
+      `}
+
+    ${({ isOtherSelected }) =>
+      isOtherSelected &&
+      css`
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          background-color: ${({ theme }) => theme.transparentRed};
+          z-index: 1;
+        }
       `}
   }
 `
@@ -115,14 +118,17 @@ export default function PersonThumb({
   const image = getImage(foto[mood].localFile.childImageSharp)
 
   return (
-    <Container onClick={onClick} isOtherSelected={isOtherSelected}>
+    <Container
+      onClick={onClick}
+      onMouseEnter={() => !isSelected && setIsHovered(true)}
+      onMouseLeave={() => !isSelected && setIsHovered(false)}
+    >
       <Foto
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         isSelected={isSelected}
         alt={nomeECognome}
         image={image}
         aspectRatio={1}
+        isOtherSelected={isOtherSelected}
       />
       {isSelected && (
         <InfoWrapper>
