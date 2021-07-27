@@ -79,7 +79,7 @@ const departments = [
 ]
 
 export default function ChiSiamo({ pageContext, data: pageData }) {
-  const { lang } = pageContext
+  const { lang, location } = pageContext
 
   const { chiSiamoData: data } = pageData.chiSiamoPage
 
@@ -103,7 +103,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
   ]
 
   return (
-    <Layout lang={lang} title={data.titolo[lang]}>
+    <Layout lang={lang} location={location} title={data.titolo[lang]}>
       <PageIntro
         graphic={pageData.graphic.childImageSharp.gatsbyImageData}
         image={pageData.image.childImageSharp.gatsbyImageData}

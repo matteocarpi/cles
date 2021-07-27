@@ -12,6 +12,7 @@ import MobileMenu from '../MobileMenu'
 import MenuText from '../MenuText'
 
 import navigation from '../../data/navigation.json'
+import useLocation from '../../hooks/useLocation'
 
 const ContainerMobile = styled.header`
   position: absolute;
@@ -108,6 +109,10 @@ const NavItem = styled(Link)`
 
   text-decoration: ${({ isLangSwitch }) =>
     isLangSwitch ? 'underline' : 'none'};
+  padding-bottom: 5px;
+
+  border-bottom: solid 3px
+    ${({ theme, isActive }) => (isActive ? theme.yellow : 'none')};
 `
 
 const MenuButton = styled.button``
@@ -121,6 +126,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(true)
 
   const { lang } = useLang()
+  const { location } = useLocation()
+
+  const { pathname } = location
 
   useEffect(() => {
     setIsMenuOpen(false)
@@ -156,7 +164,11 @@ export default function Header() {
           <NavigationWrapper>
             <NavigationDesktop hasScrolled={hasScrolled}>
               {navigation.pages.map(page => (
-                <NavItem to={page.url[lang]} key={page.label[lang]}>
+                <NavItem
+                  to={page.url[lang]}
+                  key={page.label[lang]}
+                  isActive={pathname === page.url[lang]}
+                >
                   {page.label[lang]}
                 </NavItem>
               ))}

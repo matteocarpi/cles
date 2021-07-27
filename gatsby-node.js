@@ -19,10 +19,13 @@ exports.createPages = async function ({ actions, graphql }) {
   // Home Page
   languages.forEach(lang => {
     if (lang !== defaultLang) {
+      const path = `/${lang}`
+
       actions.createPage({
-        path: `/${lang}`,
+        path,
         component: require.resolve(`./src/templates/Home.jsx`),
         context: {
+          location: { pathname: path },
           lang,
         },
       })
@@ -31,14 +34,17 @@ exports.createPages = async function ({ actions, graphql }) {
 
   // Chi Siamo
   languages.forEach(lang => {
+    const path =
+      lang === defaultLang
+        ? data.chiSiamoPage.uri
+        : data.chiSiamoPage.chiSiamoData.url[lang].replace(' ', '-')
+
     actions.createPage({
-      path:
-        lang === defaultLang
-          ? data.chiSiamoPage.uri
-          : data.chiSiamoPage.chiSiamoData.url[lang].replace(' ', '-'),
+      path,
       component: require.resolve(`./src/templates/ChiSiamo.jsx`),
       context: {
         lang,
+        location: { pathname: path },
       },
     })
   })

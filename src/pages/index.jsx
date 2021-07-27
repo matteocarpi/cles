@@ -1,5 +1,4 @@
-import React from // , { useEffect }
-'react'
+import React from 'react' // , { useEffect }
 
 // import { navigate } from 'gatsby'
 
@@ -7,7 +6,7 @@ import Home from '../components/Home'
 
 const defaultLang = 'it'
 
-const IndexPage = () => (
+const IndexPage = ({ location }) => (
   // const isBrowser = typeof window !== 'undefined'
 
   // const locale = isBrowser && (navigator.language || navigator.userLanguage)
@@ -19,7 +18,7 @@ const IndexPage = () => (
   //   [isBrowser, lang],
   // )
 
-  <Home lang={defaultLang} />
+  <Home lang={defaultLang} location={location} />
 )
 
 export default IndexPage

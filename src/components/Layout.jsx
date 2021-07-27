@@ -3,6 +3,7 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 import LangProvider from '../LangContext'
+import LocationProvider from '../LocationContext'
 
 import Header from './Header'
 import Footer from './Footer'
@@ -139,15 +140,17 @@ const defaultTheme = {
   transparentYellow: 'rgba(247, 207, 76, 0.8)',
 }
 
-export default function Layout({ lang, children, title }) {
+export default function Layout({ lang, children, title, location }) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <LangProvider lang={lang}>
-        <Seo lang={lang} title={title} />
-        <GlobalStyle />
-        <Header />
-        <Container>{children}</Container>
-        <Footer />
+        <LocationProvider location={location}>
+          <Seo lang={lang} title={title} />
+          <GlobalStyle />
+          <Header />
+          <Container>{children}</Container>
+          <Footer />
+        </LocationProvider>
       </LangProvider>
     </ThemeProvider>
   )

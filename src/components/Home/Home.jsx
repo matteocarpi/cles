@@ -199,7 +199,7 @@ const sections = [
   },
 ]
 
-export default function Home({ lang }) {
+export default function Home({ lang, location }) {
   const data = useStaticQuery(graphql`
     query HomeQuery {
       wpPage(id: { eq: "cG9zdDoyMw==" }) {
@@ -309,7 +309,11 @@ export default function Home({ lang }) {
   const { isMobile } = useResponsiveness()
 
   return (
-    <Layout lang={lang} title={data.wpPage.homeData.title[lang]}>
+    <Layout
+      location={location}
+      lang={lang}
+      title={data.wpPage.homeData.title[lang]}
+    >
       <IntroWrapper>
         <IntroContainer
           fluid={homeData.immagine.localFile.childImageSharp.fluid}
