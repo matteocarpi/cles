@@ -130,7 +130,7 @@ export default function Header() {
   const { lang } = useLang()
   const { location } = useLocation()
 
-  const { pathname } = location
+  const { pathname } = location ?? {}
 
   useEffect(() => {
     setIsMenuOpen(false)
@@ -141,7 +141,7 @@ export default function Header() {
   const hasScrolled = useMemo(() => scrollY > 400, [scrollY])
 
   const pageTitle = navigation.pages.find(
-    p => p.url[lang] === location.pathname,
+    p => p.url[lang] === location?.pathname,
   )
 
   return (
