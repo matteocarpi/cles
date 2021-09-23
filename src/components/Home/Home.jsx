@@ -36,16 +36,17 @@ const IntroContainer = styled(BackgroundImage)`
   margin-bottom: 74px;
 
   @media (min-width: 768px) {
-    min-height: 560px;
+    min-height: 800px;
   }
 `
 
 const Slogan = styled(motion.h2)`
-  max-width: 900px;
   text-align: center;
   color: ${({ theme }) => theme.white};
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
+
+const SloganText = styled(AppearingText)``
 
 const ScrollDown = styled(AnchorLink)`
   position: absolute;
@@ -318,9 +319,9 @@ export default function Home({ lang, location }) {
         <IntroContainer
           fluid={homeData.immagine.localFile.childImageSharp.fluid}
         >
-          <AppearingText numberOfLines={6} component={Slogan}>
+          <SloganText numberOfLines={2} component={Slogan}>
             {homeData.slogan[lang]}
-          </AppearingText>
+          </SloganText>
           <ScrollDown to={lang === 'en' ? '/en#about' : '#about'}>
             <SmallText>Scroll Down</SmallText>
             <Arrow />
