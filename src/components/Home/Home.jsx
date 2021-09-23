@@ -93,7 +93,7 @@ const HomeSectionWrapper = styled.section`
           border-top: none;
         }
       `}
-    padding-left: 40px;
+    padding-left: calc(80px + 26vw);
     padding-right: 40px;
   }
 `
