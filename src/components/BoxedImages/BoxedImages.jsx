@@ -21,14 +21,10 @@ const Wrapper = styled.div`
 
   @media (min-width: 1100px) {
     height: calc(840px * ${desktop});
-    max-width: 500px;
-    margin-left: auto;
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     height: calc(840px * ${bigScreen});
-    max-width: 500px;
-    margin-left: auto;
   }
 `
 
@@ -38,7 +34,7 @@ const Container = styled.div`
     transform: translateX(calc(-1315px * ${desktop} / 2));
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     transform: translateX(calc(-1260px * ${bigScreen} / 2));
   }
 `
@@ -54,7 +50,7 @@ const Back = styled.div`
     transform: translate(calc(90px * ${desktop}), calc(90px * ${desktop}));
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     transform: translate(calc(90px * ${bigScreen}), calc(90px * ${bigScreen}));
   }
 `
@@ -73,7 +69,7 @@ const imageContainerStyles = css`
     height: calc(700px * ${desktop});
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     width: calc(500px * ${bigScreen});
     height: calc(700px * ${bigScreen});
   }
@@ -107,7 +103,7 @@ const Below = styled.div`
     );
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     width: calc(550px * ${bigScreen});
     height: calc(750px * ${bigScreen});
     clip-path: polygon(
@@ -131,7 +127,7 @@ const cornerStyles = css`
     width: calc(70px * ${desktop});
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     width: calc(70px * ${bigScreen});
   }
 `
@@ -145,7 +141,7 @@ const CornerTop = styled.div`
     left: calc(488px * ${desktop});
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     top: calc(24px * ${bigScreen});
     left: calc(488px * ${bigScreen});
   }
@@ -160,7 +156,7 @@ const CornerMiddle = styled.div`
     left: calc(488px * ${desktop});
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     top: calc(720px * ${bigScreen});
     left: calc(488px * ${bigScreen});
   }
@@ -174,7 +170,7 @@ const CornerBottom = styled.div`
     left: calc(-10px * ${desktop});
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     top: calc(720px * ${bigScreen});
     left: calc(-10px * ${bigScreen});
   }

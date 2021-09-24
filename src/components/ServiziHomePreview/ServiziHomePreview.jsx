@@ -9,19 +9,16 @@ import BoxedImages from '../BoxedImages'
 import AppearingText from '../AppearingText'
 
 const HomeSectionWrapper = styled.section`
-  width: 100%;
-  padding: 0 1rem;
-  margin-bottom: 60px;
+  padding-left: calc(80px + 26vw);
+  padding-right: 40px;
 `
 
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
-  /* width: 100%; */
 
   @media (min-width: 768px) {
     border: none;
     margin-top: 200px;
-    padding: 0 40px;
     display: flex;
     justify-content: flex-end;
   }
@@ -55,7 +52,7 @@ const TextContainer = styled.article`
     margin: 55px;
   }
 
-  @media (min-width: 1680px) {
+  @media (min-width: 1681px) {
     margin-right: 200px;
   }
 `
@@ -86,7 +83,7 @@ const ContentContainer = styled.section`
 const ImagesWrapper = styled.section`
   width: 100%;
   @media (min-width: 768px) {
-    margin: 0 40px;
+    /* margin: 0 40px; */
   }
 `
 
@@ -94,7 +91,7 @@ const ImagesContainer = styled.section`
   width: 355px;
   margin: 0 auto;
   @media (min-width: 768px) {
-    margin: 0 40px;
+    width: unset;
   }
 `
 
