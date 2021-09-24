@@ -20,13 +20,13 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   position: relative;
-  max-width: 900px;
+  max-width: 800px;
 `
 
 const Arch = styled.div`
   position: absolute;
   top: 0;
-  bottom: 3px;
+  bottom: 0;
   right: 150px;
   left: 0;
   transform: translateX(-50%);

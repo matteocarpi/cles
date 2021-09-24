@@ -50,8 +50,12 @@ const HomeSection = styled.section`
   width: 100%;
   @media (min-width: 769px) {
     border: none;
-    margin-top: 200px;
+    margin-top: 60px;
     padding: 0;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 200px;
   }
 `
 
@@ -65,7 +69,7 @@ const NewsPreview = styled.article`
   border: solid 5px ${({ theme }) => theme.yellow};
   padding: 24px;
   margin-bottom: 40px;
-  max-width: 900px;
+  max-width: 800px;
 `
 
 const NewsDate = styled(SmallText)`
@@ -88,7 +92,7 @@ const ReadMore = styled(Link)`
 `
 
 const Title = styled(motion.h3)`
-  max-width: 900px;
+  max-width: 800px;
   margin-left: auto;
 `
 
