@@ -10,6 +10,7 @@ const Wrapper = styled(Link)`
   justify-content: flex-start;
   /* overflow-x: hidden; */
   width: 100vw;
+  margin-top: 20px;
 `
 
 const speed = 3
