@@ -106,8 +106,12 @@ const HomeSection = styled.section`
   margin-left: auto;
   @media (min-width: 769px) {
     border: none;
-    margin-top: 200px;
     padding: 0;
+    margin-top: 60px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 200px;
   }
 `
 

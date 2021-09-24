@@ -21,9 +21,13 @@ const HomeSection = styled.section`
 
   @media (min-width: 769px) {
     border: none;
-    margin-top: 200px;
     display: flex;
     justify-content: flex-end;
+    margin-top: 60px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 200px;
   }
 `
 
