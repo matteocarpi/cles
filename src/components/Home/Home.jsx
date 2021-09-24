@@ -24,6 +24,7 @@ import ScrollSpy from '../ScrollSpy'
 const IntroWrapper = styled.section`
   width: 100%;
   height: 100vh;
+  min-height: 800px;
 `
 
 const IntroContainer = styled(BackgroundImage)`
