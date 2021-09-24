@@ -348,7 +348,7 @@ export default function Home({ lang, location }) {
           <SectionTitleMobile>
             {lang === 'en' ? 'About' : 'Chi Siamo'}
           </SectionTitleMobile>
-          <AppearingText component={Bio} maxStrLength={isMobile ? 22 : 40}>
+          <AppearingText component={Bio} maxStrLength={isMobile ? 22 : 30}>
             {homeData.bio[lang]}
           </AppearingText>
           <Video url={homeData.video[lang]} />
