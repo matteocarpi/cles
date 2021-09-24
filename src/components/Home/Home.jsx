@@ -230,7 +230,7 @@ export default function Home({ lang, location }) {
             en
             it
           }
-          servizi {
+          services {
             titolo {
               it
               en

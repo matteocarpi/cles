@@ -103,7 +103,7 @@ export default function ServiziHomePreview({ lang, id }) {
 
   const data = useStaticQuery(graphql`
     query ServiziPreview {
-      wpPage(id: { eq: "cG9zdDo3Ng==" }) {
+      chiSiamoPage: wpPage(id: { eq: "cG9zdDo3Ng==" }) {
         chiSiamoData {
           servizi {
             titolo {
@@ -133,10 +133,25 @@ export default function ServiziHomePreview({ lang, id }) {
           }
         }
       }
+      homePage: wpPage(id: { eq: "cG9zdDoyMw==" }) {
+        id
+        homeData {
+          services {
+            titolo {
+              it
+              en
+            }
+            descrizione {
+              it
+              en
+            }
+          }
+        }
+      }
     }
   `)
 
-  const { areeAttivit } = data.wpPage.chiSiamoData.servizi
+  const { areeAttivit } = data.chiSiamoPage.chiSiamoData.servizi
 
   const aree = areeAttivit.map(area => ({
     ...area,
@@ -156,12 +171,12 @@ export default function ServiziHomePreview({ lang, id }) {
         <ContentContainer>
           <TextContainer>
             <AnimatedSubtitle numberOfLines={2} component={ServiceSubtitle}>
-              {data.wpPage.chiSiamoData.servizi.titolo[lang]}
+              {data.homePage.homeData.services.titolo[lang]}
             </AnimatedSubtitle>
 
             <ServiceDescription
               dangerouslySetInnerHTML={{
-                __html: data.wpPage.chiSiamoData.servizi.descrizione[lang],
+                __html: data.homePage.homeData.services.descrizione[lang],
               }}
             />
 
