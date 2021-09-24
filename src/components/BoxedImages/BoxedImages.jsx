@@ -84,8 +84,8 @@ const Below = styled.div`
   width: calc(550px * ${mobile});
   height: calc(750px * ${mobile});
   clip-path: polygon(
-    calc(500px * ${mobile}) 0,
-    calc(550px * ${mobile}) calc(50px * ${mobile}),
+    calc(500px * ${mobile}) 1px,
+    calc(550px * ${mobile}) calc(51px * ${mobile}),
     calc(550px * ${mobile}) calc(750px * ${mobile}),
     calc(50px * ${mobile}) calc(750px * ${mobile}),
     0 calc(700px * ${mobile})
@@ -95,8 +95,8 @@ const Below = styled.div`
     width: calc(550px * ${desktop});
     height: calc(750px * ${desktop});
     clip-path: polygon(
-      calc(500px * ${desktop}) 0,
-      calc(550px * ${desktop}) calc(50px * ${desktop}),
+      calc(500px * ${desktop}) 1px,
+      calc(550px * ${desktop}) calc(51px * ${desktop}),
       calc(550px * ${desktop}) calc(750px * ${desktop}),
       calc(50px * ${desktop}) calc(750px * ${desktop}),
       0 calc(700px * ${desktop})
@@ -107,8 +107,8 @@ const Below = styled.div`
     width: calc(550px * ${bigScreen});
     height: calc(750px * ${bigScreen});
     clip-path: polygon(
-      calc(500px * ${bigScreen}) 0,
-      calc(550px * ${bigScreen}) calc(50px * ${bigScreen}),
+      calc(500px * ${bigScreen}) 1px,
+      calc(550px * ${bigScreen}) calc(51px * ${bigScreen}),
       calc(550px * ${bigScreen}) calc(750px * ${bigScreen}),
       calc(50px * ${bigScreen}) calc(750px * ${bigScreen}),
       0 calc(700px * ${bigScreen})
@@ -120,7 +120,7 @@ const cornerStyles = css`
   position: absolute;
   width: calc(70px * ${mobile});
   height: 3px;
-  background: gold;
+  background: ${({ theme }) => theme.yellow};
   transform: rotate(45deg);
 
   @media (min-width: 1100px) {
@@ -131,19 +131,21 @@ const cornerStyles = css`
     width: calc(70px * ${bigScreen});
   }
 `
+const top = 25
+const left = 488
 
 const CornerTop = styled.div`
   ${cornerStyles}
-  top: calc(24px * ${mobile});
-  left: calc(488px * ${mobile});
+  top: calc(${top}px * ${mobile});
+  left: calc(${left}px * ${mobile});
   @media (min-width: 1100px) {
-    top: calc(24px * ${desktop});
-    left: calc(488px * ${desktop});
+    top: calc(${top}px * ${desktop});
+    left: calc(${left}px * ${desktop});
   }
 
   @media (min-width: 1681px) {
-    top: calc(24px * ${bigScreen});
-    left: calc(488px * ${bigScreen});
+    top: calc(${top}px * ${bigScreen});
+    left: calc(${left}px * ${bigScreen});
   }
 `
 const CornerMiddle = styled.div`
