@@ -48,14 +48,14 @@ const AreaTitle = styled(motion.h3)`
 const TextContainer = styled.article`
   display: flex;
   flex-direction: column;
-  max-width: 300px;
   margin: 0 auto;
-  margin-left: 18px;
-  transform: translateX(-19px);
+
   @media (min-width: 769px) {
     margin: 55px;
   }
-
+  @media (min-width: 940px) {
+    max-width: 300px;
+  }
   @media (min-width: 1681px) {
     margin-right: 200px;
   }
@@ -86,9 +86,6 @@ const ContentContainer = styled.section`
 
 const ImagesWrapper = styled.section`
   width: 100%;
-  @media (min-width: 769px) {
-    /* margin: 0 40px; */
-  }
 `
 
 const ImagesContainer = styled.section`
