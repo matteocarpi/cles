@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 54px;
     letter-spacing: -0.03em;
 
-    @media(min-width: 768px) {
+    @media (min-width: 769px) {
       font-size: 68px;
       line-height: 80px;
     }
@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.03em;
     font-weight: 300;
 
-    @media(min-width: 768px ) {
+    @media (min-width: 769px ) {
       font-size: 60px;
       line-height: 72px;
     }
@@ -53,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.05em;
     margin-bottom: 40px;
 
-    @media(min-width: 768px ) {
+    @media (min-width: 769px ) {
       font-size: 48px;
       line-height: 56px;
     }
@@ -66,7 +66,7 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.02em;
 
 
-    @media(min-width: 768px ) {
+    @media (min-width: 769px ) {
       font-size: 32px;
       line-height: 40px;
     }
@@ -78,7 +78,7 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.02em;
 
 
-    @media(min-width: 768px ) {
+    @media (min-width: 769px ) {
       font-size: 32px;
       line-height: 40px;
     }
@@ -90,7 +90,7 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.02em;
 
 
-    @media(min-width: 768px ) {
+    @media (min-width: 769px ) {
       font-size: 28px;
       line-height: 32px;
     }

@@ -13,7 +13,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     margin-top: 22vw;
     padding: 0 40px;
   }
@@ -24,7 +24,7 @@ const Description = styled(motion.h3)``
 const StyledSlidingImages = styled(SlidingImages)`
   align-self: flex-end;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     padding: 0;
   }
 `
@@ -33,7 +33,7 @@ const Text = styled(AppearingText)`
   padding: 0 20px;
   max-width: 1000px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     align-self: flex-start;
     padding: 0;
   }

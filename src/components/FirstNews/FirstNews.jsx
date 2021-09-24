@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   display: none;
   box-sizing: border-box;
   width: 100%;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -41,7 +41,7 @@ const TextContainer = styled.article`
   border: solid 5px ${({ theme }) => theme.yellow};
   padding: 24px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     max-height: 340px;
   }
 `

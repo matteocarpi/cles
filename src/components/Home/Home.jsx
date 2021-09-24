@@ -36,7 +36,7 @@ const IntroContainer = styled(BackgroundImage)`
   align-items: center;
   margin-bottom: 74px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     min-height: 800px;
   }
 `
@@ -83,7 +83,7 @@ const HomeSectionWrapper = styled.section`
         border-top: solid 2px ${theme.yellow};
       }
     `}
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     ${({ dark, theme }) =>
       dark &&
       css`
@@ -104,7 +104,7 @@ const HomeSection = styled.section`
   width: 100%;
   max-width: 900px;
   margin-left: auto;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     border: none;
     margin-top: 200px;
     padding: 0;
@@ -125,7 +125,7 @@ const Client = styled(GatsbyImage)`
   max-height: 50px;
   margin: 1rem 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     width: 30%;
     max-width: 250px;
     max-height: unset;
@@ -160,7 +160,7 @@ const SectionTitleDesktop = styled.h2`
 const StyledArrowRight = styled(ArrowRight)`
   max-width: 30px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     max-width: 50px;
   }
 `

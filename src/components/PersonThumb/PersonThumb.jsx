@@ -26,7 +26,7 @@ const InfoWrapper = styled.div`
 
   background-color: ${({ theme }) => theme.transparentRed};
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     z-index: 2;
     background-color: transparent;
   }
@@ -38,7 +38,7 @@ const InfoContainer = styled.div`
   align-items: center;
   margin-bottom: 2rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     margin-left: 100%;
     width: 100%;
   }
@@ -50,7 +50,7 @@ const Circle = styled.div`
   background-color: ${({ theme }) => theme.transparentYellow};
   border-radius: 50%;
   transform: translateX(50%);
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     z-index: 6;
   }
 `
@@ -71,7 +71,7 @@ const Role = styled.h6`
 const Foto = styled(GatsbyImage)`
   display: block;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     ${({ isSelected }) =>
       isSelected &&
       css`

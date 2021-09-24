@@ -10,7 +10,7 @@ import AppearingText from '../AppearingText'
 
 const HomeSectionWrapper = styled.section`
   padding: 24px;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     padding-left: calc(80px + 26vw);
     padding-right: 40px;
   }
@@ -19,7 +19,7 @@ const HomeSectionWrapper = styled.section`
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     border: none;
     margin-top: 200px;
     display: flex;
@@ -28,7 +28,7 @@ const HomeSection = styled.section`
 `
 
 const SectionTitleMobile = styled(MenuText)`
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: none;
   }
 `
@@ -52,7 +52,7 @@ const TextContainer = styled.article`
   margin: 0 auto;
   margin-left: 18px;
   transform: translateX(-19px);
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     margin: 55px;
   }
 
@@ -86,14 +86,14 @@ const ContentContainer = styled.section`
 
 const ImagesWrapper = styled.section`
   width: 100%;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     /* margin: 0 40px; */
   }
 `
 
 const ImagesContainer = styled.section`
   margin: 0 auto;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     width: unset;
   }
 `

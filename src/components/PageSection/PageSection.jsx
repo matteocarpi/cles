@@ -12,7 +12,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     margin: 96px 40px 0 40px;
   }
 `
@@ -28,7 +28,7 @@ const Container = styled.section`
       max-height: unset;
     `}
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     width: 71%;
     padding-top: 96px;
     align-self: flex-end;
@@ -49,7 +49,7 @@ const ReadMore = styled.button`
   justify-content: space-between;
   align-items: center;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     justify-content: flex-end;
 
     ${ReadMoreText} {
@@ -59,7 +59,7 @@ const ReadMore = styled.button`
 `
 
 const readMoreIconStyles = css`
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     width: 56px;
     height: 56px;
   }

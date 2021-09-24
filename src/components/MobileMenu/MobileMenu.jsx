@@ -15,7 +15,7 @@ const Container = styled.section`
   background-color: ${({ theme }) => theme.black};
   padding: 2rem 1rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: none;
   }
 `

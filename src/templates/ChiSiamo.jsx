@@ -10,7 +10,7 @@ import ScrollSpy from '../components/ScrollSpy'
 import useClientRect from '../hooks/useClientRect'
 
 const Text = styled.article`
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     columns: 100px 2;
   }
 `
@@ -18,7 +18,7 @@ const Text = styled.article`
 const BigText = styled.h4`
   margin-bottom: 56px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     margin-bottom: 80px;
   }
 `

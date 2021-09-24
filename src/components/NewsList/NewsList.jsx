@@ -29,7 +29,7 @@ const Wrapper = styled.section`
         border-top: solid 2px ${theme.yellow};
       }
     `}
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     ${({ dark, theme }) =>
       dark &&
       css`
@@ -48,7 +48,7 @@ const Wrapper = styled.section`
 const HomeSection = styled.section`
   border-top: solid 1px ${({ theme }) => theme.gray};
   width: 100%;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     border: none;
     margin-top: 200px;
     padding: 0;

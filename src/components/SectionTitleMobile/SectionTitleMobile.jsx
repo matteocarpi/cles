@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import MenuText from '../MenuText'
 
 const Text = styled(MenuText)`
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: none;
   }
 `

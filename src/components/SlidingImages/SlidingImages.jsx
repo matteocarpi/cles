@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 24px;
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     width: 70%;
     justify-content: flex-end;
   }

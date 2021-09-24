@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Container = styled.div`
   iframe {
     height: 300px;
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
       height: 505px;
       margin: 100px 0 56px 0;
     }

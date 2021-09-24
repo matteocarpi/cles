@@ -84,7 +84,7 @@ const Column = styled.div`
     margin-top: 24px;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     &:not(:first-child) {
       margin-top: 0;
     }
