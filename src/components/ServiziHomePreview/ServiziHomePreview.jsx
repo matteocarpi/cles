@@ -47,6 +47,7 @@ const AreaTitle = styled(motion.h3)`
   text-align: right;
   font-size: 28px;
   line-height: 32px;
+  white-space: nowrap;
 `
 
 const TextContainer = styled.article`
