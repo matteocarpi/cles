@@ -7,7 +7,7 @@ import { Carousel } from 'react-responsive-carousel'
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
-const mobile = 0.54
+const mobile = 0.5
 const desktop = 0.7
 const bigScreen = 0.9
 

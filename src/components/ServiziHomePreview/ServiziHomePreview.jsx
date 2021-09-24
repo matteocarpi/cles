@@ -9,8 +9,11 @@ import BoxedImages from '../BoxedImages'
 import AppearingText from '../AppearingText'
 
 const HomeSectionWrapper = styled.section`
-  padding-left: calc(80px + 26vw);
-  padding-right: 40px;
+  padding: 24px;
+  @media (min-width: 768px) {
+    padding-left: calc(80px + 26vw);
+    padding-right: 40px;
+  }
 `
 
 const HomeSection = styled.section`
@@ -47,6 +50,7 @@ const TextContainer = styled.article`
   flex-direction: column;
   max-width: 300px;
   margin: 0 auto;
+  margin-left: 18px;
   transform: translateX(-19px);
   @media (min-width: 768px) {
     margin: 55px;
@@ -88,7 +92,6 @@ const ImagesWrapper = styled.section`
 `
 
 const ImagesContainer = styled.section`
-  width: 355px;
   margin: 0 auto;
   @media (min-width: 768px) {
     width: unset;
