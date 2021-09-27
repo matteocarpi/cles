@@ -44,7 +44,7 @@ const ReadMoreText = styled.span`
 `
 
 const ReadMore = styled.button`
-  margin: 40px 0;
+  margin-top: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
