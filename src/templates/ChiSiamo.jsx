@@ -9,6 +9,8 @@ import People from '../components/People'
 import ScrollSpy from '../components/ScrollSpy'
 import useClientRect from '../hooks/useClientRect'
 
+const TextBlock = styled.article``
+
 const Text = styled.article`
   @media (min-width: 769px) {
     columns: 100px 2;
@@ -147,7 +149,9 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
       {/* Persone */}
       <div id="team">
         <PageSection title={data.team.titolo[lang]} noCollapse>
-          <BigText>{data.team.descrizione[lang]}</BigText>
+          <TextBlock
+            dangerouslySetInnerHTML={{ __html: data.team.descrizione[lang] }}
+          />
         </PageSection>
         <People departments={departments} people={people} />
       </div>
