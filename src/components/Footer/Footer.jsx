@@ -136,6 +136,7 @@ export default function Footer() {
             telefono
             fax
             email
+            pec
             copyright {
               it
               en
@@ -176,6 +177,8 @@ export default function Footer() {
           F. {contatti.fax}
           <br />
           <a href={`mailto:${contatti.email}`}>{contatti.email}</a>
+          <br />
+          <a href={`mailto:${contatti.pec}`}>{contatti.pec}</a>
         </Contacts>
       </Column>
 
