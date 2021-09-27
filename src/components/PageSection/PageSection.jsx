@@ -21,7 +21,7 @@ const Container = styled.section`
   border-top: solid 2px ${({ theme }) => theme.gray};
   max-height: 500px;
   overflow-y: hidden;
-
+  width: 100%;
   ${({ expanded, noCollapse }) =>
     (expanded || noCollapse) &&
     css`
@@ -29,8 +29,9 @@ const Container = styled.section`
     `}
 
   @media (min-width: 769px) {
-    width: 71%;
+    box-sizing: border-box;
     padding-top: 96px;
+    width: calc(100% - 80px - 26vw);
     align-self: flex-end;
   }
 `

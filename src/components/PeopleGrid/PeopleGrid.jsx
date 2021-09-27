@@ -6,12 +6,13 @@ import PersonThumb from '../PersonThumb'
 
 const Container = styled.section`
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
   position: relative;
 
   @media (min-width: 769px) {
-    width: 71%;
+    width: calc(100% - 80px - 26vw);
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
