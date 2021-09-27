@@ -19,10 +19,13 @@ const Container = styled.section`
     isSelectedPerson ? theme.transparentRed : 'transparent'};
 `
 
-export default function PeopleGrid({ people, selectedDepartment }) {
+export default function PeopleGrid({
+  people,
+  selectedDepartment,
+  selectedPerson,
+  setSelectedPerson,
+}) {
   const [selectedPeople, setSelectedPeople] = useState(people)
-
-  const [selectedPerson, setSelectedPerson] = useState(null)
 
   const ref = useRef()
 
@@ -59,7 +62,7 @@ export default function PeopleGrid({ people, selectedDepartment }) {
         })
       }
     },
-    [scrollY, selectedPeople, selectedPerson],
+    [scrollY, selectedPeople, selectedPerson, setSelectedPerson],
   )
 
   return (

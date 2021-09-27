@@ -41,13 +41,16 @@ const DepartmentButton = styled.button`
 
 export default function People({ departments, people }) {
   const [selectedDepartment, setSelectedDepartment] = useState(null)
+  const [selectedPerson, setSelectedPerson] = useState(null)
 
   const { lang } = useLang()
 
-  const toggleDepartment = department =>
+  const toggleDepartment = department => {
+    setSelectedPerson(null)
     setSelectedDepartment(
       department.id === selectedDepartment ? null : department.id,
     )
+  }
 
   return (
     <Container>
@@ -64,7 +67,12 @@ export default function People({ departments, people }) {
         ))}
       </DepartmentList>
 
-      <PeopleGrid people={people} selectedDepartment={selectedDepartment} />
+      <PeopleGrid
+        selectedPerson={selectedPerson}
+        setSelectedPerson={setSelectedPerson}
+        people={people}
+        selectedDepartment={selectedDepartment}
+      />
     </Container>
   )
 }
