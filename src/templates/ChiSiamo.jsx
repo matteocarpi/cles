@@ -91,6 +91,10 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
   const sections = [
     {
+      id: data.cles.fieldGroupName,
+      label: data.cles.titolo,
+    },
+    {
       id: data.storia.fieldGroupName,
       label: data.storia.titolo,
     },
@@ -113,6 +117,18 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
       />
 
       <ScrollSpy offset={-800} sections={sections} firstSectionTop={rect?.y} />
+
+      {/* Storia */}
+
+      <PageSection
+        title={data.cles.titolo[lang]}
+        id={data.cles.fieldGroupName}
+        ref={ref}
+      >
+        <Text
+          dangerouslySetInnerHTML={{ __html: data.cles.descrizione[lang] }}
+        />
+      </PageSection>
 
       {/* Storia */}
 
@@ -186,6 +202,17 @@ export const data = graphql`
               it
               en
             }
+          }
+        }
+        cles {
+          fieldGroupName
+          titolo {
+            it
+            en
+          }
+          descrizione {
+            it
+            en
           }
         }
         storia {
