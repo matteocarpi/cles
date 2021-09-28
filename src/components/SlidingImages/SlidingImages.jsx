@@ -51,7 +51,7 @@ const photoVariants = {
 export default function SlidingImages({ graphic, image, className }) {
   const ref = useRef()
 
-  const inView = useElementInView({ ref })
+  const inView = useElementInView({ ref, center: true })
 
   const controls = useAnimation()
 
