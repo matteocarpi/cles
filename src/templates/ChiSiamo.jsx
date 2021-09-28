@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
+import { departments } from './const'
+
 import Layout from '../components/Layout'
 import PageIntro from '../components/PageIntro/PageIntro'
 import PageSection from '../components/PageSection'
@@ -41,44 +43,6 @@ const ActivityNumber = styled.h6`
 `
 
 const ActivityName = styled.h6``
-
-const departments = [
-  {
-    id: 'management',
-    title: {
-      it: 'Il Management',
-      en: 'Management',
-    },
-  },
-  {
-    id: 'responsabili_progetto',
-    title: {
-      it: 'Responsabili di area/progetto',
-      en: 'Project/area managers',
-    },
-  },
-  {
-    id: 'esperti',
-    title: {
-      it: 'Esperti junior/senior',
-      en: 'Junior/senior experts',
-    },
-  },
-  {
-    id: 'staff',
-    title: {
-      it: 'Staff tecnico e amministrativo',
-      en: 'Technical and administrative staff',
-    },
-  },
-  {
-    id: 'comitato',
-    title: {
-      it: 'Il Comitato tecnico',
-      en: 'Technical Committee',
-    },
-  },
-]
 
 export default function ChiSiamo({ pageContext, data: pageData }) {
   const { lang, location } = pageContext
