@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   * {
+    font-family: Poppins;
     box-sizing: border-box;
   }
 
