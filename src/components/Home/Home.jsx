@@ -4,7 +4,6 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import { motion } from 'framer-motion'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import useResponsiveness from '../../hooks/useResponsiveness'
 import useClientRect from '../../hooks/useClientRect'
@@ -20,6 +19,7 @@ import ArrowRight from '../Arrow'
 import NewsList from '../NewsList'
 import SectionTitleMobile from '../SectionTitleMobile'
 import ScrollSpy from '../ScrollSpy'
+import LiftedLink from '../LiftedLink/LiftedLink'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -124,18 +124,6 @@ const ClientList = styled.section`
   margin-bottom: 56px;
 `
 
-const Client = styled(GatsbyImage)`
-  width: 45%;
-  max-height: 50px;
-  margin: 1rem 0;
-
-  @media (min-width: 769px) {
-    width: 30%;
-    max-width: 250px;
-    max-height: unset;
-  }
-`
-
 const SeeAllClients = styled(Link)`
   width: 100%;
   display: flex;
@@ -208,7 +196,7 @@ const sections = [
 export default function Home({ lang, location }) {
   const data = useStaticQuery(graphql`
     query HomeQuery {
-      wpPage(id: { eq: "cG9zdDoyMw==" }) {
+      homePage: wpPage(id: { eq: "cG9zdDoyMw==" }) {
         homeData {
           title {
             en
@@ -245,20 +233,28 @@ export default function Home({ lang, location }) {
               en
             }
           }
-          clienti {
+          clients {
             titolo {
               it
               en
             }
-            loghi {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(width: 400, pngOptions: { quality: 100 })
-                }
-              }
-            }
           }
           news {
+            titolo {
+              it
+              en
+            }
+          }
+        }
+      }
+      clientiPage: wpPage(id: { eq: "cG9zdDozNjA=" }) {
+        clientiData {
+          title {
+            it
+            en
+          }
+          clienti {
+            fieldGroupName
             titolo {
               it
               en
@@ -298,9 +294,9 @@ export default function Home({ lang, location }) {
 
   const [rect, ref] = useClientRect()
 
-  const { homeData } = data.wpPage
+  const { homeData } = data.homePage
 
-  const clients = homeData.clienti.loghi.map(logo => getImage(logo.localFile))
+  const clients = data.clientiPage.clientiData.clienti
 
   const news = data.allWpPost.edges.map(n =>
     lang === 'it' || !n.node.newsData.tradotta
@@ -318,7 +314,7 @@ export default function Home({ lang, location }) {
     <Layout
       location={location}
       lang={lang}
-      title={data.wpPage.homeData.title[lang]}
+      title={data.homePage.homeData.title[lang]}
     >
       <IntroWrapper>
         <IntroContainer
@@ -371,18 +367,15 @@ export default function Home({ lang, location }) {
             {lang === 'en' ? 'Clientis' : 'Clienti'}
           </SectionTitleMobile>
           <AppearingSectionSubtitle maxStrLength={39} component={Bio}>
-            {homeData.clienti.titolo[lang]}
+            {homeData.clients.titolo[lang]}
           </AppearingSectionSubtitle>
 
           <ClientList>
             <>
               {clients.map(client => (
-                <Client
-                  key={client.images.fallback.src}
-                  alt=""
-                  image={client}
-                  objectFit="contain"
-                />
+                <LiftedLink to="#" key={client.titolo[lang]}>
+                  {client.titolo[lang]}
+                </LiftedLink>
               ))}
             </>
           </ClientList>
