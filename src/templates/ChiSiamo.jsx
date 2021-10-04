@@ -51,7 +51,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
   const [rect, ref] = useClientRect()
 
-  const people = data.persone.map(p => p.persona)
+  const people = data.persone?.map(p => p.persona) ?? []
 
   const sections = [
     {
@@ -141,7 +141,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
 export const data = graphql`
   query ChiSiamo {
-    chiSiamoPage: wpPage(id: { eq: "cG9zdDo3Ng==" }) {
+    chiSiamoPage: wpPage(id: { eq: "cG9zdDo0MjY=" }) {
       chiSiamoData {
         titolo {
           it

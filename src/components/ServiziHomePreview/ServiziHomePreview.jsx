@@ -105,7 +105,7 @@ export default function ServiziHomePreview({ lang, id }) {
 
   const data = useStaticQuery(graphql`
     query ServiziPreview {
-      chiSiamoPage: wpPage(id: { eq: "cG9zdDo3Ng==" }) {
+      chiSiamoPage: wpPage(id: { eq: "cG9zdDo0MjY=" }) {
         chiSiamoData {
           servizi {
             titolo {
@@ -135,7 +135,7 @@ export default function ServiziHomePreview({ lang, id }) {
           }
         }
       }
-      homePage: wpPage(id: { eq: "cG9zdDoyMw==" }) {
+      homePage: wpPage(id: { eq: "cG9zdDoxNjI=" }) {
         id
         homeData {
           services {

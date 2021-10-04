@@ -196,7 +196,7 @@ const sections = [
 export default function Home({ lang, location }) {
   const data = useStaticQuery(graphql`
     query HomeQuery {
-      homePage: wpPage(id: { eq: "cG9zdDoyMw==" }) {
+      homePage: wpPage(id: { eq: "cG9zdDoxNjI=" }) {
         homeData {
           title {
             en
@@ -247,7 +247,7 @@ export default function Home({ lang, location }) {
           }
         }
       }
-      clientiPage: wpPage(id: { eq: "cG9zdDozNjA=" }) {
+      clientiPage: wpPage(id: { eq: "cG9zdDo0MjE=" }) {
         clientiData {
           title {
             it

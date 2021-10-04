@@ -126,7 +126,7 @@ export default function Footer() {
 
   const data = useStaticQuery(graphql`
     query FooterQuery {
-      wpPage(id: { eq: "cG9zdDoyMw==" }) {
+      wpPage(id: { eq: "cG9zdDoxNjI=" }) {
         homeData {
           contatti {
             nome
