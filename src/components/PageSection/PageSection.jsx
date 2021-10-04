@@ -28,6 +28,12 @@ const Container = styled.section`
       max-height: unset;
     `}
 
+  ${({ noSeparator }) =>
+    noSeparator &&
+    css`
+      border: none;
+    `}
+    
   @media (min-width: 769px) {
     box-sizing: border-box;
     padding-top: 96px;
@@ -75,14 +81,18 @@ const StyledMinus = styled(Minus)`
 `
 
 const PageSection = React.forwardRef(
-  ({ title, children, noCollapse, id }, ref) => {
+  ({ title, children, noCollapse, noSeparator, id }, ref) => {
     const [expanded, setExpanded] = useState(false)
 
     const { lang } = useLang()
 
     return (
       <Wrapper id={id} ref={ref}>
-        <Container noCollapse={noCollapse} expanded={expanded}>
+        <Container
+          noCollapse={noCollapse}
+          noSeparator={noSeparator}
+          expanded={expanded}
+        >
           <SectionTitleMobile>{title}</SectionTitleMobile>
           {children}
         </Container>

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
-import { departments } from './const'
+import { departments } from '../const'
 
 import Layout from '../components/Layout'
 import PageIntro from '../components/PageIntro/PageIntro'

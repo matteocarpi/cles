@@ -7,6 +7,7 @@ import useElementInView from '../../hooks/useElementInView'
 
 const Container = styled.div`
   display: flex;
+  flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
   align-items: center;
   padding: 24px;
   @media (min-width: 769px) {
@@ -48,7 +49,38 @@ const photoVariants = {
   },
 }
 
-export default function SlidingImages({ graphic, image, className }) {
+const graphicVariantsReverse = {
+  hidden: {
+    translateX: 0,
+    opacity: 0,
+  },
+  visible: {
+    translateX: '-30%',
+    opacity: 1,
+    transition: {
+      duration: 2,
+    },
+  },
+}
+
+const photoVariantsReverse = {
+  hidden: {
+    translateX: '-30%',
+  },
+  visible: {
+    translateX: 0,
+    transition: {
+      duration: 2,
+    },
+  },
+}
+
+export default function SlidingImages({
+  graphic,
+  image,
+  className,
+  reverse = false,
+}) {
   const ref = useRef()
 
   const inView = useElementInView({ ref, center: true })
@@ -67,16 +99,16 @@ export default function SlidingImages({ graphic, image, className }) {
   const imageData = getImage(image)
 
   return (
-    <Container ref={ref} className={className}>
+    <Container ref={ref} className={className} reverse={reverse}>
       <GraphicContainer
-        variants={graphicVariants}
+        variants={reverse ? graphicVariantsReverse : graphicVariants}
         initial="hidden"
         animate={controls}
       >
         <GatsbyImage image={graphicData} alt="" />
       </GraphicContainer>
       <PhotoContainer
-        variants={photoVariants}
+        variants={reverse ? photoVariantsReverse : photoVariants}
         initial="hidden"
         animate={controls}
       >

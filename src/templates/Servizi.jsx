@@ -1,0 +1,210 @@
+import React from 'react'
+import { graphql, Link } from 'gatsby'
+import styled from 'styled-components'
+
+import useClientRect from '../hooks/useClientRect'
+
+import Layout from '../components/Layout'
+import PageIntro from '../components/PageIntro'
+import PageSection from '../components/PageSection'
+import ServiceAreaAccordion from '../components/ServiceAreaAccordion/ServiceAreaAccordion'
+import { projectCategories } from '../const'
+import Accordion from '../components/Accordion/Accordion'
+import SchedaProgetto from '../components/SchedaProgetto/SchedaProgetto'
+import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink'
+
+const Text = styled.h4``
+
+const Areas = styled.section`
+  margin-top: 60px;
+  margin-bottom: 40px;
+`
+
+const Projects = styled.section`
+  margin-top: 60px;
+  margin-bottom: 40px;
+`
+
+const ClosedProjectsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+`
+
+const ClosedProjectsLink = styled(Link)`
+  border-top: 1px solid ${({ theme }) => theme.gray};
+  padding: 20px 0;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+`
+
+export default function Servizi({ pageContext, data: pageData }) {
+  const [rect, ref] = useClientRect()
+
+  const { lang, location } = pageContext
+  const { serviziData: data } = pageData.serviziPage
+
+  return (
+    <Layout lang={lang} location={location} title={data.titolo[lang]}>
+      <PageIntro
+        graphic={pageData.graphic.childImageSharp.gatsbyImageData}
+        image={pageData.image.childImageSharp.gatsbyImageData}
+        text={data.intro[lang]}
+        reverseImages
+      />
+
+      {/* Servizi */}
+
+      <PageSection
+        title={data.servizi.titolo[lang]}
+        id={data.servizi.fieldGroupName}
+        ref={ref}
+        noCollapse
+      >
+        <Text>{data.servizi.descrizione[lang]}</Text>
+
+        <Areas>
+          {data.servizi.areeDiServizio.map(area => (
+            <ServiceAreaAccordion {...area} key={area.titolo[lang]} />
+          ))}
+        </Areas>
+      </PageSection>
+
+      {/* Progetti */}
+
+      <PageSection
+        title={data.progetti.titolo[lang]}
+        id={data.progetti.fieldGroupName}
+        ref={ref}
+        noCollapse
+        noSeparator
+      >
+        <Text>{data.progetti.descrizione[lang]}</Text>
+
+        <Projects>
+          <Accordion
+            key={projectCategories.aperti[lang]}
+            titolo={projectCategories.aperti}
+          >
+            {pageData.progettiAperti.edges.map(({ node: progetto }) => (
+              <SchedaProgetto key={progetto.id} {...progetto.progettoData} />
+            ))}
+            <ReadMoreLink to="#" />
+          </Accordion>
+
+          <Accordion
+            key={projectCategories.chiusi[lang]}
+            titolo={projectCategories.chiusi}
+          >
+            <ClosedProjectsContainer>
+              <ClosedProjectsLink to="">
+                <h5>{projectCategories.chiusi.dopoIl2016[lang]}</h5>
+              </ClosedProjectsLink>
+
+              <ClosedProjectsLink to="">
+                <h5>{projectCategories.chiusi.primaDel2016[lang]}</h5>
+              </ClosedProjectsLink>
+            </ClosedProjectsContainer>
+          </Accordion>
+        </Projects>
+      </PageSection>
+    </Layout>
+  )
+}
+
+export const data = graphql`
+  query Servizi {
+    serviziPage: wpPage(id: { eq: "cG9zdDo0NDg=" }) {
+      serviziData: serviciosData {
+        titolo: totolo {
+          it
+          en
+        }
+        intro {
+          it
+          en
+        }
+        servizi: servicios {
+          fieldGroupName
+          titolo: tuttolo {
+            it
+            en
+          }
+          descrizione {
+            it
+            en
+          }
+          areeDiServizio {
+            titolo {
+              it
+              en
+            }
+            immagine {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 400)
+                }
+              }
+            }
+            descrizione {
+              it
+              en
+            }
+            listaServizi {
+              it
+              en
+            }
+          }
+        }
+        progetti {
+          fieldGroupName
+          titolo {
+            it
+            en
+          }
+          descrizione {
+            it
+            en
+          }
+        }
+      }
+    }
+    image: file(name: { eq: "servizi-photo" }) {
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    graphic: file(name: { eq: "servizi-graphic" }) {
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    progettiAperti: allWpProgetto(
+      filter: { progettoData: { statoProgetto: { eq: "aperto" } } }
+      limit: 3
+      sort: { order: DESC, fields: progettoData___annoDiFine }
+    ) {
+      edges {
+        node {
+          id
+          progettoData {
+            titolo {
+              it
+              en
+            }
+            committente
+            annoDiInizio
+            annoDiFine
+            serviziOfferti {
+              it
+              en
+            }
+            areeDiLavoro
+          }
+        }
+      }
+    }
+  }
+`

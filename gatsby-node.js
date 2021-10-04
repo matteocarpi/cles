@@ -13,6 +13,14 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+      serviziPage: wpPage(id: { eq: "cG9zdDo0NDg=" }) {
+        uri
+        serviziData: serviciosData {
+          url: path {
+            en
+          }
+        }
+      }
     }
   `)
 
@@ -53,12 +61,12 @@ exports.createPages = async function ({ actions, graphql }) {
   languages.forEach(lang => {
     const path =
       lang === defaultLang
-        ? data.chiSiamoPage.uri
-        : data.chiSiamoPage.chiSiamoData.url[lang].replace(' ', '-')
+        ? data.serviziPage.uri
+        : data.serviziPage.serviziData.url[lang].replace(' ', '-')
 
     actions.createPage({
       path,
-      component: require.resolve(`./src/templates/ChiSiamo.jsx`),
+      component: require.resolve(`./src/templates/Servizi.jsx`),
       context: {
         lang,
         location: { pathname: path },

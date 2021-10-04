@@ -39,7 +39,7 @@ const Text = styled(AppearingText)`
   }
 `
 
-export default function PageIntro({ text, graphic, image }) {
+export default function PageIntro({ text, graphic, image, reverseImages }) {
   const { isMobile } = useResponsiveness()
 
   return (
@@ -47,7 +47,7 @@ export default function PageIntro({ text, graphic, image }) {
       <Text maxStrLength={isMobile ? 25 : 40} component={Description}>
         {text}
       </Text>
-      <StyledSlidingImages graphic={graphic} image={image} />
+      <StyledSlidingImages graphic={graphic} image={image} reverse={reverseImages}/>
     </Container>
   )
 }
