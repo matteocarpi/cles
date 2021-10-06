@@ -30,9 +30,9 @@ const StyledMinus = styled(Minus)`
   ${readMoreIconStyles}
 `
 
-export default function PlusButton({ onClick, active }) {
+export default function PlusButton({ onClick, active, className }) {
   return (
-    <Button type="button" onClick={onClick}>
+    <Button type="button" onClick={onClick} className={className}>
       {active ? <StyledMinus /> : <StyledPlus />}
     </Button>
   )

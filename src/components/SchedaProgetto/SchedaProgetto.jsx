@@ -3,7 +3,10 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import useLang from '../../hooks/useLang'
-import { schedaProgettoTitles } from '../../const'
+import {
+  schedaProgettoTitles,
+  areeDiLavoro as areeDiLavoroLabels,
+} from '../../const'
 
 const Container = styled.section`
   margin-top: 20px;
@@ -14,10 +17,24 @@ const Titolo = styled.h6`
   margin-top: 20px;
 `
 
-const InfoWrapper = styled.article``
+const InfoWrapper = styled.article`
+  @media (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+`
 
 const InfoContainer = styled.article`
   margin-top: 20px;
+
+  @media (min-width: 768px) {
+    width: 50%;
+
+    &:nth-child(3),
+    &:nth-child(4) {
+      margin-top: 40px;
+    }
+  }
 `
 
 const Label = styled.p`
@@ -76,7 +93,7 @@ export default function SchedaProgetto({
           <Label>{schedaProgettoTitles.areeDiLavoro[lang]}</Label>
           {areeDiLavoro.map(area => (
             <AreaDiLavoro key={area} to="#">
-              #{area}
+              #{areeDiLavoroLabels[area][lang]}
             </AreaDiLavoro>
           ))}
         </InfoContainer>

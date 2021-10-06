@@ -26,6 +26,7 @@ const Container = styled.section`
     (expanded || noCollapse) &&
     css`
       max-height: unset;
+      overflow-y: unset;
     `}
 
   ${({ noSeparator }) =>
@@ -36,9 +37,19 @@ const Container = styled.section`
     
   @media (min-width: 769px) {
     box-sizing: border-box;
-    padding-top: 96px;
     width: calc(100% - 80px - 26vw);
     align-self: flex-end;
+    ${({ noSeparatorDesktop }) =>
+      noSeparatorDesktop &&
+      css`
+        border: none;
+      `}
+
+    ${({ fullWidth }) =>
+      fullWidth &&
+      css`
+        width: 100%;
+      `}
   }
 `
 
@@ -81,7 +92,18 @@ const StyledMinus = styled(Minus)`
 `
 
 const PageSection = React.forwardRef(
-  ({ title, children, noCollapse, noSeparator, id }, ref) => {
+  (
+    {
+      title,
+      children,
+      noCollapse,
+      noSeparator,
+      noSeparatorDesktop,
+      id,
+      fullWidth,
+    },
+    ref,
+  ) => {
     const [expanded, setExpanded] = useState(false)
 
     const { lang } = useLang()
@@ -91,7 +113,9 @@ const PageSection = React.forwardRef(
         <Container
           noCollapse={noCollapse}
           noSeparator={noSeparator}
+          noSeparatorDesktop={noSeparatorDesktop}
           expanded={expanded}
+          fullWidth={fullWidth}
         >
           <SectionTitleMobile>{title}</SectionTitleMobile>
           {children}

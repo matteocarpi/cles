@@ -9,13 +9,12 @@ const Container = styled.article`
   box-sizing: border-box;
   border-top: 2px solid ${({ theme }) => theme.gray};
   padding: 20px 0;
-
-  &:last-child {
-    border-bottom: 2px solid ${({ theme }) => theme.gray};
-  }
+`
+const StyledPlusButton = styled(PlusButton)`
+  transform: translateY(10px);
 `
 
-const Header = styled.div`
+const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -29,17 +28,27 @@ const Title = styled.h3`
   margin: 0;
 `
 
-export default function Accordion({ titolo, children }) {
+export default function Accordion({
+  titolo,
+  className,
+  setIsExpanded = () => {},
+  children,
+}) {
   const { lang } = useLang()
 
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <Container>
+    <Container className={className}>
       <Header>
         <Title>{titolo[lang]}</Title>
-        <PlusButton
-          onClick={() => setExpanded(isExpanded => !isExpanded)}
+        <StyledPlusButton
+          onClick={() =>
+            setExpanded(isExpanded => {
+              setIsExpanded(!isExpanded)
+              return !isExpanded
+            })
+          }
           active={expanded}
         />
       </Header>

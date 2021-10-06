@@ -74,3 +74,18 @@ export const schedaProgettoTitles = {
     en: 'Work Areas',
   },
 }
+
+export const areeDiLavoro = {
+  assistenza_tecnica: {
+    it: 'Assistenza tecnica',
+    en: 'Technical support',
+  },
+  'ricerca_socio-economica': {
+    it: 'Ricerca socio-economica',
+    en: 'Socio-economical research',
+  },
+  supporto_alle_politiche_di_sviluppo_territoriale: {
+    it: 'Supporto alle politiche di sviluppo territoriale',
+    en: 'Local development support politics',
+  },
+}

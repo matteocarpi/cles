@@ -11,13 +11,13 @@ const Container = styled.div`
   align-items: center;
   padding: 24px;
   @media (min-width: 769px) {
-    width: 70%;
+    margin-top: 40px;
+    width: 100%;
     justify-content: flex-end;
   }
 `
 
 const GraphicContainer = styled(motion.div)`
-  transform: translateX(30%);
   z-index: 1;
 `
 
@@ -51,12 +51,10 @@ const photoVariants = {
 
 const graphicVariantsReverse = {
   hidden: {
-    translateX: 0,
-    opacity: 0,
+    translateX: '30%',
   },
   visible: {
-    translateX: '-30%',
-    opacity: 1,
+    translateX: 0,
     transition: {
       duration: 2,
     },
@@ -65,10 +63,12 @@ const graphicVariantsReverse = {
 
 const photoVariantsReverse = {
   hidden: {
-    translateX: '-30%',
+    translateX: '30%',
+    opacity: 0,
   },
   visible: {
-    translateX: 0,
+    translateX: '60%',
+    opacity: 1,
     transition: {
       duration: 2,
     },

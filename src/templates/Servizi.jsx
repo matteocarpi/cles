@@ -11,9 +11,15 @@ import ServiceAreaAccordion from '../components/ServiceAreaAccordion/ServiceArea
 import { projectCategories } from '../const'
 import Accordion from '../components/Accordion/Accordion'
 import SchedaProgetto from '../components/SchedaProgetto/SchedaProgetto'
-import ReadMoreLink from '../components/ReadMoreLink/ReadMoreLink'
+import ReadMoreLink from '../components/ReadMoreLink'
+import ScrollSpy from '../components/ScrollSpy'
 
 const Text = styled.h4``
+
+const RestrictedText = styled.h4`
+  width: calc(100% - 80px - 26vw);
+  margin-left: auto;
+`
 
 const Areas = styled.section`
   margin-top: 60px;
@@ -46,6 +52,17 @@ export default function Servizi({ pageContext, data: pageData }) {
   const { lang, location } = pageContext
   const { serviziData: data } = pageData.serviziPage
 
+  const sections = [
+    {
+      id: data.servizi.fieldGroupName,
+      label: data.servizi.titolo,
+    },
+    {
+      id: data.progetti.fieldGroupName,
+      label: data.progetti.titolo,
+    },
+  ]
+
   return (
     <Layout lang={lang} location={location} title={data.titolo[lang]}>
       <PageIntro
@@ -55,6 +72,8 @@ export default function Servizi({ pageContext, data: pageData }) {
         reverseImages
       />
 
+      <ScrollSpy offset={-600} sections={sections} firstSectionTop={rect?.y} />
+
       {/* Servizi */}
 
       <PageSection
@@ -62,8 +81,10 @@ export default function Servizi({ pageContext, data: pageData }) {
         id={data.servizi.fieldGroupName}
         ref={ref}
         noCollapse
+        noSeparatorDesktop
+        fullWidth
       >
-        <Text>{data.servizi.descrizione[lang]}</Text>
+        <RestrictedText>{data.servizi.descrizione[lang]}</RestrictedText>
 
         <Areas>
           {data.servizi.areeDiServizio.map(area => (
