@@ -6,6 +6,13 @@ import useLang from '../../hooks/useLang'
 import MaskedImage from '../MaskedImage/MaskedImage'
 import Accordion from '../Accordion/Accordion'
 
+const StyledAccordion = styled(Accordion)`
+  width: 100%;
+  @media (min-width: 768px) {
+    width: calc(100% - 80px - 26vw);
+  }
+`
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -19,13 +26,6 @@ const Wrapper = styled.div`
         padding-bottom: 20px;
       }
     }
-  }
-`
-
-const StyledAccordion = styled(Accordion)`
-  width: 100%;
-  @media (min-width: 768px) {
-    width: calc(100% - 80px - 26vw);
   }
 `
 
