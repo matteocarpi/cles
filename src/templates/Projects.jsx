@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
-import useLang from '../hooks/useLang'
+import { paroleChiave } from '../const'
 
 import Layout from '../components/Layout'
 import SchedaProgetto from '../components/SchedaProgetto'
@@ -18,9 +18,9 @@ const Container = styled.main`
 
 const ProjectList = styled.section``
 
-const SideBar = styled.div``
-
-const Title = styled.h4``
+const Title = styled.h4`
+  color: ${({ theme }) => theme.red};
+`
 
 const BackToList = styled(Link)`
   align-self: flex-end;
@@ -45,6 +45,8 @@ const BackToList = styled(Link)`
 `
 
 function Projects({ pageContext, data }) {
+  const { area, lang } = pageContext
+
   const projectList = useMemo(
     () =>
       data.allWpProgetto.edges.map(p => ({
@@ -61,13 +63,20 @@ function Projects({ pageContext, data }) {
       location={pageContext.location}
     >
       <Container>
+        <Title>#{paroleChiave[area][lang]}</Title>
         <ProjectList>
           {projectList.map(project => (
             <SchedaProgetto key={project.title} {...project} />
           ))}
         </ProjectList>
 
-        <BackToList to="#">
+        <BackToList
+          to={
+            pageContext.lang === 'en'
+              ? '/services/#progetti'
+              : '/servizi/#progetti'
+          }
+        >
           <ArrowLeft />
 
           <h5>

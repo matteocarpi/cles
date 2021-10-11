@@ -62,7 +62,7 @@ export default function Servizi({ pageContext, data: pageData }) {
       label: data.progetti.titolo,
     },
   ]
-
+  
   return (
     <Layout lang={lang} location={location} title={data.titolo[lang]}>
       <PageIntro

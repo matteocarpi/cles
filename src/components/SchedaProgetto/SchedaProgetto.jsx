@@ -72,6 +72,11 @@ export default function SchedaProgetto({
 }) {
   const { lang } = useLang()
 
+  const parentUrl = {
+    it: '/progetti-in-corso',
+    en: '/ongoing-projects',
+  }
+
   return (
     <Container>
       <Titolo>{titolo[lang]}</Titolo>
@@ -102,7 +107,12 @@ export default function SchedaProgetto({
         <InfoContainer>
           <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
           {paroleChiave.map(area => (
-            <ParoleChiave key={area} to="#">
+            <ParoleChiave
+              key={area}
+              to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
+                .replace(' ', '-')
+                .toLowerCase()}`}
+            >
               #{paroleChiaveLabels[area][lang]}
             </ParoleChiave>
           ))}

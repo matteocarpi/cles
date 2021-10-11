@@ -92,4 +92,8 @@ export const paroleChiave = {
     it: 'Supporto alle politiche di sviluppo territoriale',
     en: 'Local development support politics',
   },
+  formazione_e_capacity_building: {
+    it: 'Formazione e capacity building',
+    en: 'Formazione e capacity building',
+  },
 }
