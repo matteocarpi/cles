@@ -61,21 +61,25 @@ export const schedaProgettoTitles = {
     it: 'Committente',
     en: 'Client',
   },
-  anno: {
-    it: 'Anno',
-    en: 'Year',
+  ruolo: {
+    it: 'Ruolo',
+    en: 'Role',
   },
-  serviziOfferti: {
-    it: 'Servizi Offerti',
-    en: 'Offered Services',
+  periodo: {
+    it: 'Periodo',
+    en: 'Period',
   },
-  areeDiLavoro: {
-    it: 'Aree di Lavoro',
-    en: 'Work Areas',
+  serviziEAttività: {
+    it: 'Servizi e attività',
+    en: 'Services and activities',
+  },
+  paroleChiave: {
+    it: 'Parole Chiave',
+    en: 'Key Words',
   },
 }
 
-export const areeDiLavoro = {
+export const paroleChiave = {
   assistenza_tecnica: {
     it: 'Assistenza tecnica',
     en: 'Technical support',

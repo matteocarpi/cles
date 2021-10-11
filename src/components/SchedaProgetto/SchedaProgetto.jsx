@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 import useLang from '../../hooks/useLang'
 import {
   schedaProgettoTitles,
-  areeDiLavoro as areeDiLavoroLabels,
+  paroleChiave as paroleChiaveLabels,
 } from '../../const'
 
 const Container = styled.section`
@@ -51,7 +51,7 @@ const Text = styled.div`
   }
 `
 
-const AreaDiLavoro = styled(Link)`
+const ParoleChiave = styled(Link)`
   color: ${({ theme }) => theme.red};
   text-decoration: underline;
   margin-right: 1rem;
@@ -60,10 +60,11 @@ const AreaDiLavoro = styled(Link)`
 export default function SchedaProgetto({
   titolo,
   committente,
+  ruolo,
   annoDiInizio,
   annoDiFine,
-  serviziOfferti,
-  areeDiLavoro,
+  serviziEAttivit,
+  paroleChiave,
 }) {
   const { lang } = useLang()
 
@@ -78,23 +79,28 @@ export default function SchedaProgetto({
         </InfoContainer>
 
         <InfoContainer>
-          <Label>{schedaProgettoTitles.anno[lang]}</Label>
+          <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
+          <Text>{ruolo[lang]}</Text>
+        </InfoContainer>
+
+        <InfoContainer>
+          <Label>{schedaProgettoTitles.periodo[lang]}</Label>
           <Text>
             {annoDiInizio} - {annoDiFine}
           </Text>
         </InfoContainer>
 
         <InfoContainer>
-          <Label>{schedaProgettoTitles.serviziOfferti[lang]}</Label>
-          <Text dangerouslySetInnerHTML={{ __html: serviziOfferti[lang] }} />
+          <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
+          <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
         </InfoContainer>
 
         <InfoContainer>
-          <Label>{schedaProgettoTitles.areeDiLavoro[lang]}</Label>
-          {areeDiLavoro.map(area => (
-            <AreaDiLavoro key={area} to="#">
-              #{areeDiLavoroLabels[area][lang]}
-            </AreaDiLavoro>
+          <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
+          {paroleChiave.map(area => (
+            <ParoleChiave key={area} to="#">
+              #{paroleChiaveLabels[area][lang]}
+            </ParoleChiave>
           ))}
         </InfoContainer>
       </InfoWrapper>

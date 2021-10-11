@@ -6,7 +6,9 @@ import SchedaProgetto from '../components/SchedaProgetto'
 
 const Container = styled.main`
   margin-top: calc(80px + 15.5vw);
+  margin-bottom: 40px;
   display: flex;
+  padding: 0 20px;
 `
 
 const ProjectList = styled.section``
@@ -48,7 +50,7 @@ export const data = graphql`
       filter: {
         progettoData: {
           statoProgetto: { eq: $status }
-          areeDiLavoro: { in: $area }
+          paroleChiave: { in: $area }
         }
       }
     ) {
@@ -56,19 +58,23 @@ export const data = graphql`
         node {
           id
           progettoData {
-            annoDiFine
-            annoDiInizio
-            areeDiLavoro
-            committente
-            statoProgetto
             titolo {
               it
               en
             }
-            serviziOfferti {
+            committente
+            ruolo {
               it
               en
             }
+            annoDiInizio
+            annoDiFine
+            serviziEAttivit {
+              it
+              en
+            }
+            paroleChiave
+            statoProgetto
           }
         }
       }

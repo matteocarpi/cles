@@ -218,11 +218,11 @@ export const data = graphql`
             committente
             annoDiInizio
             annoDiFine
-            serviziOfferti {
+            serviziEAttivit {
               it
               en
             }
-            areeDiLavoro
+            paroleChiave
           }
         }
       }

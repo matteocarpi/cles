@@ -1,5 +1,5 @@
 /* eslint-disable func-names */
-import { areeDiLavoro, projectCategories } from './src/const'
+import { paroleChiave, projectCategories } from './src/const'
 
 const defaultLang = 'it'
 const languages = ['it', 'en']
@@ -88,14 +88,14 @@ exports.createPages = async function ({ actions, graphql }) {
       context: {
         lang,
         location: { pathname: parentPath },
-        area: Object.keys(areeDiLavoro),
+        area: Object.keys(paroleChiave),
         status: 'aperto',
       },
     })
 
     // Progetti divisi per area di lavoro
-    Object.keys(areeDiLavoro).forEach(area => {
-      const path = `${parentPath}/${areeDiLavoro[area][lang]
+    Object.keys(paroleChiave).forEach(area => {
+      const path = `${parentPath}/${paroleChiave[area][lang]
         .toLowerCase()
         .replace(' ', '-')}`
 
