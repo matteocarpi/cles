@@ -17,8 +17,10 @@ import ScrollSpy from '../components/ScrollSpy'
 const Text = styled.h4``
 
 const RestrictedText = styled.h4`
-  width: calc(100% - 80px - 26vw);
-  margin-left: auto;
+  @media (min-width: 768px) {
+    width: calc(100% - 80px - 26vw);
+    margin-left: auto;
+  }
 `
 
 const Areas = styled.section`
@@ -62,7 +64,7 @@ export default function Servizi({ pageContext, data: pageData }) {
       label: data.progetti.titolo,
     },
   ]
-  
+
   return (
     <Layout lang={lang} location={location} title={data.titolo[lang]}>
       <PageIntro
