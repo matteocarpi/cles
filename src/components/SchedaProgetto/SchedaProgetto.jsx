@@ -55,6 +55,10 @@ const ParoleChiave = styled(Link)`
   color: ${({ theme }) => theme.red};
   text-decoration: underline;
   margin-right: 1rem;
+
+  &:visited {
+    color: ${({ theme }) => theme.red};
+  }
 `
 
 export default function SchedaProgetto({

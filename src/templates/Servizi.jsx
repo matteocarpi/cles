@@ -112,7 +112,9 @@ export default function Servizi({ pageContext, data: pageData }) {
             {pageData.progettiAperti.edges.map(({ node: progetto }) => (
               <SchedaProgetto key={progetto.id} {...progetto.progettoData} />
             ))}
-            <ReadMoreLink to="#" />
+            <ReadMoreLink
+              to={lang === 'en' ? '/ongoing-projects' : '/progetti-in-corso'}
+            />
           </Accordion>
 
           <Accordion
@@ -216,6 +218,10 @@ export const data = graphql`
               en
             }
             committente
+            ruolo {
+              it
+              en
+            }
             annoDiInizio
             annoDiFine
             serviziEAttivit {
