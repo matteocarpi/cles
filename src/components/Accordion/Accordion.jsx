@@ -11,13 +11,12 @@ const Container = styled.article`
   padding: 20px 0;
 `
 const StyledPlusButton = styled(PlusButton)`
-  transform: translateY(10px);
+  transform: translateY(7px);
 `
 
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
 `
 
 const Expanded = styled.div`

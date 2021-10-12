@@ -45,7 +45,7 @@ const BackToList = styled(Link)`
 `
 
 function Projects({ pageContext, data }) {
-  const { area, lang } = pageContext
+  const { area, lang, status } = pageContext
 
   const projectList = useMemo(
     () =>
@@ -55,7 +55,7 @@ function Projects({ pageContext, data }) {
       })),
     [data],
   )
-
+  
   return (
     <Layout
       lang={pageContext.lang}
@@ -63,40 +63,48 @@ function Projects({ pageContext, data }) {
       location={pageContext.location}
     >
       <Container>
-        <Title>#{paroleChiave[area][lang]}</Title>
+        {typeof area === 'string' && <Title>#{paroleChiave[area][lang]}</Title>}
         <ProjectList>
           {projectList.map(project => (
             <SchedaProgetto key={project.title} {...project} />
           ))}
         </ProjectList>
 
-        <BackToList
-          to={
-            pageContext.lang === 'en'
-              ? '/services/#progetti'
-              : '/servizi/#progetti'
-          }
-        >
-          <ArrowLeft />
+        {status === 'aperto' && (
+          <BackToList
+            to={
+              pageContext.lang === 'en'
+                ? '/services/#progetti'
+                : '/servizi/#progetti'
+            }
+          >
+            <ArrowLeft />
 
-          <h5>
-            {pageContext.lang === 'en'
-              ? 'Back to the list'
-              : 'Torna alla lista'}
-          </h5>
-        </BackToList>
+            <h5>
+              {pageContext.lang === 'en'
+                ? 'Back to the list'
+                : 'Torna alla lista'}
+            </h5>
+          </BackToList>
+        )}
       </Container>
     </Layout>
   )
 }
 
 export const data = graphql`
-  query Progetti($status: String, $area: [String] = "") {
+  query Progetti(
+    $status: String
+    $area: [String] = ""
+    $startYear: Float = 0
+    $endYear: Float = 0
+  ) {
     allWpProgetto(
       filter: {
         progettoData: {
           statoProgetto: { eq: $status }
           paroleChiave: { in: $area }
+          annoDiFine: { gte: $startYear, lt: $endYear }
         }
       }
     ) {

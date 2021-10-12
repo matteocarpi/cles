@@ -90,6 +90,8 @@ exports.createPages = async function ({ actions, graphql }) {
         location: { pathname: parentPath },
         area: Object.keys(paroleChiave),
         status: 'aperto',
+        startYear: 0,
+        endYear: 3000,
       },
     })
 
@@ -108,8 +110,106 @@ exports.createPages = async function ({ actions, graphql }) {
           area,
           status: 'aperto',
           title: projectCategories.aperti[lang],
+          startYear: 0,
+          endYear: 3000,
         },
       })
     })
+  })
+
+  // Progetti Chiusi
+  languages.forEach(lang => {
+    function createBefore2016() {
+      const parentPath = defaultLang
+        ? '/progetti-chiusi-prima-del-2016'
+        : '/closed-projects-before-2016'
+
+      // Prima del 2016
+      actions.createPage({
+        path: parentPath,
+        component: require.resolve(`./src/templates/Projects.jsx`),
+        context: {
+          lang,
+          location: {
+            pathname: defaultLang
+              ? '/progetti-chiusi-prima-del-2016'
+              : '/closed-projects-before-2016',
+          },
+          area: Object.keys(paroleChiave),
+          status: 'chiuso',
+          startYear: 0,
+          endYear: 2015,
+        },
+      })
+
+      // Progetti divisi per area di lavoro
+      Object.keys(paroleChiave).forEach(area => {
+        const path = `${parentPath}/${paroleChiave[area][lang]
+          .toLowerCase()
+          .replace(' ', '-')}`
+
+        actions.createPage({
+          path,
+          component: require.resolve(`./src/templates/Projects.jsx`),
+          context: {
+            lang,
+            location: { pathname: path },
+            area,
+            status: 'chiuso',
+            title: projectCategories.aperti[lang],
+            startYear: 0,
+            endYear: 2015,
+          },
+        })
+      })
+    }
+
+    createBefore2016()
+
+    function createAfter2016() {
+      const parentPath = defaultLang
+        ? '/progetti-chiusi-dopo-il-2016'
+        : '/closed-projects-after-2016'
+      // Dopo il 2016
+      actions.createPage({
+        path: parentPath,
+        component: require.resolve(`./src/templates/Projects.jsx`),
+        context: {
+          lang,
+          location: {
+            pathname: defaultLang
+              ? '/progetti-chiusi-dopo-il-2016'
+              : '/closed-projects-after-2016',
+          },
+          area: Object.keys(paroleChiave),
+          status: 'chiuso',
+          startYear: 2016,
+          endYear: 3000,
+        },
+      })
+
+      // Progetti divisi per area di lavoro
+      Object.keys(paroleChiave).forEach(area => {
+        const path = `${parentPath}/${paroleChiave[area][lang]
+          .toLowerCase()
+          .replace(' ', '-')}`
+
+        actions.createPage({
+          path,
+          component: require.resolve(`./src/templates/Projects.jsx`),
+          context: {
+            lang,
+            location: { pathname: path },
+            area,
+            status: 'chiuso',
+            title: projectCategories.aperti[lang],
+            startYear: 2016,
+            endYear: 3000,
+          },
+        })
+      })
+    }
+
+    createAfter2016()
   })
 }
