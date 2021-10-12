@@ -61,7 +61,7 @@ const ParoleChiave = styled(Link)`
   }
 `
 
-export default function SchedaProgetto({
+const OpenProject = ({
   titolo,
   committente,
   ruolo,
@@ -69,55 +69,103 @@ export default function SchedaProgetto({
   annoDiFine,
   serviziEAttivit,
   paroleChiave,
-}) {
+  lang,
+  parentUrl,
+}) => (
+  <Container>
+    <Titolo>{titolo[lang]}</Titolo>
+
+    <InfoWrapper>
+      <InfoContainer>
+        <Label>{schedaProgettoTitles.committente[lang]}</Label>
+        <Text>{committente}</Text>
+      </InfoContainer>
+
+      <InfoContainer>
+        <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
+        <Text>{ruolo[lang]}</Text>
+      </InfoContainer>
+
+      <InfoContainer>
+        <Label>{schedaProgettoTitles.periodo[lang]}</Label>
+        <Text>
+          {annoDiInizio} - {annoDiFine}
+        </Text>
+      </InfoContainer>
+
+      <InfoContainer>
+        <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
+        <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
+      </InfoContainer>
+
+      <InfoContainer>
+        <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
+        {paroleChiave.map(area => (
+          <ParoleChiave
+            key={area}
+            to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
+              .replace(' ', '-')
+              .toLowerCase()}`}
+          >
+            #{paroleChiaveLabels[area][lang]}
+          </ParoleChiave>
+        ))}
+      </InfoContainer>
+    </InfoWrapper>
+  </Container>
+)
+
+const ClosedProject = ({
+  titolo,
+  committente,
+  annoDiInizio,
+  annoDiFine,
+  lang,
+}) => (
+  <Container>
+    <Titolo>{titolo[lang]}</Titolo>
+
+    <InfoWrapper>
+      <InfoContainer>
+        <Label>{schedaProgettoTitles.committente[lang]}</Label>
+        <Text>{committente}</Text>
+      </InfoContainer>
+
+      <InfoContainer>
+        <Label>{schedaProgettoTitles.periodo[lang]}</Label>
+        <Text>
+          {annoDiInizio} - {annoDiFine}
+        </Text>
+      </InfoContainer>
+    </InfoWrapper>
+  </Container>
+)
+
+export default function SchedaProgetto(props) {
+  const { statoProgetto, annoDiFine } = props
+
   const { lang } = useLang()
 
-  const parentUrl = {
-    it: '/progetti-in-corso',
-    en: '/ongoing-projects',
-  }
+  const parentUrl =
+    statoProgetto === 'aperto'
+      ? {
+          it: '/progetti-in-corso',
+          en: '/ongoing-projects',
+        }
+      : {
+          it:
+            annoDiFine <= 2015
+              ? '/progetti-chiusi-prima-del-2016'
+              : '/progetti-chiusi-dopo-il-2016',
+          en:
+            annoDiFine <= 2015
+              ? '/closed-projects-before-2016'
+              : '/closed-projects-after-2016',
+        }
 
-  return (
-    <Container>
-      <Titolo>{titolo[lang]}</Titolo>
-
-      <InfoWrapper>
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.committente[lang]}</Label>
-          <Text>{committente}</Text>
-        </InfoContainer>
-
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
-          <Text>{ruolo[lang]}</Text>
-        </InfoContainer>
-
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.periodo[lang]}</Label>
-          <Text>
-            {annoDiInizio} - {annoDiFine}
-          </Text>
-        </InfoContainer>
-
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
-          <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
-        </InfoContainer>
-
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
-          {paroleChiave.map(area => (
-            <ParoleChiave
-              key={area}
-              to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
-                .replace(' ', '-')
-                .toLowerCase()}`}
-            >
-              #{paroleChiaveLabels[area][lang]}
-            </ParoleChiave>
-          ))}
-        </InfoContainer>
-      </InfoWrapper>
-    </Container>
+  return statoProgetto === 'aperto' ? (
+    <OpenProject {...props} lang={lang} parentUrl={parentUrl} />
+  ) : (
+    <ClosedProject {...props} lang={lang} parentUrl={parentUrl} />
   )
 }
