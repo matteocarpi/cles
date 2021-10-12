@@ -120,9 +120,10 @@ exports.createPages = async function ({ actions, graphql }) {
   // Progetti Chiusi
   languages.forEach(lang => {
     function createBefore2016() {
-      const parentPath = defaultLang
-        ? '/progetti-chiusi-prima-del-2016'
-        : '/closed-projects-before-2016'
+      const parentPath =
+        lang === defaultLang
+          ? '/progetti-chiusi-prima-del-2016'
+          : '/closed-projects-before-2016'
 
       // Prima del 2016
       actions.createPage({
@@ -131,9 +132,10 @@ exports.createPages = async function ({ actions, graphql }) {
         context: {
           lang,
           location: {
-            pathname: defaultLang
-              ? '/progetti-chiusi-prima-del-2016'
-              : '/closed-projects-before-2016',
+            pathname:
+              lang === defaultLang
+                ? '/progetti-chiusi-prima-del-2016'
+                : '/closed-projects-before-2016',
           },
           area: Object.keys(paroleChiave),
           status: 'chiuso',
@@ -167,9 +169,10 @@ exports.createPages = async function ({ actions, graphql }) {
     createBefore2016()
 
     function createAfter2016() {
-      const parentPath = defaultLang
-        ? '/progetti-chiusi-dopo-il-2016'
-        : '/closed-projects-after-2016'
+      const parentPath =
+        lang === defaultLang
+          ? '/progetti-chiusi-dopo-il-2016'
+          : '/closed-projects-after-2016'
       // Dopo il 2016
       actions.createPage({
         path: parentPath,
@@ -177,9 +180,10 @@ exports.createPages = async function ({ actions, graphql }) {
         context: {
           lang,
           location: {
-            pathname: defaultLang
-              ? '/progetti-chiusi-dopo-il-2016'
-              : '/closed-projects-after-2016',
+            pathname:
+              lang === defaultLang
+                ? '/progetti-chiusi-dopo-il-2016'
+                : '/closed-projects-after-2016',
           },
           area: Object.keys(paroleChiave),
           status: 'chiuso',
