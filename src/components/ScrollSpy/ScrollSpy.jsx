@@ -46,6 +46,7 @@ export default function ScrollSpy({
   firstSectionTop,
   offset = 0,
   sections = [],
+  firstOffset = 0,
   titleComponent: Title = SectionTitle,
 }) {
   const { lang } = useLang()
@@ -55,7 +56,7 @@ export default function ScrollSpy({
   const viewPortHeight = useViewportHeight()
 
   return (
-    scrollY + viewPortHeight >= firstSectionTop && (
+    scrollY + viewPortHeight + firstOffset >= firstSectionTop && (
       <ScrollSpyContainer>
         <ReactScrollSpy
           items={sections.map(section => section.id)}
