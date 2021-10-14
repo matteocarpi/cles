@@ -83,7 +83,7 @@ export default function SlidingImages({
 }) {
   const ref = useRef()
 
-  const inView = useElementInView({ ref, center: true })
+  const inView = useElementInView({ ref, fullElement: true })
 
   const controls = useAnimation()
 

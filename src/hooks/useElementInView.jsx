@@ -3,7 +3,11 @@ import { useState, useLayoutEffect } from 'react'
 import useViewportHeight from './useViewportHeight'
 import useViewportScroll from './useViewportScroll'
 
-export default function useElementInView({ ref, center = false }) {
+export default function useElementInView({
+  ref,
+  center = false,
+  fullElement = false,
+}) {
   const [elementStart, setElementStart] = useState()
   const [elementHeight, setElementHeight] = useState()
   const viewportHeight = useViewportHeight()
@@ -23,5 +27,10 @@ export default function useElementInView({ ref, center = false }) {
   const elementInCenter =
     elementStart - viewportHeight / 2 + elementHeight / 2 <= scrollY
 
-  return center ? elementInCenter : elementInView
+  const elementEndInView =
+    elementStart - viewportHeight + elementHeight - 200 <= scrollY
+
+  if (center) return elementInCenter
+  if (fullElement) return elementEndInView
+  return elementInView
 }
