@@ -31,8 +31,8 @@ export const departments = [
   {
     id: 'comitato',
     title: {
-      it: 'Il Comitato tecnico',
-      en: 'Technical Committee',
+      it: 'Il comitato scientifico',
+      en: 'Scientific Committee',
     },
   },
 ]

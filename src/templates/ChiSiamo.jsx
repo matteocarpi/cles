@@ -125,11 +125,13 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
       {/* Persone */}
       <div id="team">
         <PageSection title={data.team.titolo[lang]} noCollapse>
-          <TextBlock
-            dangerouslySetInnerHTML={{ __html: data.team.descrizione[lang] }}
-          />
+          <BigText>{data.team.descrizione[lang]}</BigText>
         </PageSection>
-        <People departments={departments} people={people} />
+        <People
+          departments={departments}
+          people={people}
+          comitato={data.comitatoScientifico}
+        />
       </div>
     </Layout>
   )
@@ -197,6 +199,20 @@ export const data = graphql`
         team {
           fieldGroupName
           titolo {
+            it
+            en
+          }
+          descrizione {
+            it
+            en
+          }
+        }
+        comitatoScientifico {
+          titolo {
+            it
+            en
+          }
+          sottotitolo {
             it
             en
           }

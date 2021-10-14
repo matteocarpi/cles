@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import useLang from '../../hooks/useLang'
 
 import PeopleGrid from '../PeopleGrid'
+import MenuText from '../MenuText'
 
 const Container = styled.section`
   position: relative;
@@ -39,7 +40,26 @@ const DepartmentButton = styled.button`
   margin-bottom: 15px;
 `
 
-export default function People({ departments, people }) {
+const ComitatoContainer = styled.div`
+  width: 100%;
+`
+
+const ComitatoTitle = styled(MenuText)`
+  border-bottom: solid 3px ${({ theme }) => theme.yellow};
+  width: min-content;
+  white-space: nowrap;
+  margin-bottom: 0;
+`
+
+const ComitatoSubtitle = styled.h6`
+  margin-top: 20px;
+`
+
+const ComitatoDescrizione = styled.article`
+  margin-top: 40px;
+`
+
+export default function People({ departments, people, comitato }) {
   const [selectedDepartment, setSelectedDepartment] = useState(null)
   const [selectedPerson, setSelectedPerson] = useState(null)
 
@@ -67,12 +87,24 @@ export default function People({ departments, people }) {
         ))}
       </DepartmentList>
 
-      <PeopleGrid
-        selectedPerson={selectedPerson}
-        setSelectedPerson={setSelectedPerson}
-        people={people}
-        selectedDepartment={selectedDepartment}
-      />
+      {selectedDepartment === 'comitato' ? (
+        <ComitatoContainer>
+          <ComitatoTitle>{comitato.titolo[lang]}</ComitatoTitle>
+          <ComitatoSubtitle
+            dangerouslySetInnerHTML={{ __html: comitato.sottotitolo[lang] }}
+          />
+          <ComitatoDescrizione
+            dangerouslySetInnerHTML={{ __html: comitato.descrizione[lang] }}
+          />
+        </ComitatoContainer>
+      ) : (
+        <PeopleGrid
+          selectedPerson={selectedPerson}
+          setSelectedPerson={setSelectedPerson}
+          people={people}
+          selectedDepartment={selectedDepartment}
+        />
+      )}
     </Container>
   )
 }
