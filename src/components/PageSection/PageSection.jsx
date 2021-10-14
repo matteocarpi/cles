@@ -13,7 +13,7 @@ const Wrapper = styled.section`
   flex-direction: column;
 
   @media (min-width: 769px) {
-    margin: 96px 40px 0 40px;
+    margin: 40px 40px 0 40px;
   }
 `
 
@@ -62,14 +62,14 @@ const ReadMoreText = styled.span`
 `
 
 const ReadMore = styled.button`
-  margin-top: 40px;
+  margin: 40px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media (min-width: 769px) {
     justify-content: flex-end;
-
+    margin-bottom: 0;
     ${ReadMoreText} {
       margin-right: 40px;
     }
