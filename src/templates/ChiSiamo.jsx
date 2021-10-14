@@ -10,6 +10,7 @@ import PageSection from '../components/PageSection'
 import People from '../components/People'
 import ScrollSpy from '../components/ScrollSpy'
 import useClientRect from '../hooks/useClientRect'
+import ActivityItem from '../components/ActivityItem/ActivityItem'
 
 const TextBlock = styled.article`
   margin-top: 40px;
@@ -20,25 +21,11 @@ const BigText = styled.h4`
 
   @media (min-width: 769px) {
     margin-bottom: 80px;
+    margin-top: 40px;
   }
 `
 
 const ActivityList = styled.article``
-
-const Activity = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 24px;
-`
-
-const ActivityNumber = styled.h6`
-  width: 20px;
-  margin-right: 20px;
-  text-align: left;
-  color: ${({ theme }) => theme.gray};
-`
-
-const ActivityName = styled.h6``
 
 export default function ChiSiamo({ pageContext, data: pageData }) {
   const { lang, location } = pageContext
@@ -126,12 +113,11 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
         <ActivityList>
           {data.servizi.areeAttivit.map((activity, index) => (
-            <Activity key={activity.titolo[lang]}>
-              <ActivityNumber>{`${index + 1 < 9 ? 0 : ''}${
-                index + 1
-              }`}</ActivityNumber>
-              <ActivityName>{activity.titolo[lang]}</ActivityName>
-            </Activity>
+            <ActivityItem
+              activity={activity}
+              index={index}
+              key={activity.titolo[lang]}
+            />
           ))}
         </ActivityList>
       </PageSection>
