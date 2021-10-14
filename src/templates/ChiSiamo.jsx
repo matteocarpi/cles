@@ -11,12 +11,8 @@ import People from '../components/People'
 import ScrollSpy from '../components/ScrollSpy'
 import useClientRect from '../hooks/useClientRect'
 
-const TextBlock = styled.article``
-
-const Text = styled.article`
-  @media (min-width: 769px) {
-    columns: 100px 2;
-  }
+const TextBlock = styled.article`
+  margin-top: 40px;
 `
 
 const BigText = styled.h4`
@@ -87,14 +83,18 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
         firstOffset={300}
       />
 
-      {/* Storia */}
+      {/* Cles */}
 
       <PageSection
         title={data.cles.titolo[lang]}
         id={data.cles.fieldGroupName}
         ref={ref}
       >
-        <Text
+        <TextBlock
+          dangerouslySetInnerHTML={{ __html: data.cles.anteprima[lang] }}
+        />
+
+        <TextBlock
           dangerouslySetInnerHTML={{ __html: data.cles.descrizione[lang] }}
         />
       </PageSection>
@@ -106,7 +106,11 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
         id={data.storia.fieldGroupName}
         ref={ref}
       >
-        <Text
+        <TextBlock
+          dangerouslySetInnerHTML={{ __html: data.storia.anteprima[lang] }}
+        />
+
+        <TextBlock
           dangerouslySetInnerHTML={{ __html: data.storia.descrizione[lang] }}
         />
       </PageSection>
@@ -116,6 +120,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
       <PageSection
         title={data.servizi.metaTitolo[lang]}
         id={data.servizi.fieldGroupName}
+        noCollapse
       >
         <BigText>{data.servizi.titolo[lang]}</BigText>
 
@@ -179,6 +184,10 @@ export const data = graphql`
             it
             en
           }
+          anteprima {
+            it
+            en
+          }
           descrizione {
             it
             en
@@ -187,6 +196,10 @@ export const data = graphql`
         storia {
           fieldGroupName
           titolo {
+            it
+            en
+          }
+          anteprima {
             it
             en
           }

@@ -19,7 +19,7 @@ const Wrapper = styled.section`
 
 const Container = styled.section`
   border-top: solid 2px ${({ theme }) => theme.gray};
-  max-height: 500px;
+  /* max-height: 500px; */
   overflow-y: hidden;
   width: 100%;
   ${({ expanded, noCollapse }) =>
@@ -118,7 +118,7 @@ const PageSection = React.forwardRef(
           fullWidth={fullWidth}
         >
           <SectionTitleMobile>{title}</SectionTitleMobile>
-          {children}
+          {noCollapse || expanded ? children : children[0]}
         </Container>
         {!noCollapse && (
           <ReadMore type="button" onClick={() => setExpanded(!expanded)}>
