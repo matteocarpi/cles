@@ -42,7 +42,7 @@ const Label = styled.p`
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
 `
 
 const Text = styled.div`

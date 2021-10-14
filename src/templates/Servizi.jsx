@@ -243,6 +243,7 @@ export const data = graphql`
               en
             }
             paroleChiave
+            statoProgetto
           }
         }
       }

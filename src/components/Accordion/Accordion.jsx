@@ -11,7 +11,7 @@ const Container = styled.article`
   padding: 20px 0;
 `
 const StyledPlusButton = styled(PlusButton)`
-  transform: translateY(7px);
+  transform: translateY(3px);
 `
 
 const Header = styled.header`
