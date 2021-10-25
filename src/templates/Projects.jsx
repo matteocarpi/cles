@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
@@ -8,7 +8,8 @@ import Layout from '../components/Layout'
 import SchedaProgetto from '../components/SchedaProgetto'
 import ArrowLeft from '../assets/arrow-left.svg'
 import useResponsiveness from '../hooks/useResponsiveness'
-import KeyWordNavigation from '../components/KeyWordNavigation/KeyWordNavigation'
+import KeyWordNavigation from '../components/KeyWordNavigation'
+import SearchBox from '../components/SearchBox'
 
 const Wrapper = styled.div`
   display: flex;
@@ -80,17 +81,24 @@ const BackToList = styled(Link)`
 const Tools = styled.div``
 
 function Projects({ pageContext, data }) {
+  const [searchQuery, setSearchQuery] = useState()
+  const [loading, setLoading] = useState(false)
+
   const { area, lang, status } = pageContext
 
   const { isMobile } = useResponsiveness()
 
   const projectList = useMemo(
     () =>
-      data.allWpProgetto.edges.map(p => ({
-        id: p.node.id,
-        ...p.node.progettoData,
-      })),
-    [data],
+      data.allWpProgetto.edges
+        .map(p => ({
+          id: p.node.id,
+          ...p.node.progettoData,
+        }))
+        .filter(project =>
+          project.titolo[lang].toLowerCase().includes(searchQuery),
+        ),
+    [data.allWpProgetto.edges, lang, searchQuery],
   )
 
   return (
@@ -105,6 +113,11 @@ function Projects({ pageContext, data }) {
 
           {!isMobile && status === 'aperto' && (
             <Tools>
+              <SearchBox
+                setValue={setSearchQuery}
+                setLoading={setLoading}
+                value={searchQuery}
+              />
               <KeyWordNavigation />
             </Tools>
           )}
@@ -113,11 +126,18 @@ function Projects({ pageContext, data }) {
           {typeof area === 'string' && (
             <Title>#{paroleChiave[area][lang]}</Title>
           )}
-          <ProjectList>
-            {projectList.map(project => (
-              <SchedaProgetto key={project.title} {...project} />
-            ))}
-          </ProjectList>
+          {/* eslint-disable-next-line no-nested-ternary */}
+          {loading ? (
+            <div>loading...</div>
+          ) : projectList.length ? (
+            <ProjectList>
+              {projectList.map(project => (
+                <SchedaProgetto key={project.title} {...project} />
+              ))}
+            </ProjectList>
+          ) : (
+            <div>Nessun Progetto...</div>
+          )}
         </Container>
       </Wrapper>
       {status === 'aperto' && (
