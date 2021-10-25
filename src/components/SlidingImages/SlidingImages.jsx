@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-import useElementInView from '../../hooks/useElementInView'
+import useIntersection from '../../hooks/useIntersection'
 
 const Container = styled.div`
   display: flex;
@@ -83,7 +83,13 @@ export default function SlidingImages({
 }) {
   const ref = useRef()
 
-  const inView = useElementInView({ ref, fullElement: true })
+  const elementHeight = ref?.current?.offsetHeight ?? 0
+
+  const inView = useIntersection({
+    element: ref?.current,
+    threshold: 1,
+    rootMargin: `${elementHeight}px 0px 0px 0px`,
+  })
 
   const controls = useAnimation()
 
