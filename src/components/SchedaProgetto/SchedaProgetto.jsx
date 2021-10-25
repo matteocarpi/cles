@@ -20,21 +20,17 @@ const Titolo = styled.h6`
 const InfoWrapper = styled.article`
   @media (min-width: 768px) {
     display: flex;
-    flex-wrap: wrap;
+  }
+`
+
+const InfoHalf = styled.div`
+  @media (min-width: 768px) {
+    width: 50%;
   }
 `
 
 const InfoContainer = styled.article`
   margin-top: 20px;
-
-  @media (min-width: 768px) {
-    width: 50%;
-
-    &:nth-child(3),
-    &:nth-child(4) {
-      margin-top: 40px;
-    }
-  }
 `
 
 const Label = styled.p`
@@ -76,41 +72,45 @@ const OpenProject = ({
     <Titolo>{titolo[lang]}</Titolo>
 
     <InfoWrapper>
-      <InfoContainer>
-        <Label>{schedaProgettoTitles.committente[lang]}</Label>
-        <Text>{committente}</Text>
-      </InfoContainer>
+      <InfoHalf>
+        <InfoContainer>
+          <Label>{schedaProgettoTitles.committente[lang]}</Label>
+          <Text>{committente}</Text>
+        </InfoContainer>
 
-      <InfoContainer>
-        <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
-        <Text>{ruolo[lang]}</Text>
-      </InfoContainer>
+        <InfoContainer>
+          <Label>{schedaProgettoTitles.periodo[lang]}</Label>
+          <Text>
+            {annoDiInizio} - {annoDiFine}
+          </Text>
+        </InfoContainer>
 
-      <InfoContainer>
-        <Label>{schedaProgettoTitles.periodo[lang]}</Label>
-        <Text>
-          {annoDiInizio} - {annoDiFine}
-        </Text>
-      </InfoContainer>
+        <InfoContainer>
+          <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
+          {paroleChiave.map(area => (
+            <ParoleChiave
+              key={area}
+              to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
+                .replace(' ', '-')
+                .toLowerCase()}`}
+            >
+              #{paroleChiaveLabels[area][lang]}
+            </ParoleChiave>
+          ))}
+        </InfoContainer>
+      </InfoHalf>
 
-      <InfoContainer>
-        <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
-        <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
-      </InfoContainer>
+      <InfoHalf>
+        <InfoContainer>
+          <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
+          <Text>{ruolo[lang]}</Text>
+        </InfoContainer>
 
-      <InfoContainer>
-        <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
-        {paroleChiave.map(area => (
-          <ParoleChiave
-            key={area}
-            to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
-              .replace(' ', '-')
-              .toLowerCase()}`}
-          >
-            #{paroleChiaveLabels[area][lang]}
-          </ParoleChiave>
-        ))}
-      </InfoContainer>
+        <InfoContainer>
+          <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
+          <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
+        </InfoContainer>
+      </InfoHalf>
     </InfoWrapper>
   </Container>
 )
