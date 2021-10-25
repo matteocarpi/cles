@@ -15,6 +15,7 @@ const Container = styled.section`
   width: 100%;
   @media (min-width: 769px) {
     margin-top: 22vw;
+    margin-bottom: 90px;
     padding: 0 40px;
   }
 `
@@ -47,7 +48,11 @@ export default function PageIntro({ text, graphic, image, reverseImages }) {
       <Text maxStrLength={isMobile ? 25 : 40} component={Description}>
         {text}
       </Text>
-      <StyledSlidingImages graphic={graphic} image={image} reverse={reverseImages}/>
+      <StyledSlidingImages
+        graphic={graphic}
+        image={image}
+        reverse={reverseImages}
+      />
     </Container>
   )
 }

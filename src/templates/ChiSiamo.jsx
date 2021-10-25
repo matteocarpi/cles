@@ -14,14 +14,22 @@ import ActivityItem from '../components/ActivityItem/ActivityItem'
 
 const TextBlock = styled.article`
   margin-top: 40px;
+
+  @media (min-width: 768px) {
+    margin-top: 60px;
+
+    p {
+      margin: 0;
+    }
+  }
 `
 
 const BigText = styled.h4`
   margin-bottom: 56px;
 
   @media (min-width: 769px) {
-    margin-bottom: 80px;
-    margin-top: 40px;
+    margin-bottom: 60px;
+    margin-top: 60px;
   }
 `
 

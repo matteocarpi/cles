@@ -12,7 +12,8 @@ const Container = styled.section`
   position: relative;
 
   @media (min-width: 769px) {
-    width: calc(100% - 80px - 26vw);
+    width: calc(100% - 100px - 26vw);
+    margin-top: 30px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 

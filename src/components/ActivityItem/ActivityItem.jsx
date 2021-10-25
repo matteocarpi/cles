@@ -13,7 +13,7 @@ const ActivityWrapper = styled.div`
 const Activity = styled.div`
   display: flex;
   align-items: baseline;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 `
 
 const ActivityNumber = styled.h6`

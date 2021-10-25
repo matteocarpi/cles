@@ -43,7 +43,7 @@ const DepartmentButton = styled.button`
 const ComitatoContainer = styled.div`
   width: 100%;
   @media (min-width: 768px) {
-    width: calc(100% - 80px - 26vw);
+    width: calc(100% - 100px - 26vw);
   }
 `
 
