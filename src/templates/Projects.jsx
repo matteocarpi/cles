@@ -8,18 +8,49 @@ import Layout from '../components/Layout'
 import SchedaProgetto from '../components/SchedaProgetto'
 import ArrowLeft from '../assets/arrow-left.svg'
 
-const Container = styled.main`
+const Wrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 90px;
   margin-top: calc(80px + 15.5vw);
+  padding: 0 20px;
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
+  }
+`
+
+const Sidebar = styled.div`
+  position: sticky;
+  top: calc(80px + 15.5vw);
+`
+
+const Container = styled.main`
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: calc(100% - 80px - 26vw);
+  }
+`
+
+const PageTitle = styled.h4`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
 `
 
 const ProjectList = styled.section``
 
 const Title = styled.h4`
   color: ${({ theme }) => theme.red};
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `
 
 const BackToList = styled(Link)`
@@ -55,39 +86,45 @@ function Projects({ pageContext, data }) {
       })),
     [data],
   )
-  
+
   return (
     <Layout
       lang={pageContext.lang}
-      title={pageContext.data}
+      title={pageContext.title}
       location={pageContext.location}
     >
-      <Container>
-        {typeof area === 'string' && <Title>#{paroleChiave[area][lang]}</Title>}
-        <ProjectList>
-          {projectList.map(project => (
-            <SchedaProgetto key={project.title} {...project} />
-          ))}
-        </ProjectList>
+      <Wrapper>
+        <Sidebar>
+          <PageTitle>{pageContext.title}</PageTitle>
+        </Sidebar>
+        <Container>
+          {typeof area === 'string' && (
+            <Title>#{paroleChiave[area][lang]}</Title>
+          )}
+          <ProjectList>
+            {projectList.map(project => (
+              <SchedaProgetto key={project.title} {...project} />
+            ))}
+          </ProjectList>
+        </Container>
+      </Wrapper>
+      {status === 'aperto' && (
+        <BackToList
+          to={
+            pageContext.lang === 'en'
+              ? '/services/#progetti'
+              : '/servizi/#progetti'
+          }
+        >
+          <ArrowLeft />
 
-        {status === 'aperto' && (
-          <BackToList
-            to={
-              pageContext.lang === 'en'
-                ? '/services/#progetti'
-                : '/servizi/#progetti'
-            }
-          >
-            <ArrowLeft />
-
-            <h5>
-              {pageContext.lang === 'en'
-                ? 'Back to the list'
-                : 'Torna alla lista'}
-            </h5>
-          </BackToList>
-        )}
-      </Container>
+          <h5>
+            {pageContext.lang === 'en'
+              ? 'Back to the list'
+              : 'Torna alla lista'}
+          </h5>
+        </BackToList>
+      )}
     </Layout>
   )
 }

@@ -92,6 +92,7 @@ exports.createPages = async function ({ actions, graphql }) {
         status: 'aperto',
         startYear: 0,
         endYear: 3000,
+        title: projectCategories.aperti[lang],
       },
     })
 
@@ -141,6 +142,7 @@ exports.createPages = async function ({ actions, graphql }) {
           status: 'chiuso',
           startYear: 2009,
           endYear: 2014,
+          title: projectCategories.chiusi.primaDel2015[lang],
         },
       })
 
@@ -158,7 +160,7 @@ exports.createPages = async function ({ actions, graphql }) {
             location: { pathname: path },
             area,
             status: 'chiuso',
-            title: projectCategories.aperti[lang],
+            title: projectCategories.primaDel2015[lang],
             startYear: 2009,
             endYear: 2014,
           },
@@ -189,6 +191,7 @@ exports.createPages = async function ({ actions, graphql }) {
           status: 'chiuso',
           startYear: 2015,
           endYear: 3000,
+          title: projectCategories.chiusi.dopoIl2015[lang],
         },
       })
 
@@ -206,7 +209,7 @@ exports.createPages = async function ({ actions, graphql }) {
             location: { pathname: path },
             area,
             status: 'chiuso',
-            title: projectCategories.aperti[lang],
+            title: projectCategories.chiusi.dopoIl2015[lang],
             startYear: 2015,
             endYear: 3000,
           },
