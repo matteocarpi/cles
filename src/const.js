@@ -45,13 +45,13 @@ export const projectCategories = {
   chiusi: {
     it: 'Progetti chiusi',
     en: 'Closed projects',
-    primaDel2016: {
-      it: 'Prima del 2016',
-      en: 'Before 2016',
+    primaDel2015: {
+      it: 'Dal 2009 al 2014',
+      en: 'From 2009 to 2014',
     },
-    dopoIl2016: {
-      it: 'Dal 2016 a oggi',
-      en: 'Since 2016',
+    dopoIl2015: {
+      it: 'Dal 2015 a oggi',
+      en: 'Since 2015',
     },
   },
 }

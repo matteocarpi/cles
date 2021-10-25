@@ -58,7 +58,7 @@ const ParoleChiave = styled(Link)`
   }
 `
 
-const OpenProject = ({
+const DetailedProject = ({
   titolo,
   committente,
   ruolo,
@@ -133,7 +133,7 @@ const OpenProject = ({
   </Container>
 )
 
-const ClosedProject = ({
+const ReducedProject = ({
   titolo,
   committente,
   annoDiInizio,
@@ -175,23 +175,23 @@ export default function SchedaProgetto(props) {
       : {
           it:
             annoDiFine <= 2015
-              ? '/progetti-chiusi-prima-del-2016'
-              : '/progetti-chiusi-dopo-il-2016',
+              ? '/progetti-chiusi-prima-del-2015'
+              : '/progetti-chiusi-dopo-il-2015',
           en:
             annoDiFine <= 2015
-              ? '/closed-projects-before-2016'
-              : '/closed-projects-after-2016',
+              ? '/closed-projects-before-2015'
+              : '/closed-projects-after-2015',
         }
 
-  return statoProgetto === 'aperto' ? (
-    <OpenProject
+  return annoDiFine >= 2015 ? (
+    <DetailedProject
       {...props}
       lang={lang}
       parentUrl={parentUrl}
       isMobile={isMobile}
     />
   ) : (
-    <ClosedProject
+    <ReducedProject
       {...props}
       lang={lang}
       parentUrl={parentUrl}

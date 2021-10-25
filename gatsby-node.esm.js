@@ -119,13 +119,13 @@ exports.createPages = async function ({ actions, graphql }) {
 
   // Progetti Chiusi
   languages.forEach(lang => {
-    function createBefore2016() {
+    function createBefore2015() {
       const parentPath =
         lang === defaultLang
-          ? '/progetti-chiusi-prima-del-2016'
-          : '/closed-projects-before-2016'
+          ? '/progetti-chiusi-prima-del-2015'
+          : '/closed-projects-before-2015'
 
-      // Prima del 2016
+      // Prima del 2015
       actions.createPage({
         path: parentPath,
         component: require.resolve(`./src/templates/Projects.jsx`),
@@ -134,13 +134,13 @@ exports.createPages = async function ({ actions, graphql }) {
           location: {
             pathname:
               lang === defaultLang
-                ? '/progetti-chiusi-prima-del-2016'
-                : '/closed-projects-before-2016',
+                ? '/progetti-chiusi-prima-del-2015'
+                : '/closed-projects-before-2015',
           },
           area: Object.keys(paroleChiave),
           status: 'chiuso',
-          startYear: 0,
-          endYear: 2015,
+          startYear: 2009,
+          endYear: 2014,
         },
       })
 
@@ -159,21 +159,21 @@ exports.createPages = async function ({ actions, graphql }) {
             area,
             status: 'chiuso',
             title: projectCategories.aperti[lang],
-            startYear: 0,
-            endYear: 2015,
+            startYear: 2009,
+            endYear: 2014,
           },
         })
       })
     }
 
-    createBefore2016()
+    createBefore2015()
 
-    function createAfter2016() {
+    function createAfter2015() {
       const parentPath =
         lang === defaultLang
-          ? '/progetti-chiusi-dopo-il-2016'
-          : '/closed-projects-after-2016'
-      // Dopo il 2016
+          ? '/progetti-chiusi-dopo-il-2015'
+          : '/closed-projects-after-2015'
+      // Dopo il 2015
       actions.createPage({
         path: parentPath,
         component: require.resolve(`./src/templates/Projects.jsx`),
@@ -182,12 +182,12 @@ exports.createPages = async function ({ actions, graphql }) {
           location: {
             pathname:
               lang === defaultLang
-                ? '/progetti-chiusi-dopo-il-2016'
-                : '/closed-projects-after-2016',
+                ? '/progetti-chiusi-dopo-il-2015'
+                : '/closed-projects-after-2015',
           },
           area: Object.keys(paroleChiave),
           status: 'chiuso',
-          startYear: 2016,
+          startYear: 2015,
           endYear: 3000,
         },
       })
@@ -207,13 +207,13 @@ exports.createPages = async function ({ actions, graphql }) {
             area,
             status: 'chiuso',
             title: projectCategories.aperti[lang],
-            startYear: 2016,
+            startYear: 2015,
             endYear: 3000,
           },
         })
       })
     }
 
-    createAfter2016()
+    createAfter2015()
   })
 }

@@ -127,21 +127,21 @@ export default function Servizi({ pageContext, data: pageData }) {
               <ClosedProjectsLink
                 to={
                   lang === 'en'
-                    ? '/closed-projects-after-2016'
-                    : '/progetti-chiusi-dopo-il-2016'
+                    ? '/closed-projects-after-2015'
+                    : '/progetti-chiusi-dopo-il-2015'
                 }
               >
-                <h5>{projectCategories.chiusi.dopoIl2016[lang]}</h5>
+                <h5>{projectCategories.chiusi.dopoIl2015[lang]}</h5>
               </ClosedProjectsLink>
 
               <ClosedProjectsLink
                 to={
                   lang === 'en'
-                    ? '/closed-projects-before-2016'
-                    : '/progetti-chiusi-prima-del-2016'
+                    ? '/closed-projects-before-2015'
+                    : '/progetti-chiusi-prima-del-2015'
                 }
               >
-                <h5>{projectCategories.chiusi.primaDel2016[lang]}</h5>
+                <h5>{projectCategories.chiusi.primaDel2015[lang]}</h5>
               </ClosedProjectsLink>
             </ClosedProjectsContainer>
           </Accordion>
