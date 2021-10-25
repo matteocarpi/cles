@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import useLang from '../../hooks/useLang'
+import useResponsiveness from '../../hooks/useResponsiveness'
 import {
   schedaProgettoTitles,
   paroleChiave as paroleChiaveLabels,
@@ -67,6 +68,7 @@ const OpenProject = ({
   paroleChiave,
   lang,
   parentUrl,
+  isMobile,
 }) => (
   <Container>
     <Titolo>{titolo[lang]}</Titolo>
@@ -78,12 +80,26 @@ const OpenProject = ({
           <Text>{committente}</Text>
         </InfoContainer>
 
+        {isMobile && (
+          <InfoContainer>
+            <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
+            <Text>{ruolo[lang]}</Text>
+          </InfoContainer>
+        )}
+
         <InfoContainer>
           <Label>{schedaProgettoTitles.periodo[lang]}</Label>
           <Text>
             {annoDiInizio} - {annoDiFine}
           </Text>
         </InfoContainer>
+
+        {isMobile && (
+          <InfoContainer>
+            <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
+            <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
+          </InfoContainer>
+        )}
 
         <InfoContainer>
           <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
@@ -100,17 +116,19 @@ const OpenProject = ({
         </InfoContainer>
       </InfoHalf>
 
-      <InfoHalf>
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
-          <Text>{ruolo[lang]}</Text>
-        </InfoContainer>
+      {!isMobile && (
+        <InfoHalf>
+          <InfoContainer>
+            <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
+            <Text>{ruolo[lang]}</Text>
+          </InfoContainer>
 
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
-          <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
-        </InfoContainer>
-      </InfoHalf>
+          <InfoContainer>
+            <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
+            <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
+          </InfoContainer>
+        </InfoHalf>
+      )}
     </InfoWrapper>
   </Container>
 )
@@ -146,6 +164,8 @@ export default function SchedaProgetto(props) {
 
   const { lang } = useLang()
 
+  const { isMobile } = useResponsiveness()
+
   const parentUrl =
     statoProgetto === 'aperto'
       ? {
@@ -164,8 +184,18 @@ export default function SchedaProgetto(props) {
         }
 
   return statoProgetto === 'aperto' ? (
-    <OpenProject {...props} lang={lang} parentUrl={parentUrl} />
+    <OpenProject
+      {...props}
+      lang={lang}
+      parentUrl={parentUrl}
+      isMobile={isMobile}
+    />
   ) : (
-    <ClosedProject {...props} lang={lang} parentUrl={parentUrl} />
+    <ClosedProject
+      {...props}
+      lang={lang}
+      parentUrl={parentUrl}
+      isMobile={isMobile}
+    />
   )
 }
