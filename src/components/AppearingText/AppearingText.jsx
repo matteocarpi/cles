@@ -2,6 +2,7 @@ import React, { useRef, useLayoutEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import useElementInView from '../../hooks/useElementInView'
+import useViewportWidth from '../../hooks/useViewportWidth'
 
 const Wrapper = styled.div`
   overflow-y: hidden;
@@ -38,7 +39,19 @@ export default function AppearingText({
   component: Component = Text,
   className,
   maxStrLength,
+  stringLengths,
 }) {
+  const viewportWidth = useViewportWidth()
+
+  const stringLength = useMemo(() => {
+    if (stringLengths) {
+      if (viewportWidth < 500) return stringLengths[0]
+      if (viewportWidth < 769) return stringLengths[1]
+      return stringLengths[2]
+    }
+    return maxStrLength
+  }, [maxStrLength, stringLengths, viewportWidth])
+
   const textArr = children.split(' ')
 
   const wordsPerLine = Math.ceil(textArr.length / numberOfLines)
@@ -58,10 +71,10 @@ export default function AppearingText({
 
   const emptyStrings = emptyLines.map(() => '_')
 
-  const filledTextArr = useMemo(() => [...textArr, ...emptyStrings], [
-    emptyStrings,
-    textArr,
-  ])
+  const filledTextArr = useMemo(
+    () => [...textArr, ...emptyStrings],
+    [emptyStrings, textArr],
+  )
 
   const lines = useMemo(() => {
     let lineNumber = 0
@@ -69,7 +82,7 @@ export default function AppearingText({
     const obj = {}
 
     filledTextArr.forEach(word => {
-      if (obj[lineNumber]?.length + word.length > maxStrLength) {
+      if (obj[lineNumber]?.length + word.length > stringLength) {
         lineNumber += 1
       }
       obj[lineNumber] = `${obj[lineNumber] ?? ''}${
@@ -78,7 +91,7 @@ export default function AppearingText({
     })
 
     return Object.values(obj)
-  }, [filledTextArr, maxStrLength])
+  }, [filledTextArr, stringLength])
 
   useLayoutEffect(() => {
     if (inView) {
@@ -91,7 +104,7 @@ export default function AppearingText({
   return (
     <Wrapper ref={ref} className={className}>
       <Container>
-        {maxStrLength
+        {stringLength
           ? lines.map(line => (
               <TextContainer key={line}>
                 <Component

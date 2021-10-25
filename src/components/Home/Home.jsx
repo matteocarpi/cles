@@ -5,7 +5,6 @@ import BackgroundImage from 'gatsby-background-image'
 import { motion } from 'framer-motion'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 
-import useResponsiveness from '../../hooks/useResponsiveness'
 import useClientRect from '../../hooks/useClientRect'
 
 import ArrowDown from '../../assets/arrow-down.svg'
@@ -308,8 +307,6 @@ export default function Home({ lang, location }) {
         },
   )
 
-  const { isMobile } = useResponsiveness()
-
   return (
     <Layout
       location={location}
@@ -344,7 +341,7 @@ export default function Home({ lang, location }) {
           <SectionTitleMobile>
             {lang === 'en' ? 'About' : 'Chi Siamo'}
           </SectionTitleMobile>
-          <AppearingText component={Bio} maxStrLength={isMobile ? 22 : 30}>
+          <AppearingText component={Bio} stringLengths={[22, 40, 30]}>
             {homeData.bio[lang]}
           </AppearingText>
           <Video url={homeData.video[lang]} />
