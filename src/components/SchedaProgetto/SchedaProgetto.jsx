@@ -107,7 +107,7 @@ const DetailedProject = ({
             <ParoleChiave
               key={area}
               to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
-                .replace(' ', '-')
+                .replaceAll(' ', '-')
                 .toLowerCase()}`}
             >
               #{paroleChiaveLabels[area][lang]}

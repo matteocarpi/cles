@@ -7,6 +7,8 @@ import { paroleChiave } from '../const'
 import Layout from '../components/Layout'
 import SchedaProgetto from '../components/SchedaProgetto'
 import ArrowLeft from '../assets/arrow-left.svg'
+import useResponsiveness from '../hooks/useResponsiveness'
+import KeyWordNavigation from '../components/KeyWordNavigation/KeyWordNavigation'
 
 const Wrapper = styled.div`
   display: flex;
@@ -75,8 +77,12 @@ const BackToList = styled(Link)`
   }
 `
 
+const Tools = styled.div``
+
 function Projects({ pageContext, data }) {
   const { area, lang, status } = pageContext
+
+  const { isMobile } = useResponsiveness()
 
   const projectList = useMemo(
     () =>
@@ -96,6 +102,12 @@ function Projects({ pageContext, data }) {
       <Wrapper>
         <Sidebar>
           <PageTitle>{pageContext.title}</PageTitle>
+
+          {!isMobile && status === 'aperto' && (
+            <Tools>
+              <KeyWordNavigation />
+            </Tools>
+          )}
         </Sidebar>
         <Container>
           {typeof area === 'string' && (

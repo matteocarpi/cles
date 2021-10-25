@@ -47,7 +47,7 @@ exports.createPages = async function ({ actions, graphql }) {
     const path =
       lang === defaultLang
         ? data.chiSiamoPage.uri
-        : data.chiSiamoPage.chiSiamoData.url[lang].replace(' ', '-')
+        : data.chiSiamoPage.chiSiamoData.url[lang].replaceAll(' ', '-')
 
     actions.createPage({
       path,
@@ -64,7 +64,7 @@ exports.createPages = async function ({ actions, graphql }) {
     const path =
       lang === defaultLang
         ? data.serviziPage.uri
-        : data.serviziPage.serviziData.url[lang].replace(' ', '-')
+        : data.serviziPage.serviziData.url[lang].replaceAll(' ', '-')
 
     actions.createPage({
       path,
@@ -100,7 +100,7 @@ exports.createPages = async function ({ actions, graphql }) {
     Object.keys(paroleChiave).forEach(area => {
       const path = `${parentPath}/${paroleChiave[area][lang]
         .toLowerCase()
-        .replace(' ', '-')}`
+        .replaceAll(' ', '-')}`
 
       actions.createPage({
         path,
@@ -150,7 +150,7 @@ exports.createPages = async function ({ actions, graphql }) {
       Object.keys(paroleChiave).forEach(area => {
         const path = `${parentPath}/${paroleChiave[area][lang]
           .toLowerCase()
-          .replace(' ', '-')}`
+          .replaceAll(' ', '-')}`
 
         actions.createPage({
           path,
@@ -160,7 +160,7 @@ exports.createPages = async function ({ actions, graphql }) {
             location: { pathname: path },
             area,
             status: 'chiuso',
-            title: projectCategories.primaDel2015[lang],
+            title: projectCategories.chiusi.primaDel2015[lang],
             startYear: 2009,
             endYear: 2014,
           },
@@ -199,7 +199,7 @@ exports.createPages = async function ({ actions, graphql }) {
       Object.keys(paroleChiave).forEach(area => {
         const path = `${parentPath}/${paroleChiave[area][lang]
           .toLowerCase()
-          .replace(' ', '-')}`
+          .replaceAll(' ', '-')}`
 
         actions.createPage({
           path,
