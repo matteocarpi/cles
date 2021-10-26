@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import { paroleChiave } from '../../const'
+import { paroleChiave, all } from '../../const'
 import useLang from '../../hooks/useLang'
 import useLocation from '../../hooks/useLocation'
 
@@ -10,6 +10,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 20px 0;
+
+  margin-top: 40px;
+  border-top: solid 1px ${({ theme }) => theme.gray};
+  padding-top: 20px;
 `
 
 const NavItem = styled(Link)`
@@ -36,6 +40,9 @@ export default function KeyWordNavigation() {
 
   return (
     <Container>
+      <NavItem key="tutti" to={baseUrl[lang]}>
+        #{all[lang]}
+      </NavItem>
       {keyWordIds.map(keyword => {
         const isActive = location.pathname.includes(
           paroleChiave[keyword][lang].toLowerCase().replaceAll(' ', '-'),

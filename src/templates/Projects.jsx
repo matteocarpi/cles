@@ -15,7 +15,6 @@ import Loading from '../components/Loading/Loading'
 import PageNavigation from '../components/PageNavigation/PageNavigation'
 
 const Wrapper = styled.div`
-  display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 90px;
@@ -24,12 +23,15 @@ const Wrapper = styled.div`
 
   @media (min-width: 768px) {
     padding: 0 40px;
+    display: flex;
   }
 `
 
 const Sidebar = styled.div`
-  position: sticky;
   top: calc(80px + 15.5vw);
+  @media (min-width: 768px) {
+    position: sticky;
+  }
 `
 
 const Container = styled.main`
@@ -67,6 +69,7 @@ const BackToList = styled(Link)`
   display: flex;
   align-items: center;
 
+  margin-top: 20px;
   *:first-child {
     margin-right: 10px;
   }
@@ -83,17 +86,28 @@ const BackToList = styled(Link)`
     width: 30px;
     height: 30px;
   }
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
 `
 
 const Tools = styled.div``
 
 const BottomNavigation = styled.section`
   margin: 40px 0;
-  padding: 0 40px;
+  padding: 0 20px;
   width: 100%;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    padding: 0 40px;
+  }
 `
 
 function Projects({ pageContext, data }) {
@@ -155,14 +169,14 @@ function Projects({ pageContext, data }) {
         <Sidebar>
           <PageTitle>{pageContext.title}</PageTitle>
 
-          {!isMobile && status === 'aperto' && (
+          {status === 'aperto' && (
             <Tools>
               <SearchBox
                 setValue={setSearchQuery}
                 setLoading={setLoading}
                 value={searchQuery}
               />
-              <KeyWordNavigation />
+              {!isMobile && <KeyWordNavigation />}
             </Tools>
           )}
         </Sidebar>
@@ -186,6 +200,7 @@ function Projects({ pageContext, data }) {
       </Wrapper>
       {status === 'aperto' && (
         <BottomNavigation>
+          {isMobile && <KeyWordNavigation />}
           <BackToList
             to={
               pageContext.lang === 'en'

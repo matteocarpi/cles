@@ -11,7 +11,10 @@ import {
 
 const Container = styled.section`
   margin-top: 20px;
-  border-top: 1px solid ${({ theme }) => theme.gray};
+
+  &:not(:first-child) {
+    border-top: 1px solid ${({ theme }) => theme.gray};
+  }
 `
 
 const Titolo = styled.h6`

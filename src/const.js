@@ -97,3 +97,8 @@ export const paroleChiave = {
     en: 'Formazione e capacity building',
   },
 }
+
+export const all = {
+  it: 'Tutti',
+  en: 'All',
+}
