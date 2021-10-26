@@ -8,7 +8,7 @@ import MenuText from '../MenuText'
 const Container = styled.section`
   position: relative;
   box-sizing: border-box;
-  padding: 0 24px 56px 24px;
+  padding: 20px 24px 60px 24px;
   @media (min-width: 769px) {
     padding: 0 40px 80px 40px;
     width: 100%;
@@ -19,8 +19,7 @@ const Container = styled.section`
 `
 
 const DepartmentList = styled.ul`
-  border-bottom: solid 2px ${({ theme }) => theme.gray};
-  margin-bottom: 56px;
+  margin-bottom: 40px;
 
   @media (min-width: 769px) {
     position: sticky;
@@ -31,13 +30,19 @@ const DepartmentList = styled.ul`
   }
 `
 
-const Department = styled.li``
-
 const DepartmentButton = styled.button`
   color: ${({ theme, active }) => (active ? theme.red : theme.gray)};
   font-weight: 900;
   font-size: 16px;
   margin-bottom: 15px;
+`
+
+const Department = styled.li`
+  &:last-child {
+    ${DepartmentButton} {
+      margin-bottom: 0;
+    }
+  }
 `
 
 const ComitatoContainer = styled.div`

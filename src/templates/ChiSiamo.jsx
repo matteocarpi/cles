@@ -15,17 +15,17 @@ import ActivityItem from '../components/ActivityItem/ActivityItem'
 const TextBlock = styled.article`
   margin-top: 40px;
 
+  p {
+    margin: 0;
+  }
+
   @media (min-width: 768px) {
     margin-top: 60px;
-
-    p {
-      margin: 0;
-    }
   }
 `
 
 const BigText = styled.h4`
-  margin-bottom: 56px;
+  margin-bottom: 40px;
 
   @media (min-width: 769px) {
     margin-bottom: 60px;
@@ -33,7 +33,13 @@ const BigText = styled.h4`
   }
 `
 
-const ActivityList = styled.article``
+const ActivityList = styled.article`
+  margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
+`
 
 export default function ChiSiamo({ pageContext, data: pageData }) {
   const { lang, location } = pageContext

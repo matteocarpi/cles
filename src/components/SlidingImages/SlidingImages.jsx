@@ -9,7 +9,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
   align-items: center;
-  padding: 24px;
+  padding-top: 35px;
+  padding: 40px 24px;
+
   @media (min-width: 769px) {
     margin-top: 40px;
     width: 100%;
