@@ -10,6 +10,7 @@ import ArrowLeft from '../assets/arrow-left.svg'
 import useResponsiveness from '../hooks/useResponsiveness'
 import KeyWordNavigation from '../components/KeyWordNavigation'
 import SearchBox from '../components/SearchBox'
+import Loading from '../components/Loading/Loading'
 
 const Wrapper = styled.div`
   display: flex;
@@ -82,7 +83,7 @@ const Tools = styled.div``
 
 function Projects({ pageContext, data }) {
   const [searchQuery, setSearchQuery] = useState()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const { area, lang, status } = pageContext
 
@@ -128,7 +129,7 @@ function Projects({ pageContext, data }) {
           )}
           {/* eslint-disable-next-line no-nested-ternary */}
           {loading ? (
-            <div>loading...</div>
+            <Loading />
           ) : projectList.length ? (
             <ProjectList>
               {projectList.map(project => (

@@ -12,7 +12,7 @@ export default function SearchBox({ setValue, setLoading }) {
     const timer = setTimeout(() => {
       setValue(query.toLowerCase())
       setLoading(false)
-    }, 500)
+    }, 200)
 
     return () => clearTimeout(timer)
   }, [query, setLoading, setValue])
