@@ -11,6 +11,7 @@ const Container = styled.div`
   align-items: center;
   padding-top: 35px;
   padding: 40px 24px;
+  overflow-x: hidden;
 
   @media (min-width: 769px) {
     margin-top: 40px;
