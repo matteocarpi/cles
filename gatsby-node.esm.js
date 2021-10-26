@@ -23,6 +23,20 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+      news: allWpPost(sort: { fields: date, order: DESC }) {
+        edges {
+          node {
+            id
+            slug
+            newsData {
+              tradotta
+              en {
+                url
+              }
+            }
+          }
+        }
+      }
     }
   `)
 
@@ -232,6 +246,25 @@ exports.createPages = async function ({ actions, graphql }) {
         location: { pathname: path },
         titolo: 'News',
       },
+    })
+  })
+
+  // Single News
+  languages.forEach(lang => {
+    data.news.edges.map(newsEdge => {
+      const { node: news } = newsEdge
+
+      const path =
+        lang === defaultLang
+          ? `/${news.slug}`
+          : news.newsData.url || `/en/${news.slug}`
+
+      actions.createPage({
+        path,
+        component: require.resolve(`./src/templates/News.jsx`),
+        id: news.id,
+        lang,
+      })
     })
   })
 }
