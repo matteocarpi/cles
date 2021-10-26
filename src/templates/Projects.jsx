@@ -12,6 +12,7 @@ import useResponsiveness from '../hooks/useResponsiveness'
 import KeyWordNavigation from '../components/KeyWordNavigation'
 import SearchBox from '../components/SearchBox'
 import Loading from '../components/Loading/Loading'
+import PageNavigation from '../components/PageNavigation/PageNavigation'
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +61,6 @@ const Title = styled.h4`
 
 const BackToList = styled(Link)`
   align-self: flex-end;
-  margin-top: 40px;
 
   color: ${({ theme }) => theme.yellow};
 
@@ -78,13 +78,28 @@ const BackToList = styled(Link)`
   &:visited {
     color: ${({ theme }) => theme.yellow};
   }
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
 `
 
 const Tools = styled.div``
 
+const BottomNavigation = styled.section`
+  margin: 40px 0;
+  padding: 0 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
 function Projects({ pageContext, data }) {
   const [searchQuery, setSearchQuery] = useState()
   const [loading, setLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(0)
 
   const { area, lang, status } = pageContext
 
@@ -112,6 +127,23 @@ function Projects({ pageContext, data }) {
         ),
     [data.allWpProgetto.edges, lang, searchQuery],
   )
+
+  const numPerPage = 10
+
+  const pages = useMemo(() => {
+    const numPages = Math.ceil(projectList.length / numPerPage)
+    return Array.from(Array(numPages).keys())
+  }, [projectList.length])
+
+  const paginatedProjects = useMemo(() => {
+    const projectPages = pages.map((page, index) => {
+      const start = page * index
+      const end = start + numPerPage
+
+      return projectList.slice(start, end)
+    })
+    return projectPages
+  }, [pages, projectList])
 
   return (
     <Layout
@@ -143,7 +175,7 @@ function Projects({ pageContext, data }) {
             <Loading />
           ) : projectList.length ? (
             <ProjectList>
-              {projectList.map(project => (
+              {paginatedProjects[currentPage].map(project => (
                 <SchedaProgetto key={project.titolo[lang]} {...project} />
               ))}
             </ProjectList>
@@ -153,21 +185,28 @@ function Projects({ pageContext, data }) {
         </Container>
       </Wrapper>
       {status === 'aperto' && (
-        <BackToList
-          to={
-            pageContext.lang === 'en'
-              ? '/services/#progetti'
-              : '/servizi/#progetti'
-          }
-        >
-          <ArrowLeft />
+        <BottomNavigation>
+          <BackToList
+            to={
+              pageContext.lang === 'en'
+                ? '/services/#progetti'
+                : '/servizi/#progetti'
+            }
+          >
+            <ArrowLeft />
 
-          <h5>
-            {pageContext.lang === 'en'
-              ? 'Back to the list'
-              : 'Torna alla lista'}
-          </h5>
-        </BackToList>
+            <h5>
+              {pageContext.lang === 'en'
+                ? 'Back to the list'
+                : 'Torna alla lista'}
+            </h5>
+          </BackToList>
+          <PageNavigation
+            pages={pages}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </BottomNavigation>
       )}
     </Layout>
   )
