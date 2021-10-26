@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
 import { paroleChiave } from '../const'
+import { searchMultiFields } from '../utils'
 
 import Layout from '../components/Layout'
 import SchedaProgetto from '../components/SchedaProgetto'
@@ -97,7 +98,17 @@ function Projects({ pageContext, data }) {
           ...p.node.progettoData,
         }))
         .filter(project =>
-          project.titolo[lang].toLowerCase().includes(searchQuery),
+          searchMultiFields(
+            [
+              project.titolo[lang],
+              project.committente,
+              project.ruolo[lang],
+              project.serviziEAttivit[lang],
+              project.annoDiInizio,
+              project.annoDiFine,
+            ],
+            searchQuery,
+          ),
         ),
     [data.allWpProgetto.edges, lang, searchQuery],
   )
@@ -133,7 +144,7 @@ function Projects({ pageContext, data }) {
           ) : projectList.length ? (
             <ProjectList>
               {projectList.map(project => (
-                <SchedaProgetto key={project.title} {...project} />
+                <SchedaProgetto key={project.titolo[lang]} {...project} />
               ))}
             </ProjectList>
           ) : (
