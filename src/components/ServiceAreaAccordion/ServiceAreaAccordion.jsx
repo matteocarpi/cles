@@ -45,7 +45,7 @@ const DesktopImageContainer = styled.div`
     display: block;
   }
   position: sticky;
-  top: 400px;
+  top: 350px;
   width: 300px;
   height: 400px;
 `
@@ -65,16 +65,17 @@ const Servizio = styled.li`
 
 export default function ServiceAreaAccordion({
   titolo,
-  immagine,
+  gallery,
   descrizione,
   listaServizi,
   expandedArea,
   setExpandedArea,
 }) {
+  const [index, setIndex] = useState(0)
   const [isExpanded, setIsExpanded] = useState(false)
   const { lang } = useLang()
 
-  const image = getImage(immagine.localFile)
+  const image = getImage(gallery[index].localFile)
 
   useEffect(() => {
     if (expandedArea === titolo[lang]) {
@@ -83,6 +84,16 @@ export default function ServiceAreaAccordion({
       setIsExpanded(false)
     }
   }, [expandedArea, lang, titolo])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isExpanded) {
+        setIndex(i => (i === gallery.length - 1 ? 0 : i + 1))
+      }
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [gallery.length, isExpanded])
 
   const handleExpansion = value => setExpandedArea(value ? titolo[lang] : null)
 

@@ -185,7 +185,7 @@ export const data = graphql`
               it
               en
             }
-            immagine {
+            gallery {
               localFile {
                 childImageSharp {
                   gatsbyImageData(width: 400)
