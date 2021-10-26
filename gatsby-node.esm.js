@@ -219,4 +219,19 @@ exports.createPages = async function ({ actions, graphql }) {
 
     createAfter2015()
   })
+
+  // News
+  languages.forEach(lang => {
+    const path = lang === defaultLang ? '/news' : `/${lang}/news`
+
+    actions.createPage({
+      path,
+      component: require.resolve(`./src/templates/NewsList.jsx`),
+      context: {
+        lang,
+        location: { pathname: path },
+        titolo: 'News',
+      },
+    })
+  })
 }

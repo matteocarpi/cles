@@ -54,7 +54,10 @@ export default function WatchAllNews({ className }) {
   const mapper = repetition.map(i => ({ i, key: Math.random() }))
 
   return (
-    <Wrapper className={className} to="#">
+    <Wrapper
+      className={className}
+      to={lang === 'it' ? '/news' : `/${lang}/news`}
+    >
       <Container>
         {mapper.map(i => (
           <ItemContainer key={i.key}>

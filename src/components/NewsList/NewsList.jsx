@@ -2,7 +2,9 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
+
 import { stripHTML } from '../../utils'
+import useResponsiveness from '../../hooks/useResponsiveness'
 
 import SmallText from '../SmallText'
 import FirstNews from '../FirstNews'
@@ -69,6 +71,7 @@ const NewsPreview = styled.article`
   border: solid 5px ${({ theme }) => theme.yellow};
   padding: 24px;
   margin-bottom: 40px;
+  width: 100%;
   max-width: 800px;
 `
 
@@ -101,6 +104,10 @@ const AppearingTitle = styled(AppearingText)`
 `
 
 export default function NewsList({ news, title, lang }) {
+  const { isMobile } = useResponsiveness()
+
+  const newsStart = isMobile ? 0 : 1
+
   return (
     <>
       <Wrapper id="news" dark>
@@ -112,7 +119,7 @@ export default function NewsList({ news, title, lang }) {
 
           <NewsListContainer>
             <FirstNews news={news[0]} />
-            {news.map(n => (
+            {news.slice(newsStart).map(n => (
               <NewsPreview key={n.id}>
                 <NewsDate>{n.date}</NewsDate>
                 <NewsTitle>{n.title}</NewsTitle>
