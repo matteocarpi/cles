@@ -13,7 +13,7 @@ const Wrapper = styled.section`
   flex-direction: column;
 
   @media (min-width: 769px) {
-    margin: 40px 40px 0 60px;
+    margin: 40px 40px 0 40px;
   }
 `
 
