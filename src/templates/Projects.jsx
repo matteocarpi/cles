@@ -111,8 +111,8 @@ const BottomNavigation = styled.section`
 `
 
 function Projects({ pageContext, data }) {
-  const [searchQuery, setSearchQuery] = useState()
-  const [loading, setLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(0)
 
   const { area, lang, status } = pageContext
@@ -169,16 +169,14 @@ function Projects({ pageContext, data }) {
         <Sidebar>
           <PageTitle>{pageContext.title}</PageTitle>
 
-          {status === 'aperto' && (
-            <Tools>
-              <SearchBox
-                setValue={setSearchQuery}
-                setLoading={setLoading}
-                value={searchQuery}
-              />
-              {!isMobile && <KeyWordNavigation />}
-            </Tools>
-          )}
+          <Tools>
+            <SearchBox
+              setValue={setSearchQuery}
+              setLoading={setLoading}
+              value={searchQuery}
+            />
+            {!isMobile && status === 'aperto' && <KeyWordNavigation />}
+          </Tools>
         </Sidebar>
         <Container>
           {typeof area === 'string' && (
@@ -198,31 +196,29 @@ function Projects({ pageContext, data }) {
           )}
         </Container>
       </Wrapper>
-      {status === 'aperto' && (
-        <BottomNavigation>
-          {isMobile && <KeyWordNavigation />}
-          <BackToList
-            to={
-              pageContext.lang === 'en'
-                ? '/services/#progetti'
-                : '/servizi/#progetti'
-            }
-          >
-            <ArrowLeft />
+      <BottomNavigation>
+        {isMobile && status === 'aperto' && <KeyWordNavigation />}
+        <BackToList
+          to={
+            pageContext.lang === 'en'
+              ? '/services/#progetti'
+              : '/servizi/#progetti'
+          }
+        >
+          <ArrowLeft />
 
-            <h5>
-              {pageContext.lang === 'en'
-                ? 'Back to the list'
-                : 'Torna alla lista'}
-            </h5>
-          </BackToList>
-          <PageNavigation
-            pages={pages}
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-          />
-        </BottomNavigation>
-      )}
+          <h5>
+            {pageContext.lang === 'en'
+              ? 'Back to the list'
+              : 'Torna alla lista'}
+          </h5>
+        </BackToList>
+        <PageNavigation
+          pages={pages}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      </BottomNavigation>
     </Layout>
   )
 }
