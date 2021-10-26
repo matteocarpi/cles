@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
@@ -51,6 +51,8 @@ const ClosedProjectsLink = styled(Link)`
 export default function Servizi({ pageContext, data: pageData }) {
   const [rect, ref] = useClientRect()
 
+  const [expandedArea, setExpandedArea] = useState(null)
+
   const { lang, location } = pageContext
   const { serviziData: data } = pageData.serviziPage
 
@@ -90,7 +92,12 @@ export default function Servizi({ pageContext, data: pageData }) {
 
         <Areas>
           {data.servizi.areeDiServizio.map(area => (
-            <ServiceAreaAccordion {...area} key={area.titolo[lang]} />
+            <ServiceAreaAccordion
+              {...area}
+              key={area.titolo[lang]}
+              expandedArea={expandedArea}
+              setExpandedArea={setExpandedArea}
+            />
           ))}
         </Areas>
       </PageSection>

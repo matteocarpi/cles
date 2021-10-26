@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import useLang from '../../hooks/useLang'
@@ -32,10 +32,15 @@ export default function Accordion({
   className,
   setIsExpanded = () => {},
   children,
+  parentExpanded = null,
 }) {
   const { lang } = useLang()
 
   const [expanded, setExpanded] = useState(false)
+
+  useEffect(() => {
+    if (parentExpanded != null) setExpanded(parentExpanded)
+  }, [parentExpanded])
 
   return (
     <Container className={className}>

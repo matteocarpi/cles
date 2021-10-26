@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { getImage } from 'gatsby-plugin-image'
 import useLang from '../../hooks/useLang'
@@ -68,11 +68,23 @@ export default function ServiceAreaAccordion({
   immagine,
   descrizione,
   listaServizi,
+  expandedArea,
+  setExpandedArea,
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const { lang } = useLang()
 
   const image = getImage(immagine.localFile)
+
+  useEffect(() => {
+    if (expandedArea === titolo[lang]) {
+      setIsExpanded(true)
+    } else {
+      setIsExpanded(false)
+    }
+  }, [expandedArea, lang, titolo])
+
+  const handleExpansion = value => setExpandedArea(value ? titolo[lang] : null)
 
   return (
     <Wrapper isExpanded={isExpanded}>
@@ -81,7 +93,11 @@ export default function ServiceAreaAccordion({
           <DesktopImage image={image} alt="" />
         </DesktopImageContainer>
       )}
-      <StyledAccordion titolo={titolo} setIsExpanded={setIsExpanded}>
+      <StyledAccordion
+        titolo={titolo}
+        setIsExpanded={handleExpansion}
+        parentExpanded={isExpanded}
+      >
         <MobileImage image={image} alt="" />
 
         <Description dangerouslySetInnerHTML={{ __html: descrizione[lang] }} />
