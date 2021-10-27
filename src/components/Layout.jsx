@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
+import { ParallaxProvider } from 'react-scroll-parallax'
 
 import LangProvider from '../LangContext'
 import LocationProvider from '../LocationContext'
@@ -143,16 +144,18 @@ const defaultTheme = {
 
 export default function Layout({ lang, children, title, location }) {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <LangProvider lang={lang}>
-        <LocationProvider location={location}>
-          <Seo lang={lang} title={title} />
-          <GlobalStyle />
-          <Header />
-          <Container>{children}</Container>
-          <Footer />
-        </LocationProvider>
-      </LangProvider>
-    </ThemeProvider>
+    <ParallaxProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <LangProvider lang={lang}>
+          <LocationProvider location={location}>
+            <Seo lang={lang} title={title} />
+            <GlobalStyle />
+            <Header />
+            <Container>{children}</Container>
+            <Footer />
+          </LocationProvider>
+        </LangProvider>
+      </ThemeProvider>
+    </ParallaxProvider>
   )
 }

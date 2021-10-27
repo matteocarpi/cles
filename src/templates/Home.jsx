@@ -36,10 +36,9 @@ export const data = graphql`
         }
         secondaImmagine {
           localFile {
+            publicURL
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData
             }
           }
         }

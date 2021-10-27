@@ -1,8 +1,24 @@
 import React from 'react'
-import { Parallax } from 'react-scroll-parallax'
-
 import styled from 'styled-components'
 
-export default function ParallaxImage() {
-  return <div>parallasse</div>
+import { ParallaxBanner } from 'react-scroll-parallax'
+
+const Image = styled(ParallaxBanner)`
+  margin: 40px 0;
+`
+
+export default function ParallaxImage({ image }) {
+  return (
+    <Image
+      layers={[
+        {
+          image,
+          amount: 0.2,
+        },
+      ]}
+      style={{
+        height: '500px',
+      }}
+    />
+  )
 }

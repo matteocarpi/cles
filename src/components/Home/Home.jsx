@@ -237,7 +237,6 @@ export default function Home({ lang, location, data }) {
       />
 
       {/* Chi Siamo */}
-
       <HomeSectionWrapper>
         <HomeSection id="about" ref={ref}>
           <SectionTitleMobile>
@@ -246,8 +245,7 @@ export default function Home({ lang, location, data }) {
           <AppearingText component={Bio} stringLengths={[22, 40, 30]}>
             {homeData.bio[lang]}
           </AppearingText>
-          <ParallaxImage />
-          {/* <Video url={homeData.video[lang]} /> */}
+          <ParallaxImage image={homeData.secondaImmagine.localFile.publicURL} />
 
           <StyledButtonLink to="#">
             {lang === 'en' ? 'Continue' : 'Continua'}
