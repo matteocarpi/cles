@@ -8,12 +8,13 @@ const ActivityWrapper = styled.div`
     display: inline-block;
     width: 50%;
   }
-`
+  `
 
 const Activity = styled.div`
   display: flex;
   align-items: baseline;
   margin-bottom: 20px;
+  margin-right: 40px;
 `
 
 const ActivityNumber = styled.h6`
