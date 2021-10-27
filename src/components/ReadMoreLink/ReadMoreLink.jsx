@@ -14,7 +14,7 @@ const ReadMoreText = styled.span`
 `
 
 const ReadMore = styled(Link)`
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,11 +39,11 @@ const StyledPlus = styled(Plus)`
   ${readMoreIconStyles}
 `
 
-export default function ReadMoreLink({ to }) {
+export default function ReadMoreLink({ to, className }) {
   const { lang } = useLang()
-  
+
   return (
-    <ReadMore to={to}>
+    <ReadMore to={to} className={className}>
       <ReadMoreText>{lang === 'it' ? 'Leggi tutto' : 'Read more'}</ReadMoreText>
       <StyledPlus />
     </ReadMore>

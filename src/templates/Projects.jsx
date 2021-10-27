@@ -17,11 +17,11 @@ import PageNavigation from '../components/PageNavigation/PageNavigation'
 const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 90px;
   margin-top: calc(80px + 15.5vw);
   padding: 0 20px;
 
   @media (min-width: 768px) {
+    margin-bottom: 90px;
     padding: 0 40px;
     display: flex;
   }
@@ -36,11 +36,11 @@ const Sidebar = styled.div`
 `
 
 const Container = styled.main`
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   width: 100%;
   @media (min-width: 768px) {
+    margin-bottom: 40px;
     width: calc(100% - 80px - 26vw);
   }
 `
@@ -55,6 +55,8 @@ const PageTitle = styled.h4`
 const ProjectList = styled.section``
 
 const Title = styled.h4`
+  margin-top: 30px;
+  margin-bottom: 20px;
   color: ${({ theme }) => theme.red};
 
   @media (min-width: 768px) {
@@ -70,7 +72,6 @@ const BackToList = styled(Link)`
   display: flex;
   align-items: center;
 
-  margin-top: 20px;
   *:first-child {
     margin-right: 10px;
   }
@@ -89,6 +90,7 @@ const BackToList = styled(Link)`
   }
 
   @media (min-width: 768px) {
+    margin-top: 20px;
     margin-top: 0;
   }
 `
@@ -96,7 +98,6 @@ const BackToList = styled(Link)`
 const Tools = styled.div``
 
 const BottomNavigation = styled.section`
-  margin: 40px 0;
   padding: 0 20px;
   width: 100%;
   display: flex;
@@ -105,6 +106,7 @@ const BottomNavigation = styled.section`
   align-items: flex-end;
 
   @media (min-width: 768px) {
+    margin: 40px 0;
     flex-direction: row;
     align-items: center;
     padding: 0 40px;
@@ -200,7 +202,9 @@ function Projects({ pageContext, data }) {
         </Container>
       </Wrapper>
       <BottomNavigation>
-        {isMobile && status === 'aperto' && <KeyWordNavigation />}
+        {isMobile && status === 'aperto' && (
+          <KeyWordNavigation status={status} />
+        )}
         <BackToList
           to={
             pageContext.lang === 'en'

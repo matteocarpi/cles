@@ -33,6 +33,7 @@ const StyledSlidingImages = styled(SlidingImages)`
 const Text = styled(AppearingText)`
   padding: 0 20px;
   max-width: 1000px;
+  margin-top: 8px;
 
   @media (min-width: 769px) {
     align-self: flex-start;

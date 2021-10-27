@@ -5,7 +5,7 @@ import Loupe from '../../assets/loupe.svg'
 
 const Container = styled.div`
   position: relative;
-  margin: 40px 0;
+  margin: 40px 0 10px 0;
 `
 
 const Input = styled.input`

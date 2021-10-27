@@ -9,6 +9,9 @@ const Container = styled.article`
   box-sizing: border-box;
   border-top: 2px solid ${({ theme }) => theme.gray};
   padding: 20px 0;
+  &:last-child {
+    border-bottom: 2px solid ${({ theme }) => theme.gray};
+  }
 `
 const StyledPlusButton = styled(PlusButton)`
   transform: translateY(3px);

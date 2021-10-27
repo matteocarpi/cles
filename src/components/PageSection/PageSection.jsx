@@ -101,6 +101,7 @@ const PageSection = React.forwardRef(
       noSeparatorDesktop,
       id,
       fullWidth,
+      style,
     },
     ref,
   ) => {
@@ -109,7 +110,7 @@ const PageSection = React.forwardRef(
     const { lang } = useLang()
 
     return (
-      <Wrapper id={id} ref={ref}>
+      <Wrapper id={id} ref={ref} style={style}>
         <Container
           noCollapse={noCollapse}
           noSeparator={noSeparator}

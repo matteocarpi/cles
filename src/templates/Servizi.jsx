@@ -24,13 +24,13 @@ const RestrictedText = styled.h4`
 `
 
 const Areas = styled.section`
-  margin-top: 60px;
+  margin-top: 50px;
   margin-bottom: 40px;
 `
 
 const Projects = styled.section`
-  margin-top: 60px;
-  margin-bottom: 40px;
+  margin-top: 50px;
+  margin-bottom: 60px;
 `
 
 const ClosedProjectsContainer = styled.div`
@@ -41,13 +41,17 @@ const ClosedProjectsContainer = styled.div`
 
 const ClosedProjectsLink = styled(Link)`
   border-top: 1px solid ${({ theme }) => theme.gray};
-  padding: 20px 0;
+  padding: 15px 0;
 
   &:last-child {
     padding-bottom: 0;
+    margin-bottom: -5px;
   }
 `
 
+const StyledReadMoreLink = styled(ReadMoreLink)`
+  margin-bottom: 20px;
+`
 export default function Servizi({ pageContext, data: pageData }) {
   const [rect, ref] = useClientRect()
 
@@ -110,6 +114,7 @@ export default function Servizi({ pageContext, data: pageData }) {
         ref={ref}
         noCollapse
         noSeparator
+        style={{ marginTop: '-30px' }}
       >
         <Text>{data.progetti.descrizione[lang]}</Text>
 
@@ -119,9 +124,13 @@ export default function Servizi({ pageContext, data: pageData }) {
             titolo={projectCategories.aperti}
           >
             {pageData.progettiAperti.edges.map(({ node: progetto }) => (
-              <SchedaProgetto key={progetto.id} {...progetto.progettoData} />
+              <SchedaProgetto
+                key={progetto.id}
+                {...progetto.progettoData}
+                borderTop
+              />
             ))}
-            <ReadMoreLink
+            <StyledReadMoreLink
               to={lang === 'en' ? '/ongoing-projects' : '/progetti-in-corso'}
             />
           </Accordion>

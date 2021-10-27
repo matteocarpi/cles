@@ -59,7 +59,7 @@ const ServiziList = styled.ul`
 `
 
 const Servizio = styled.li`
-  padding: 20px 0;
+  padding: 15px 0;
   border-top: 1px solid ${({ theme }) => theme.gray};
 `
 

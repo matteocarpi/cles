@@ -10,15 +10,20 @@ import {
 } from '../../const'
 
 const Container = styled.section`
-  margin-top: 20px;
+  margin: 20px 0 40px 0;
 
   &:not(:first-child) {
     border-top: 1px solid ${({ theme }) => theme.gray};
   }
+
+  &:first-child {
+    border-top: ${({ borderTop, theme }) =>
+      borderTop && `1px solid ${theme.gray}`};
+  }
 `
 
 const Titolo = styled.h6`
-  margin-top: 20px;
+  margin-top: 30px;
 `
 
 const InfoWrapper = styled.article`
@@ -35,6 +40,9 @@ const InfoHalf = styled.div`
 
 const InfoContainer = styled.article`
   margin-top: 20px;
+  &:first-child {
+    margin-top: 30px;
+  }
 `
 
 const Label = styled.p`
@@ -72,8 +80,9 @@ const DetailedProject = ({
   lang,
   parentUrl,
   isMobile,
+  borderTop,
 }) => (
-  <Container>
+  <Container borderTop={borderTop}>
     <Titolo>{titolo[lang]}</Titolo>
 
     <InfoWrapper>
@@ -142,8 +151,9 @@ const ReducedProject = ({
   annoDiInizio,
   annoDiFine,
   lang,
+  borderTop,
 }) => (
-  <Container>
+  <Container borderTop={borderTop}>
     <Titolo>{titolo[lang]}</Titolo>
 
     <InfoWrapper>
