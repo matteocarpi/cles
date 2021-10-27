@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { Link } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import { motion } from 'framer-motion'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
@@ -11,7 +11,6 @@ import ArrowDown from '../../assets/arrow-down.svg'
 import Layout from '../Layout'
 import SmallText from '../SmallText'
 import AppearingText from '../AppearingText'
-import Video from '../Video'
 import ButtonLink from '../ButtonLink'
 import ServiziHomePreview from '../ServiziHomePreview'
 import ArrowRight from '../Arrow'
@@ -19,6 +18,7 @@ import NewsList from '../NewsList'
 import SectionTitleMobile from '../SectionTitleMobile'
 import ScrollSpy from '../ScrollSpy'
 import LiftedLink from '../LiftedLink/LiftedLink'
+import ParallaxImage from '../ParallaxImage'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -192,105 +192,7 @@ const sections = [
   },
 ]
 
-export default function Home({ lang, location }) {
-  const data = useStaticQuery(graphql`
-    query HomeQuery {
-      homePage: wpPage(id: { eq: "cG9zdDoxNjI=" }) {
-        homeData {
-          title {
-            en
-            it
-          }
-          immagine {
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          slogan {
-            en
-            it
-          }
-          bio {
-            it
-            en
-          }
-          video {
-            en
-            it
-          }
-          services {
-            titolo {
-              it
-              en
-            }
-            descrizione {
-              it
-              en
-            }
-          }
-          clients {
-            titolo {
-              it
-              en
-            }
-          }
-          news {
-            titolo {
-              it
-              en
-            }
-          }
-        }
-      }
-      clientiPage: wpPage(id: { eq: "cG9zdDo0MjE=" }) {
-        clientiData {
-          title {
-            it
-            en
-          }
-          clienti {
-            fieldGroupName
-            titolo {
-              it
-              en
-            }
-          }
-        }
-      }
-      allWpPost(limit: 3) {
-        edges {
-          node {
-            id
-            title
-            featuredImage {
-              node {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData(width: 1920)
-                  }
-                }
-              }
-            }
-            slug
-            excerpt
-            date(formatString: "DD.MM.YYYY")
-            newsData {
-              tradotta
-              en {
-                titolo
-                contenuto
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
-
+export default function Home({ lang, location, data }) {
   const [rect, ref] = useClientRect()
 
   const { homeData } = data.homePage
@@ -344,7 +246,8 @@ export default function Home({ lang, location }) {
           <AppearingText component={Bio} stringLengths={[22, 40, 30]}>
             {homeData.bio[lang]}
           </AppearingText>
-          <Video url={homeData.video[lang]} />
+          <ParallaxImage />
+          {/* <Video url={homeData.video[lang]} /> */}
 
           <StyledButtonLink to="#">
             {lang === 'en' ? 'Continue' : 'Continua'}
