@@ -27,20 +27,26 @@ const NavItem = styled(Link)`
   }
 `
 
-export default function KeyWordNavigation() {
+export default function KeyWordNavigation({ status }) {
   const { lang } = useLang()
   const { location } = useLocation()
 
   const baseUrl = {
-    it: '/progetti-in-corso',
-    en: '/ongoing-projects',
+    aperto: {
+      it: '/progetti-in-corso',
+      en: '/ongoing-projects',
+    },
+    chiuso: {
+      it: '/progetti-chiusi-dopo-il-2015',
+      en: '/closed-projects-after-2015',
+    },
   }
 
   const keyWordIds = Array.from(Object.keys(paroleChiave))
 
   return (
     <Container>
-      <NavItem key="tutti" to={baseUrl[lang]}>
+      <NavItem key="tutti" to={baseUrl[status][lang]}>
         #{all[lang]}
       </NavItem>
       {keyWordIds.map(keyword => {
@@ -54,8 +60,8 @@ export default function KeyWordNavigation() {
             key={keyword}
             to={
               isActive
-                ? baseUrl[lang]
-                : `${baseUrl[lang]}/${paroleChiave[keyword][lang]
+                ? baseUrl[status][lang]
+                : `${baseUrl[status][lang]}/${paroleChiave[keyword][lang]
                     .toLowerCase()
                     .replaceAll(' ', '-')}`
             }

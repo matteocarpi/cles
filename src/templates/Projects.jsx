@@ -31,6 +31,7 @@ const Sidebar = styled.div`
   top: calc(80px + 15.5vw);
   @media (min-width: 768px) {
     position: sticky;
+    width: 25%;
   }
 `
 
@@ -115,7 +116,7 @@ function Projects({ pageContext, data }) {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(0)
 
-  const { area, lang, status } = pageContext
+  const { area, lang, status, endYear } = pageContext
 
   const { isMobile } = useResponsiveness()
 
@@ -175,7 +176,9 @@ function Projects({ pageContext, data }) {
               setLoading={setLoading}
               value={searchQuery}
             />
-            {!isMobile && status === 'aperto' && <KeyWordNavigation />}
+            {!isMobile && endYear > 2014 && (
+              <KeyWordNavigation status={status} />
+            )}
           </Tools>
         </Sidebar>
         <Container>
