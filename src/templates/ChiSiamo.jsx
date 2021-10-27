@@ -140,6 +140,13 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
       <div id="team">
         <PageSection title={data.team.titolo[lang]} noCollapse>
           <BigText>{data.team.descrizione[lang]}</BigText>
+          <TextBlock
+          // dangerouslySetInnerHTML={{
+          //   __html: data.team.secondoParagrafo[lang],
+          // }}
+          >
+            <p>{data.team.secondoParagrafo[lang]}</p>
+          </TextBlock>
         </PageSection>
         <People
           departments={departments}
@@ -217,6 +224,10 @@ export const data = graphql`
             en
           }
           descrizione {
+            it
+            en
+          }
+          secondoParagrafo {
             it
             en
           }

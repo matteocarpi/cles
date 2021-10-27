@@ -10,7 +10,7 @@ const Container = styled.section`
   box-sizing: border-box;
   padding: 20px 24px 60px 24px;
   @media (min-width: 769px) {
-    padding: 0 40px 80px 40px;
+    padding: 0 40px 80px 20px;
     width: 100%;
     display: flex;
     align-items: flex-start;
