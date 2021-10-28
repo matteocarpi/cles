@@ -1,16 +1,14 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
 
-import { stripHTML } from '../../utils'
 import useResponsiveness from '../../hooks/useResponsiveness'
 
-import SmallText from '../SmallText'
 import FirstNews from '../FirstNews'
 import SectionTitleMobile from '../SectionTitleMobile'
 import WatchAllNews from '../WatchAllNews'
 import AppearingText from '../AppearingText'
+import NewsPreview from '../NewsPreview'
 
 const Wrapper = styled.section`
   width: 100%;
@@ -72,37 +70,6 @@ const NewsListContainer = styled.section`
     `}
 `
 
-const NewsPreview = styled.article`
-  border: solid 5px ${({ theme }) => theme.yellow};
-  padding: 24px;
-  margin-bottom: 30px;
-  width: 100%;
-  max-width: 725px;
-
-  @media (min-width: 768px) {
-    margin-bottom: 80px;
-  }
-`
-
-const NewsDate = styled(SmallText)`
-  padding-bottom: 40px;
-`
-
-const NewsTitle = styled.h5`
-  margin: 40px 0;
-`
-
-const NewsExcerpt = styled.p``
-
-const ReadMore = styled(Link)`
-  color: ${({ theme }) => theme.yellow};
-  &:visited {
-    color: ${({ theme }) => theme.yellow};
-  }
-  font-weight: 600;
-  text-decoration: underline;
-`
-
 const Title = styled(motion.h3)`
   max-width: 725px;
   margin-left: auto;
@@ -112,7 +79,7 @@ const AppearingTitle = styled(AppearingText)`
   margin-bottom: 40px;
 `
 
-export default function NewsList({ news, title, lang, isNewsPage }) {
+export default function NewsList({ news, title, isNewsPage }) {
   const { isMobile } = useResponsiveness()
 
   const newsStart = isMobile ? 0 : 1
@@ -133,14 +100,7 @@ export default function NewsList({ news, title, lang, isNewsPage }) {
           <NewsListContainer isNewsPage={isNewsPage}>
             <FirstNews news={news[0]} isNewsPage={isNewsPage} />
             {news.slice(newsStart).map(n => (
-              <NewsPreview key={n.id}>
-                <NewsDate>{n.date}</NewsDate>
-                <NewsTitle>{n.title}</NewsTitle>
-                <NewsExcerpt>{`${stripHTML(n.excerpt)}...`}</NewsExcerpt>
-                <ReadMore to="#">
-                  {lang === 'it' ? ' Leggi Tutto ' : 'Read More'}{' '}
-                </ReadMore>
-              </NewsPreview>
+              <NewsPreview key={n.id} {...n} />
             ))}
           </NewsListContainer>
         </HomeSection>

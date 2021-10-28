@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import useLang from '../../hooks/useLang'
 
 import { stripHTML } from '../../utils'
 import SmallText from '../SmallText'
@@ -109,7 +110,10 @@ const Image = styled(GatsbyImage)`
   width: 100%;
 `
 
-export default function FirstNews({ lang, news, isNewsPage }) {
+export default function FirstNews({ news, isNewsPage }) {
+  const { lang: originalLang } = useLang()
+  const lang = news.newsData.tradotta ? originalLang : 'it'
+
   const data = useStaticQuery(graphql`
     query FirsNewsImage {
       defaultImage: file(name: { eq: "default-image" }) {
@@ -119,6 +123,21 @@ export default function FirstNews({ lang, news, isNewsPage }) {
       }
     }
   `)
+
+  const content = {
+    title: {
+      it: news.title,
+      en: news.newsData.en.titolo,
+    },
+    content: {
+      it: news.excerpt,
+      en: news.newsData.en.contenuto,
+    },
+    url: {
+      it: news.originalLang === 'it' ? news.slug : `/${lang}/${news.slug}`,
+      en: news.newsData.en.url,
+    },
+  }
 
   const image = getImage(
     news.featuredImage?.node.localFile ?? data.defaultImage,
@@ -130,9 +149,9 @@ export default function FirstNews({ lang, news, isNewsPage }) {
         <Arch />
         <TextContainer key={news.id}>
           <NewsDate>{news.date}</NewsDate>
-          <NewsTitle>{news.title}</NewsTitle>
+          <NewsTitle>{content.title[lang]}</NewsTitle>
           <NewsExcerpt>{`${stripHTML(
-            news.excerpt.slice(0, 200),
+            content.content[lang].slice(0, 200),
           )}...`}</NewsExcerpt>
           <ReadMore to="#">
             {lang === 'it' ? ' Leggi Tutto ' : 'Read More'}{' '}
@@ -146,7 +165,7 @@ export default function FirstNews({ lang, news, isNewsPage }) {
             <C />
           </CWrapper>
         </Separator>
-        <Image image={image} alt={news.title} />
+        <Image image={image} alt={content.title[lang]} />
       </Container>
     </Wrapper>
   )
