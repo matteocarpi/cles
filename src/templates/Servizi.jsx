@@ -26,11 +26,19 @@ const RestrictedText = styled.h4`
 const Areas = styled.section`
   margin-top: 50px;
   margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    margin: 90px 0;
+  }
 `
 
 const Projects = styled.section`
   margin-top: 50px;
   margin-bottom: 60px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 90px;
+  }
 `
 
 const ClosedProjectsContainer = styled.div`
@@ -47,10 +55,18 @@ const ClosedProjectsLink = styled(Link)`
     padding-bottom: 0;
     margin-bottom: -5px;
   }
+
+  @media (min-width: 768px) {
+    padding: 20px 0;
+  }
 `
 
 const StyledReadMoreLink = styled(ReadMoreLink)`
   margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 10px;
+  }
 `
 export default function Servizi({ pageContext, data: pageData }) {
   const [rect, ref] = useClientRect()

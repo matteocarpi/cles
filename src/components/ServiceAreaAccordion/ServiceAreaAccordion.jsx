@@ -52,10 +52,18 @@ const DesktopImageContainer = styled.div`
 
 const Description = styled.h5`
   padding: 20px 0;
+
+  @media (min-width: 768px) {
+    padding: 40px 0 60px 0;
+  }
 `
 
 const ServiziList = styled.ul`
   margin: 20px 0;
+
+  @media (min-width: 768px) {
+    margin-bottom: 15px;
+  }
 `
 
 const Servizio = styled.li`

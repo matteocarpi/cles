@@ -12,6 +12,16 @@ const Container = styled.article`
   &:last-child {
     border-bottom: 2px solid ${({ theme }) => theme.gray};
   }
+
+  @media (min-width: 768px) {
+    padding: 30px 0;
+    &:last-child {
+      header {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+      }
+    }
+  }
 `
 const StyledPlusButton = styled(PlusButton)`
   transform: translateY(3px);

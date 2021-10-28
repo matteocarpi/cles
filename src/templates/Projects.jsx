@@ -17,11 +17,11 @@ import PageNavigation from '../components/PageNavigation/PageNavigation'
 const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
-  margin-top: calc(80px + 15.5vw);
+  margin-top: calc(130px + 15.5vw);
   padding: 0 20px;
 
   @media (min-width: 768px) {
-    margin-bottom: 90px;
+    margin-bottom: 50px;
     padding: 0 40px;
     display: flex;
   }
@@ -40,7 +40,7 @@ const Container = styled.main`
   flex-direction: column;
   width: 100%;
   @media (min-width: 768px) {
-    margin-bottom: 40px;
+    margin-top: -40px;
     width: calc(100% - 80px - 26vw);
   }
 `
@@ -106,7 +106,7 @@ const BottomNavigation = styled.section`
   align-items: flex-end;
 
   @media (min-width: 768px) {
-    margin: 40px 0;
+    margin-bottom: 90px;
     flex-direction: row;
     align-items: center;
     padding: 0 40px;

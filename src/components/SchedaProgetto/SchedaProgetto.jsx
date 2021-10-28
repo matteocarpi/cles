@@ -24,6 +24,11 @@ const Container = styled.section`
 
 const Titolo = styled.h6`
   margin-top: 30px;
+
+  @media (min-width: 768px) {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
 `
 
 const InfoWrapper = styled.article`

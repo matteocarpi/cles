@@ -14,7 +14,7 @@ const Container = styled.div`
   margin-top: 40px;
   border-top: solid 1px ${({ theme }) => theme.gray};
   padding-top: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 `
 
 const NavItem = styled(Link)`
