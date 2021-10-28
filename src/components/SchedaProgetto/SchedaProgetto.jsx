@@ -46,8 +46,9 @@ const InfoHalf = styled.div`
 const InfoContainer = styled.article`
   margin-top: 20px;
   &:first-child {
-    margin-top: 30px;
+    margin-top: ${({ reduced }) => reduced && '30px'};
   }
+  width: 50%;
 `
 
 const Label = styled.p`
@@ -167,7 +168,7 @@ const ReducedProject = ({
         <Text>{committente}</Text>
       </InfoContainer>
 
-      <InfoContainer>
+      <InfoContainer reduced>
         <Label>{schedaProgettoTitles.periodo[lang]}</Label>
         <Text>
           {annoDiInizio} - {annoDiFine}
