@@ -18,12 +18,13 @@ const Input = styled.input`
   border: solid 2px ${({ theme }) => theme.gray};
 
   transition: 0.3s;
-  ${({ focused }) =>
+  ${({ focused, theme }) =>
     focused &&
     css`
       border-top: solid 2px rgba(0, 0, 0, 0);
       border-right: solid 2px rgba(0, 0, 0, 0);
       border-left: solid 2px rgba(0, 0, 0, 0);
+      border-bottom: solid 2px ${theme.yellow};
       padding-top: 2px;
       padding-left: 0;
       transition: 0.3s;
@@ -38,6 +39,12 @@ const LoupeContainer = styled.div`
   position: absolute;
   right: 10px;
   top: 5px;
+  svg {
+    line,
+    circle {
+      stroke: ${({ theme, searching }) => searching && theme.yellow};
+    }
+  }
 `
 
 export default function SearchBox({ setValue, setLoading }) {
@@ -70,7 +77,7 @@ export default function SearchBox({ setValue, setLoading }) {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       />
-      <LoupeContainer>
+      <LoupeContainer searching={searching}>
         <Loupe />
       </LoupeContainer>
     </Container>
