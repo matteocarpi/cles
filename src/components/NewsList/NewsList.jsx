@@ -14,8 +14,8 @@ import AppearingText from '../AppearingText'
 
 const Wrapper = styled.section`
   width: 100%;
-  padding: 24px;
-  padding-bottom: 60px;
+  padding: ${({ isNewsPage }) => (isNewsPage ? '0 24px' : '24px')};
+  padding-bottom: ${({ isNewsPage }) => (isNewsPage ? '0 24px' : '24px')};
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -48,7 +48,8 @@ const Wrapper = styled.section`
 `
 
 const HomeSection = styled.section`
-  border-top: solid 1px ${({ theme }) => theme.gray};
+  border-top: solid 1px
+    ${({ theme, noBorder }) => (noBorder ? 'rgba(0, 0, 0, 0)' : theme.gray)};
   width: 100%;
   @media (min-width: 769px) {
     border: none;
@@ -70,7 +71,7 @@ const NewsListContainer = styled.section`
 const NewsPreview = styled.article`
   border: solid 5px ${({ theme }) => theme.yellow};
   padding: 24px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   width: 100%;
   max-width: 800px;
 `
@@ -103,19 +104,23 @@ const AppearingTitle = styled(AppearingText)`
   margin-bottom: 40px;
 `
 
-export default function NewsList({ news, title, lang }) {
+export default function NewsList({ news, title, lang, isNewsPage }) {
   const { isMobile } = useResponsiveness()
 
   const newsStart = isMobile ? 0 : 1
 
   return (
     <>
-      <Wrapper id="news" dark>
-        <HomeSection>
-          <SectionTitleMobile>News</SectionTitleMobile>
-          <AppearingTitle component={Title} maxStrLength={40}>
-            {title}
-          </AppearingTitle>
+      <Wrapper id="news" dark={!isNewsPage} isNewsPage={isNewsPage}>
+        <HomeSection noBorder>
+          {!isNewsPage && (
+            <>
+              <SectionTitleMobile>News</SectionTitleMobile>
+              <AppearingTitle component={Title} maxStrLength={40}>
+                {title}
+              </AppearingTitle>
+            </>
+          )}
 
           <NewsListContainer>
             <FirstNews news={news[0]} />
@@ -131,7 +136,7 @@ export default function NewsList({ news, title, lang }) {
             ))}
           </NewsListContainer>
         </HomeSection>
-        <WatchAllNews />
+        {!isNewsPage && <WatchAllNews />}
       </Wrapper>
     </>
   )

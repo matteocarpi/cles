@@ -103,6 +103,7 @@ const ReadMore = styled(Link)`
 const Image = styled(GatsbyImage)`
   border: solid 5px ${({ theme }) => theme.yellow};
   max-height: 340px;
+  width: 100%;
 `
 
 export default function FirstNews({ lang, news }) {

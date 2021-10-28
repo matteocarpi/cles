@@ -6,7 +6,9 @@ import ArrowLeft from '../../assets/arrow-left.svg'
 
 const Container = styled.div`
   display: flex;
-  align-items: cener;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 24px;
 `
 
 const PageButton = styled.button`
@@ -31,10 +33,15 @@ const Page = styled.h5`
     selected ? `2px solid  ${theme.yellow}` : 'none'};
 `
 
-export default function PageNavigation({ pages, setCurrentPage, currentPage }) {
+export default function PageNavigation({
+  pages,
+  setCurrentPage,
+  currentPage,
+  className,
+}) {
   return (
     pages.length > 1 && (
-      <Container>
+      <Container className={className}>
         {currentPage !== 0 && (
           <PageButton
             key="arrow-left"

@@ -12,7 +12,7 @@ import useResponsiveness from '../hooks/useResponsiveness'
 import KeyWordNavigation from '../components/KeyWordNavigation'
 import SearchBox from '../components/SearchBox'
 import Loading from '../components/Loading/Loading'
-import PageNavigation from '../components/PageNavigation/PageNavigation'
+import PageNavigation from '../components/PageNavigation'
 
 const Wrapper = styled.div`
   align-items: flex-start;
