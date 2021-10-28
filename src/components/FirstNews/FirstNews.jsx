@@ -146,7 +146,7 @@ export default function FirstNews({ lang, news, isNewsPage }) {
             <C />
           </CWrapper>
         </Separator>
-        <Image image={image} />
+        <Image image={image} alt={news.title} />
       </Container>
     </Wrapper>
   )

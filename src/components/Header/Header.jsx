@@ -113,8 +113,11 @@ const NavItem = styled(Link)`
     isLangSwitch ? 'underline' : 'none'};
   padding-bottom: 5px;
 
-  border-bottom: solid 3px
-    ${({ theme, isActive }) => (isActive ? theme.yellow : 'none')};
+  ${({ isActive, theme }) =>
+    isActive &&
+    css`
+      border-bottom: solid 3px ${theme.yellow};
+    `}
 `
 
 const MenuButton = styled.button``

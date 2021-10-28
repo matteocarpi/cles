@@ -244,7 +244,7 @@ exports.createPages = async function ({ actions, graphql }) {
       context: {
         lang,
         location: { pathname: path },
-        titolo: 'News',
+        title: 'News',
       },
     })
   })

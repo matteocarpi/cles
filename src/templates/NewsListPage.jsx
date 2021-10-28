@@ -29,6 +29,7 @@ function NewsListPage({ pageContext, data: pageData }) {
     itemsPerPage: 10,
   })
 
+  console.log(title)
   return (
     <Layout title={title} lang={lang} location={location}>
       <PageIntro
