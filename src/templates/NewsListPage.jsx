@@ -31,12 +31,12 @@ function NewsListPage({ pageContext, data: pageData }) {
 
   return (
     <Layout title={title} lang={lang} location={location}>
+      <PageIntro
+        graphic={pageData.graphic.childImageSharp.gatsbyImageData}
+        image={pageData.image.childImageSharp.gatsbyImageData}
+        text={pageData.wpPage.newsPageData.description[lang]}
+      />
       <Container>
-        <PageIntro
-          graphic={pageData.graphic.childImageSharp.gatsbyImageData}
-          image={pageData.image.childImageSharp.gatsbyImageData}
-          text={pageData.wpPage.newsPageData.description[lang]}
-        />
         <NewsList isNewsPage news={currentItems} lang={lang} />
         <StyledPageNavigation
           pages={pages}

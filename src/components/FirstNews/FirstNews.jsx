@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
   }
 `
 
