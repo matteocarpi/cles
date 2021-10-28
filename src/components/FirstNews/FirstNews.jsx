@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   display: none;
   box-sizing: border-box;
   width: 100%;
+  max-width: 725px;
   @media (min-width: 769px) {
     display: flex;
     flex-direction: column;
@@ -20,15 +21,16 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   position: relative;
-  max-width: 800px;
+  max-width: ${({ isNewsPage }) => (isNewsPage ? '1100px' : '800px')};
 `
 
 const Arch = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 150px;
   left: 0;
+  right: 150px;
+  width: 750px;
   transform: translateX(-50%);
   border: solid 5px ${({ theme }) => theme.yellow};
   border-right: none;
@@ -45,6 +47,7 @@ const TextContainer = styled.article`
     max-height: 340px;
   }
 `
+
 const Separator = styled.div`
   height: 80px;
   display: flex;
@@ -106,7 +109,7 @@ const Image = styled(GatsbyImage)`
   width: 100%;
 `
 
-export default function FirstNews({ lang, news }) {
+export default function FirstNews({ lang, news, isNewsPage }) {
   const data = useStaticQuery(graphql`
     query FirsNewsImage {
       defaultImage: file(name: { eq: "default-image" }) {
@@ -123,12 +126,14 @@ export default function FirstNews({ lang, news }) {
 
   return (
     <Wrapper>
-      <Container>
+      <Container isNewsPage={isNewsPage}>
         <Arch />
         <TextContainer key={news.id}>
           <NewsDate>{news.date}</NewsDate>
           <NewsTitle>{news.title}</NewsTitle>
-          <NewsExcerpt>{`${stripHTML(news.excerpt)}...`}</NewsExcerpt>
+          <NewsExcerpt>{`${stripHTML(
+            news.excerpt.slice(0, 200),
+          )}...`}</NewsExcerpt>
           <ReadMore to="#">
             {lang === 'it' ? ' Leggi Tutto ' : 'Read More'}{' '}
           </ReadMore>

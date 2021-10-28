@@ -8,9 +8,9 @@ import useLang from '../../hooks/useLang'
 const Wrapper = styled(Link)`
   display: flex;
   justify-content: flex-start;
-  /* overflow-x: hidden; */
   width: 100vw;
   margin-top: 20px;
+  margin-bottom: 30px;
 `
 
 const speed = 3

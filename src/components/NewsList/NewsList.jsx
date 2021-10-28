@@ -20,6 +20,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   align-items: flex-end;
   overflow-x: hidden;
+  overflow-y: hidden;
 
   ${({ dark, theme }) =>
     dark &&
@@ -42,8 +43,8 @@ const Wrapper = styled.section`
           border-top: none;
         }
       `}
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: ${({ isNewsPage }) => (isNewsPage ? 0 : '40px')};
+    padding-right: ${({ isNewsPage }) => (isNewsPage ? 0 : '40px')};
   }
 `
 
@@ -53,12 +54,8 @@ const HomeSection = styled.section`
   width: 100%;
   @media (min-width: 769px) {
     border: none;
-    margin-top: 60px;
+    margin-top: 0px;
     padding: 0;
-  }
-
-  @media (min-width: 1440px) {
-    margin-top: 200px;
   }
 `
 
@@ -66,6 +63,13 @@ const NewsListContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
+  ${({ isNewsPage }) =>
+    isNewsPage &&
+    css`
+      max-width: 1100px;
+      margin: 0 auto;
+    `}
 `
 
 const NewsPreview = styled.article`
@@ -73,7 +77,11 @@ const NewsPreview = styled.article`
   padding: 24px;
   margin-bottom: 30px;
   width: 100%;
-  max-width: 800px;
+  max-width: 725px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 80px;
+  }
 `
 
 const NewsDate = styled(SmallText)`
@@ -96,7 +104,7 @@ const ReadMore = styled(Link)`
 `
 
 const Title = styled(motion.h3)`
-  max-width: 800px;
+  max-width: 725px;
   margin-left: auto;
 `
 
@@ -122,8 +130,8 @@ export default function NewsList({ news, title, lang, isNewsPage }) {
             </>
           )}
 
-          <NewsListContainer>
-            <FirstNews news={news[0]} />
+          <NewsListContainer isNewsPage={isNewsPage}>
+            <FirstNews news={news[0]} isNewsPage={isNewsPage} />
             {news.slice(newsStart).map(n => (
               <NewsPreview key={n.id}>
                 <NewsDate>{n.date}</NewsDate>

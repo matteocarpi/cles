@@ -9,8 +9,14 @@ import PageIntro from '../components/PageIntro'
 import NewsList from '../components/NewsList'
 import PageNavigation from '../components/PageNavigation'
 
+const Container = styled.section`
+  max-width: 1100px;
+  margin: 0 auto;
+`
+
 const StyledPageNavigation = styled(PageNavigation)`
   margin-bottom: 60px;
+  margin-right: 0;
 `
 
 function NewsListPage({ pageContext, data: pageData }) {
@@ -25,17 +31,19 @@ function NewsListPage({ pageContext, data: pageData }) {
 
   return (
     <Layout title={title} lang={lang} location={location}>
-      <PageIntro
-        graphic={pageData.graphic.childImageSharp.gatsbyImageData}
-        image={pageData.image.childImageSharp.gatsbyImageData}
-        text={pageData.wpPage.newsPageData.description[lang]}
-      />
-      <NewsList isNewsPage news={currentItems} lang={lang} />
-      <StyledPageNavigation
-        pages={pages}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      <Container>
+        <PageIntro
+          graphic={pageData.graphic.childImageSharp.gatsbyImageData}
+          image={pageData.image.childImageSharp.gatsbyImageData}
+          text={pageData.wpPage.newsPageData.description[lang]}
+        />
+        <NewsList isNewsPage news={currentItems} lang={lang} />
+        <StyledPageNavigation
+          pages={pages}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      </Container>
     </Layout>
   )
 }
