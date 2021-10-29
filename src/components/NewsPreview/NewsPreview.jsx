@@ -54,7 +54,7 @@ export default function NewsPreview({ title, date, excerpt, slug, newsData }) {
       en: newsData.en.contenuto,
     },
     url: {
-      it: originalLang === 'it' ? slug : `/${lang}/${slug}`,
+      it: originalLang === 'it' ? `/${slug}` : `/${lang}/${slug}`,
       en: newsData.en.url,
     },
   }

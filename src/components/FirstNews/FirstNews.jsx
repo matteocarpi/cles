@@ -96,6 +96,8 @@ const NewsTitle = styled.h5`
 const NewsExcerpt = styled.p``
 
 const ReadMore = styled(Link)`
+  position: relative;
+  z-index: 1;
   color: ${({ theme }) => theme.yellow};
   &:visited {
     color: ${({ theme }) => theme.yellow};
@@ -134,7 +136,7 @@ export default function FirstNews({ news, isNewsPage }) {
       en: news.newsData.en.contenuto,
     },
     url: {
-      it: news.originalLang === 'it' ? news.slug : `/${lang}/${news.slug}`,
+      it: originalLang === 'it' ? `/${news.slug}` : `/${lang}/${news.slug}`,
       en: news.newsData.en.url,
     },
   }
@@ -153,7 +155,7 @@ export default function FirstNews({ news, isNewsPage }) {
           <NewsExcerpt>{`${stripHTML(
             content.content[lang].slice(0, 200),
           )}...`}</NewsExcerpt>
-          <ReadMore to="#">
+          <ReadMore to={content.url[lang]}>
             {lang === 'it' ? ' Leggi Tutto ' : 'Read More'}{' '}
           </ReadMore>
         </TextContainer>
