@@ -10,6 +10,10 @@ import { backToNews } from '../const'
 const Wrapper = styled.main`
   width: 100%;
   padding: 0 40px;
+
+  @media (max-width: 767px) {
+    padding: 0 20px;
+  }
 `
 
 const Container = styled.section`
@@ -18,6 +22,11 @@ const Container = styled.section`
   width: 100%;
   display: flex;
   align-items: flex-start;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    margin-top: 130px;
+  }
 `
 
 const Sidebar = styled.section`
@@ -25,6 +34,13 @@ const Sidebar = styled.section`
   top: calc(15.5vw + 130px);
   width: 52%;
   padding-right: 40px;
+
+  @media (max-width: 767px) {
+    position: unset;
+    margin: 0 auto 40px auto;
+    margin-bottom: 40px;
+    padding-right: 0;
+  }
 `
 
 const Content = styled.article`
@@ -58,6 +74,10 @@ const BackToNews = styled(Link)`
   svg {
     width: 30px;
     height: 30px;
+  }
+
+  @media (max-width: 767px) {
+    margin: 60px 0;
   }
 `
 
