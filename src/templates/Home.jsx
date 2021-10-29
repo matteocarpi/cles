@@ -10,7 +10,7 @@ export default function Home({ pageContext, data }) {
 }
 
 export const data = graphql`
-  query HomeQuery {
+  query HomeQuery($lang: String) {
     homePage: wpPage(id: { eq: "cG9zdDoxNjI=" }) {
       homeData {
         title {
@@ -97,7 +97,7 @@ export const data = graphql`
           }
           slug
           excerpt
-          date(formatString: "DD.MM.YYYY")
+          date(locale: $lang, formatString: "DD MMMM YYYY")
           newsData {
             tradotta
             en {

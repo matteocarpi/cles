@@ -102,3 +102,8 @@ export const all = {
   it: 'Tutti',
   en: 'All',
 }
+
+export const backToNews = {
+  it: 'Torna alle news',
+  en: 'Back to news list',
+}

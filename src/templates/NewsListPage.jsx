@@ -52,7 +52,7 @@ function NewsListPage({ pageContext, data: pageData }) {
 export default NewsListPage
 
 export const data = graphql`
-  query NewsPage {
+  query NewsPage($lang: String) {
     wpPage(id: { eq: "cG9zdDo1NjI=" }) {
       title
       newsPageData {
@@ -88,7 +88,7 @@ export const data = graphql`
           }
           slug
           excerpt
-          date(formatString: "DD.MM.YYYY")
+          date(locale: $lang, formatString: "DD MMMM YYYY")
           newsData {
             tradotta
             en {

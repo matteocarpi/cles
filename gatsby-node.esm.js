@@ -259,11 +259,12 @@ exports.createPages = async function ({ actions, graphql }) {
           ? `/${news.slug}`
           : news.newsData.url || `/en/${news.slug}`
 
+      const parentUrl = lang === defaultLang ? `/news` : `${lang}/news`
+
       actions.createPage({
         path,
         component: require.resolve(`./src/templates/NewsPage.jsx`),
-        id: news.id,
-        lang,
+        context: { id: news.id, lang, parentUrl },
       })
     })
   })

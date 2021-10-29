@@ -111,7 +111,7 @@ export const data = graphql`
           }
           slug
           excerpt
-          date(formatString: "DD.MM.YYYY")
+          date(locale: "it", formatString: "DD MMMM YYYY")
           newsData {
             tradotta
             en {
