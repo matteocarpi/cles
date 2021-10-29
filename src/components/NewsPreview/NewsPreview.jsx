@@ -40,9 +40,9 @@ const ReadMore = styled(Link)`
 
 export default function NewsPreview({ title, date, excerpt, slug, newsData }) {
   const { lang: originalLang } = useLang()
+  const tradotta = !!newsData.tradotta
 
   const lang = tradotta ? originalLang : 'it'
-  const tradotta = !!newsData.tradotta
 
   const content = {
     title: {
