@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import usePagination from '../hooks/usePagination'
+import useClientRect from '../hooks/useClientRect'
 
 import Layout from '../components/Layout'
 import PageIntro from '../components/PageIntro'
@@ -20,6 +21,7 @@ const StyledPageNavigation = styled(PageNavigation)`
 `
 
 function NewsListPage({ pageContext, data: pageData }) {
+  const [, ref] = useClientRect()
   const { lang, title, location } = pageContext
 
   const newsList = pageData.newsList.edges.map(n => n.node)
@@ -29,7 +31,6 @@ function NewsListPage({ pageContext, data: pageData }) {
     itemsPerPage: 10,
   })
 
-  console.log(title)
   return (
     <Layout title={title} lang={lang} location={location}>
       <PageIntro
@@ -37,7 +38,7 @@ function NewsListPage({ pageContext, data: pageData }) {
         image={pageData.image.childImageSharp.gatsbyImageData}
         text={pageData.wpPage.newsPageData.description[lang]}
       />
-      <Container>
+      <Container ref={ref}>
         <NewsList isNewsPage news={currentItems} lang={lang} />
         <StyledPageNavigation
           pages={pages}

@@ -120,7 +120,7 @@ const PageSection = React.forwardRef(
           fullWidth={fullWidth}
         >
           <SectionTitleMobile>{title}</SectionTitleMobile>
-          {noCollapse || expanded ? children : children[0]}
+          {noCollapse || expanded ? children : children && children[0]}
         </Container>
         {!noCollapse && (
           <ReadMore type="button" onClick={() => setExpanded(!expanded)}>

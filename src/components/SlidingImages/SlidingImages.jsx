@@ -91,7 +91,7 @@ export default function SlidingImages({
 
   const inView = useIntersection({
     element: ref?.current,
-    threshold: 1,
+    threshold: 0.75,
     rootMargin: `${elementHeight}px 0px 0px 0px`,
   })
 
