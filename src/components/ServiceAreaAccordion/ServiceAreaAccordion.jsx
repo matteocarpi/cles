@@ -21,6 +21,12 @@ const Wrapper = styled.div`
         padding-bottom: 20px;
       }
     }
+
+    @media (min-width: 768px) {
+      article {
+        border-bottom: 2px solid ${({ theme }) => theme.gray};
+      }
+    }
   }
 `
 

@@ -9,9 +9,6 @@ const Container = styled.article`
   box-sizing: border-box;
   border-top: 2px solid ${({ theme }) => theme.gray};
   padding: 20px 0;
-  &:last-child {
-    border-bottom: 2px solid ${({ theme }) => theme.gray};
-  }
 
   @media (min-width: 768px) {
     padding: 30px 0;

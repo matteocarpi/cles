@@ -14,7 +14,7 @@ const Container = styled.div`
   padding-top: 35px;
   padding: 0px 24px;
   overflow-x: hidden;
-  transform: scale(1.27) translateX(-10%);
+  transform: scale(1.1) translateX(-10%);
   margin: 60px 0;
   @media (min-width: 769px) {
     margin-top: ${({ isNewsPage }) => (isNewsPage ? '-40px' : '40px')};
