@@ -37,6 +37,15 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+      clients: wpPage(id: { eq: "cG9zdDo0MjE=" }) {
+        id
+        slug
+        clientiData {
+          uri {
+            en
+          }
+        }
+      }
     }
   `)
 
@@ -266,6 +275,24 @@ exports.createPages = async function ({ actions, graphql }) {
         component: require.resolve(`./src/templates/NewsPage.jsx`),
         context: { id: news.id, lang, parentUrl },
       })
+    })
+  })
+
+  // Clients
+  languages.forEach(lang => {
+    const path = {
+      it: data.clients.slug,
+      en: data.clients.clientiData.uri.en,
+    }
+
+    actions.createPage({
+      path: path[lang],
+      component: require.resolve('./src/templates/Clients.jsx'),
+      context: {
+        id: data.clients.id,
+        lang,
+        location: { pathname: path[lang] },
+      },
     })
   })
 }

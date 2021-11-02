@@ -31,12 +31,14 @@ function NewsListPage({ pageContext, data: pageData }) {
     itemsPerPage: 10,
   })
 
+  console.log(pageData)
+
   return (
     <Layout title={title} lang={lang} location={location}>
       <PageIntro
         graphic={pageData.graphic.childImageSharp.gatsbyImageData}
         image={pageData.image.childImageSharp.gatsbyImageData}
-        text={pageData.wpPage.newsPageData.description[lang]}
+        text={pageData.wpPage.newsPageData.descriptiao[lang]}
       />
       <Container ref={ref}>
         <NewsList isNewsPage news={currentItems} lang={lang} />
@@ -57,7 +59,7 @@ export const data = graphql`
     wpPage(id: { eq: "cG9zdDo1NjI=" }) {
       title
       newsPageData {
-        description {
+        descriptiao {
           it
           en
         }

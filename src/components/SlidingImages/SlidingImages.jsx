@@ -8,16 +8,19 @@ import useIntersection from '../../hooks/useIntersection'
 const Container = styled.div`
   display: flex;
   flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
+  justify-content: center;
   align-items: center;
   padding-top: 35px;
   padding: 40px 24px;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
+  transform: scale(1.27) translateX(-10%);
 
   @media (min-width: 769px) {
     margin-top: 40px;
     width: 100%;
     max-width: 1300px;
     justify-content: flex-end;
+    transform: scale(1) translateX(0);
   }
 `
 

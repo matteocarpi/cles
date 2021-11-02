@@ -23,9 +23,10 @@ const Container = styled.section`
 const Description = styled(motion.h3)``
 
 const StyledSlidingImages = styled(SlidingImages)`
-  align-self: flex-end;
-
+  align-self: center;
+  width: 100%;
   @media (min-width: 769px) {
+    align-self: flex-end;
     padding: 0;
   }
 `
