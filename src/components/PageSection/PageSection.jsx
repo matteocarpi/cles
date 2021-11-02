@@ -70,7 +70,7 @@ const ReadMore = styled.button`
 
   @media (min-width: 769px) {
     justify-content: flex-end;
-    margin-bottom: 0;
+    margin-bottom: 60px;
     ${ReadMoreText} {
       margin-right: 40px;
     }
