@@ -11,6 +11,7 @@ const ScrollSpyContainer = styled.div`
   position: fixed;
   bottom: 40px;
   left: 40px;
+  z-index: 1;
   @media (max-width: 768px) {
     display: none;
   }
