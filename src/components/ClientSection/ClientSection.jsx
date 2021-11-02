@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -13,12 +13,19 @@ import 'swiper/components/pagination/pagination.min.css'
 
 import useResponsiveness from '../../hooks/useResponsiveness'
 
+import SwiperPagination from '../SwiperPagination'
+
 SwiperCore.use([Autoplay, Pagination])
 
 const Container = styled.article`
   padding-bottom: 40px;
   margin-bottom: 30px;
   border-bottom: solid 2px ${({ theme }) => theme.gray};
+`
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 const SwiperWrapper = styled.div`
@@ -50,6 +57,9 @@ const LogosContainer = styled.div`
 `
 
 export default function ClientSection({ titolo, loghi = [] }) {
+  const [swiper, setSwiper] = useState(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
+
   const { lang } = useLang()
   const { isMobile } = useResponsiveness()
 
@@ -74,13 +84,21 @@ export default function ClientSection({ titolo, loghi = [] }) {
 
   return (
     <Container>
-      <Title>{titolo[lang]}</Title>
+      <Header>
+        <Title>{titolo[lang]}</Title>
+        <SwiperPagination
+          slides={slides}
+          swiper={swiper}
+          currentSlide={currentSlide}
+        />
+      </Header>
 
       <SwiperWrapper>
         <Swiper
+          onSlideChangeTransitionEnd={s => setCurrentSlide(s.activeIndex)}
+          onSwiper={setSwiper}
           slidesPerView={isMobile ? 2 : 3}
           spaceBetween={50}
-          loop
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           modules={[Autoplay]}
           pagination
@@ -93,6 +111,7 @@ export default function ClientSection({ titolo, loghi = [] }) {
                     objectFit="contain"
                     objectPosition="50% 50%"
                     image={logo}
+                    alt="client logo"
                   />
                 ))}
               </LogosContainer>
