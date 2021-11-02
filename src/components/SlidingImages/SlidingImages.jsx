@@ -15,7 +15,7 @@ const Container = styled.div`
   padding: 0px 24px;
   overflow-x: hidden;
   transform: scale(1.27) translateX(-10%);
-
+  margin: 60px 0;
   @media (min-width: 769px) {
     margin-top: ${({ isNewsPage }) => (isNewsPage ? '-40px' : '40px')};
     width: 100%;
@@ -32,8 +32,11 @@ const GraphicContainer = styled(motion.div)`
   ${({ isNewsPage }) =>
     isNewsPage &&
     css`
-      margin-right: 150px;
-      padding-bottom: 200px;
+      padding-bottom: 50px;
+      @media (min-width: 768px) {
+        margin-right: 150px;
+        padding-bottom: 200px;
+      }
     `}
 `
 
