@@ -19,15 +19,23 @@ const Services = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-direction: column;
   margin-bottom: 90px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `
 
 const Sidebar = styled.div`
+  margin-bottom: 40px;
+
   @media (min-width: 768px) {
     position: sticky;
     top: calc(15.5vw + 100px);
     width: 300px;
     height: 400px;
+    margin-bottom: 0;
   }
 `
 
@@ -87,6 +95,7 @@ const StyledReadMoreLink = styled(ReadMoreLink)`
     margin-bottom: 10px;
   }
 `
+
 export default function Servizi({ pageContext, data: pageData }) {
   const [currImage, setCurrImage] = useState(0)
   const [rect, ref] = useClientRect()
