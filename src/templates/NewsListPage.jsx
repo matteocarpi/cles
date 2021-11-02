@@ -31,14 +31,15 @@ function NewsListPage({ pageContext, data: pageData }) {
     itemsPerPage: 10,
   })
 
-  console.log(pageData)
-
   return (
     <Layout title={title} lang={lang} location={location}>
       <PageIntro
         graphic={pageData.graphic.childImageSharp.gatsbyImageData}
         image={pageData.image.childImageSharp.gatsbyImageData}
         text={pageData.wpPage.newsPageData.descriptiao[lang]}
+        graphicStyles={{
+          transform: 'translateY(-10%)',
+        }}
       />
       <Container ref={ref}>
         <NewsList isNewsPage news={currentItems} lang={lang} />

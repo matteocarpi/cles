@@ -1,9 +1,10 @@
 import React, { useRef, useLayoutEffect } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import useIntersection from '../../hooks/useIntersection'
+import useLocation from '../../hooks/useLocation'
 
 const Container = styled.div`
   display: flex;
@@ -11,21 +12,29 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 35px;
-  padding: 40px 24px;
+  padding: 0px 24px;
   overflow-x: hidden;
   transform: scale(1.27) translateX(-10%);
 
   @media (min-width: 769px) {
-    margin-top: 40px;
+    margin-top: ${({ isNewsPage }) => (isNewsPage ? '-40px' : '40px')};
     width: 100%;
     max-width: 1300px;
     justify-content: flex-end;
     transform: scale(1) translateX(0);
+    margin-bottom: ${({ isNewsPage }) => (isNewsPage ? '-100px' : 0)};
   }
 `
 
 const GraphicContainer = styled(motion.div)`
   z-index: 1;
+
+  ${({ isNewsPage }) =>
+    isNewsPage &&
+    css`
+      margin-right: 150px;
+      padding-bottom: 200px;
+    `}
 `
 
 const PhotoContainer = styled(motion.div)``
@@ -88,6 +97,10 @@ export default function SlidingImages({
   className,
   reverse = false,
 }) {
+  const { location } = useLocation()
+
+  const isNewsPage = location.pathname.includes('news')
+
   const ref = useRef()
 
   const elementHeight = ref?.current?.offsetHeight ?? 0
@@ -112,8 +125,14 @@ export default function SlidingImages({
   const imageData = getImage(image)
 
   return (
-    <Container ref={ref} className={className} reverse={reverse}>
+    <Container
+      ref={ref}
+      className={className}
+      reverse={reverse}
+      isNewsPage={isNewsPage}
+    >
       <GraphicContainer
+        isNewsPage={isNewsPage}
         variants={reverse ? graphicVariantsReverse : graphicVariants}
         initial="hidden"
         animate={controls}

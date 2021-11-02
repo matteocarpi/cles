@@ -42,7 +42,13 @@ const Text = styled(AppearingText)`
   }
 `
 
-export default function PageIntro({ text, graphic, image, reverseImages }) {
+export default function PageIntro({
+  text,
+  graphic,
+  image,
+  reverseImages,
+  graphicStyle,
+}) {
   const { isMobile } = useResponsiveness()
 
   return (
@@ -54,6 +60,7 @@ export default function PageIntro({ text, graphic, image, reverseImages }) {
         graphic={graphic}
         image={image}
         reverse={reverseImages}
+        graphicStyle={graphicStyle}
       />
     </Container>
   )
