@@ -9,7 +9,8 @@ const Container = styled.div`
   overflow: hidden;
 `
 
-const Image = styled(BgImage)``
+const Image = styled(BgImage)`
+`
 
 const Mask = styled(GatsbyImage)`
   margin-bottom: 20px;

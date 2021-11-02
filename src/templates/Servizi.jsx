@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
@@ -13,22 +13,41 @@ import Accordion from '../components/Accordion/Accordion'
 import SchedaProgetto from '../components/SchedaProgetto/SchedaProgetto'
 import ReadMoreLink from '../components/ReadMoreLink'
 import ScrollSpy from '../components/ScrollSpy'
+import MaskedImage from '../components/MaskedImage'
 
-const Text = styled.h4``
+const Services = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 90px;
+`
 
-const RestrictedText = styled.h4`
+const Sidebar = styled.div`
   @media (min-width: 768px) {
-    width: calc(100% - 80px - 26vw);
-    margin-left: auto;
+    position: sticky;
+    top: calc(15.5vw + 100px);
+    width: 300px;
+    height: 400px;
   }
 `
+
+const ServicesMain = styled.div`
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: calc(100% - 80px - 26vw);
+  }
+`
+
+const Text = styled.h4``
 
 const Areas = styled.section`
   margin-top: 50px;
   margin-bottom: 40px;
 
   @media (min-width: 768px) {
-    margin: 90px 0;
+    margin-top: 90px;
+    margin-bottom: 0;
   }
 `
 
@@ -69,6 +88,7 @@ const StyledReadMoreLink = styled(ReadMoreLink)`
   }
 `
 export default function Servizi({ pageContext, data: pageData }) {
+  const [currImage, setCurrImage] = useState(0)
   const [rect, ref] = useClientRect()
 
   const [expandedArea, setExpandedArea] = useState(null)
@@ -86,6 +106,26 @@ export default function Servizi({ pageContext, data: pageData }) {
       label: data.progetti.titolo,
     },
   ]
+
+  const gallery = useMemo(
+    () =>
+      data.servizi.gallery.map(
+        img => img.localFile.childImageSharp.gatsbyImageData,
+      ),
+    [data.servizi.gallery],
+  )
+
+  useEffect(() => {
+    const interval = setInterval(
+      () =>
+        setCurrImage(currImg =>
+          currImg === gallery.length - 1 ? 0 : currImg + 1,
+        ),
+      5000,
+    )
+
+    return () => clearInterval(interval)
+  }, [gallery.length, setCurrImage])
 
   return (
     <Layout lang={lang} location={location} title={data.titolo[lang]}>
@@ -108,18 +148,25 @@ export default function Servizi({ pageContext, data: pageData }) {
         noSeparatorDesktop
         fullWidth
       >
-        <RestrictedText>{data.servizi.descrizione[lang]}</RestrictedText>
+        <Services>
+          <Sidebar>
+            <MaskedImage image={gallery[currImage]} />
+          </Sidebar>
+          <ServicesMain>
+            <Text>{data.servizi.descrizione[lang]}</Text>
 
-        <Areas>
-          {data.servizi.areeDiServizio.map(area => (
-            <ServiceAreaAccordion
-              {...area}
-              key={area.titolo[lang]}
-              expandedArea={expandedArea}
-              setExpandedArea={setExpandedArea}
-            />
-          ))}
-        </Areas>
+            <Areas>
+              {data.servizi.areeDiServizio.map(area => (
+                <ServiceAreaAccordion
+                  {...area}
+                  key={area.titolo[lang]}
+                  expandedArea={expandedArea}
+                  setExpandedArea={setExpandedArea}
+                />
+              ))}
+            </Areas>
+          </ServicesMain>
+        </Services>
       </PageSection>
 
       {/* Progetti */}
@@ -205,17 +252,17 @@ export const data = graphql`
             it
             en
           }
+          gallery {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 400)
+              }
+            }
+          }
           areeDiServizio {
             titolo {
               it
               en
-            }
-            gallery {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(width: 400)
-                }
-              }
             }
             descrizione {
               it
