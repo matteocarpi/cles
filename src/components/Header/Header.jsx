@@ -143,8 +143,8 @@ export default function Header() {
 
   const hasScrolled = useMemo(() => scrollY > 400, [scrollY])
 
-  const pageTitle = navigation.pages.find(
-    p => p.url[lang] === location?.pathname,
+  const pageTitle = navigation.pages.find(p =>
+    p.url[lang].includes(location?.pathname),
   )
 
   return (
