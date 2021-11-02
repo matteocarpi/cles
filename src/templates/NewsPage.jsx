@@ -36,6 +36,7 @@ const Sidebar = styled.section`
   padding-right: 40px;
 
   @media (max-width: 767px) {
+    display: none;
     position: unset;
     margin: 0 auto 40px auto;
     margin-bottom: 40px;
@@ -58,6 +59,8 @@ const Text = styled.article`
     margin-bottom: 30px;
   }
 `
+
+const MobileImage = styled(GatsbyImage)``
 
 const BackToNews = styled(Link)`
   width: 100%;
@@ -128,6 +131,7 @@ function NewsPage({ pageContext, data }) {
             />
           </Content>
         </Container>
+        <MobileImage image={image} />
         <BackToNews to={parentUrl}>
           <ArrowLeft />
           <h5>{backToNews[lang]}</h5>

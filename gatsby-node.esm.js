@@ -273,7 +273,7 @@ exports.createPages = async function ({ actions, graphql }) {
       actions.createPage({
         path,
         component: require.resolve(`./src/templates/NewsPage.jsx`),
-        context: { id: news.id, lang, parentUrl },
+        context: { id: news.id, lang, parentUrl, location: { pathname: path } },
       })
     })
   })
