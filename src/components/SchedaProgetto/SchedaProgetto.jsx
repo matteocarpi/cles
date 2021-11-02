@@ -48,7 +48,7 @@ const InfoContainer = styled.article`
   &:first-child {
     margin-top: ${({ reduced }) => reduced && '30px'};
   }
-  width: 50%;
+  /* width: 50%; */
 `
 
 const Label = styled.p`
