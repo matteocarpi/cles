@@ -12,7 +12,7 @@ import NewsPreview from '../NewsPreview'
 
 const Wrapper = styled.section`
   width: 100%;
-  padding: ${({ isNewsPage }) => (isNewsPage ? '0 24px' : '24px')};
+  padding: ${({ isNewsPage }) => (isNewsPage ? '0 24px' : '90px 24px 24px 0')};
   padding-bottom: ${({ isNewsPage }) => (isNewsPage ? '0 24px' : '24px')};
   display: flex;
   flex-direction: column;
@@ -73,11 +73,14 @@ const NewsListContainer = styled.section`
 const Title = styled(motion.h3)`
   max-width: 725px;
   margin-left: auto;
+  margin-bottom: 0;
 `
 
-const AppearingTitle = styled(AppearingText)`
-  margin-bottom: 40px;
+const TitleContainer = styled.div`
+  margin-bottom: 90px;
 `
+
+const AppearingTitle = styled(AppearingText)``
 
 export default function NewsList({ news, title, isNewsPage }) {
   const { isMobile } = useResponsiveness()
@@ -89,12 +92,12 @@ export default function NewsList({ news, title, isNewsPage }) {
       <Wrapper id="news" dark={!isNewsPage} isNewsPage={isNewsPage}>
         <HomeSection noBorder>
           {!isNewsPage && (
-            <>
+            <TitleContainer>
               <SectionTitleMobile>News</SectionTitleMobile>
               <AppearingTitle component={Title} maxStrLength={40}>
                 {title}
               </AppearingTitle>
-            </>
+            </TitleContainer>
           )}
 
           <NewsListContainer isNewsPage={isNewsPage}>
