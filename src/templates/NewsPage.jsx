@@ -60,7 +60,11 @@ const Text = styled.article`
   }
 `
 
-const MobileImage = styled(GatsbyImage)``
+const MobileImage = styled(GatsbyImage)`
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
 
 const BackToNews = styled(Link)`
   width: 100%;
