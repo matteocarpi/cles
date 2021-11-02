@@ -80,7 +80,7 @@ const BackToNews = styled(Link)`
   }
 
   @media (max-width: 767px) {
-    margin: 60px 0;
+    margin: 40px 0 60px 0;
   }
 `
 
