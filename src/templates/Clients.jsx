@@ -12,6 +12,10 @@ const Container = styled.section`
   margin-top: 20px;
   margin-bottom: 60px;
   padding: 0 20px;
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
+  }
 `
 
 function Clients({ data, pageContext }) {
