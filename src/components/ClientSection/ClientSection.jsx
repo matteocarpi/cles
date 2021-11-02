@@ -2,16 +2,18 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Autoplay } from 'swiper'
+import SwiperCore, { Autoplay, Pagination } from 'swiper'
 
 import { v4 as uuidv4 } from 'uuid'
 
 import useLang from '../../hooks/useLang'
 
 import 'swiper/swiper.min.css'
+import 'swiper/components/pagination/pagination.min.css'
+
 import useResponsiveness from '../../hooks/useResponsiveness'
 
-SwiperCore.use([Autoplay])
+SwiperCore.use([Autoplay, Pagination])
 
 const Container = styled.article`
   padding-bottom: 40px;
@@ -78,8 +80,10 @@ export default function ClientSection({ titolo, loghi = [] }) {
         <Swiper
           slidesPerView={isMobile ? 2 : 3}
           spaceBetween={50}
-          autoplay={{ delay: 5000 }}
+          loop
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
           modules={[Autoplay]}
+          pagination
         >
           {slides.map(slide => (
             <SwiperSlide key={slide.id}>
