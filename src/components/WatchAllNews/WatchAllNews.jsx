@@ -11,6 +11,10 @@ const Wrapper = styled(Link)`
   width: 100vw;
   margin-top: 20px;
   margin-bottom: 30px;
+
+  @media (min-width: 768px) {
+    margin-bottom: calc(90px - 24px);
+  }
 `
 
 const speed = 3
