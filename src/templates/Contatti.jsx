@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Layout from '../components/Layout'
+import ContactForm from '../components/ContactForm'
 
 const Wrapper = styled.main`
   margin-top: 124px;
@@ -154,8 +155,7 @@ function Contatti({ pageContext, data }) {
 
           <PageSlice>
             <Title>Scrivici</Title>
-
-
+            <ContactForm />
           </PageSlice>
         </Container>
       </Wrapper>

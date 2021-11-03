@@ -42,5 +42,6 @@ module.exports = {
     'react/jsx-curly-newline': off,
     'array-callback-return': off,
     'react/no-danger': off,
+    'react/jsx-no-bind': off,
   },
 }
