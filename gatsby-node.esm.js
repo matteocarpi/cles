@@ -46,6 +46,20 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+      contatti: wpPage(id: { eq: "cG9zdDo2MTM=" }) {
+        id
+        slug
+        title
+        contattiData {
+          tittolo {
+            it
+            en
+          }
+          iuerrelle {
+            en
+          }
+        }
+      }
     }
   `)
 
@@ -292,6 +306,25 @@ exports.createPages = async function ({ actions, graphql }) {
         id: data.clients.id,
         lang,
         location: { pathname: path[lang] },
+      },
+    })
+  })
+
+  // Contacts
+  languages.forEach(lang => {
+    const path = {
+      it: data.contatti.slug,
+      en: data.contatti.contattiData.iuerrelle[lang],
+    }
+
+    actions.createPage({
+      path: path[lang],
+      component: require.resolve('./src/templates/Contatti.jsx'),
+      context: {
+        id: data.contatti.id,
+        lang,
+        location: { pathname: path[lang] },
+        title: data.contatti.contattiData.tittolo[lang],
       },
     })
   })
