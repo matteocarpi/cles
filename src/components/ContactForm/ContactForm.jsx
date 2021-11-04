@@ -6,10 +6,26 @@ import * as Yup from 'yup'
 import useLang from '../../hooks/useLang'
 
 import FormInput from '../FormInput'
+import FormTextArea from '../FormTextArea/FormTextArea'
+import FormCheckbox from '../FormCheckbox'
+import FormSubmit from '../FormSubmit'
+import Link from '../Link'
 
-const Container = styled.section``
+const Container = styled.section`
+  padding-bottom: 60px;
+`
 
-export default function ContactForm() {
+const PrivacyTitle = styled.p`
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+`
+
+export default function ContactForm({ privacy }) {
   const { lang } = useLang()
 
   const mandatory = {
@@ -21,12 +37,14 @@ export default function ContactForm() {
     fullName: Yup.string().required(mandatory[lang]),
     email: Yup.string().email().required(mandatory[lang]),
     message: Yup.string().required(mandatory[lang]),
+    privacyAcceptance: Yup.boolean().required(),
   })
 
   const initialValues = {
     fullName: '',
     email: '',
     message: '',
+    privacyAcceptance: false,
   }
 
   const labels = {
@@ -60,7 +78,14 @@ export default function ContactForm() {
         <Form>
           <FormInput placeholder={labels.fullName[lang]} name="fullName" />
           <FormInput placeholder={labels.email[lang]} name="email" />
-          <button type="submit">Submit</button>
+          <FormTextArea placeholder={labels.message[lang]} name="message" />
+          <PrivacyTitle>Privacy Policy</PrivacyTitle>
+          <FormCheckbox name="privacyAcceptance">
+            <span>
+              {privacy} <Link to="/">Privacy Policy.</Link>
+            </span>
+          </FormCheckbox>
+          <FormSubmit>{lang === 'it' ? 'Invia' : 'Submit'}</FormSubmit>
         </Form>
       </Formik>
     </Container>

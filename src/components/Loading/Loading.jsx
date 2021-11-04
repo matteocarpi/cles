@@ -20,10 +20,10 @@ const Container = styled.div`
   margin: 20px;
 `
 
-export default function Loading() {
+export default function Loading({ light }) {
   return (
     <Container>
-      <Logo />
+      <Logo style={light && { stroke: 'white' }} />
     </Container>
   )
 }

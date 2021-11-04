@@ -154,8 +154,8 @@ function Contatti({ pageContext, data }) {
           </PageSlice>
 
           <PageSlice>
-            <Title>Scrivici</Title>
-            <ContactForm />
+            <Title>{pageData.titoloModulo[lang]}</Title>
+            <ContactForm privacy={pageData.testoPrivacy[lang]} />
           </PageSlice>
         </Container>
       </Wrapper>
@@ -203,6 +203,14 @@ export const data = graphql`
           pec
           linkedin
           twitter
+        }
+        titoloModulo {
+          it
+          en
+        }
+        testoPrivacy {
+          it
+          en
         }
       }
     }
