@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 
 import useClientRect from '../../hooks/useClientRect'
+import useNavigation from '../../hooks/useNavigation'
 
 import ArrowDown from '../../assets/arrow-down.svg'
 import Layout from '../Layout'
@@ -197,6 +198,8 @@ export default function Home({ lang, location, data }) {
 
   const { homeData } = data.homePage
 
+  const { findLink } = useNavigation()
+
   const clients = data.clientiPage.clientiData.clienti
 
   const news = data.allWpPost.edges.map(n =>
@@ -246,8 +249,7 @@ export default function Home({ lang, location, data }) {
             {homeData.bio[lang]}
           </AppearingText>
           <ParallaxImage image={homeData.secondaImmagine.localFile.publicURL} />
-
-          <StyledButtonLink to="#">
+          <StyledButtonLink to={findLink('Chi Siamo', lang)}>
             {lang === 'en' ? 'Continue' : 'Continua'}
           </StyledButtonLink>
         </HomeSection>
@@ -271,14 +273,17 @@ export default function Home({ lang, location, data }) {
           <ClientList>
             <>
               {clients.map(client => (
-                <LiftedLink to="#" key={client.titolo[lang]}>
+                <LiftedLink
+                  to={findLink('Clienti', lang)}
+                  key={client.titolo[lang]}
+                >
                   {client.titolo[lang]}
                 </LiftedLink>
               ))}
             </>
           </ClientList>
 
-          <SeeAllClients to="#">
+          <SeeAllClients to={findLink('Clienti', lang)}>
             <h5>
               {lang === 'en' ? 'See all clients' : 'Scopri tutti i clienti'}
             </h5>

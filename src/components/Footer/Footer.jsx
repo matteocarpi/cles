@@ -123,8 +123,8 @@ const SecondaryLink = styled(Link)`
 
 export default function Footer() {
   const { lang } = useLang()
-  const navigation = useNavigation()
-  
+  const { navigation } = useNavigation()
+
   const data = useStaticQuery(graphql`
     query FooterQuery {
       wpPage(id: { eq: "cG9zdDoxNjI=" }) {

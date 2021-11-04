@@ -140,5 +140,8 @@ export default function useNavigation() {
     },
   }
 
-  return navigation
+  const findLink = (italianLabel, lang) =>
+    navigation.pages.find(p => p.label.it === italianLabel).url[lang]
+
+  return { navigation, findLink }
 }

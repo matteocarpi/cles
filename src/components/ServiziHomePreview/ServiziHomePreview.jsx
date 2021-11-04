@@ -7,6 +7,7 @@ import ButtonLink from '../ButtonLink'
 import MenuText from '../MenuText'
 import BoxedImages from '../BoxedImages'
 import AppearingText from '../AppearingText'
+import useNavigation from '../../hooks/useNavigation'
 
 const HomeSectionWrapper = styled.section`
   padding: 24px;
@@ -155,6 +156,8 @@ export default function ServiziHomePreview({ lang, id }) {
 
   const { areeAttivit } = data.chiSiamoPage.chiSiamoData.servizi
 
+  const { findLink } = useNavigation()
+
   const aree = areeAttivit.map(area => ({
     ...area,
     titolo: area.titolo[lang],
@@ -182,7 +185,7 @@ export default function ServiziHomePreview({ lang, id }) {
               }}
             />
 
-            <ButtonLink to="#">
+            <ButtonLink to={findLink('Servizi', lang)}>
               {lang === 'en' ? 'Continue' : 'Continua'}
             </ButtonLink>
           </TextContainer>

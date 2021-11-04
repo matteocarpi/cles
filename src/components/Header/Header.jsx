@@ -128,7 +128,7 @@ const PageTitle = styled(MenuText)`
 export default function Header({ parentUrl }) {
   const [isMenuOpen, setIsMenuOpen] = useState(true)
 
-  const navigation = useNavigation()
+  const { navigation } = useNavigation()
 
   const { lang } = useLang()
 

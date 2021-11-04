@@ -48,7 +48,7 @@ const Lang = styled.h4`
 const CloseButton = styled.button``
 
 export default function MobileMenu({ lang, setIsMenuOpen }) {
-  const navigation = useNavigation()
+  const { navigation } = useNavigation()
   return (
     <Container>
       <Top>
