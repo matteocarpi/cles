@@ -12,7 +12,7 @@ import NewsPreview from '../NewsPreview'
 
 const Wrapper = styled.section`
   width: 100%;
-  padding: ${({ isNewsPage }) => (isNewsPage ? '0 24px' : '90px 24px 24px 0')};
+  padding: ${({ isNewsPage }) => (isNewsPage ? '0 24px' : '90px 24px 0 24px')};
   padding-bottom: ${({ isNewsPage }) => (isNewsPage ? '0 24px' : '24px')};
   display: flex;
   flex-direction: column;
