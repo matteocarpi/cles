@@ -96,19 +96,24 @@ exports.createPages = async function ({ actions, graphql }) {
     })
   })
 
+  const servicesPath = lang => {
+    const paths = {
+      it: data.serviziPage.uri,
+      en: data.serviziPage.serviziData.url[lang] && data.serviziPage.serviziData.url[lang].replaceAll(' ', '-'),
+    }
+
+    return paths[lang]
+  }
+
   // Servizi
   languages.forEach(lang => {
-    const path =
-      lang === defaultLang
-        ? data.serviziPage.uri
-        : data.serviziPage.serviziData.url[lang].replaceAll(' ', '-')
-
     actions.createPage({
-      path,
+      path: servicesPath(lang),
       component: require.resolve(`./src/templates/Servizi.jsx`),
       context: {
         lang,
-        location: { pathname: path },
+        location: { pathname: servicesPath(lang) },
+        parentUrl: servicesPath(lang),
       },
     })
   })
@@ -130,6 +135,7 @@ exports.createPages = async function ({ actions, graphql }) {
         startYear: 0,
         endYear: 3000,
         title: projectCategories.aperti[lang],
+        parentUrl: servicesPath(lang),
       },
     })
 
@@ -150,6 +156,7 @@ exports.createPages = async function ({ actions, graphql }) {
           title: projectCategories.aperti[lang],
           startYear: 0,
           endYear: 3000,
+          parentUrl: servicesPath(lang),
         },
       })
     })
@@ -180,6 +187,7 @@ exports.createPages = async function ({ actions, graphql }) {
           startYear: 2009,
           endYear: 2014,
           title: projectCategories.chiusi.primaDel2015[lang],
+          parentUrl: servicesPath(lang),
         },
       })
 
@@ -200,6 +208,7 @@ exports.createPages = async function ({ actions, graphql }) {
             title: projectCategories.chiusi.primaDel2015[lang],
             startYear: 2009,
             endYear: 2014,
+            parentUrl: servicesPath(lang),
           },
         })
       })
@@ -229,6 +238,7 @@ exports.createPages = async function ({ actions, graphql }) {
           startYear: 2015,
           endYear: 3000,
           title: projectCategories.chiusi.dopoIl2015[lang],
+          parentUrl: servicesPath(lang),
         },
       })
 
@@ -249,6 +259,7 @@ exports.createPages = async function ({ actions, graphql }) {
             title: projectCategories.chiusi.dopoIl2015[lang],
             startYear: 2015,
             endYear: 3000,
+            parentUrl: servicesPath(lang),
           },
         })
       })
@@ -257,17 +268,24 @@ exports.createPages = async function ({ actions, graphql }) {
     createAfter2015()
   })
 
+  const newsPath = lang => {
+    const paths = {
+      it: '/news',
+      en: `/${lang}/news`,
+    }
+    return paths[lang]
+  }
+
   // News
   languages.forEach(lang => {
-    const path = lang === defaultLang ? '/news' : `/${lang}/news`
-
     actions.createPage({
-      path,
+      path: newsPath(lang),
       component: require.resolve(`./src/templates/NewsListPage.jsx`),
       context: {
         lang,
-        location: { pathname: path },
+        location: { pathname: newsPath(lang) },
         title: 'News',
+        parentUrl: newsPath(lang),
       },
     })
   })
@@ -282,12 +300,15 @@ exports.createPages = async function ({ actions, graphql }) {
           ? `/${news.slug}`
           : news.newsData.url || `/en/${news.slug}`
 
-      const parentUrl = lang === defaultLang ? `/news` : `${lang}/news`
-
       actions.createPage({
         path,
         component: require.resolve(`./src/templates/NewsPage.jsx`),
-        context: { id: news.id, lang, parentUrl, location: { pathname: path } },
+        context: {
+          id: news.id,
+          lang,
+          parentUrl: newsPath(lang),
+          location: { pathname: path },
+        },
       })
     })
   })
@@ -306,6 +327,7 @@ exports.createPages = async function ({ actions, graphql }) {
         id: data.clients.id,
         lang,
         location: { pathname: path[lang] },
+        parentUrl: path[lang],
       },
     })
   })
@@ -325,6 +347,7 @@ exports.createPages = async function ({ actions, graphql }) {
         lang,
         location: { pathname: path[lang] },
         title: data.contatti.contattiData.tittolo[lang],
+        parentUrl: path[lang],
       },
     })
   })
