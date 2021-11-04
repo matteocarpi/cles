@@ -89,27 +89,24 @@ const BackToNews = styled(Link)`
 `
 
 function NewsPage({ pageContext, data }) {
-  const { lang: originalLang, parentUrl } = pageContext
+  const { lang, parentUrl } = pageContext
 
   const post = data.wpPost
   const { newsData } = post
   const { title, content, slug, date } = post
-  const tradotta = !!newsData.tradotta
-
-  const lang = tradotta ? originalLang : 'it'
 
   const postData = {
     title: {
       it: title,
-      en: newsData.en.titolo,
+      en: newsData.en?.titolo ?? title,
     },
     content: {
       it: content,
-      en: newsData.en.contenuto,
+      en: newsData.en?.contenuto ?? content,
     },
     url: {
-      it: originalLang === 'it' ? `/${slug}` : `/${lang}/${slug}`,
-      en: newsData.en.url,
+      it: `/${slug}`,
+      en: newsData.en?.url ?? `/${lang}/${slug}`,
     },
   }
 

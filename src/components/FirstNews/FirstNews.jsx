@@ -136,8 +136,8 @@ export default function FirstNews({ news, isNewsPage }) {
       en: news.newsData.en.contenuto,
     },
     url: {
-      it: originalLang === 'it' ? `/${news.slug}` : `/${lang}/${news.slug}`,
-      en: news.newsData.en.url,
+      it: `/${news.slug}`,
+      en: news.newsData.en.url ?? `/${lang}/${news.slug}`,
     },
   }
 
