@@ -8,10 +8,18 @@ import ContactForm from '../components/ContactForm'
 
 const Wrapper = styled.main`
   margin-top: 124px;
+
+  @media (min-width: 768px) {
+    margin-top: 22vw;
+  }
 `
 const Container = styled.section`
   background-color: ${({ theme }) => theme.yellow};
   padding: 0 24px;
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
+  }
 `
 
 const PageSlice = styled.article`
@@ -20,6 +28,19 @@ const PageSlice = styled.article`
   &:first-child {
     padding-top: 40px;
   }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+
+    &:first-child {
+      padding-top: 90px;
+    }
+
+    &:last-child {
+      padding-top: 85px;
+    }
+  }
 `
 
 const Title = styled.h6`
@@ -27,7 +48,10 @@ const Title = styled.h6`
   padding-bottom: 25px;
 `
 
-const Content = styled.div``
+const Content = styled.div`
+  width: 100%;
+  max-width: 900px;
+`
 
 const Text = styled.h5``
 
@@ -42,6 +66,8 @@ const SocialLink = styled.a`
 `
 const MappaContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
 `
 
 const BackgroundContainer = styled.div`

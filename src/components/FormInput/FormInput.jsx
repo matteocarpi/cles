@@ -13,13 +13,16 @@ const Input = styled.input`
 
   font-size: 16px;
 
+  border-bottom-color: ${({ theme, error }) =>
+    error ? theme.red : theme.black};
+  color: ${({ theme, error }) => (error ? theme.red : theme.black)};
   @media (min-width: 768px) {
     font-size: 24px;
   }
-
+  
   &::placeholder {
-    color: ${({ theme }) => theme.black};
     text-transform: uppercase;
+    color: ${({ theme, error }) => (error ? theme.red : theme.black)};
   }
 
   &:focus {
@@ -34,7 +37,7 @@ export default function FormInput({ name, placeholder }) {
     <Input
       onChange={e => helpers.setValue(e.target.value)}
       value={field.value}
-      errors={!!meta.error}
+      error={meta.touched && !!meta.error}
       placeholder={placeholder}
     />
   )

@@ -13,12 +13,16 @@ const TextArea = styled.textarea`
 
   font-size: 16px;
 
+  border-bottom-color: ${({ theme, error }) =>
+    error ? theme.red : theme.black};
+  color: ${({ theme, error }) => (error ? theme.red : theme.black)};
   @media (min-width: 768px) {
     font-size: 24px;
+    height: 56px;
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme, error }) => (error ? theme.red : theme.black)};
     text-transform: uppercase;
   }
 
@@ -34,7 +38,7 @@ export default function FormTextArea({ name, placeholder }) {
     <TextArea
       onChange={e => helpers.setValue(e.target.value)}
       value={field.value}
-      errors={!!meta.error}
+      error={meta.touched && !!meta.error}
       placeholder={placeholder}
     />
   )

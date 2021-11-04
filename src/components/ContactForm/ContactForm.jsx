@@ -16,6 +16,11 @@ import Link from '../Link'
 
 const Container = styled.section`
   padding-bottom: 60px;
+
+  @media (min-width: 768px) {
+    width: 100%;
+    max-width: 900px;
+  }
 `
 
 const PrivacyTitle = styled.p`
@@ -26,6 +31,10 @@ const PrivacyTitle = styled.p`
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-weight: 700;
+
+  @media (min-width: 768px) {
+    margin-top: 65px;
+  }
 `
 
 export default function ContactForm({ privacy }) {
