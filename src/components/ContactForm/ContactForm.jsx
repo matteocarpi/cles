@@ -96,7 +96,7 @@ export default function ContactForm({ privacy }) {
         variables: { email, body: message, from: `${fullName}<${email}>` },
       })
       resetForm()
-    } catch {
+    } catch (e) {
       // eslint-disable-next-line no-console
       setError(true)
     }
@@ -126,7 +126,7 @@ export default function ContactForm({ privacy }) {
           {!sent && !error && (
             <FormSubmit>{lang === 'it' ? 'Invia' : 'Submit'}</FormSubmit>
           )}
-          {sent && <FormMessage>{messages.sent[lang]}</FormMessage>}
+          {sent && !error && <FormMessage>{messages.sent[lang]}</FormMessage>}
           {error && <FormMessage isError>{messages.error[lang]}</FormMessage>}
         </Form>
       </Formik>
