@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
+import { useMutation } from '@apollo/client'
 import useLang from '../../hooks/useLang'
+import { SEND_EMAIL } from '../../graphql/mutations'
 
 import FormInput from '../FormInput'
 import FormTextArea from '../FormTextArea/FormTextArea'
 import FormCheckbox from '../FormCheckbox'
 import FormSubmit from '../FormSubmit'
+import FormMessage from '../FormMessage'
 import Link from '../Link'
 
 const Container = styled.section`
@@ -26,8 +29,23 @@ const PrivacyTitle = styled.p`
 `
 
 export default function ContactForm({ privacy }) {
+  const [sent, setSent] = useState(false)
+  const [error, setError] = useState(false)
+
   const { lang } = useLang()
 
+  const [sendEmail] = useMutation(SEND_EMAIL)
+
+  const messages = {
+    sent: {
+      it: 'Messaggio inviato con successo',
+      en: 'Message succesfully sent',
+    },
+    error: {
+      it: 'Si è verificato un errore, riprova più tardi',
+      en: 'Something went wrong, try again later',
+    },
+  }
   const mandatory = {
     it: 'Obbligatorio',
     en: 'Mandatory',
@@ -62,8 +80,19 @@ export default function ContactForm({ privacy }) {
     },
   }
 
-  function handleSubmit(values) {
-    console.log(values)
+  async function handleSubmit(values, { resetForm }) {
+    const { fullName, email, message } = values
+    try {
+      await sendEmail({
+        variables: { email, body: message, from: `${fullName}<${email}>` },
+      })
+      resetForm()
+    } catch {
+      // eslint-disable-next-line no-console
+      setError(true)
+    }
+
+    return setSent(true)
   }
 
   return (
@@ -85,7 +114,11 @@ export default function ContactForm({ privacy }) {
               {privacy} <Link to="/">Privacy Policy.</Link>
             </span>
           </FormCheckbox>
-          <FormSubmit>{lang === 'it' ? 'Invia' : 'Submit'}</FormSubmit>
+          {!sent && !error && (
+            <FormSubmit>{lang === 'it' ? 'Invia' : 'Submit'}</FormSubmit>
+          )}
+          {sent && <FormMessage>{messages.sent[lang]}</FormMessage>}
+          {error && <FormMessage isError>{messages.error[lang]}</FormMessage>}
         </Form>
       </Formik>
     </Container>
