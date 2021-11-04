@@ -42,7 +42,7 @@ const ActivityList = styled.article`
 `
 
 export default function ChiSiamo({ pageContext, data: pageData }) {
-  const { lang, location } = pageContext
+  const { lang, location, parentUrl } = pageContext
 
   const { chiSiamoData: data } = pageData.chiSiamoPage
 
@@ -70,7 +70,12 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
   ]
 
   return (
-    <Layout lang={lang} location={location} title={data.titolo[lang]}>
+    <Layout
+      lang={lang}
+      location={location}
+      title={data.titolo[lang]}
+      parentUrl={parentUrl}
+    >
       <PageIntro
         graphic={pageData.graphic.childImageSharp.gatsbyImageData}
         image={pageData.image.childImageSharp.gatsbyImageData}

@@ -19,7 +19,7 @@ const Container = styled.section`
 `
 
 function Clients({ data, pageContext }) {
-  const { lang, location } = pageContext
+  const { lang, location, parentUrl } = pageContext
   const [, ref] = useClientRect()
 
   return (
@@ -27,6 +27,7 @@ function Clients({ data, pageContext }) {
       title={data.wpPage.clientiData.title[lang]}
       lang={lang}
       location={location}
+      parentUrl={parentUrl}
     >
       <PageIntro
         text={data.wpPage.clientiData.description[lang]}

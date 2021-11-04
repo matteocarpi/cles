@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import navigation from '../../data/navigation.json'
+import useNavigation from '../../hooks/useNavigation'
 import Close from '../../assets/close.svg'
 
 const Container = styled.section`
@@ -48,6 +48,7 @@ const Lang = styled.h4`
 const CloseButton = styled.button``
 
 export default function MobileMenu({ lang, setIsMenuOpen }) {
+  const navigation = useNavigation()
   return (
     <Container>
       <Top>

@@ -118,7 +118,7 @@ function Projects({ pageContext, data }) {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(0)
 
-  const { area, lang, status, endYear } = pageContext
+  const { area, lang, status, endYear, parentUrl } = pageContext
 
   const { isMobile } = useResponsiveness()
 
@@ -167,6 +167,7 @@ function Projects({ pageContext, data }) {
       lang={pageContext.lang}
       title={pageContext.title}
       location={pageContext.location}
+      parentUrl={parentUrl}
     >
       <Wrapper>
         <Sidebar>

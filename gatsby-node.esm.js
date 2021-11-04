@@ -92,6 +92,7 @@ exports.createPages = async function ({ actions, graphql }) {
       context: {
         lang,
         location: { pathname: path },
+        parentUrl: path,
       },
     })
   })
@@ -99,7 +100,9 @@ exports.createPages = async function ({ actions, graphql }) {
   const servicesPath = lang => {
     const paths = {
       it: data.serviziPage.uri,
-      en: data.serviziPage.serviziData.url[lang] && data.serviziPage.serviziData.url[lang].replaceAll(' ', '-'),
+      en:
+        data.serviziPage.serviziData.url[lang] &&
+        data.serviziPage.serviziData.url[lang].replaceAll(' ', '-'),
     }
 
     return paths[lang]

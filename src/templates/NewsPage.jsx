@@ -121,6 +121,7 @@ function NewsPage({ pageContext, data }) {
       lang={lang}
       title={postData.title[lang]}
       location={postData.url[lang]}
+      parentUrl={parentUrl}
     >
       <Wrapper>
         <Container>

@@ -5,14 +5,12 @@ import HeadRoom from 'react-headroom'
 
 import useViewportScroll from '../../hooks/useViewportScroll'
 import useLang from '../../hooks/useLang'
+import useNavigation from '../../hooks/useNavigation'
 
 import Logo from '../LogoIcon'
 import Burger from '../../assets/burger.svg'
 import MobileMenu from '../MobileMenu'
 import MenuText from '../MenuText'
-
-import navigation from '../../data/navigation.json'
-import useLocation from '../../hooks/useLocation'
 
 const ContainerMobile = styled.header`
   position: absolute;
@@ -127,13 +125,12 @@ const PageTitle = styled(MenuText)`
   margin-right: 0.5rem;
 `
 
-export default function Header() {
+export default function Header({ parentUrl }) {
   const [isMenuOpen, setIsMenuOpen] = useState(true)
 
-  const { lang } = useLang()
-  const { location } = useLocation()
+  const navigation = useNavigation()
 
-  const { pathname } = location ?? {}
+  const { lang } = useLang()
 
   useEffect(() => {
     setIsMenuOpen(false)
@@ -143,9 +140,7 @@ export default function Header() {
 
   const hasScrolled = useMemo(() => scrollY > 400, [scrollY])
 
-  const pageTitle = navigation.pages.find(p =>
-    p.url[lang].includes(location?.pathname),
-  )
+  const pageTitle = navigation.pages.find(p => p.url[lang].includes(parentUrl))
 
   return (
     <>
@@ -178,7 +173,7 @@ export default function Header() {
                 <NavItem
                   to={page.url[lang]}
                   key={page.label[lang]}
-                  isActive={pathname === page.url[lang]}
+                  isActive={page.url[lang].includes(parentUrl)}
                 >
                   {page.label[lang]}
                 </NavItem>

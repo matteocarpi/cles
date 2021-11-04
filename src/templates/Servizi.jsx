@@ -102,7 +102,7 @@ export default function Servizi({ pageContext, data: pageData }) {
 
   const [expandedArea, setExpandedArea] = useState(null)
 
-  const { lang, location } = pageContext
+  const { lang, location, parentUrl } = pageContext
   const { serviziData: data } = pageData.serviziPage
 
   const sections = [
@@ -137,7 +137,12 @@ export default function Servizi({ pageContext, data: pageData }) {
   }, [gallery.length, setCurrImage])
 
   return (
-    <Layout lang={lang} location={location} title={data.titolo[lang]}>
+    <Layout
+      lang={lang}
+      location={location}
+      title={data.titolo[lang]}
+      parentUrl={parentUrl}
+    >
       <PageIntro
         graphic={pageData.graphic.childImageSharp.gatsbyImageData}
         image={pageData.image.childImageSharp.gatsbyImageData}

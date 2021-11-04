@@ -96,7 +96,7 @@ const Mappa = styled(GatsbyImage)`
 `
 
 function Contatti({ pageContext, data }) {
-  const { title, lang, location } = pageContext
+  const { title, lang, location, parentUrl } = pageContext
 
   const pageData = data.wpPage.contattiData
 
@@ -117,7 +117,7 @@ function Contatti({ pageContext, data }) {
   } = pageData.sede
 
   return (
-    <Layout lang={lang} title={title} location={location}>
+    <Layout lang={lang} title={title} location={location} parentUrl={parentUrl}>
       <Wrapper>
         <MappaContainer>
           <BackgroundContainer>

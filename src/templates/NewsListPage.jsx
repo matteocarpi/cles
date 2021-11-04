@@ -22,7 +22,7 @@ const StyledPageNavigation = styled(PageNavigation)`
 
 function NewsListPage({ pageContext, data: pageData }) {
   const [, ref] = useClientRect()
-  const { lang, title, location } = pageContext
+  const { lang, title, location, parentUrl } = pageContext
 
   const newsList = pageData.newsList.edges.map(n => n.node)
 
@@ -32,7 +32,7 @@ function NewsListPage({ pageContext, data: pageData }) {
   })
 
   return (
-    <Layout title={title} lang={lang} location={location}>
+    <Layout title={title} lang={lang} location={location} parentUrl={parentUrl}>
       <PageIntro
         graphic={pageData.graphic.childImageSharp.gatsbyImageData}
         image={pageData.image.childImageSharp.gatsbyImageData}
