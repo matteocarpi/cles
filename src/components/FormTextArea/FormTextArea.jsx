@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useField } from 'formik'
 import styled from 'styled-components'
+import autosize from 'autosize'
 
 const TextArea = styled.textarea`
   margin-bottom: 25px;
@@ -33,8 +34,15 @@ const TextArea = styled.textarea`
 export default function FormTextArea({ name, placeholder }) {
   const [field, meta, helpers] = useField(name)
 
+  const ref = useRef()
+
+  useEffect(() => {
+    autosize(ref.current)
+  })
+
   return (
     <TextArea
+      ref={ref}
       onChange={e => helpers.setValue(e.target.value)}
       value={field.value}
       error={meta.touched && !!meta.error}
