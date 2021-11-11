@@ -20,10 +20,11 @@ const Services = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
-  margin-bottom: 90px;
+  margin-bottom: 60px;
 
   @media (min-width: 768px) {
     flex-direction: row;
+    margin-bottom: 90px;
   }
 `
 
@@ -51,7 +52,6 @@ const Text = styled.h4``
 
 const Areas = styled.section`
   margin-top: 50px;
-  margin-bottom: 40px;
 
   @media (min-width: 768px) {
     margin-top: 90px;
