@@ -215,6 +215,7 @@ export default function Servizi({ pageContext, data: pageData }) {
           <Accordion
             key={projectCategories.chiusi[lang]}
             titolo={projectCategories.chiusi}
+            withBottom
           >
             <ClosedProjectsContainer>
               <ClosedProjectsLink

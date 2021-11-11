@@ -10,6 +10,11 @@ const Container = styled.article`
   border-top: 2px solid ${({ theme }) => theme.gray};
   padding: 20px 0;
 
+  &:last-child {
+    border-bottom: solid 2px
+      ${({ theme, withBottom }) => (withBottom ? theme.gray : 'transparent')};
+  }
+
   @media (min-width: 768px) {
     padding: 30px 0;
     &:last-child {
@@ -43,6 +48,7 @@ export default function Accordion({
   setIsExpanded = () => {},
   children,
   parentExpanded = null,
+  withBottom,
 }) {
   const { lang } = useLang()
 
@@ -53,7 +59,7 @@ export default function Accordion({
   }, [parentExpanded])
 
   return (
-    <Container className={className}>
+    <Container className={className} withBottom={withBottom}>
       <Header>
         <Title>{titolo[lang]}</Title>
         <StyledPlusButton
