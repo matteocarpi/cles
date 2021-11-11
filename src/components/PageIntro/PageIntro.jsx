@@ -32,6 +32,7 @@ const StyledSlidingImages = styled(SlidingImages)`
 `
 
 const Text = styled(AppearingText)`
+  width: 100%;
   padding: 0 20px;
   max-width: 1000px;
   margin-top: 8px;
