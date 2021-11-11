@@ -104,7 +104,7 @@ const BottomNavigation = styled.section`
   flex-direction: column-reverse;
   justify-content: space-between;
   align-items: flex-end;
-
+  margin-bottom: 60px;
   @media (min-width: 768px) {
     margin-bottom: 90px;
     flex-direction: row;
