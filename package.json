@@ -29,7 +29,7 @@
     "gatsby-plugin-sharp": "^3.14.0",
     "gatsby-plugin-styled-components": "^4.14.0",
     "gatsby-source-filesystem": "^3.14.0",
-    "gatsby-source-wordpress": "^6.1.0",
+    "gatsby-source-wordpress": "^6.1.2",
     "gatsby-theme-apollo": "^3.1.1",
     "gatsby-transformer-sharp": "^3.14.0",
     "gbimage-bridge": "^0.1.4",
