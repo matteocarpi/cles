@@ -130,7 +130,7 @@ export default function Servizi({ pageContext, data: pageData }) {
         setCurrImage(currImg =>
           currImg === gallery.length - 1 ? 0 : currImg + 1,
         ),
-      5000,
+      3500,
     )
 
     return () => clearInterval(interval)
