@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
   justify-content: center;
-  align-items: center;
+  align-items: ${({ verticalAlignment }) => verticalAlignment};
   padding-top: 35px;
   padding: 0px 24px;
   overflow-x: hidden;
@@ -99,6 +99,8 @@ export default function SlidingImages({
   image,
   className,
   reverse = false,
+  verticalAlignment,
+  leftTranslate = 0,
 }) {
   const { location } = useLocation()
 
@@ -133,6 +135,7 @@ export default function SlidingImages({
       className={className}
       reverse={reverse}
       isNewsPage={isNewsPage}
+      verticalAlignment={verticalAlignment}
     >
       <GraphicContainer
         isNewsPage={isNewsPage}
@@ -143,7 +146,17 @@ export default function SlidingImages({
         <GatsbyImage image={graphicData} alt="" />
       </GraphicContainer>
       <PhotoContainer
-        variants={reverse ? photoVariantsReverse : photoVariants}
+        variants={
+          reverse
+            ? {
+                ...photoVariantsReverse,
+                visible: {
+                  ...photoVariantsReverse.visible,
+                  translateX: `${leftTranslate + 60}%`,
+                },
+              }
+            : photoVariants
+        }
         initial="hidden"
         animate={controls}
       >

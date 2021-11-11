@@ -34,6 +34,8 @@ function Clients({ data, pageContext }) {
         graphic={data.graphic.childImageSharp.gatsbyImageData}
         image={data.image.childImageSharp.gatsbyImageData}
         reverseImages
+        verticalAlignment="flex-end"
+        leftTranslate={-30}
       />
       <Container ref={ref}>
         {data.wpPage.clientiData.clienti.map(client => (

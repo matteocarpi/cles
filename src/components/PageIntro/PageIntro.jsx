@@ -49,6 +49,8 @@ export default function PageIntro({
   image,
   reverseImages,
   graphicStyle,
+  verticalAlignment,
+  leftTranslate,
 }) {
   const { isMobile } = useResponsiveness()
 
@@ -62,6 +64,8 @@ export default function PageIntro({
         image={image}
         reverse={reverseImages}
         graphicStyle={graphicStyle}
+        verticalAlignment={verticalAlignment}
+        leftTranslate={leftTranslate}
       />
     </Container>
   )

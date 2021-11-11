@@ -148,6 +148,7 @@ export default function Servizi({ pageContext, data: pageData }) {
         image={pageData.image.childImageSharp.gatsbyImageData}
         text={data.intro[lang]}
         reverseImages
+        leftTranslate={10}
       />
 
       <ScrollSpy offset={-600} sections={sections} firstSectionTop={rect?.y} />
