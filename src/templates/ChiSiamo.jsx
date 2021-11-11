@@ -37,7 +37,7 @@ const ActivityList = styled.article`
   margin-bottom: 40px;
 
   @media (min-width: 768px) {
-    margin-bottom: 0;
+    margin-bottom: 40px;
   }
 `
 
