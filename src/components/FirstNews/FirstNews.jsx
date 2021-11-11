@@ -61,7 +61,7 @@ const CWrapper = styled.div`
   ${({ right }) =>
     right &&
     css`
-      overflow-x: hidden;
+      overflow: hidden;
     `}
 `
 
