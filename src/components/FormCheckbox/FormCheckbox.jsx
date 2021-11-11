@@ -6,8 +6,10 @@ import Check from '../../assets/check.svg'
 
 const Container = styled.div`
   position: relative;
-  display: flex;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
 `
 
 const HiddenCheckbox = styled.input`
@@ -25,7 +27,6 @@ const StylishCheckbox = styled.div`
   height: 35px;
   border: solid 2px white;
   margin-right: 10px;
-  margin-bottom: 40px;
   flex-shrink: 0;
 `
 
