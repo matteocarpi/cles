@@ -271,7 +271,7 @@ export const data = graphql`
           gallery {
             localFile {
               childImageSharp {
-                gatsbyImageData(width: 400)
+                gatsbyImageData(width: 400, aspectRatio: 0.8)
               }
             }
           }

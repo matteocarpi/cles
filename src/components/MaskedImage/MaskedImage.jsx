@@ -2,18 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import BgImage from 'gatsby-background-image'
-import { convertToBgImage } from 'gbimage-bridge'
 
 const Container = styled.div`
-  overflow: hidden;
-`
-
-const Image = styled(BgImage)`
+  position: relative;
 `
 
 const Mask = styled(GatsbyImage)`
   margin-bottom: 20px;
+  position: absolute;
+  top: 0;
+  z-index: 1;
 `
 
 export default function MaskedImage({ image, className }) {
@@ -28,14 +26,12 @@ export default function MaskedImage({ image, className }) {
     }
   `)
 
-  const bgImage = convertToBgImage(image)
   const maskImage = getImage(maskData.file)
 
   return (
     <Container className={className}>
-      <Image {...bgImage}>
-        <Mask image={maskImage} alt="" />
-      </Image>
+      <Mask image={maskImage} alt="mask of cles" />
+      <GatsbyImage image={image} aspectRatio={1} />
     </Container>
   )
 }
