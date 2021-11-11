@@ -16,10 +16,7 @@ const Input = styled.input`
   border-bottom-color: ${({ theme, error }) =>
     error ? theme.red : theme.black};
   color: ${({ theme, error }) => (error ? theme.red : theme.black)};
-  @media (min-width: 768px) {
-    font-size: 24px;
-  }
-  
+
   &::placeholder {
     text-transform: uppercase;
     color: ${({ theme, error }) => (error ? theme.red : theme.black)};

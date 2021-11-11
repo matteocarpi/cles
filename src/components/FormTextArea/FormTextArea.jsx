@@ -17,7 +17,6 @@ const TextArea = styled.textarea`
     error ? theme.red : theme.black};
   color: ${({ theme, error }) => (error ? theme.red : theme.black)};
   @media (min-width: 768px) {
-    font-size: 24px;
     height: 56px;
   }
 
