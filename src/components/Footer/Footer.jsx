@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import useLang from '../../hooks/useLang'
 import useNavigation from '../../hooks/useNavigation'
 
+import LogoDark from '../../assets/logo-footer-dark.svg'
 import Logo from '../Logo'
 import LogoWord from '../LogoWord'
 import MenuText from '../MenuText'
@@ -120,8 +121,26 @@ const SecondaryLink = styled(Link)`
   text-transform: uppercase;
   text-decoration: underline !important;
 `
+const YellowContainer = styled.footer`
+  background-color: ${({ theme }) => theme.yellow};
+  padding: 60px 24px;
 
-export default function Footer() {
+  svg {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    padding: 90px 40px;
+  }
+`
+
+const YellowFooter = () => (
+  <YellowContainer>
+    <LogoDark />
+  </YellowContainer>
+)
+
+export default function Footer({ yellowVariant }) {
   const { lang } = useLang()
   const { navigation } = useNavigation()
 
@@ -150,7 +169,9 @@ export default function Footer() {
 
   const { contatti } = data.wpPage.homeData
 
-  return (
+  return yellowVariant ? (
+    <YellowFooter />
+  ) : (
     <Container>
       <LogoDesktop />
       <LogoMobile />

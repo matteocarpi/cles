@@ -93,6 +93,13 @@ const LogoDesktop = styled(Logo)`
   left: 40px;
   height: 15.5vw;
   z-index: 2;
+
+  ${({ yellowVariant }) =>
+    yellowVariant &&
+    css`
+      position: absolute;
+      left: 120px;
+    `}
 `
 
 const NavItem = styled(Link)`
@@ -125,7 +132,7 @@ const PageTitle = styled(MenuText)`
   margin-right: 0.5rem;
 `
 
-export default function Header({ parentUrl }) {
+export default function Header({ parentUrl, yellowVariant }) {
   const [isMenuOpen, setIsMenuOpen] = useState(true)
 
   const { navigation } = useNavigation()
@@ -162,11 +169,11 @@ export default function Header({ parentUrl }) {
       <WrapperDesktop>
         <ContainerDesktop>
           <Link to={lang === 'it' ? '/' : `/${lang}`}>
-            <LogoDesktop />
+            <LogoDesktop yellowVariant={yellowVariant} />
           </Link>
         </ContainerDesktop>
 
-        <HeadRoom>
+        <HeadRoom pinStart={400}>
           <NavigationWrapper>
             <NavigationDesktop hasScrolled={hasScrolled}>
               {navigation.pages.map(page => (

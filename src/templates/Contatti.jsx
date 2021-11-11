@@ -117,7 +117,13 @@ function Contatti({ pageContext, data }) {
   } = pageData.sede
 
   return (
-    <Layout lang={lang} title={title} location={location} parentUrl={parentUrl}>
+    <Layout
+      lang={lang}
+      title={title}
+      location={location}
+      parentUrl={parentUrl}
+      yellowVariant
+    >
       <Wrapper>
         <MappaContainer>
           <BackgroundContainer>

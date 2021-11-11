@@ -143,7 +143,14 @@ const defaultTheme = {
   transparentYellow: 'rgba(247, 207, 76, 0.8)',
 }
 
-export default function Layout({ lang, children, title, location, parentUrl }) {
+export default function Layout({
+  lang,
+  children,
+  title,
+  location,
+  parentUrl,
+  yellowVariant = false,
+}) {
   return (
     <ParallaxProvider>
       <ThemeProvider theme={defaultTheme}>
@@ -151,9 +158,9 @@ export default function Layout({ lang, children, title, location, parentUrl }) {
           <LocationProvider location={location}>
             <Seo lang={lang} title={title} />
             <GlobalStyle />
-            <Header parentUrl={parentUrl} />
+            <Header parentUrl={parentUrl} yellowVariant={yellowVariant} />
             <Container>{children}</Container>
-            <Footer />
+            <Footer yellowVariant={yellowVariant} />
           </LocationProvider>
         </LangProvider>
       </ThemeProvider>

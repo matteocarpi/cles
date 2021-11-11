@@ -15,8 +15,6 @@ import FormMessage from '../FormMessage'
 import Link from '../Link'
 
 const Container = styled.section`
-  padding-bottom: 60px;
-
   @media (min-width: 768px) {
     width: 100%;
     max-width: 900px;
