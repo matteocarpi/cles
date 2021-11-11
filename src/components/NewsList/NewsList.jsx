@@ -94,7 +94,7 @@ export default function NewsList({ news, title, isNewsPage }) {
           {!isNewsPage && (
             <TitleContainer>
               <SectionTitleMobile>News</SectionTitleMobile>
-              <AppearingTitle component={Title} maxStrLength={40}>
+              <AppearingTitle component={Title} numberOfLines={2}>
                 {title}
               </AppearingTitle>
             </TitleContainer>
