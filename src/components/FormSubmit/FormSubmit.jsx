@@ -6,10 +6,20 @@ import Loading from '../Loading'
 const Button = styled.button`
   width: 200px;
   height: 56px;
-  border: 2px solid white;
+  border: 2px solid #f6f3ea;
   font-size: 16px;
+  font-weight: 300;
+  color: ${({ theme }) => theme.black};
   text-transform: uppercase;
-  color: ${({ theme }) => theme.gray};
+
+  &:hover {
+    border-color: white;
+    font-weight: 400;
+  }
+
+  &:focus {
+    background-color: white;
+  }
 `
 
 export default function FormSubmit({ children }) {
