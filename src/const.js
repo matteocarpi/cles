@@ -107,3 +107,34 @@ export const backToNews = {
   it: 'Torna alle news',
   en: 'Back to news list',
 }
+
+export const workWithUsLabels = {
+  fullName: {
+    it: 'Nome e Cognome *',
+    en: 'Full Name *',
+  },
+  domicile: {
+    it: 'Domicilio *',
+    en: 'Domicile *',
+  },
+  titleOfStudy: {
+    it: 'Titolo di studio *',
+    en: 'Education degree *',
+  },
+  yearsOfExperience: {
+    it: 'Numero anni di esperienza *',
+    en: 'Years of experience *',
+  },
+  telephone: {
+    it: 'Recapito telefonico *',
+    en: 'Telephone *',
+  },
+  email: {
+    it: 'Recapito mail *',
+    en: 'Email *',
+  },
+  posizione: {
+    it: 'Posizione',
+    en: 'position',
+  },
+}

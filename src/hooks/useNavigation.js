@@ -113,8 +113,8 @@ export default function useNavigation() {
           en: 'Work with us',
         },
         url: {
-          it: '#',
-          en: '#',
+          it: '/lavora-con-noi',
+          en: '/work-with-us',
         },
       },
       {

@@ -60,7 +60,7 @@ const PremioInfoContainer = styled.article`
 `
 
 const PremioTitle = styled(MenuText)`
-  margin-top: 0;
+  margin-top: 30px;
 
   @media (min-width: 768px) {
     font-size: 32px;

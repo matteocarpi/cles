@@ -404,4 +404,23 @@ exports.createPages = async function ({ actions, graphql }) {
       },
     })
   })
+  
+  // Lavora con noi
+  languages.forEach(lang => {
+    const path = {
+      it: 'lavora-con-noi',
+      en: 'work-with-us',
+    }
+
+    actions.createPage({
+      path: path[lang],
+      component: require.resolve('./src/templates/LavoraConNoi.jsx'),
+      context: {
+        lang,
+        location: { pathname: path[lang] },
+        parentUrl: path[lang],
+        id: 'cG9zdDo2OTU=',
+      },
+    })
+  })
 }

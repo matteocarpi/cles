@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useField } from 'formik'
 
 import Check from '../../assets/check.svg'
@@ -10,6 +10,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 40px;
+
+  ${({ theme, error }) =>
+    error &&
+    css`
+      border: solid 1px ${theme.red};
+    `}
 `
 
 const HiddenCheckbox = styled.input`
@@ -25,12 +31,22 @@ const HiddenCheckbox = styled.input`
 const StylishCheckbox = styled.div`
   width: 35px;
   height: 35px;
-  border: solid 2px white;
+  border: ${({ dark, theme }) => `solid 2px ${dark ? theme.yellow : 'white'}`};
   margin-right: 10px;
   flex-shrink: 0;
+
+  ${({ dark, theme }) =>
+    dark &&
+    css`
+      svg {
+        path {
+          stroke: ${theme.yellow};
+        }
+      }
+    `}
 `
 
-export default function FormCheckbox({ name, children }) {
+export default function FormCheckbox({ name, children, dark = false }) {
   const [field, , helpers] = useField(name)
 
   return (
@@ -40,7 +56,7 @@ export default function FormCheckbox({ name, children }) {
         checked={field.value}
         onChange={() => helpers.setValue(!field.value)}
       />
-      <StylishCheckbox>{field.value && <Check />}</StylishCheckbox>
+      <StylishCheckbox dark={dark}>{field.value && <Check />}</StylishCheckbox>
       {children}
     </Container>
   )
