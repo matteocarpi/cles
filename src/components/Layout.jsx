@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 import { ParallaxProvider } from 'react-scroll-parallax'
@@ -9,6 +9,7 @@ import LocationProvider from '../LocationContext'
 import Header from './Header'
 import Footer from './Footer'
 import Seo from './Seo'
+import CookieAlert from './CookieAlert'
 
 const Container = styled.main``
 const GlobalStyle = createGlobalStyle`
@@ -152,6 +153,20 @@ export default function Layout({
   yellowVariant = false,
   noFooter = false,
 }) {
+  const [cookiesAccepted, setCookiesAccepted] = useState(false)
+
+  useEffect(() => {
+    const savedCookies = window.localStorage.getItem('cookiesAccepted')
+
+    if (savedCookies === 'true') setCookiesAccepted(true)
+  }, [])
+
+  const onAcceptCookies = () => {
+    window.localStorage.setItem('cookiesAccepted', true)
+
+    setCookiesAccepted(true)
+  }
+
   return (
     <ParallaxProvider>
       <ThemeProvider theme={defaultTheme}>
@@ -162,6 +177,9 @@ export default function Layout({
             <Header parentUrl={parentUrl} yellowVariant={yellowVariant} />
             <Container>{children}</Container>
             {!noFooter && <Footer yellowVariant={yellowVariant} />}
+            {!cookiesAccepted && (
+              <CookieAlert onAcceptCookies={onAcceptCookies} />
+            )}
           </LocationProvider>
         </LangProvider>
       </ThemeProvider>
