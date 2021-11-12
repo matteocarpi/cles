@@ -18,6 +18,8 @@ const Button = styled.button`
   &:focus {
     background-color: white;
   }
+
+  background-color: ${({ highlight }) => highlight && 'white'};
 `
 
 export default function LightButton({ children, ...props }) {
