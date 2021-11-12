@@ -354,4 +354,38 @@ exports.createPages = async function ({ actions, graphql }) {
       },
     })
   })
+
+  // Cookies Policy
+  languages.forEach(lang => {
+    const path =
+      lang === defaultLang ? '/cookies-policy' : `/${lang}/cookies-policy`
+
+    actions.createPage({
+      path,
+      component: require.resolve('./src/templates/Policies.jsx'),
+      context: {
+        lang,
+        location: { pathname: path },
+        parentUrl: path,
+        id: 'cG9zdDo2Nzc=',
+      },
+    })
+  })
+
+  // Privacy Policy
+  languages.forEach(lang => {
+    const path =
+      lang === defaultLang ? '/privacy-policy' : `/${lang}/privacy-policy`
+
+    actions.createPage({
+      path,
+      component: require.resolve('./src/templates/Policies.jsx'),
+      context: {
+        lang,
+        location: { pathname: path },
+        parentUrl: path,
+        id: 'cG9zdDo2ODE=',
+      },
+    })
+  })
 }

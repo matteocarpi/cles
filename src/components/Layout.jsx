@@ -150,6 +150,7 @@ export default function Layout({
   location,
   parentUrl,
   yellowVariant = false,
+  noFooter = false,
 }) {
   return (
     <ParallaxProvider>
@@ -160,7 +161,7 @@ export default function Layout({
             <GlobalStyle />
             <Header parentUrl={parentUrl} yellowVariant={yellowVariant} />
             <Container>{children}</Container>
-            <Footer yellowVariant={yellowVariant} />
+            {!noFooter && <Footer yellowVariant={yellowVariant} />}
           </LocationProvider>
         </LangProvider>
       </ThemeProvider>
