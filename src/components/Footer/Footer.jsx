@@ -220,8 +220,16 @@ export default function Footer({ yellowVariant }) {
         </Quality>
 
         <Links>
-          <SecondaryLink to="#">Privacy Policy</SecondaryLink>
-          <SecondaryLink to="#">Cookie Policy</SecondaryLink>
+          <SecondaryLink
+            to={lang === 'it' ? '/privacy-policy' : `/${lang}/privacy-policy`}
+          >
+            Privacy Policy
+          </SecondaryLink>
+          <SecondaryLink
+            to={lang === 'it' ? '/cookies-policy' : `/${lang}/cookies-policy`}
+          >
+            Cookie Policy
+          </SecondaryLink>
         </Links>
       </Column>
 
