@@ -27,7 +27,7 @@ export const data = graphql`
   query IndexQuery {
     homePage: wpPage(id: { eq: "cG9zdDoxNjI=" }) {
       homeData {
-        title {
+        tuttulo {
           en
           it
         }

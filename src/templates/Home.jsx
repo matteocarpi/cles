@@ -13,7 +13,7 @@ export const data = graphql`
   query HomeQuery($lang: String) {
     homePage: wpPage(id: { eq: "cG9zdDoxNjI=" }) {
       homeData {
-        title {
+        tuttulo {
           en
           it
         }
