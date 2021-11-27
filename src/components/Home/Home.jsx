@@ -216,7 +216,7 @@ export default function Home({ lang, location, data }) {
     <Layout
       location={location}
       lang={lang}
-      title={data.homePage.homeData.title[lang]}
+      title={data.homePage.homeData.tuttulo[lang]}
     >
       <IntroWrapper>
         <IntroContainer
