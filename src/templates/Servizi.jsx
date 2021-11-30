@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql, Link, navigate } from 'gatsby'
 import styled from 'styled-components'
 
 import useClientRect from '../hooks/useClientRect'
@@ -142,6 +142,7 @@ export default function Servizi({ pageContext, data: pageData }) {
       location={location}
       title={data.titolo[lang]}
       parentUrl={parentUrl}
+      disableHeadroom
     >
       <PageIntro
         graphic={pageData.graphic.childImageSharp.gatsbyImageData}
@@ -174,9 +175,13 @@ export default function Servizi({ pageContext, data: pageData }) {
               {data.servizi.areeDiServizio.map(area => (
                 <ServiceAreaAccordion
                   {...area}
+                  id={area.titolo[lang].replaceAll(' ', '-')}
                   key={area.titolo[lang]}
                   expandedArea={expandedArea}
-                  setExpandedArea={setExpandedArea}
+                  setExpandedArea={a => {
+                    navigate(`#${area.titolo[lang].replaceAll(' ', '-')}`)
+                    setExpandedArea(a)
+                  }}
                 />
               ))}
             </Areas>

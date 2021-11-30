@@ -57,6 +57,7 @@ export default function ServiceAreaAccordion({
   listaServizi,
   expandedArea,
   setExpandedArea,
+  id,
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const { lang } = useLang()
@@ -72,7 +73,7 @@ export default function ServiceAreaAccordion({
   const handleExpansion = value => setExpandedArea(value ? titolo[lang] : null)
 
   return (
-    <Wrapper isExpanded={isExpanded}>
+    <Wrapper isExpanded={isExpanded} id={id}>
       <StyledAccordion
         titolo={titolo}
         setIsExpanded={handleExpansion}

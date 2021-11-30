@@ -132,7 +132,7 @@ const PageTitle = styled(MenuText)`
   margin-right: 0.5rem;
 `
 
-export default function Header({ parentUrl, yellowVariant }) {
+export default function Header({ parentUrl, yellowVariant, disableHeadroom }) {
   const [isMenuOpen, setIsMenuOpen] = useState(true)
 
   const { navigation } = useNavigation()
@@ -173,7 +173,7 @@ export default function Header({ parentUrl, yellowVariant }) {
           </Link>
         </ContainerDesktop>
 
-        <HeadRoom pinStart={400}>
+        <HeadRoom pinStart={400} disable={disableHeadroom}>
           <NavigationWrapper>
             <NavigationDesktop hasScrolled={hasScrolled}>
               {navigation.pages.map(page => (

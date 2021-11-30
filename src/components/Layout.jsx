@@ -152,6 +152,7 @@ export default function Layout({
   parentUrl,
   yellowVariant = false,
   noFooter = false,
+  disableHeadroom,
 }) {
   const [cookiesAccepted, setCookiesAccepted] = useState(false)
 
@@ -174,7 +175,11 @@ export default function Layout({
           <LocationProvider location={location}>
             <Seo lang={lang} title={title} />
             <GlobalStyle />
-            <Header parentUrl={parentUrl} yellowVariant={yellowVariant} />
+            <Header
+              parentUrl={parentUrl}
+              yellowVariant={yellowVariant}
+              disableHeadroom={disableHeadroom}
+            />
             <Container>{children}</Container>
             {!noFooter && <Footer yellowVariant={yellowVariant} />}
             {!cookiesAccepted && (
