@@ -388,4 +388,20 @@ exports.createPages = async function ({ actions, graphql }) {
       },
     })
   })
+
+  // Paolo Leon
+  languages.forEach(lang => {
+    const path = lang === defaultLang ? '/paolo-leon' : `/${lang}/paolo-leon`
+
+    actions.createPage({
+      path,
+      component: require.resolve('./src/templates/PaoloLeon.jsx'),
+      context: {
+        lang,
+        location: { pathname: path },
+        parentUrl: path,
+        id: 'cG9zdDo4NTE=',
+      },
+    })
+  })
 }

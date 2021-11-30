@@ -103,8 +103,8 @@ export default function useNavigation() {
           en: 'Paolo Leon',
         },
         url: {
-          it: '#',
-          en: '#',
+          it: '/paolo-leon',
+          en: '/en/paolo-leon',
         },
       },
       {
