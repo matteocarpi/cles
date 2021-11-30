@@ -40,7 +40,13 @@ const GraphicContainer = styled(motion.div)`
     `}
 `
 
-const PhotoContainer = styled(motion.div)``
+const PhotoContainer = styled(motion.div)`
+  ${({ isNewsPage }) =>
+    isNewsPage &&
+    css`
+      margin-top: 5rem;
+    `}
+`
 
 const graphicVariants = {
   hidden: {
@@ -159,6 +165,7 @@ export default function SlidingImages({
         }
         initial="hidden"
         animate={controls}
+        isNewsPage={isNewsPage}
       >
         <GatsbyImage image={imageData} alt="" />
       </PhotoContainer>
