@@ -80,6 +80,7 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
         graphic={pageData.graphic.childImageSharp.gatsbyImageData}
         image={pageData.image.childImageSharp.gatsbyImageData}
         text={data.descrizione[lang]}
+        verticalAlignment="center"
       />
 
       <ScrollSpy
