@@ -15,7 +15,7 @@ const Container = styled.section`
   padding: 20px;
 
   @media (min-width: 768px) {
-    margin-top: 22vw;
+    margin-top: calc(22vw + 30px);
     margin-bottom: 90px;
     padding: 0 40px;
   }
@@ -34,19 +34,67 @@ const Text = styled(AppearingText)`
   }
 `
 
+const ImageContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`
 const Image = styled(GatsbyImage)`
   margin: 40px 0;
+
+  @media (min-width: 768px) {
+    margin: 90px 0;
+  }
 `
 
 const PremioInfoContainer = styled.article`
   border-top: ${({ theme }) => `solid 2px ${theme.gray}`};
+
+  @media (min-width: 768px) {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 `
 
-const PremioDescription = styled.article``
+const PremioTitle = styled(MenuText)`
+  margin-top: 0;
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+    text-transform: none;
+    margin: 0;
+    position: sticky;
+    top: calc(22vw + 20px);
+  }
+`
+
+const PremioDescription = styled.article`
+  max-width: 900px;
+
+  @media (min-width: 768px) {
+    column-count: 2;
+    column-gap: 40px;
+    p {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+`
 
 const BandoContainer = styled.div`
   line-height: 1.5rem;
   font-weight: bold;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+
+  @media (min-width: 768px) {
+    margin-top: 90px;
+  }
 `
 
 const DownloadLink = styled.a`
@@ -73,10 +121,13 @@ export default function Policies({ pageContext, data: pageData }) {
         <Text maxStrLength={isMobile ? 25 : 40} component={Description}>
           {introText[lang]}
         </Text>
-        <Image image={immagine.localFile.childImageSharp.gatsbyImageData} />
+
+        <ImageContainer>
+          <Image image={immagine.localFile.childImageSharp.gatsbyImageData} />
+        </ImageContainer>
 
         <PremioInfoContainer>
-          <MenuText>{infoPremio.titolo[lang]}</MenuText>
+          <PremioTitle>{infoPremio.titolo[lang]}</PremioTitle>
 
           <PremioDescription
             dangerouslySetInnerHTML={{ __html: infoPremio.descrizione[lang] }}
