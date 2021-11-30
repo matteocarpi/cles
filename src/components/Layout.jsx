@@ -141,7 +141,7 @@ const defaultTheme = {
   red: '#AE474B',
   green: '#108610',
   transparentRed: 'rgba(173, 71, 75, 0.8)',
-  transparentYellow: 'rgba(247, 207, 76, 0.8)',
+  transparentYellow: 'rgba(247, 207, 76, 0.5)',
 }
 
 export default function Layout({

@@ -123,7 +123,7 @@ export default function PersonThumb({
 
   const mood = useMemo(() => {
     if (!isMobile) {
-      return isHovered ? 'scherzosa' : 'seria'
+      return isHovered || isSelected ? 'scherzosa' : 'seria'
     }
     return isSelected ? 'scherzosa' : 'seria'
   }, [isHovered, isMobile, isSelected])
