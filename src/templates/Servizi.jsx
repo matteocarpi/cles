@@ -175,7 +175,7 @@ export default function Servizi({ pageContext, data: pageData }) {
               {data.servizi.areeDiServizio.map(area => (
                 <ServiceAreaAccordion
                   {...area}
-                  id={area.titolo[lang].replaceAll(' ', '-')}
+                  id={area.titolo[lang]?.replaceAll(' ', '-')}
                   key={area.titolo[lang]}
                   expandedArea={expandedArea}
                   setExpandedArea={a => {
