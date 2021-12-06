@@ -105,18 +105,20 @@ const Foto = styled(GatsbyImage)`
         }
       `}
      
-    &:hover {
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        background-color: ${({ theme }) => theme.transparentYellow};
-        z-index: 1;
-      }
-    }
+      ${({ isHovered }) =>
+      isHovered &&
+      css`
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          background-color: ${({ theme }) => theme.transparentYellow};
+          z-index: 1;
+        }
+      `}
   }
 `
 
@@ -149,10 +151,11 @@ export default function PersonThumb({
       onMouseLeave={() => setIsHovered(false)}
     >
       <Foto
-        isSelected={isSelected}
         alt={nomeECognome}
         image={image}
         aspectRatio={1}
+        isHovered={isHovered}
+        isSelected={isSelected}
         isOtherSelected={isOtherSelected}
         onMouseEnter={() => !isSelected && setIsHovered(true)}
         onMouseLeave={() => !isSelected && setIsHovered(false)}
