@@ -43,10 +43,10 @@ export default function PeopleGrid({
 
   const handlePersonClick = useCallback(
     (person, index) => {
-      if (selectedPerson === person.nomeECognome) {
+      if (selectedPerson === person.id) {
         setSelectedPerson(null)
       } else {
-        setSelectedPerson(person.nomeECognome)
+        setSelectedPerson(person.id)
 
         const reorderedPeople = [
           person,
@@ -74,10 +74,8 @@ export default function PeopleGrid({
           {...person}
           setSelectedPeople={setSelectedPeople}
           onClick={() => handlePersonClick(person, index)}
-          isSelected={selectedPerson === person.nomeECognome}
-          isOtherSelected={
-            selectedPerson && selectedPerson !== person.nomeECognome
-          }
+          isSelected={selectedPerson === person.id}
+          isOtherSelected={selectedPerson && selectedPerson !== person.id}
         />
       ))}
     </Container>

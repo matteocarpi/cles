@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
+import { v4 as uuidv4 } from 'uuid'
 
 import { departments } from '../const'
 
@@ -48,7 +49,14 @@ export default function ChiSiamo({ pageContext, data: pageData }) {
 
   const [rect, ref] = useClientRect()
 
-  const people = data.persone?.map(p => p.persona) ?? []
+  const people = useMemo(
+    () =>
+      data.persone?.map(p => ({
+        ...p.persona,
+        id: uuidv4(),
+      })) ?? [],
+    [data.persone],
+  )
 
   const sections = [
     {

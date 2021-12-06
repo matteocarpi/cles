@@ -11,6 +11,16 @@ const Container = styled.button`
     grid-column: 1/3;
     grid-row: 1/3;
   }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+  }
 `
 
 const InfoWrapper = styled.div`
@@ -33,6 +43,7 @@ const InfoWrapper = styled.div`
 `
 
 const InfoContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,11 +56,12 @@ const InfoContainer = styled.div`
 `
 
 const Circle = styled.div`
+  position: absolute;
+  right: -50px;
   width: 100px;
   height: 100px;
   background-color: ${({ theme }) => theme.transparentYellow};
   border-radius: 50%;
-  transform: translateX(50%);
   @media (min-width: 769px) {
     z-index: 6;
   }

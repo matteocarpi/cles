@@ -40,7 +40,7 @@ const Title = styled.h6`
 
 const Logo = styled(GatsbyImage)`
   width: 100%;
-
+  mix-blend-mode: multiply;
   @media (min-width: 768px) {
     width: 273px;
     height: 117px;

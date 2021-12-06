@@ -84,7 +84,7 @@ export default function People({ departments, people, comitato }) {
     <Container>
       <DepartmentList>
         {departments.map(department => (
-          <Department>
+          <Department key={department.id}>
             <DepartmentButton
               onClick={() => toggleDepartment(department)}
               active={selectedDepartment === department.id}
