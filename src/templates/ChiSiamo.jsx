@@ -22,6 +22,9 @@ const TextBlock = styled.article`
 
   @media (min-width: 768px) {
     margin-top: 60px;
+    &:not(:first-child):not(:nth-child(2)) {
+      margin-top: 30px;
+    }
   }
 `
 
