@@ -83,7 +83,7 @@ export default function ClientSection({ titolo, loghi = [] }) {
   )
 
   return (
-    <Container>
+    <Container id={titolo[lang].replaceAll(' ', '')}>
       <Header>
         <Title>{titolo[lang]}</Title>
         <SwiperPagination

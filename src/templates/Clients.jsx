@@ -39,7 +39,11 @@ function Clients({ data, pageContext }) {
       />
       <Container ref={ref}>
         {data.wpPage.clientiData.clienti.map(client => (
-          <ClientSection key={client.titolo[lang]} {...client} />
+          <ClientSection
+            id={client.titolo[lang].replaceAll(' ', '')}
+            key={client.titolo[lang]}
+            {...client}
+          />
         ))}
       </Container>
     </Layout>
