@@ -75,13 +75,16 @@ export default function ClientSection({ titolo, loghi = [] }) {
     () =>
       Array.from(Array(slidesNumber).keys()).map(slide => ({
         id: uuidv4(),
-        logos: Array.from(Array(rows).keys()).map(row => ({
-          ...logos[slide * rows + row],
-        })),
+        logos: Array.from(Array(rows).keys()).map(
+          row =>
+            slide * rows + row <= logos.length - 1 && {
+              ...logos[slide * rows + row],
+            },
+        ),
       })),
     [logos, rows, slidesNumber],
   )
-
+  
   return (
     <Container id={titolo[lang].replaceAll(' ', '')}>
       <Header>

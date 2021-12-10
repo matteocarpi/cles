@@ -29,7 +29,7 @@ function Clients({ data, pageContext }) {
       location={location}
       parentUrl={parentUrl}
     >
-      <PageIntro
+       <PageIntro
         text={data.wpPage.clientiData.description[lang]}
         graphic={data.graphic.childImageSharp.gatsbyImageData}
         image={data.image.childImageSharp.gatsbyImageData}
@@ -37,6 +37,7 @@ function Clients({ data, pageContext }) {
         verticalAlignment="flex-end"
         leftTranslate={-30}
       />
+      
       <Container ref={ref}>
         {data.wpPage.clientiData.clienti.map(client => (
           <ClientSection
