@@ -75,23 +75,4 @@ export default function ScrollSpy({
       </ScrollSpyContainer>
     )
   )
-  // return (
-  //   scrollY + viewPortHeight + firstOffset >= firstSectionTop && (
-  //     <ScrollSpyContainer>
-  //       <ReactScrollSpy
-  //         items={sections.map(section => section.id)}
-  //         currentClassName="active"
-  //         offset={offset}
-  //       >
-  //         {sections.map(section => (
-  //           <SectionTitleWrapper key={section.id} className="section-title">
-  //             <Title className="title" light={section.isLight}>
-  //               {section.label[lang]}
-  //             </Title>
-  //           </SectionTitleWrapper>
-  //         ))}
-  //       </ReactScrollSpy>
-  //     </ScrollSpyContainer>
-  //   )
-  // )
 }

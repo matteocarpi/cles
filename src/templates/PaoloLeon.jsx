@@ -5,12 +5,15 @@ import { motion } from 'framer-motion'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 import useResponsiveness from '../hooks/useResponsiveness'
+import useClientRect from '../hooks/useClientRect'
 
 import Layout from '../components/Layout'
 import AppearingText from '../components/AppearingText'
 import MenuText from '../components/MenuText'
+import ScrollSpy from '../components/ScrollSpy'
 
 const Container = styled.section`
+  width: 100%;
   margin-top: 124px;
   padding: 20px;
 
@@ -49,13 +52,12 @@ const Image = styled(GatsbyImage)`
 `
 
 const PremioInfoContainer = styled.article`
+  width: 100%;
   border-top: ${({ theme }) => `solid 2px ${theme.gray}`};
 
   @media (min-width: 768px) {
     border: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    margin-bottom: 90px;
   }
 `
 
@@ -63,16 +65,13 @@ const PremioTitle = styled(MenuText)`
   margin-top: 30px;
 
   @media (min-width: 768px) {
-    font-size: 32px;
-    text-transform: none;
-    margin: 0;
-    position: sticky;
-    top: calc(22vw + 20px);
+    display: none;
   }
 `
 
 const PremioDescription = styled.article`
   max-width: 900px;
+  margin-left: auto;
 
   @media (min-width: 768px) {
     column-count: 2;
@@ -82,6 +81,10 @@ const PremioDescription = styled.article`
       page-break-inside: avoid;
       break-inside: avoid;
     }
+
+    border-bottom: ${({ theme, border }) =>
+      border && `solid 2px ${theme.gray}`};
+    padding-bottom: ${({ border }) => border && `60px`};
   }
 `
 
@@ -110,13 +113,32 @@ export default function Policies({ pageContext, data: pageData }) {
 
   const { title } = pageData.wpPage
 
-  const { introText, immagine, infoPremio, bando } =
+  const { introText, immagine, infoPremio, bando, economista } =
     pageData.wpPage.paoloLeonData
 
   const { isMobile } = useResponsiveness()
+  const [rect, ref] = useClientRect()
+
+  const sections = [
+    {
+      id: economista.titolo[lang].replaceAll(' ', ''),
+      label: economista.titolo,
+    },
+    {
+      id: infoPremio.titolo[lang].replaceAll(' ', ''),
+      label: infoPremio.titolo,
+    },
+  ]
 
   return (
     <Layout lang={lang} location={location} title={title} parentUrl={parentUrl}>
+      <ScrollSpy
+        offset={-800}
+        sections={sections}
+        firstSectionTop={rect?.y}
+        firstOffset={400}
+      />
+
       <Container>
         <Text maxStrLength={isMobile ? 25 : 40} component={Description}>
           {introText[lang]}
@@ -126,24 +148,39 @@ export default function Policies({ pageContext, data: pageData }) {
           <Image image={immagine.localFile.childImageSharp.gatsbyImageData} />
         </ImageContainer>
 
-        <PremioInfoContainer>
+        <PremioInfoContainer
+          ref={ref}
+          id={economista.titolo[lang].replaceAll(' ', '')}
+        >
+          <PremioTitle>{economista.titolo[lang]}</PremioTitle>
+
+          <PremioDescription
+            border
+            dangerouslySetInnerHTML={{ __html: economista.descrizione[lang] }}
+          />
+        </PremioInfoContainer>
+
+        <PremioInfoContainer
+          ref={ref}
+          id={infoPremio.titolo[lang].replaceAll(' ', '')}
+        >
           <PremioTitle>{infoPremio.titolo[lang]}</PremioTitle>
 
           <PremioDescription
             dangerouslySetInnerHTML={{ __html: infoPremio.descrizione[lang] }}
           />
-        </PremioInfoContainer>
 
-        <BandoContainer>
-          {bando.titolo[lang]} -{' '}
-          <DownloadLink
-            href={bando.allegato[lang].mediaItemUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {bando.allegato[lang].title}
-          </DownloadLink>
-        </BandoContainer>
+          <BandoContainer>
+            {bando.titolo[lang]} -{' '}
+            <DownloadLink
+              href={bando.allegato[lang].mediaItemUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {bando.allegato[lang].title}
+            </DownloadLink>
+          </BandoContainer>
+        </PremioInfoContainer>
       </Container>
     </Layout>
   )
@@ -166,6 +203,16 @@ export const data = graphql`
           }
         }
         infoPremio {
+          titolo {
+            it
+            en
+          }
+          descrizione {
+            it
+            en
+          }
+        }
+        economista {
           titolo {
             it
             en
