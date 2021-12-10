@@ -14,6 +14,7 @@ import FormCheckbox from '../components/FormCheckbox'
 import FormSelect from '../components/FormSelect'
 import Link from '../components/Link'
 import IntroText from '../components/IntroText'
+import SmallText from '../components/SmallText'
 
 const Container = styled.main`
   margin-top: 124px;
@@ -77,6 +78,39 @@ const SubmissionMessage = styled.p`
     css`
       color: ${theme.green};
     `};
+`
+
+const PositionsList = styled.section``
+
+const PositionContainer = styled.article`
+  border-bottom: solid 2px ${({ theme }) => theme.yellow};
+  margin-bottom: 30px;
+`
+
+const PositionTitle = styled.h6`
+  font-weight: 600;
+  margin-bottom: 10px;
+`
+
+const PositionDetails = styled.div`
+  margin-bottom: 30px;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+`
+
+const InfosWrapper = styled.div``
+
+const InfoContainer = styled.div`
+  margin-bottom: 30px;
+`
+
+const InfoLabel = styled(SmallText)``
+
+const InfoContent = styled.p`
+  margin-bottom: 0px;
+  font-size: 12px;
 `
 
 const phoneRegExp =
@@ -196,6 +230,41 @@ export default function Policies({ pageContext, data: pageData }) {
     >
       <Container>
         <IntroText>{lavoraConNoiData.tetolo[lang]}</IntroText>
+
+        <SectionWrapper>
+          <SectionTitle>
+            {lavoraConNoiData.posizioniAperte.titolo[lang]}
+          </SectionTitle>
+          <SectionContent>
+            <PositionsList>
+              {lavoraConNoiData.posizioniAperte.posizioni.map(p => (
+                <PositionContainer>
+                  <PositionTitle>{p.nomePosizione[lang]}</PositionTitle>
+                  {p.dettagli[lang] && (
+                    <PositionDetails
+                      dangerouslySetInnerHTML={{ __html: p.dettagli[lang] }}
+                    />
+                  )}
+                  <InfosWrapper>
+                    <InfoContainer>
+                      <InfoLabel>
+                        {{ it: 'Tipo di contratto', en: 'Contract' }[lang]}
+                      </InfoLabel>
+                      <InfoContent>{p.contratto[lang]}</InfoContent>
+                    </InfoContainer>
+                    <InfoContainer>
+                      <InfoLabel>
+                        {{ it: 'Sede', en: 'Location' }[lang]}
+                      </InfoLabel>
+                      <InfoContent>{p.sede[lang]}</InfoContent>
+                    </InfoContainer>
+                  </InfosWrapper>
+                </PositionContainer>
+              ))}
+            </PositionsList>
+          </SectionContent>
+        </SectionWrapper>
+
         <SectionWrapper>
           <SectionTitle>{lavoraConNoiData.form.tetolo[lang]}</SectionTitle>
           <SectionContent>
