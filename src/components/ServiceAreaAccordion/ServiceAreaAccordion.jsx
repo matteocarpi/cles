@@ -49,6 +49,10 @@ const ServiziList = styled.ul`
 const Servizio = styled.li`
   padding: 15px 0;
   border-top: 1px solid ${({ theme }) => theme.gray};
+
+  h5 {
+    font-size: 24px;
+  }
 `
 
 export default function ServiceAreaAccordion({
