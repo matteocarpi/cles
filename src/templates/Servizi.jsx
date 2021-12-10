@@ -33,7 +33,7 @@ const Sidebar = styled.div`
 
   @media (min-width: 768px) {
     position: sticky;
-    top: calc(15.5vw + 100px);
+    top: calc(15.5vw + 70px);
     width: 300px;
     height: 400px;
     margin-bottom: 0;
