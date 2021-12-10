@@ -80,7 +80,11 @@ const SubmissionMessage = styled.p`
     `};
 `
 
-const PositionsList = styled.section``
+const PositionsList = styled.section`
+  @media (min-width: 768px) {
+    margin-bottom: 60px;
+  }
+`
 
 const PositionContainer = styled.article`
   border-bottom: solid 2px ${({ theme }) => theme.yellow};
@@ -90,6 +94,10 @@ const PositionContainer = styled.article`
 const PositionTitle = styled.h6`
   font-weight: 600;
   margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 30px;
+  }
 `
 
 const PositionDetails = styled.div`
@@ -100,17 +108,33 @@ const PositionDetails = styled.div`
   }
 `
 
-const InfosWrapper = styled.div``
+const InfosWrapper = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 520px;
+    margin-top: 30px;
+  }
+`
 
 const InfoContainer = styled.div`
   margin-bottom: 30px;
 `
 
-const InfoLabel = styled(SmallText)``
+const InfoLabel = styled(SmallText)`
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+`
 
 const InfoContent = styled.p`
   margin-bottom: 0px;
   font-size: 12px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+    margin-top: 15px;
+  }
 `
 
 const phoneRegExp =
