@@ -18,8 +18,17 @@ const TextBlock = styled.article`
 
   p {
     margin: 0;
+    margin-bottom: 15px;
   }
 
+  ul {
+    padding-left: 30px;
+
+    li {
+      margin-bottom: 15px;
+      list-style: disc;
+    }
+  }
   @media (min-width: 768px) {
     margin-top: 60px;
     &:not(:first-child):not(:nth-child(2)) {
