@@ -45,9 +45,11 @@ const ImageContainer = styled.div`
 `
 const Image = styled(GatsbyImage)`
   margin: 40px 0;
+  height: 170px;
 
   @media (min-width: 768px) {
     margin: 90px 0;
+    height: 615px;
   }
 `
 
