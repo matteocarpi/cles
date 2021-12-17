@@ -51,7 +51,12 @@ const Servizio = styled.li`
   border-top: 1px solid ${({ theme }) => theme.gray};
 
   h5 {
-    font-size: 24px;
+    font-size: 18px;
+  }
+  @media (min-width: 768px) {
+    h5 {
+      font-size: 24px;
+    }
   }
 `
 
