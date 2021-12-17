@@ -20,6 +20,7 @@ const StyledLink = styled(AnchorLink)`
   align-items: center;
   justify-content: center;
   transition: 0.1s ease-in-out;
+  padding: 0 1rem;
 
   &:hover {
     transform: translate(3px, 3px);
