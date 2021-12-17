@@ -50,6 +50,7 @@
     "react-scrollspy": "^3.4.3",
     "react-spawn": "^0.0.10",
     "sass": "^1.44.0",
+    "scroll-to-element": "^2.0.3",
     "sharp": "^0.29.3",
     "styled-components": "^5.3.3",
     "styled-reset": "^4.3.4",

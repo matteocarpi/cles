@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
+import scrollToElement from 'scroll-to-element'
 
 import useClientRect from '../hooks/useClientRect'
 
@@ -24,6 +25,10 @@ function Clients({ data, pageContext }) {
   const [, ref] = useClientRect()
 
   const { isMobile } = useResponsiveness()
+
+  useEffect(() => {
+    scrollToElement('#comuni', { duration: 1000, offset: -340 })
+  }, [])
 
   return (
     <Layout
