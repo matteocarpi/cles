@@ -56,7 +56,7 @@ export default function PageIntro({
 
   return (
     <Container>
-      <Text maxStrLength={isMobile ? 25 : 40} component={Description}>
+      <Text maxStrLength={isMobile ? 20 : 40} component={Description}>
         {text}
       </Text>
       <StyledSlidingImages

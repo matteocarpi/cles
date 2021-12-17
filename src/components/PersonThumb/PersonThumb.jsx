@@ -34,8 +34,6 @@ const InfoWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
-  background-color: ${({ theme }) => theme.transparentRed};
-
   @media (min-width: 769px) {
     z-index: 2;
     background-color: transparent;
@@ -83,6 +81,21 @@ const Role = styled.h6`
 const Foto = styled(GatsbyImage)`
   display: block;
 
+  ${({ isOtherSelected }) =>
+    isOtherSelected &&
+    css`
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: ${({ theme }) => theme.transparentRed};
+        z-index: 1;
+      }
+    `}
+
   @media (min-width: 769px) {
     ${({ isSelected }) =>
       isSelected &&
@@ -90,22 +103,7 @@ const Foto = styled(GatsbyImage)`
         z-index: 2;
       `}
 
-    ${({ isOtherSelected }) =>
-      isOtherSelected &&
-      css`
-        &:before {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 0;
-          left: 0;
-          bottom: 0;
-          background-color: ${({ theme }) => theme.transparentRed};
-          z-index: 1;
-        }
-      `}
-     
-      ${({ isHovered }) =>
+    ${({ isHovered }) =>
       isHovered &&
       css`
         &:before {
