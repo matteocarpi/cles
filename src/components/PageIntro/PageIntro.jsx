@@ -51,12 +51,18 @@ export default function PageIntro({
   graphicStyle,
   verticalAlignment,
   leftTranslate,
+  customLines,
 }) {
   const { isMobile } = useResponsiveness()
 
   return (
     <Container>
-      <Text maxStrLength={isMobile ? 20 : 40} component={Description}>
+      <Text
+        // eslint-disable-next-line no-nested-ternary
+        maxStrLength={!customLines ? (isMobile ? 20 : 40) : null}
+        component={Description}
+        numberOfLines={customLines}
+      >
         {text}
       </Text>
       <StyledSlidingImages

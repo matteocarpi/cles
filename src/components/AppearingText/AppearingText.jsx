@@ -82,6 +82,7 @@ export default function AppearingText({
     const obj = {}
 
     filledTextArr.forEach(word => {
+      // eslint-disable-next-line no-unsafe-optional-chaining
       if (obj[lineNumber]?.length + word.length > stringLength) {
         lineNumber += 1
       }

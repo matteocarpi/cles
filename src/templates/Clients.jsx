@@ -39,6 +39,7 @@ function Clients({ data, pageContext }) {
     >
       <PageIntro
         text={data.wpPage.clientiData.description[lang]}
+        customLines={isMobile ? 3 : 2}
         graphic={data.graphic.childImageSharp.gatsbyImageData}
         image={data.image.childImageSharp.gatsbyImageData}
         reverseImages
