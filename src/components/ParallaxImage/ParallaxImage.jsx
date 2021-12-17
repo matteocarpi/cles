@@ -1,24 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { ParallaxBanner } from 'react-scroll-parallax'
+import { Parallax } from 'react-parallax'
 
-const Image = styled(ParallaxBanner)`
+const Image = styled(Parallax)`
   margin: 40px 0;
 `
 
+const Spacer = styled.div`
+  width: 100%;
+  padding-top: 56.25%;
+`
 export default function ParallaxImage({ image }) {
   return (
-    <Image
-      layers={[
-        {
-          image,
-          amount: 0.2,
-        },
-      ]}
-      style={{
-        height: '500px',
-      }}
-    />
+    <Image bgImage={image} strength={-70}>
+      <Spacer />
+    </Image>
   )
 }
