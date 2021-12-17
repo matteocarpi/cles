@@ -310,7 +310,7 @@ export const data = graphql`
     }
     image: file(name: { eq: "servizi-photo" }) {
       childImageSharp {
-        gatsbyImageData
+        gatsbyImageData(height: 10000)
       }
     }
     graphic: file(name: { eq: "servizi-graphic" }) {

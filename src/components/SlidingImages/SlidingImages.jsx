@@ -32,7 +32,6 @@ const GraphicContainer = styled(motion.div)`
   ${({ isNewsPage }) =>
     isNewsPage &&
     css`
-      padding-bottom: 50px;
       @media (min-width: 768px) {
         margin-right: 150px;
         padding-bottom: 200px;
@@ -44,8 +43,15 @@ const PhotoContainer = styled(motion.div)`
   ${({ isNewsPage }) =>
     isNewsPage &&
     css`
-      margin-top: 5rem;
+      margin-top: 2rem;
+      @media (min-width: 768px) {
+        margin-top: 5rem;
+      }
     `}
+
+  @media (max-width: 767px) {
+    height: 170px;
+  }
 `
 
 const graphicVariants = {
@@ -167,7 +173,12 @@ export default function SlidingImages({
         animate={controls}
         isNewsPage={isNewsPage}
       >
-        <GatsbyImage image={imageData} alt="" />
+        <GatsbyImage
+          style={{ height: '100%', width: '100%' }}
+          imgStyle={{ objectFit: 'cover' }}
+          image={imageData}
+          alt=""
+        />
       </PhotoContainer>
     </Container>
   )
