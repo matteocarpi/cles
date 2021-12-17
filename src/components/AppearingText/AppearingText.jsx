@@ -40,6 +40,7 @@ export default function AppearingText({
   className,
   maxStrLength,
   stringLengths,
+  withLineBreaks,
 }) {
   const viewportWidth = useViewportWidth()
 
@@ -77,6 +78,10 @@ export default function AppearingText({
   )
 
   const lines = useMemo(() => {
+    if (withLineBreaks) {
+      return children.split('<br />')
+    }
+
     let lineNumber = 0
 
     const obj = {}
@@ -92,7 +97,7 @@ export default function AppearingText({
     })
 
     return Object.values(obj)
-  }, [filledTextArr, stringLength])
+  }, [children, filledTextArr, stringLength, withLineBreaks])
 
   useLayoutEffect(() => {
     if (inView) {
@@ -105,7 +110,7 @@ export default function AppearingText({
   return (
     <Wrapper ref={ref} className={className}>
       <Container>
-        {stringLength
+        {stringLength || withLineBreaks
           ? lines.map(line => (
               <TextContainer key={line}>
                 <Component

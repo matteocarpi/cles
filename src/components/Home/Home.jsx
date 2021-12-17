@@ -20,6 +20,7 @@ import SectionTitleMobile from '../SectionTitleMobile'
 import ScrollSpy from '../ScrollSpy'
 import LiftedLink from '../LiftedLink/LiftedLink'
 import ParallaxImage from '../ParallaxImage'
+import useResponsiveness from '../../hooks/useResponsiveness'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -212,6 +213,8 @@ export default function Home({ lang, location, data }) {
         },
   )
 
+  const { isMobile } = useResponsiveness()
+
   return (
     <Layout
       location={location}
@@ -222,8 +225,8 @@ export default function Home({ lang, location, data }) {
         <IntroContainer
           fluid={homeData.immagine.localFile.childImageSharp.fluid}
         >
-          <SloganText numberOfLines={2} component={Slogan}>
-            {homeData.slogan[lang]}
+          <SloganText withLineBreaks component={Slogan}>
+            {homeData.slogan[isMobile ? 'mobile' : 'desktop'][lang]}
           </SloganText>
           <ScrollDown to={lang === 'en' ? '/en#about' : '#about'}>
             <SmallText>Scroll Down</SmallText>

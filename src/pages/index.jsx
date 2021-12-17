@@ -41,8 +41,14 @@ export const data = graphql`
           }
         }
         slogan {
-          en
-          it
+          mobile {
+            it
+            en
+          }
+          desktop {
+            it
+            en
+          }
         }
         bio {
           it
