@@ -52,6 +52,7 @@ export default function PageIntro({
   verticalAlignment,
   leftTranslate,
   customLines,
+  graphicContainerStyle,
 }) {
   const { isMobile } = useResponsiveness()
 
@@ -72,6 +73,7 @@ export default function PageIntro({
         graphicStyle={graphicStyle}
         verticalAlignment={verticalAlignment}
         leftTranslate={leftTranslate}
+        graphicContainerStyle={graphicContainerStyle}
       />
     </Container>
   )

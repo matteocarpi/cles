@@ -56,6 +56,9 @@ function Clients({ data, pageContext }) {
         reverseImages
         verticalAlignment="flex-end"
         leftTranslate={!isMobile && -30}
+        graphicStyle={{
+          maxHeight: '580px',
+        }}
       />
 
       <Container ref={ref}>

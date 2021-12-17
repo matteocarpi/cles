@@ -19,7 +19,7 @@ const Container = styled.div`
   @media (min-width: 769px) {
     margin-top: ${({ isNewsPage }) => (isNewsPage ? '-40px' : '40px')};
     width: 100%;
-    max-width: 1300px;
+    max-width: ${({ isNewsPage }) => (isNewsPage ? '1500px' : '1300px')};
     justify-content: flex-end;
     transform: scale(1) translateX(0);
     margin-bottom: ${({ isNewsPage }) => (isNewsPage ? '-100px' : 0)};
@@ -33,7 +33,7 @@ const GraphicContainer = styled(motion.div)`
     isNewsPage &&
     css`
       @media (min-width: 768px) {
-        margin-right: 150px;
+        margin-right: 130px;
         padding-bottom: 200px;
       }
     `}
@@ -48,6 +48,10 @@ const PhotoContainer = styled(motion.div)`
         margin-top: 5rem;
       }
     `}
+
+  max-height: 615px !important;
+
+  overflow: hidden;
 
   @media (max-width: 767px) {
     height: 170px;
@@ -113,6 +117,8 @@ export default function SlidingImages({
   reverse = false,
   verticalAlignment,
   leftTranslate = 0,
+  graphicContainerStyle,
+  graphicStyle,
 }) {
   const { location } = useLocation()
 
@@ -154,8 +160,14 @@ export default function SlidingImages({
         variants={reverse ? graphicVariantsReverse : graphicVariants}
         initial="hidden"
         animate={controls}
+        style={graphicContainerStyle}
       >
-        <GatsbyImage image={graphicData} alt="" />
+        <GatsbyImage
+          image={graphicData}
+          style={graphicStyle}
+          objectFit="contain"
+          alt=""
+        />
       </GraphicContainer>
       <PhotoContainer
         variants={
@@ -175,7 +187,7 @@ export default function SlidingImages({
       >
         <GatsbyImage
           style={{ height: '100%', width: '100%' }}
-          imgStyle={{ objectFit: 'cover' }}
+          objectFit="contain"
           image={imageData}
           alt=""
         />
