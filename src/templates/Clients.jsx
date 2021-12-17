@@ -27,8 +27,19 @@ function Clients({ data, pageContext }) {
   const { isMobile } = useResponsiveness()
 
   useEffect(() => {
-    scrollToElement('#comuni', { duration: 1000, offset: -340 })
-  }, [])
+    const isBrowser = typeof window !== 'undefined'
+    if (!isBrowser) return
+
+    const timer = setTimeout(() => {
+      const params = new URLSearchParams(window.location.search)
+
+      const selectedSection = params.get('section')
+
+      scrollToElement(`#${selectedSection}`, { duration: 1000, offset: -340 })
+    }, 500)
+
+    return () => clearTimeout(timer)
+  })
 
   return (
     <Layout
@@ -50,7 +61,7 @@ function Clients({ data, pageContext }) {
       <Container ref={ref}>
         {data.wpPage.clientiData.clienti.map(client => (
           <ClientSection
-            id={client.titolo[lang].replaceAll(' ', '')}
+            id={client.titolo[lang].replaceAll(' ', '').toLowerCase()}
             key={client.titolo[lang]}
             {...client}
           />

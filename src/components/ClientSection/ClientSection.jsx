@@ -64,7 +64,7 @@ const PaginationContainer = styled.div`
   padding-top: 40px;
 `
 
-export default function ClientSection({ titolo, loghi = [] }) {
+export default function ClientSection({ titolo, loghi = [], id }) {
   const [swiper, setSwiper] = useState(null)
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -94,7 +94,7 @@ export default function ClientSection({ titolo, loghi = [] }) {
   )
 
   return (
-    <Container id={titolo[lang].replaceAll(' ', '').toLowerCase()}>
+    <Container id={id}>
       <Header>
         <Title>{titolo[lang]}</Title>
         {!isMobile && (

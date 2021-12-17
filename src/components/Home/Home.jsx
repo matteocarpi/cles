@@ -274,9 +274,11 @@ export default function Home({ lang, location, data }) {
             <>
               {clients.map(client => (
                 <LiftedLink
-                  to={`${findLink('Clienti', lang)}#${client.titolo[
+                  to={`${findLink('Clienti', lang)}?section=${client.titolo[
                     lang
-                  ].replaceAll(' ', '')}`}
+                  ]
+                    .replaceAll(' ', '')
+                    .toLowerCase()}`}
                   key={client.titolo[lang]}
                 >
                   {client.titolo[lang]}

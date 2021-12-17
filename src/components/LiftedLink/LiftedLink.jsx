@@ -1,5 +1,5 @@
 import React from 'react'
-import { AnchorLink } from 'gatsby-plugin-anchor-links'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -7,7 +7,7 @@ const Container = styled.div`
   margin: 24px;
 `
 
-const StyledLink = styled(AnchorLink)`
+const StyledLink = styled(Link)`
   font-weight: 600;
   text-transform: uppercase;
   font-size: 16px;
