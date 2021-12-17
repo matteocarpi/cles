@@ -17,13 +17,23 @@ const ContainerMobile = styled.header`
   top: 0;
   width: calc(100% - 2rem);
   z-index: 1;
-  margin: 2rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 
   @media (min-width: 1110px) {
     display: none;
+  }
+
+  .headroom {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+
+    background-color: ${({ theme, hasScrolled }) =>
+      hasScrolled ? theme.white : 'transparent'};
   }
 `
 
@@ -151,18 +161,20 @@ export default function Header({ parentUrl, yellowVariant, disableHeadroom }) {
 
   return (
     <>
-      <ContainerMobile>
-        <LogoMobileLink to={lang === 'it' ? '/' : '/en'}>
-          <LogoMobile />
-        </LogoMobileLink>
+      <ContainerMobile hasScrolled={hasScrolled}>
+        <HeadRoom pinStart={400}>
+          <LogoMobileLink to={lang === 'it' ? '/' : '/en'}>
+            <LogoMobile />
+          </LogoMobileLink>
 
-        <NavigationMobile>
-          <PageTitle>{pageTitle?.label[lang] ?? 'Home'}</PageTitle>
+          <NavigationMobile>
+            <PageTitle>{pageTitle?.label[lang] ?? 'Home'}</PageTitle>
 
-          <MenuButton onClick={() => setIsMenuOpen(true)}>
-            <Burger />
-          </MenuButton>
-        </NavigationMobile>
+            <MenuButton onClick={() => setIsMenuOpen(true)}>
+              <Burger />
+            </MenuButton>
+          </NavigationMobile>
+        </HeadRoom>
       </ContainerMobile>
       {isMenuOpen && <MobileMenu lang={lang} setIsMenuOpen={setIsMenuOpen} />}
 
