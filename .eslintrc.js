@@ -43,5 +43,6 @@ module.exports = {
     'array-callback-return': off,
     'react/no-danger': off,
     'react/jsx-no-bind': off,
+    'react/function-component-definition': off,
   },
 }

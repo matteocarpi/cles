@@ -84,7 +84,7 @@ export default function ClientSection({ titolo, loghi = [] }) {
       })),
     [logos, rows, slidesNumber],
   )
-  
+
   return (
     <Container id={titolo[lang].replaceAll(' ', '')}>
       <Header>

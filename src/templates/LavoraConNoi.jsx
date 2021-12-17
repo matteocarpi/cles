@@ -15,7 +15,6 @@ import FormSelect from '../components/FormSelect'
 import Link from '../components/Link'
 import IntroText from '../components/IntroText'
 import SmallText from '../components/SmallText'
-import ScrollSpy from '../components/ScrollSpy'
 
 const Container = styled.main`
   margin-top: 124px;
@@ -41,7 +40,9 @@ const SectionTitle = styled(MenuText)`
   margin-top: 30px;
 
   @media (min-width: 768px) {
-    display: none;
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 400;
   }
 `
 
@@ -242,17 +243,6 @@ export default function Policies({ pageContext, data: pageData }) {
     }
   }
 
-  const sections = [
-    {
-      id: lavoraConNoiData.form.tetolo[lang].replaceAll(' ', ''),
-      label: lavoraConNoiData.form.tetolo,
-    },
-    {
-      id: lavoraConNoiData.posizioniAperte.titolo[lang].replaceAll(' ', ''),
-      label: lavoraConNoiData.posizioniAperte.titolo,
-    },
-  ]
-
   return (
     <Layout
       lang={lang}
@@ -263,8 +253,6 @@ export default function Policies({ pageContext, data: pageData }) {
     >
       <Container>
         <IntroText>{lavoraConNoiData.tetolo[lang]}</IntroText>
-
-        <ScrollSpy sections={sections} firstSectionTop={0} />
 
         <SectionWrapper
           id={lavoraConNoiData.posizioniAperte.titolo[lang].replaceAll(' ', '')}
