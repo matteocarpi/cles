@@ -7,6 +7,7 @@ import useClientRect from '../hooks/useClientRect'
 import Layout from '../components/Layout'
 import PageIntro from '../components/PageIntro'
 import ClientSection from '../components/ClientSection'
+import useResponsiveness from '../hooks/useResponsiveness'
 
 const Container = styled.section`
   margin-top: 20px;
@@ -22,6 +23,8 @@ function Clients({ data, pageContext }) {
   const { lang, location, parentUrl } = pageContext
   const [, ref] = useClientRect()
 
+  const { isMobile } = useResponsiveness()
+
   return (
     <Layout
       title={data.wpPage.clientiData.title[lang]}
@@ -29,15 +32,15 @@ function Clients({ data, pageContext }) {
       location={location}
       parentUrl={parentUrl}
     >
-       <PageIntro
+      <PageIntro
         text={data.wpPage.clientiData.description[lang]}
         graphic={data.graphic.childImageSharp.gatsbyImageData}
         image={data.image.childImageSharp.gatsbyImageData}
         reverseImages
         verticalAlignment="flex-end"
-        leftTranslate={-30}
+        leftTranslate={!isMobile && -30}
       />
-      
+
       <Container ref={ref}>
         {data.wpPage.clientiData.clienti.map(client => (
           <ClientSection
