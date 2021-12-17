@@ -2,11 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  display: none;
-
-  @media (min-width: 768px) {
-    display: block;
-  }
+  width: min-content;
+  display: flex;
+  
 `
 
 const Button = styled.button`

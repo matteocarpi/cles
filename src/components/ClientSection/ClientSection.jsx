@@ -56,6 +56,14 @@ const LogosContainer = styled.div`
   height: 250px !important;
 `
 
+const PaginationContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+`
+
 export default function ClientSection({ titolo, loghi = [] }) {
   const [swiper, setSwiper] = useState(null)
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -89,11 +97,13 @@ export default function ClientSection({ titolo, loghi = [] }) {
     <Container id={titolo[lang].replaceAll(' ', '').toLowerCase()}>
       <Header>
         <Title>{titolo[lang]}</Title>
-        <SwiperPagination
-          slides={slides}
-          swiper={swiper}
-          currentSlide={currentSlide}
-        />
+        {!isMobile && (
+          <SwiperPagination
+            slides={slides}
+            swiper={swiper}
+            currentSlide={currentSlide}
+          />
+        )}
       </Header>
 
       <SwiperWrapper>
@@ -122,6 +132,15 @@ export default function ClientSection({ titolo, loghi = [] }) {
           ))}
         </Swiper>
       </SwiperWrapper>
+      <PaginationContainer>
+        {isMobile && (
+          <SwiperPagination
+            slides={slides}
+            swiper={swiper}
+            currentSlide={currentSlide}
+          />
+        )}
+      </PaginationContainer>
     </Container>
   )
 }
