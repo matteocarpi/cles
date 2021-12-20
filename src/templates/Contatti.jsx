@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import ReactMapboxGl from 'react-mapbox-gl'
 
 import Layout from '../components/Layout'
 import ContactForm from '../components/ContactForm'
@@ -64,10 +64,24 @@ const SocialLink = styled.a`
     color: ${({ theme }) => theme.red};
   }
 `
-const MappaContainer = styled.div`
+const MappaWrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+
+  .mapboxgl-ctrl-attrib-inner {
+    display: none;
+  }
+`
+
+const MappaContainer = styled.div`
+  width: calc(100% - 48px);
+  margin: 0 24px;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    width: calc(100% - 80px);
+  }
 `
 
 const BackgroundContainer = styled.div`
@@ -91,14 +105,18 @@ const BackgroundBottom = styled.div`
   background-color: ${({ theme }) => theme.yellow};
 `
 
-const Mappa = styled(GatsbyImage)`
-  margin: 0 24px;
-`
+const Mappa = ReactMapboxGl({
+  accessToken: process.env.MAPBOXGL_TOKEN,
+})
 
 function Contatti({ pageContext, data }) {
   const { title, lang, location, parentUrl } = pageContext
 
   const pageData = data.wpPage.contattiData
+
+  const lng = 12.4665
+  const lat = 41.87805
+  const zoom = 13
 
   const {
     titolo,
@@ -125,19 +143,24 @@ function Contatti({ pageContext, data }) {
       yellowVariant
     >
       <Wrapper>
-        <MappaContainer>
+        <MappaWrapper>
           <BackgroundContainer>
             <BackgroundTop />
             <BackgroundBottom />
           </BackgroundContainer>
-          <Mappa
-            alt="Map of cles position in Rome"
-            image={
-              data.wpPage.contattiData.mappa.localFile.childImageSharp
-                .gatsbyImageData
-            }
-          />
-        </MappaContainer>
+          <MappaContainer>
+            <Mappa
+              // eslint-disable-next-line react/style-prop-object
+              style="mapbox://styles/cloud85dinamica/ckx7qbqzs99rs15nsm40qly9n"
+              containerStyle={{
+                width: '100%',
+                height: '617px',
+              }}
+              center={[lng, lat]}
+              zoom={[zoom]}
+            />
+          </MappaContainer>
+        </MappaWrapper>
         <Container>
           <PageSlice>
             <Title>{titolo[lang]}</Title>

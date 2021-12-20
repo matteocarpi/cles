@@ -1,4 +1,5 @@
 /* eslint-disable func-names */
+// eslint-disable-next-line import/no-import-module-exports
 import { paroleChiave, projectCategories } from './src/const'
 
 const defaultLang = 'it'
@@ -404,7 +405,7 @@ exports.createPages = async function ({ actions, graphql }) {
       },
     })
   })
-  
+
   // Lavora con noi
   languages.forEach(lang => {
     const path = {
