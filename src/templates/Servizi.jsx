@@ -150,12 +150,13 @@ export default function Servizi({ pageContext, data: pageData }) {
         text={data.intro[lang]}
         reverseImages
         leftTranslate={10}
+        verticalAlignment="flex-start"
       />
 
       <ScrollSpy offset={-600} sections={sections} firstSectionTop={rect?.y} />
 
       {/* Servizi */}
-
+ 
       <PageSection
         title={data.servizi.titolo[lang]}
         id={data.servizi.fieldGroupName}

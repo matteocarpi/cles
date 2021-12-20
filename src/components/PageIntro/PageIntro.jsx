@@ -36,6 +36,7 @@ const Text = styled(AppearingText)`
   padding: 0 20px;
   max-width: 1000px;
   margin-top: 8px;
+  z-index: 1;
 
   @media (min-width: 769px) {
     align-self: flex-start;

@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
   justify-content: center;
-  align-items: ${({ verticalAlignment }) => verticalAlignment};
+  align-items: stretch;
   padding-top: 35px;
   padding: 0px 24px;
   overflow-x: hidden;
@@ -28,6 +28,8 @@ const Container = styled.div`
 
 const GraphicContainer = styled(motion.div)`
   z-index: 1;
+  display: flex;
+  align-items: ${({ verticalAlignment }) => verticalAlignment};
 
   ${({ isNewsPage }) =>
     isNewsPage &&
@@ -36,7 +38,7 @@ const GraphicContainer = styled(motion.div)`
         margin-right: 130px;
         padding-bottom: 200px;
       }
-    `}
+    `};
 `
 
 const PhotoContainer = styled(motion.div)`
@@ -49,11 +51,15 @@ const PhotoContainer = styled(motion.div)`
       }
     `}
 
-  max-height: 615px !important;
-
   overflow: hidden;
 
-  @media (max-width: 767px) {
+  height: 617px;
+
+  @media (max-width: 600px) {
+    height: 300px;
+  }
+
+  @media (max-width: 400px) {
     height: 170px;
   }
 `
@@ -161,6 +167,7 @@ export default function SlidingImages({
         initial="hidden"
         animate={controls}
         style={graphicContainerStyle}
+        verticalAlignment={verticalAlignment}
       >
         <GatsbyImage
           image={graphicData}
@@ -187,7 +194,7 @@ export default function SlidingImages({
       >
         <GatsbyImage
           style={{ height: '100%', width: '100%' }}
-          objectFit="contain"
+          objectFit="cover"
           image={imageData}
           alt=""
         />
