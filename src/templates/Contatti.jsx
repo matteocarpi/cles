@@ -106,7 +106,8 @@ const BackgroundBottom = styled.div`
 `
 
 const Mappa = ReactMapboxGl({
-  accessToken: process.env.MAPBOXGL_TOKEN,
+  accessToken:
+    'pk.eyJ1IjoiY2xvdWQ4NWRpbmFtaWNhIiwiYSI6ImNreDdvanNoMTE5cngycm81Z3BubGIyOGMifQ.F4aYLypRksWkbMqzCnNWjg',
 })
 
 function Contatti({ pageContext, data }) {
