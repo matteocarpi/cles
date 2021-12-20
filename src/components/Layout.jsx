@@ -24,6 +24,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: Poppins;
     color: ${({ theme }) => theme.black};
     background-color: ${({ theme }) => theme.white};
+    width: 100vw;
+    overflow-x: hidden;
   }
 
   h1 {

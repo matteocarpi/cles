@@ -88,8 +88,7 @@ export default function NewsList({ news, title, isNewsPage }) {
   const newsStart = isMobile ? 0 : 1
 
   return (
-    <>
-      <Wrapper id="news" dark={!isNewsPage} isNewsPage={isNewsPage}>
+    <Wrapper id="news" dark={!isNewsPage} isNewsPage={isNewsPage}>
         <HomeSection noBorder>
           {!isNewsPage && (
             <TitleContainer>
@@ -109,6 +108,5 @@ export default function NewsList({ news, title, isNewsPage }) {
         </HomeSection>
         {!isNewsPage && <WatchAllNews />}
       </Wrapper>
-    </>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react'
+import React, { useRef, useLayoutEffect, useMemo } from 'react'
 import styled, { css } from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
@@ -13,9 +13,10 @@ const Container = styled.div`
   align-items: stretch;
   padding-top: 35px;
   padding: 0px 24px;
-  overflow-x: hidden;
+  overflow-y: visible;
   transform: scale(1.1) translateX(-10%);
   margin: 60px 0;
+
   @media (min-width: 769px) {
     margin-top: ${({ isNewsPage }) => (isNewsPage ? '-40px' : '40px')};
     width: 100%;
@@ -27,10 +28,10 @@ const Container = styled.div`
 `
 
 const GraphicContainer = styled(motion.div)`
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: ${({ verticalAlignment }) => verticalAlignment};
-
+  overflow: visible;
   ${({ isNewsPage }) =>
     isNewsPage &&
     css`
@@ -63,20 +64,6 @@ const PhotoContainer = styled(motion.div)`
     height: 170px;
   }
 `
-
-const graphicVariants = {
-  hidden: {
-    translateX: 0,
-    opacity: 0,
-  },
-  visible: {
-    translateX: '30%',
-    opacity: 1,
-    transition: {
-      duration: 2,
-    },
-  },
-}
 
 const photoVariants = {
   hidden: {
@@ -129,6 +116,25 @@ export default function SlidingImages({
   const { location } = useLocation()
 
   const isNewsPage = location.pathname.includes('news')
+
+  const graphicVariants = useMemo(
+    () => ({
+      hidden: {
+        translateX: 0,
+        scale: isNewsPage ? 1.1 : 1,
+        opacity: 0,
+      },
+      visible: {
+        translateX: '30%',
+        scale: isNewsPage ? 1.1 : 1,
+        opacity: 1,
+        transition: {
+          duration: 2,
+        },
+      },
+    }),
+    [isNewsPage],
+  )
 
   const ref = useRef()
 
