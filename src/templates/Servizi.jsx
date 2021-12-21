@@ -156,16 +156,15 @@ export default function Servizi({ pageContext, data: pageData }) {
       <ScrollSpy offset={-600} sections={sections} firstSectionTop={rect?.y} />
 
       {/* Servizi */}
- 
+
       <PageSection
         title={data.servizi.titolo[lang]}
-        id={data.servizi.fieldGroupName}
         ref={ref}
         noCollapse
         noSeparatorDesktop
         fullWidth
       >
-        <Services>
+        <Services id={data.servizi.fieldGroupName}>
           <Sidebar>
             <MaskedImage image={gallery[currImage]} />
           </Sidebar>
