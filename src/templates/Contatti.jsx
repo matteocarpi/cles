@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import ReactMapboxGl from 'react-mapbox-gl'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 import Layout from '../components/Layout'
 import ContactForm from '../components/ContactForm'
