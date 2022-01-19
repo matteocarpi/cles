@@ -80,21 +80,49 @@ export const schedaProgettoTitles = {
 }
 
 export const paroleChiave = {
-  assistenza_tecnica: {
-    it: 'Assistenza tecnica',
-    en: 'Technical support',
+  politiche_di_sviluppo_e_coesione: {
+    it: 'Politiche di sviluppo e coesione',
+    en: 'Politiche di sviluppo e coesione',
   },
-  'ricerca_socio-economica': {
-    it: 'Ricerca socio-economica',
-    en: 'Socio-economical research',
+  politiche_attive_del_lavoro_e_istruzione: {
+    it: 'Politiche attive del Lavoro e istruzione',
+    en: 'Politiche attive del Lavoro e istruzione',
   },
-  supporto_alle_politiche_di_sviluppo_territoriale: {
-    it: 'Supporto alle politiche di sviluppo territoriale',
-    en: 'Local development support politics',
+  welfare_e_servizi_di_cittadinanza: {
+    it: 'Welfare e servizi di cittadinanza',
+    en: 'Welfare e servizi di cittadinanza',
   },
-  formazione_e_capacity_building: {
-    it: 'Formazione e capacity building',
-    en: 'Formazione e capacity building',
+  pari_opportunità_e_non_discriminazione: {
+    it: 'Pari opportunità e non discriminazione',
+    en: 'Pari opportunità e non discriminazione',
+  },
+  migrazioni: {
+    it: 'Migrazioni',
+    en: 'Migrazioni',
+  },
+  territori_e_aree_urbane: {
+    it: 'Territori e Aree urbane',
+    en: 'Territori e Aree urbane',
+  },
+  'patrimonio_culturale,_turistico_e_imprese_culturali_e_creative': {
+    it: 'Patrimonio culturale, turistico e Imprese culturali e creative',
+    en: 'Patrimonio culturale, turistico e Imprese culturali e creative',
+  },
+  'ricerca,_innovazione_e_transizione_digitale': {
+    it: 'Ricerca, innovazione e transizione digitale',
+    en: 'Ricerca, innovazione e transizione digitale',
+  },
+  'economia_circolare,_ambiente,_agricoltura_e_sviluppo_sostenibile': {
+    it: 'Economia circolare, ambiente, agricoltura e sviluppo sostenibile',
+    en: 'Economia circolare, ambiente, agricoltura e sviluppo sostenibile',
+  },
+  processi_di_regolazione_e_normazione_per_le_politiche_pubbliche: {
+    it: 'Processi di regolazione e normazione per le politiche pubbliche',
+    en: 'Processi di regolazione e normazione per le politiche pubbliche',
+  },
+  'trasporti,_infrastrutture_e_servizi_pubblici_locali': {
+    it: 'Trasporti, infrastrutture e servizi pubblici locali',
+    en: 'Trasporti, infrastrutture e servizi pubblici locali',
   },
 }
 

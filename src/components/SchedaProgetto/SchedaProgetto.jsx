@@ -121,7 +121,7 @@ const DetailedProject = ({
 
         <InfoContainer>
           <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
-          {paroleChiave.map(area => (
+          {paroleChiave?.map(area => (
             <ParoleChiave
               key={area}
               to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
