@@ -34,9 +34,24 @@ const InfoWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
-  @media (min-width: 769px) {
+  @media (min-width: 1200px) {
+    display: none;
     z-index: 2;
     background-color: transparent;
+  }
+`
+
+const InfoWrapperDesktop = styled.div`
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  grid-column: 3/5;
+  grid-row: 1/3;
+  z-index: 2;
+  background-color: transparent;
+
+  @media (min-width: 1200px) {
+    display: flex;
   }
 `
 
@@ -46,11 +61,7 @@ const InfoContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-
-  @media (min-width: 769px) {
-    margin-left: 100%;
-    width: 100%;
-  }
+z-index: 6;
 `
 
 const Circle = styled.div`
@@ -143,23 +154,36 @@ export default function PersonThumb({
   const image = getImage(foto[mood].localFile.childImageSharp)
 
   return (
-    <Container
-      onClick={onClick}
-      onMouseEnter={() => !isSelected && setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <Foto
-        alt={nomeECognome}
-        image={image}
-        aspectRatio={1}
-        isHovered={isHovered}
-        isSelected={isSelected}
-        isOtherSelected={isOtherSelected}
+    <>
+      <Container
+        onClick={onClick}
         onMouseEnter={() => !isSelected && setIsHovered(true)}
-        onMouseLeave={() => !isSelected && setIsHovered(false)}
-      />
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <Foto
+          alt={nomeECognome}
+          image={image}
+          aspectRatio={1}
+          isHovered={isHovered}
+          isSelected={isSelected}
+          isOtherSelected={isOtherSelected}
+          onMouseEnter={() => !isSelected && setIsHovered(true)}
+          onMouseLeave={() => !isSelected && setIsHovered(false)}
+        />
+        {isSelected && (
+          <InfoWrapper>
+            <InfoContainer>
+              <Info>
+                <Name>{nomeECognome}</Name>
+                <Role>{ruolo[lang]}</Role>
+              </Info>
+              <Circle />
+            </InfoContainer>
+          </InfoWrapper>
+        )}
+      </Container>
       {isSelected && (
-        <InfoWrapper>
+        <InfoWrapperDesktop>
           <InfoContainer>
             <Info>
               <Name>{nomeECognome}</Name>
@@ -167,8 +191,8 @@ export default function PersonThumb({
             </Info>
             <Circle />
           </InfoContainer>
-        </InfoWrapper>
+        </InfoWrapperDesktop>
       )}
-    </Container>
+    </>
   )
 }

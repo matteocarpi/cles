@@ -11,8 +11,11 @@ const Container = styled.section`
   overflow: hidden;
   position: relative;
 
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     width: calc(100% - 100px - 26vw);
+  }
+
+  @media (min-width: 1200px) {
     margin-top: 30px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
