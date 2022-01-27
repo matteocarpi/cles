@@ -63,6 +63,17 @@ const Text = styled.div`
   p {
     margin: 0;
   }
+
+  ul {
+    padding-top: 1rem;
+    list-style: disc;
+    margin-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
 `
 
 const ParoleChiave = styled(Link)`
