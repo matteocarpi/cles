@@ -62,6 +62,9 @@ const Label = styled.p`
 const Text = styled.div`
   p {
     margin: 0;
+    &:not(first-child) {
+      margin-bottom: 1rem;
+    }
   }
 
   ul {
