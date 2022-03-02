@@ -13,7 +13,7 @@ const Spacer = styled.div`
 `
 export default function ParallaxImage({ image }) {
   return (
-    <Image bgImage={image} strength={-70}>
+    <Image bgImage={image} strength={-30}>
       <Spacer />
     </Image>
   )
