@@ -83,10 +83,13 @@ const Info = styled.div`
 
 const Name = styled.h5`
   color: ${({ theme }) => theme.white};
+  font-weight: 500;
 `
 
 const Role = styled.h6`
   color: ${({ theme }) => theme.white};
+  margin-right: 1rem;
+  font-weight: 500;
 `
 
 const Foto = styled(GatsbyImage)`
