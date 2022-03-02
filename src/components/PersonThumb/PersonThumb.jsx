@@ -24,44 +24,44 @@ const Container = styled.button`
 `
 
 const InfoWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  @media (min-width: 1200px) {
-    display: none;
-    z-index: 2;
-    background-color: transparent;
-  }
-`
-
-const InfoWrapperDesktop = styled.div`
-  display: none;
-  flex-direction: column;
-  justify-content: flex-end;
-  grid-column: 3/5;
-  grid-row: 1/3;
   z-index: 2;
-  background-color: transparent;
+  grid-column: 1/3;
+  grid-row: 3/5;
 
+  &:before {
+    content: '';
+    padding-bottom: 100%;
+    display: block;
+  }
   @media (min-width: 1200px) {
-    display: flex;
+    grid-column: 3/5;
+    grid-row: 1/3;
   }
 `
 
 const InfoContainer = styled.div`
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-z-index: 6;
+  z-index: 6;
+`
+
+const InfoContent = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  z-index: 6;
 `
 
 const Circle = styled.div`
@@ -170,28 +170,19 @@ export default function PersonThumb({
           onMouseEnter={() => !isSelected && setIsHovered(true)}
           onMouseLeave={() => !isSelected && setIsHovered(false)}
         />
-        {isSelected && (
-          <InfoWrapper>
-            <InfoContainer>
+      </Container>
+      {isSelected && (
+        <InfoWrapper>
+          <InfoContainer>
+            <InfoContent>
               <Info>
                 <Name>{nomeECognome}</Name>
                 <Role>{ruolo[lang]}</Role>
               </Info>
               <Circle />
-            </InfoContainer>
-          </InfoWrapper>
-        )}
-      </Container>
-      {isSelected && (
-        <InfoWrapperDesktop>
-          <InfoContainer>
-            <Info>
-              <Name>{nomeECognome}</Name>
-              <Role>{ruolo[lang]}</Role>
-            </Info>
-            <Circle />
+            </InfoContent>
           </InfoContainer>
-        </InfoWrapperDesktop>
+        </InfoWrapper>
       )}
     </>
   )

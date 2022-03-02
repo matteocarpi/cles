@@ -8,6 +8,7 @@ const Container = styled.section`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
   overflow: hidden;
   position: relative;
 
