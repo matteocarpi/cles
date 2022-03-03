@@ -30,7 +30,6 @@ const InfoWrapper = styled.div`
   justify-content: flex-end;
   z-index: 2;
   grid-column: 1/3;
-  /* grid-row: 3/5; */
 
   &:before {
     content: '';
@@ -62,7 +61,6 @@ const InfoContent = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   padding-right: 1rem;
-  padding-bottom: 1rem;
   z-index: 6;
 `
 
@@ -86,11 +84,17 @@ const Info = styled.div`
 
 const Name = styled.h5`
   color: ${({ theme }) => theme.white};
+  margin-bottom: 0.2rem;
 `
 
 const Role = styled.h6`
   color: ${({ theme }) => theme.white};
   margin-right: 1rem;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+    line-height: 1.3;
+  }
 `
 
 const Foto = styled(GatsbyImage)`
