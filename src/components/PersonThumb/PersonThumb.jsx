@@ -30,7 +30,7 @@ const InfoWrapper = styled.div`
   justify-content: flex-end;
   z-index: 2;
   grid-column: 1/3;
-  grid-row: 3/5;
+  /* grid-row: 3/5; */
 
   &:before {
     content: '';
@@ -47,10 +47,11 @@ const InfoContainer = styled.div`
   position: absolute;
   left: 0;
   right: 0;
+  top: 0;
+  bottom: 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+  align-items: stretch;
   z-index: 6;
 `
 
@@ -59,8 +60,9 @@ const InfoContent = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+  align-items: flex-end;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
   z-index: 6;
 `
 
@@ -68,6 +70,7 @@ const Circle = styled.div`
   position: absolute;
   right: -50px;
   width: 100px;
+  bottom: 15%;
   height: 100px;
   background-color: ${({ theme }) => theme.transparentYellow};
   border-radius: 50%;
@@ -83,13 +86,11 @@ const Info = styled.div`
 
 const Name = styled.h5`
   color: ${({ theme }) => theme.white};
-  font-weight: 500;
 `
 
 const Role = styled.h6`
   color: ${({ theme }) => theme.white};
   margin-right: 1rem;
-  font-weight: 500;
 `
 
 const Foto = styled(GatsbyImage)`
