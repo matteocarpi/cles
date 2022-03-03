@@ -89,6 +89,13 @@ const NavigationDesktop = styled.nav`
     css`
       background-color: ${({ theme }) => theme.white};
     `}
+
+  ${({ isHome, hasScrolled }) =>
+    isHome &&
+    !hasScrolled &&
+    css`
+      color: white;
+    `}
 `
 
 const LogoMobileLink = styled(Link)``
@@ -133,6 +140,13 @@ const NavItem = styled(Link)`
     css`
       border-bottom: solid 3px ${theme.yellow};
     `}
+
+  ${({ isHome, hasScrolled }) =>
+    isHome &&
+    !hasScrolled &&
+    css`
+      color: white;
+    `}
 `
 
 const MenuButton = styled.button``
@@ -158,6 +172,8 @@ export default function Header({ parentUrl, yellowVariant, disableHeadroom }) {
   const hasScrolled = useMemo(() => scrollY > 400, [scrollY])
 
   const pageTitle = navigation.pages.find(p => p.url[lang].includes(parentUrl))
+
+  const isHome = !parentUrl
 
   return (
     <>
@@ -187,18 +203,25 @@ export default function Header({ parentUrl, yellowVariant, disableHeadroom }) {
 
         <HeadRoom pinStart={400} disable={disableHeadroom}>
           <NavigationWrapper>
-            <NavigationDesktop hasScrolled={hasScrolled}>
+            <NavigationDesktop isHome={isHome} hasScrolled={hasScrolled}>
               {navigation.pages.map(page => (
                 <NavItem
                   to={page.url[lang]}
                   key={page.label[lang]}
                   isActive={page.url[lang].includes(parentUrl)}
+                  hasScrolled={hasScrolled}
+                  isHome={isHome}
                 >
                   {page.label[lang]}
                 </NavItem>
               ))}
 
-              <NavItem to={lang === 'it' ? '/en' : '/'} isLangSwitch>
+              <NavItem
+                to={lang === 'it' ? '/en' : '/'}
+                isLangSwitch
+                hasScrolled={hasScrolled}
+                isHome={isHome}
+              >
                 {lang === 'it' ? 'EN' : 'IT'}
               </NavItem>
             </NavigationDesktop>
