@@ -48,7 +48,15 @@ const InfoContainer = styled.article`
   &:first-child {
     margin-top: ${({ reduced }) => reduced && '30px'};
   }
-  /* width: 50%; */
+  //  width: 50%;
+`
+
+const ReducedInfoContainer = styled.article`
+  margin-top: 20px;
+  &:first-child {
+    margin-top: ${({ reduced }) => reduced && '30px'};
+  }
+  width: 50%;
 `
 
 const Label = styled.p`
@@ -87,6 +95,27 @@ const ParoleChiave = styled(Link)`
   &:visited {
     color: ${({ theme }) => theme.red};
   }
+`
+
+const PeriodInfoContainer = styled.article`
+  margin-top: 20px;
+  &:first-child {
+    margin-top: ${({ reduced }) => reduced && '30px'};
+  }
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 10px;
+`
+
+const DownloadButton = styled.button`
+  width: 180px;
+  height: 50px;
+  border: 2px solid ${({ theme }) => theme.yellow};
+  margin: 10px 0;
+`
+const PeriodText = styled.section`
 `
 
 const DetailedProject = ({
@@ -177,17 +206,20 @@ const ReducedProject = ({
     <Titolo>{titolo[lang]}</Titolo>
 
     <InfoWrapper>
-      <InfoContainer>
+      <ReducedInfoContainer>
         <Label>{schedaProgettoTitles.committente[lang]}</Label>
         <Text>{committente}</Text>
-      </InfoContainer>
+      </ReducedInfoContainer>
 
-      <InfoContainer reduced>
-        <Label>{schedaProgettoTitles.periodo[lang]}</Label>
-        <Text>
-          {annoDiInizio} - {annoDiFine}
-        </Text>
-      </InfoContainer>
+      <PeriodInfoContainer reduced>
+        <PeriodText>
+          <Label>{schedaProgettoTitles.periodo[lang]}</Label>
+          <Text>
+            {annoDiInizio} - {annoDiFine}
+          </Text>
+        </PeriodText>
+        <DownloadButton>DOWNLOAD</DownloadButton>
+      </PeriodInfoContainer>
     </InfoWrapper>
   </Container>
 )
