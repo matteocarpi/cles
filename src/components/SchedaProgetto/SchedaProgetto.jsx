@@ -57,6 +57,7 @@ const ReducedInfoContainer = styled.article`
     margin-top: ${({ reduced }) => reduced && '30px'};
   }
   width: 50%;
+  padding-right: 30px;
 `
 
 const Label = styled.p`
@@ -106,16 +107,21 @@ const PeriodInfoContainer = styled.article`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0 10px;
+  /* padding: 0 10px; */
 `
-
-const DownloadButton = styled.button`
+const DownloadButton = styled.a`
   width: 180px;
   height: 50px;
   border: 2px solid ${({ theme }) => theme.yellow};
   margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
-const PeriodText = styled.section`
+const PeriodText = styled.section``
+
+const DetailsInfo = styled.div`
+  padding-right: 30px;
 `
 
 const DetailedProject = ({
@@ -136,45 +142,49 @@ const DetailedProject = ({
 
     <InfoWrapper>
       <InfoHalf>
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.committente[lang]}</Label>
-          <Text>{committente}</Text>
-        </InfoContainer>
-
-        {isMobile && (
+        <DetailsInfo>
           <InfoContainer>
-            <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
-            <Text>{ruolo[lang]}</Text>
+            <Label>{schedaProgettoTitles.committente[lang]}</Label>
+            <Text>{committente}</Text>
           </InfoContainer>
-        )}
 
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.periodo[lang]}</Label>
-          <Text>
-            {annoDiInizio} - {annoDiFine}
-          </Text>
-        </InfoContainer>
+          {isMobile && (
+            <InfoContainer>
+              <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
+              <Text>{ruolo[lang]}</Text>
+            </InfoContainer>
+          )}
 
-        {isMobile && (
           <InfoContainer>
-            <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
-            <Text dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }} />
+            <Label>{schedaProgettoTitles.periodo[lang]}</Label>
+            <Text>
+              {annoDiInizio} - {annoDiFine}
+            </Text>
           </InfoContainer>
-        )}
 
-        <InfoContainer>
-          <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
-          {paroleChiave?.map(area => (
-            <ParoleChiave
-              key={area}
-              to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
-                .replaceAll(' ', '-')
-                .toLowerCase()}`}
-            >
-              #{paroleChiaveLabels[area][lang]}
-            </ParoleChiave>
-          ))}
-        </InfoContainer>
+          {isMobile && (
+            <InfoContainer>
+              <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
+              <Text
+                dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }}
+              />
+            </InfoContainer>
+          )}
+
+          <InfoContainer>
+            <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
+            {paroleChiave?.map(area => (
+              <ParoleChiave
+                key={area}
+                to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
+                  .replaceAll(' ', '-')
+                  .toLowerCase()}`}
+              >
+                #{paroleChiaveLabels[area][lang]}
+              </ParoleChiave>
+            ))}
+          </InfoContainer>
+        </DetailsInfo>
       </InfoHalf>
 
       {!isMobile && (
@@ -201,8 +211,10 @@ const ReducedProject = ({
   annoDiFine,
   lang,
   borderTop,
+  pdf,
 }) => (
   <Container borderTop={borderTop}>
+    {console.log(pdf, lang, 'pdf')}
     <Titolo>{titolo[lang]}</Titolo>
 
     <InfoWrapper>
@@ -218,7 +230,7 @@ const ReducedProject = ({
             {annoDiInizio} - {annoDiFine}
           </Text>
         </PeriodText>
-        <DownloadButton>DOWNLOAD</DownloadButton>
+        <DownloadButton href="https://cleseconomia.site/wp-content/uploads/2022/04/Sufiyan-Front-End-Developer.pdf" target="_blank" download >DOWNLOAD</DownloadButton>
       </PeriodInfoContainer>
     </InfoWrapper>
   </Container>
