@@ -212,29 +212,32 @@ const ReducedProject = ({
   lang,
   borderTop,
   pdf,
-}) => (
-  <Container borderTop={borderTop}>
-    {console.log(pdf, lang, 'pdf')}
-    <Titolo>{titolo[lang]}</Titolo>
+}) => {
+  const pdfUrl = pdf?.localFile?.url
 
-    <InfoWrapper>
-      <ReducedInfoContainer>
-        <Label>{schedaProgettoTitles.committente[lang]}</Label>
-        <Text>{committente}</Text>
-      </ReducedInfoContainer>
-
-      <PeriodInfoContainer reduced>
-        <PeriodText>
-          <Label>{schedaProgettoTitles.periodo[lang]}</Label>
-          <Text>
-            {annoDiInizio} - {annoDiFine}
-          </Text>
-        </PeriodText>
-        <DownloadButton href="https://cleseconomia.site/wp-content/uploads/2022/04/Sufiyan-Front-End-Developer.pdf" target="_blank" download >DOWNLOAD</DownloadButton>
-      </PeriodInfoContainer>
-    </InfoWrapper>
-  </Container>
-)
+  return (
+    <Container borderTop={borderTop}>
+      <Titolo>{titolo[lang]}</Titolo>
+      <InfoWrapper>
+        <ReducedInfoContainer>
+          <Label>{schedaProgettoTitles.committente[lang]}</Label>
+          <Text>{committente}</Text>
+        </ReducedInfoContainer>
+        <PeriodInfoContainer reduced>
+          <PeriodText>
+            <Label>{schedaProgettoTitles.periodo[lang]}</Label>
+            <Text>
+              {annoDiInizio} - {annoDiFine}
+            </Text>
+          </PeriodText>
+          <DownloadButton href={pdfUrl} target="_blank" download>
+            DOWNLOAD
+          </DownloadButton>
+        </PeriodInfoContainer>
+      </InfoWrapper>
+    </Container>
+  )
+}
 
 export default function SchedaProgetto(props) {
   const { statoProgetto, annoDiFine } = props

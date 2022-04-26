@@ -120,8 +120,6 @@ function Projects({ pageContext, data }) {
 
   const { area, lang, status, endYear, parentUrl } = pageContext
 
-  console.log('111111111', data, endYear)
-
   const { isMobile } = useResponsiveness()
 
   const projectList = useMemo(
@@ -147,8 +145,6 @@ function Projects({ pageContext, data }) {
     [data.allWpProgetto.edges, lang, searchQuery],
   )
 
-  console.log('project list', projectList)
-
   const numPerPage = 10
 
   const pages = useMemo(() => {
@@ -156,7 +152,6 @@ function Projects({ pageContext, data }) {
     return Array.from(Array(numPages).keys())
   }, [projectList.length])
 
-  console.log('pages', pages)
   const paginatedProjects = useMemo(() => {
     const projectPages = pages.map((page, index) => {
       const start = page * index
@@ -166,8 +161,6 @@ function Projects({ pageContext, data }) {
     })
     return projectPages
   }, [pages, projectList])
-
-  console.log('paginatedProjects list', paginatedProjects)
 
   return (
     <Layout
@@ -276,9 +269,6 @@ export const data = graphql`
             paroleChiave
             statoProgetto
             pdf {
-              caption
-              uri
-              link
               localFile {
                 url
               }
