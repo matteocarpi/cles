@@ -53,6 +53,10 @@ export const projectCategories = {
       it: 'Dal 2015 a oggi',
       en: 'Since 2015',
     },
+    primadel2009: {
+      it: 'Prima Del 2009',
+      en: 'Before 2009',
+    },
   },
 }
 

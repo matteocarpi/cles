@@ -270,6 +270,60 @@ exports.createPages = async function ({ actions, graphql }) {
     }
 
     createAfter2015()
+
+
+    //progetti-chiusi-prima-2009
+
+    function createBefore2009() {
+      const parentPath =
+        lang === defaultLang
+          ? '/progetti-chiusi-prima-2009'
+          : '/closed-projects-before-2009'
+      // prima del 2009
+      actions.createPage({
+        path: parentPath,
+        component: require.resolve(`./src/templates/Projects.jsx`),
+        context: {
+          lang,
+          location: {
+            pathname:
+              lang === defaultLang
+                ? '/progetti-chiusi-prima-2009'
+                : '/closed-projects-before-2009',
+          },
+          area: Object.keys(paroleChiave),
+          status: 'chiuso',
+          startYear: 1000,
+          endYear: 2009,
+          title: projectCategories.chiusi.primadel2009[lang],
+          parentUrl: servicesPath(lang),
+        },
+      })
+
+      // Progetti divisi per area di lavoro
+      Object.keys(paroleChiave).forEach(area => {
+        const path = `${parentPath}/${paroleChiave[area][lang]
+          .toLowerCase()
+          .replaceAll(' ', '-')}`
+
+        actions.createPage({
+          path,
+          component: require.resolve(`./src/templates/Projects.jsx`),
+          context: {
+            lang,
+            location: { pathname: path },
+            area,
+            status: 'chiuso',
+            title: projectCategories.chiusi.primadel2009[lang],
+            startYear: 1000,
+            endYear: 2009,
+            parentUrl: servicesPath(lang),
+          },
+        })
+      })
+    }
+
+    createBefore2009()
   })
 
   const newsPath = lang => {

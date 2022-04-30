@@ -242,6 +242,18 @@ export default function Servizi({ pageContext, data: pageData }) {
                 }
               >
                 <h5>{projectCategories.chiusi.primaDel2015[lang]}</h5>
+             
+              </ClosedProjectsLink>
+
+              <ClosedProjectsLink
+                to={ 
+                  lang === 'en'
+                    ? '/closed-projects-before-2009'
+                    : '/progetti-chiusi-prima-2009'
+                }
+              >
+                <h5>{projectCategories.chiusi.primadel2009[lang]}</h5>
+             
               </ClosedProjectsLink>
             </ClosedProjectsContainer>
           </Accordion>
