@@ -205,13 +205,18 @@ const DetailedProject = ({
 )
 
 const ReducedProject = ({
+  pdf,
   titolo,
   committente,
+  ruolo,
   annoDiInizio,
   annoDiFine,
+  serviziEAttivit,
+  paroleChiave,
   lang,
+  parentUrl,
+  isMobile,
   borderTop,
-  pdf,
 }) => {
   const pdfUrl = pdf?.localFile?.url
 
@@ -219,21 +224,70 @@ const ReducedProject = ({
     <Container borderTop={borderTop}>
       <Titolo>{titolo[lang]}</Titolo>
       <InfoWrapper>
-        <ReducedInfoContainer>
-          <Label>{schedaProgettoTitles.committente[lang]}</Label>
-          <Text>{committente}</Text>
-        </ReducedInfoContainer>
-        <PeriodInfoContainer reduced>
-          <PeriodText>
-            <Label>{schedaProgettoTitles.periodo[lang]}</Label>
-            <Text>
-              {annoDiInizio} - {annoDiFine}
-            </Text>
-          </PeriodText>
-          <DownloadButton href={pdfUrl} target="_blank" download>
-            DOWNLOAD
-          </DownloadButton>
-        </PeriodInfoContainer>
+        <InfoHalf>
+          <DetailsInfo>
+            <InfoContainer>
+              <Label>{schedaProgettoTitles.committente[lang]}</Label>
+              <Text>{committente}</Text>
+            </InfoContainer>
+
+            {isMobile && (
+              <InfoContainer>
+                <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
+                <Text>{ruolo[lang]}</Text>
+              </InfoContainer>
+            )}
+
+            <InfoContainer>
+              <Label>{schedaProgettoTitles.periodo[lang]}</Label>
+              <Text>
+                {annoDiInizio} - {annoDiFine}
+              </Text>
+            </InfoContainer>
+
+            {isMobile && (
+              <InfoContainer>
+                <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
+                <Text
+                  dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }}
+                />
+              </InfoContainer>
+            )}
+
+            <InfoContainer>
+              <Label>{schedaProgettoTitles.paroleChiave[lang]}</Label>
+              {paroleChiave?.map(area => (
+                <ParoleChiave
+                  key={area}
+                  to={`${parentUrl[lang]}/${paroleChiaveLabels[area][lang]
+                    .replaceAll(' ', '-')
+                    .toLowerCase()}`}
+                >
+                  #{paroleChiaveLabels[area][lang]}
+                </ParoleChiave>
+              ))}
+              <DownloadButton href={pdfUrl} target="_blank" download>
+                DOWNLOAD
+              </DownloadButton>
+            </InfoContainer>
+          </DetailsInfo>
+        </InfoHalf>
+
+        {!isMobile && (
+          <InfoHalf>
+            <InfoContainer>
+              <Label>{schedaProgettoTitles.ruolo[lang]}</Label>
+              <Text>{ruolo[lang]}</Text>
+            </InfoContainer>
+
+            <InfoContainer>
+              <Label>{schedaProgettoTitles.serviziEAttività[lang]}</Label>
+              <Text
+                dangerouslySetInnerHTML={{ __html: serviziEAttivit[lang] }}
+              />
+            </InfoContainer>
+          </InfoHalf>
+        )}
       </InfoWrapper>
     </Container>
   )

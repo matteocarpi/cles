@@ -54,7 +54,7 @@ export const projectCategories = {
       en: 'Since 2015',
     },
     primadel2009: {
-      it: 'Prima Del 2009',
+      it: 'Prima del 2009',
       en: 'Before 2009',
     },
   },
