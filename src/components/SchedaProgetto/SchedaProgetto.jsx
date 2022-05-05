@@ -113,7 +113,7 @@ const DownloadButton = styled.a`
   width: 180px;
   height: 50px;
   border: 2px solid ${({ theme }) => theme.yellow};
-  margin: 10px 0;
+  margin-top: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
