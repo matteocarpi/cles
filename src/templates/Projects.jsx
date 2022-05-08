@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
@@ -154,7 +154,7 @@ function Projects({ pageContext, data }) {
 
   const paginatedProjects = useMemo(() => {
     const projectPages = pages.map((page, index) => {
-      const start = page * index
+      const start = page * numPerPage
       const end = start + numPerPage
 
       return projectList.slice(start, end)
@@ -162,6 +162,11 @@ function Projects({ pageContext, data }) {
     return projectPages
   }, [pages, projectList])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    
+  }, [currentPage])
+  
   return (
     <Layout
       lang={pageContext.lang}
