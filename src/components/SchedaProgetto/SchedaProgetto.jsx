@@ -266,9 +266,11 @@ const ReducedProject = ({
                   #{paroleChiaveLabels[area][lang]}
                 </ParoleChiave>
               ))}
-              <DownloadButton href={pdfUrl} target="_blank" download>
-                DOWNLOAD
-              </DownloadButton>
+              {pdfUrl && (
+                <DownloadButton href={pdfUrl} target="_blank" download>
+                  DOWNLOAD
+                </DownloadButton>
+              )}
             </InfoContainer>
           </DetailsInfo>
         </InfoHalf>
