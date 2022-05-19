@@ -244,6 +244,7 @@ export const data = graphql`
     $endYear: Float = 0
   ) {
     allWpProgetto(
+      sort: {order: DESC, fields: date}
       filter: {
         progettoData: {
           statoProgetto: { eq: $status }
