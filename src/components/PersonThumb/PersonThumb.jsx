@@ -159,7 +159,8 @@ export default function PersonThumb({
     return isSelected ? 'scherzosa' : 'seria'
   }, [isHovered, isMobile, isSelected])
 
-  const image = getImage(foto[mood].localFile.childImageSharp)
+  const image = getImage(foto && foto[mood]?.localFile?.childImageSharp)
+  console.log("image" , foto)
 
   return (
     <>
