@@ -6,12 +6,15 @@ import useResponsiveness from '../../hooks/useResponsiveness'
 
 const Container = styled.button`
   position: relative;
-
+  display: inline-block;
   &:first-child {
-    grid-column: 1/3;
+    grid-column: 1 / 3;
     grid-row: 1/3;
   }
-
+  &:nth-child(2) {
+    grid-column: 3/ 5;
+    grid-row: 1/3;
+  }
   &:after {
     content: '';
     position: absolute;
@@ -160,7 +163,6 @@ export default function PersonThumb({
   }, [isHovered, isMobile, isSelected])
 
   const image = getImage(foto && foto[mood]?.localFile?.childImageSharp)
-  console.log("image" , foto)
 
   return (
     <>
