@@ -7,14 +7,19 @@ import useResponsiveness from '../../hooks/useResponsiveness'
 const Container = styled.button`
   position: relative;
   display: inline-block;
-  &:first-child {
-    grid-column: 1 / 3;
-    grid-row: 1/3;
-  }
-  &:nth-child(2) {
-    grid-column: 3/ 5;
-    grid-row: 1/3;
-  }
+  ${props =>
+    !props.selectedDepartment
+      ? `
+      &:first-child {
+      grid-column: 1 / 3;
+      grid-row: 1/3;
+    }
+      &:nth-child(2) {
+      grid-column: 3/ 5;
+      grid-row: 1/3;
+    }
+    `
+      : null}
   &:after {
     content: '';
     position: absolute;
@@ -149,6 +154,7 @@ export default function PersonThumb({
   onClick,
   isSelected,
   isOtherSelected,
+  selectedDepartment,
 }) {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -170,6 +176,7 @@ export default function PersonThumb({
         onClick={onClick}
         onMouseEnter={() => !isSelected && setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        selectedDepartment={selectedDepartment}
       >
         <Foto
           alt={nomeECognome}

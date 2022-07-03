@@ -161,6 +161,11 @@ export default function Footer({ yellowVariant }) {
               it
               en
             }
+            certificazioni {
+              localFile {
+                url
+              }
+            }
           }
         }
       }
@@ -168,6 +173,7 @@ export default function Footer({ yellowVariant }) {
   `)
 
   const { contatti } = data.wpPage.homeData
+  const certificazioniPdf = contatti?.certificazioni?.localFile?.url
 
   return yellowVariant ? (
     <YellowFooter />
@@ -208,7 +214,7 @@ export default function Footer({ yellowVariant }) {
         <Quality>
           <strong>Qualità</strong>
           <br />
-          <Document href="#">
+          <Document href={certificazioniPdf} target="_blank" >
             {lang === 'it'
               ? 'Certificazioni ISO 9001'
               : 'ISO Certification 9001'}

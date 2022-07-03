@@ -80,6 +80,7 @@ export default function PeopleGrid({
           onClick={() => handlePersonClick(person, index)}
           isSelected={selectedPerson === person.id}
           isOtherSelected={selectedPerson && selectedPerson !== person.id}
+          selectedDepartment={selectedDepartment}
         />
       ))}
     </Container>
