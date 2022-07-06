@@ -166,6 +166,11 @@ export default function Footer({ yellowVariant }) {
                 url
               }
             }
+            codiceEtico {
+              localFile {
+                url
+              }
+            }
           }
         }
       }
@@ -173,8 +178,10 @@ export default function Footer({ yellowVariant }) {
   `)
 
   const { contatti } = data.wpPage.homeData
-  const certificazioniPdf = contatti?.certificazioni?.localFile?.url
 
+  const certificazioniPdf = contatti?.certificazioni?.localFile?.url
+  const codiceEticoPdf = contatti?.codiceEtico?.localFile?.url
+  
   return yellowVariant ? (
     <YellowFooter />
   ) : (
@@ -214,13 +221,13 @@ export default function Footer({ yellowVariant }) {
         <Quality>
           <strong>Qualità</strong>
           <br />
-          <Document href={certificazioniPdf} target="_blank" >
+          <Document href={certificazioniPdf} target="_blank">
             {lang === 'it'
               ? 'Certificazioni ISO 9001'
               : 'ISO Certification 9001'}
           </Document>
           <br />
-          <Document href="#">
+          <Document href={codiceEticoPdf} target="_blank">
             {lang === 'it' ? 'Codice Etico' : 'Ethical Code'}
           </Document>
         </Quality>
