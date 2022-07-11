@@ -11,6 +11,9 @@ import Layout from '../components/Layout'
 import AppearingText from '../components/AppearingText'
 import MenuText from '../components/MenuText'
 import ScrollSpy from '../components/ScrollSpy'
+import Accordion from '../components/Accordion/Accordion'
+import { BandoCategories, BandoTitles } from '../const'
+import useLang from '../hooks/useLang'
 
 const Container = styled.section`
   width: 100%;
@@ -91,8 +94,8 @@ const PremioDescription = styled.article`
 `
 
 const BandoContainer = styled.div`
-  line-height: 1.5rem;
-  font-weight: bold;
+  /* line-height: 1.5rem; */
+  /* font-weight: bold; */
   width: 100%;
   max-width: 900px;
   margin-left: auto;
@@ -101,7 +104,6 @@ const BandoContainer = styled.div`
     margin-top: 90px;
   }
 `
-
 const DownloadLink = styled.a`
   color: ${({ theme }) => theme.yellow};
 
@@ -110,13 +112,108 @@ const DownloadLink = styled.a`
   }
 `
 
+//Details-Bando-Premio styling
+
+const DetailsContainer = styled.section`
+  margin: 20px 0 40px 0;
+  border-top: 2px solid ${({ theme }) => theme.gray};
+`
+
+const Titolo = styled.h6`
+  margin-top: 30px;
+  p {
+    margin: 20px 0;
+    font-weight: 600;
+  }
+  @media (min-width: 768px) {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+`
+const Descrizione = styled.h6`
+  margin-top: 30px;
+  p {
+    margin: 0;
+    margin: 20px 0;
+  }
+  @media (min-width: 768px) {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    p {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+`
+const InfoWrapper = styled.article`
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`
+const InfoHalf = styled.div`
+  @media (min-width: 768px) {
+    width: 70%;
+  }
+`
+
+const InfoContainer = styled.article`
+  margin-top: 20px;
+  &:first-child {
+    margin-top: ${({ reduced }) => reduced && '30px'};
+  }
+  //  width: 50%;
+`
+const DetailsInfo = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30px;
+`
+const Label = styled.p`
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+`
+const BandoText = styled.div`
+  p {
+    margin: 0;
+    &:not(first-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  ul {
+    padding-top: 1rem;
+    list-style: disc;
+    margin-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+`
+const BandoLink = styled.section`
+  margin: 20px 0;
+`
+
 export default function Policies({ pageContext, data: pageData }) {
   const { lang, location, parentUrl } = pageContext
 
   const { title } = pageData.wpPage
 
-  const { introText, immagine, infoPremio, bando, economista } =
-    pageData.wpPage.paoloLeonData
+  const {
+    introText,
+    immagine,
+    infoPremio,
+    bando,
+    economista,
+    bandoPremio,
+    bandiChiusi,
+  } = pageData.wpPage.paoloLeonData
 
   const { isMobile } = useResponsiveness()
   const [rect, ref] = useClientRect()
@@ -134,13 +231,6 @@ export default function Policies({ pageContext, data: pageData }) {
 
   return (
     <Layout lang={lang} location={location} title={title} parentUrl={parentUrl}>
-      <ScrollSpy
-        offset={-800}
-        sections={sections}
-        firstSectionTop={rect?.y}
-        firstOffset={400}
-      />
-
       <Container>
         <Text maxStrLength={isMobile ? 25 : 40} component={Description}>
           {introText[lang]}
@@ -157,36 +247,124 @@ export default function Policies({ pageContext, data: pageData }) {
           <PremioTitle>{economista.titolo[lang]}</PremioTitle>
 
           <PremioDescription
-            border
             dangerouslySetInnerHTML={{ __html: economista.descrizione[lang] }}
           />
         </PremioInfoContainer>
 
-        <PremioInfoContainer
-          ref={ref}
-          id={infoPremio.titolo[lang].replaceAll(' ', '')}
-        >
-          <PremioTitle>{infoPremio.titolo[lang]}</PremioTitle>
-
-          <PremioDescription
-            dangerouslySetInnerHTML={{ __html: infoPremio.descrizione[lang] }}
-          />
-
-          <BandoContainer>
-            {bando.titolo[lang]} -{' '}
-            <DownloadLink
-              href={bando.allegato[lang].mediaItemUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {bando.allegato[lang].title}
-            </DownloadLink>
-          </BandoContainer>
-        </PremioInfoContainer>
+        <BandoContainer>
+          <Accordion
+            key={BandoCategories.bando[lang]}
+            titolo={BandoCategories.bando}
+          >
+            <DetailedBandoPremio
+              {...bandoPremio}
+              lang={lang}
+              isMobile={isMobile}
+              bando={bando}
+            />
+          </Accordion>
+          <Accordion
+            key={BandoCategories.bandi[lang]}
+            titolo={BandoCategories.bandi}
+          >
+            {bandiChiusi?.map((props, index) => {
+              return (
+                <DetailedBandiChiusi
+                  {...props}
+                  lang={lang}
+                  isMobile={isMobile}
+                  key={index}
+                />
+              )
+            })}
+          </Accordion>
+        </BandoContainer>
       </Container>
     </Layout>
   )
 }
+
+const DetailedBandoPremio = ({
+  titolo,
+  descrizione,
+  committente,
+  annoDiInizio,
+  annoDiFine,
+  lang,
+  borderTop,
+  bando,
+}) => (
+  <DetailsContainer borderTop={borderTop}>
+    <Titolo dangerouslySetInnerHTML={{ __html: titolo[lang] }} />
+    <Descrizione dangerouslySetInnerHTML={{ __html: descrizione[lang] }} />
+
+    <InfoWrapper>
+      <InfoHalf>
+        <DetailsInfo>
+          <InfoContainer>
+            <Label>{BandoTitles.committente[lang]}</Label>
+            <BandoText>{committente}</BandoText>
+          </InfoContainer>
+          <InfoContainer>
+            <Label>{BandoTitles.periodo[lang]}</Label>
+            <BandoText>
+              {annoDiInizio} - {annoDiFine}
+            </BandoText>
+          </InfoContainer>
+        </DetailsInfo>
+      </InfoHalf>
+    </InfoWrapper>
+    <BandoLink>
+      {bando.titolo[lang]} -{' '}
+      <DownloadLink
+        href={bando.allegato[lang].mediaItemUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {bando.allegato[lang].title}
+      </DownloadLink>
+    </BandoLink>
+  </DetailsContainer>
+)
+
+const DetailedBandiChiusi = ({
+  titolo,
+  descrizione,
+  annoDiInizio,
+  annoDiFine,
+  lang,
+  borderTop,
+  menzione,
+  vincitore,
+}) => (
+  <DetailsContainer borderTop={borderTop}>
+    <Titolo dangerouslySetInnerHTML={{ __html: titolo[lang] }} />
+
+    <InfoWrapper>
+      <InfoHalf>
+        <DetailsInfo>
+          <InfoContainer>
+            <Label>{BandoTitles.vincitore[lang]}</Label>
+            <BandoText>{vincitore[lang]}</BandoText>
+          </InfoContainer>
+          <InfoContainer>
+            <Label>{BandoTitles.menzione[lang]}</Label>
+            <BandoText>{menzione[lang]}</BandoText>
+          </InfoContainer>
+        </DetailsInfo>
+      </InfoHalf>
+    </InfoWrapper>
+
+    <InfoContainer>
+      <Label>{BandoTitles.periodo[lang]}</Label>
+      <BandoText>
+        {annoDiInizio} - {annoDiFine}
+      </BandoText>
+    </InfoContainer>
+
+    <Descrizione dangerouslySetInnerHTML={{ __html: descrizione[lang] }} />
+  </DetailsContainer>
+)
 
 export const data = graphql`
   query PaoloLeon($id: String!) {
@@ -238,6 +416,39 @@ export const data = graphql`
               mediaItemUrl
               title
             }
+          }
+        }
+        bandoPremio {
+          annoDiFine
+          annoDiInizio
+          committente
+          descrizione {
+            en
+            it
+          }
+          titolo {
+            en
+            it
+          }
+        }
+        bandiChiusi {
+          titolo {
+            en
+            it
+          }
+          descrizione {
+            en
+            it
+          }
+          menzione {
+            en
+            it
+          }
+          annoDiFine
+          annoDiInizio
+          vincitore {
+            en
+            it
           }
         }
       }

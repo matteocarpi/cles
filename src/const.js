@@ -83,6 +83,39 @@ export const schedaProgettoTitles = {
   },
 }
 
+export const BandoTitles = {
+  committente: {
+    it: 'Committente',
+    en: 'Client',
+  },
+  periodo: {
+    it: 'Periodo',
+    en: 'Period',
+  },
+  menzione: {
+    it: 'menzione',
+    en: 'mention',
+  },
+  vincitore: {
+    it: 'vincitore',
+    en: 'winner',
+  },
+ 
+
+}
+
+export const BandoCategories = {
+  bando: {
+    it: 'Bando Premio Leon 2022',
+    en: 'Leon Price Call 2022',
+  },
+  bandi: {
+    it: 'Bandi chiusi',
+    en: 'Closed call',
+  },
+  
+}
+
 export const paroleChiave = {
   politiche_di_sviluppo_e_coesione: {
     it: 'Politiche di sviluppo e coesione',
