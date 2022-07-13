@@ -115,7 +115,7 @@ const DownloadLink = styled.a`
 //Details-Bando-Premio styling
 
 const DetailsContainer = styled.section`
-  margin: 20px 0 40px 0;
+  margin: 20px 0 ;
   border-top: 2px solid ${({ theme }) => theme.gray};
 `
 
@@ -197,7 +197,7 @@ const BandoText = styled.div`
   }
 `
 const BandoLink = styled.section`
-  margin: 20px 0;
+  margin-top: 60px;
 `
 
 export default function Policies({ pageContext, data: pageData }) {
