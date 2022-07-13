@@ -198,6 +198,7 @@ const BandoText = styled.div`
 `
 const BandoLink = styled.section`
   margin-top: 60px;
+  font-weight: bold;
 `
 
 export default function Policies({ pageContext, data: pageData }) {
