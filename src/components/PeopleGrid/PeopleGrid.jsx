@@ -7,8 +7,7 @@ import PersonThumb from '../PersonThumb'
 const Container = styled.section`
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: 1fr;
   overflow: hidden;
   position: relative;
 
@@ -18,11 +17,8 @@ const Container = styled.section`
 
   @media (min-width: 1200px) {
     margin-top: 30px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
   }
-
-  background-color: ${({ theme, isSelectedPerson }) =>
-    isSelectedPerson ? theme.transparentRed : 'transparent'};
 `
 
 export default function PeopleGrid({

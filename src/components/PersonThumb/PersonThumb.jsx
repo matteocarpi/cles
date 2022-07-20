@@ -7,19 +7,7 @@ import useResponsiveness from '../../hooks/useResponsiveness'
 const Container = styled.button`
   position: relative;
   display: inline-block;
-  ${props =>
-    !props.selectedDepartment
-      ? `
-      &:first-child {
-      grid-column: 1 / 3;
-      grid-row: 1/3;
-    }
-      &:nth-child(2) {
-      grid-column: 3/ 5;
-      grid-row: 1/3;
-    }
-    `
-      : null}
+
   &:after {
     content: '';
     position: absolute;
@@ -34,32 +22,27 @@ const Container = styled.button`
 const InfoWrapper = styled.div`
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
   z-index: 2;
-  grid-column: 1/3;
 
   &:before {
     content: '';
-    padding-bottom: 100%;
+    padding-bottom: 30%;
     display: block;
   }
-  @media (min-width: 1200px) {
-    grid-column: 3/5;
-    grid-row: 1/3;
-  }
+
+  flex-wrap: wrap;
 `
 
 const InfoContainer = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: stretch;
-  z-index: 6;
+  background-color: ${({ theme, isSelectedPerson }) => theme.transparentRed};
+
+  @media (min-width: 1200px) {
+    width: 50%;
+  }
 `
 
 const InfoContent = styled.div`
@@ -69,7 +52,6 @@ const InfoContent = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   padding-right: 1rem;
-  z-index: 6;
 `
 
 const Circle = styled.div`
@@ -107,6 +89,8 @@ const Role = styled.h6`
 
 const Foto = styled(GatsbyImage)`
   display: block;
+  width: 100%;
+  cursor: pointer;
 
   ${({ isOtherSelected }) =>
     isOtherSelected &&
@@ -129,21 +113,36 @@ const Foto = styled(GatsbyImage)`
       css`
         z-index: 2;
       `}
-
-    ${({ isHovered }) =>
-      isHovered &&
-      css`
-        &:before {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 0;
-          left: 0;
-          bottom: 0;
-          background-color: ${({ theme }) => theme.transparentYellow};
-          z-index: 1;
-        }
-      `}
+  }
+  ${({ isHovered }) =>
+    isHovered &&
+    css`
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: ${({ theme }) => theme.transparentYellow};
+        z-index: 1;
+      }
+    `}
+  @media (min-width: 1200px) {
+    width: 50%;
+  }
+`
+const FotoContainer = styled.div`
+  width: 100%;
+  display: flex;
+  margin: 10px 0;
+  text-align: left;
+  font-weight: normal;
+  div {
+    width: 100%;
+  }
+  p {
+    margin: 0;
   }
 `
 
@@ -177,30 +176,45 @@ export default function PersonThumb({
         onMouseEnter={() => !isSelected && setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         selectedDepartment={selectedDepartment}
+        isSelected={isSelected}
+        
       >
-        <Foto
-          alt={nomeECognome}
-          image={image}
-          aspectRatio={1}
-          isHovered={isHovered}
-          isSelected={isSelected}
-          isOtherSelected={isOtherSelected}
-          onMouseEnter={() => !isSelected && setIsHovered(true)}
-          onMouseLeave={() => !isSelected && setIsHovered(false)}
-        />
+        {!isSelected && (
+          <FotoContainer>
+            <div>
+              <p>{nomeECognome.split(' ')[0]}</p>
+            </div>
+            <div>
+              <p>{nomeECognome.split(' ')[1]}</p>
+            </div>
+          </FotoContainer>
+        )}
       </Container>
       {isSelected && (
-        <InfoWrapper>
-          <InfoContainer>
-            <InfoContent>
-              <Info>
-                <Name>{nomeECognome}</Name>
-                <Role>{ruolo[lang]}</Role>
-              </Info>
-              <Circle />
-            </InfoContent>
-          </InfoContainer>
-        </InfoWrapper>
+        <>
+          <InfoWrapper>
+            <Foto
+              alt={nomeECognome}
+              image={image}
+              aspectRatio={1}
+              isHovered={isHovered}
+              isSelected={isSelected}
+              isOtherSelected={isOtherSelected}
+              onMouseEnter={() => !isSelected && setIsHovered(true)}
+              onMouseLeave={() => !isSelected && setIsHovered(false)}
+              onClick={onClick}
+            />
+            <InfoContainer>
+              <InfoContent>
+                <Info>
+                  <Name>{nomeECognome}</Name>
+                  <Role>{ruolo[lang]}</Role>
+                </Info>
+                <Circle />
+              </InfoContent>
+            </InfoContainer>
+          </InfoWrapper>
+        </>
       )}
     </>
   )
