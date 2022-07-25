@@ -7,7 +7,10 @@ import useResponsiveness from '../../hooks/useResponsiveness'
 const Container = styled.button`
   position: relative;
   display: inline-block;
-
+  width: 50%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   &:after {
     content: '';
     position: absolute;
@@ -143,6 +146,7 @@ const FotoContainer = styled.div`
   }
   p {
     margin: 0;
+    color: black !important;
   }
 `
 
@@ -177,16 +181,16 @@ export default function PersonThumb({
         onMouseLeave={() => setIsHovered(false)}
         selectedDepartment={selectedDepartment}
         isSelected={isSelected}
-        
       >
         {!isSelected && (
           <FotoContainer>
             <div>
-              <p>{nomeECognome.split(' ')[0]}</p>
+              <p>{nomeECognome}</p>
+              {/* <p>{nomeECognome.split(' ')[1]}</p> */}
             </div>
-            <div>
+            {/* <div>
               <p>{nomeECognome.split(' ')[1]}</p>
-            </div>
+            </div> */}
           </FotoContainer>
         )}
       </Container>

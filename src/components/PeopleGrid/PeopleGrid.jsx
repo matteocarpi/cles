@@ -5,19 +5,21 @@ import useScrollPosition from '@react-hook/window-scroll'
 import PersonThumb from '../PersonThumb'
 
 const Container = styled.section`
-  display: grid;
+  /* display: grid; */
   width: 100%;
-  grid-template-columns: 1fr;
+  /* grid-template-columns: 1fr 1fr; */
   overflow: hidden;
   position: relative;
-
+  display: flex;
+  flex-wrap: wrap;
+  
   @media (min-width: 768px) {
     width: calc(100% - 100px - 26vw);
   }
 
   @media (min-width: 1200px) {
     margin-top: 30px;
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr 1fr; */
   }
 `
 
