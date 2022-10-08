@@ -198,19 +198,6 @@ function Contatti({ pageContext, data }) {
           </PageSlice>
 
           <PageSlice>
-            <Title>Social</Title>
-
-            <Content>
-              <Text>
-                <SocialLink href={linkedin}>LinkedIn</SocialLink>
-              </Text>
-              <Text>
-                <SocialLink href={twitter}>Twitter</SocialLink>
-              </Text>
-            </Content>
-          </PageSlice>
-
-          <PageSlice>
             <Title>{pageData.titoloModulo[lang]}</Title>
             <ContactForm privacy={pageData.testoPrivacy[lang]} />
           </PageSlice>

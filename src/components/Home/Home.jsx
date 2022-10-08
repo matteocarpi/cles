@@ -14,13 +14,14 @@ import SmallText from '../SmallText'
 import AppearingText from '../AppearingText'
 import ButtonLink from '../ButtonLink'
 import ServiziHomePreview from '../ServiziHomePreview'
-import ArrowRight from '../Arrow'
+import ArrowRight from '../../assets/arrow-right.svg'
 import NewsList from '../NewsList'
 import SectionTitleMobile from '../SectionTitleMobile'
 import ScrollSpy from '../ScrollSpy'
 import LiftedLink from '../LiftedLink/LiftedLink'
 import ParallaxImage from '../ParallaxImage'
 import useResponsiveness from '../../hooks/useResponsiveness'
+import AnimatedButton from '../AnimatedButton/AnimatedButton'
 
 const IntroWrapper = styled.section`
   width: 100%;
@@ -152,6 +153,7 @@ const SectionTitleDesktop = styled.h2`
 
 const StyledArrowRight = styled(ArrowRight)`
   max-width: 30px;
+  color: ${({ theme }) => theme.yellow} !important;
 
   @media (min-width: 769px) {
     max-width: 50px;
@@ -193,6 +195,29 @@ const sections = [
     isLight: true,
   },
 ]
+
+const ItemContainer = styled(Link)`
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+`
+
+const Text = styled.h4`
+  color: ${({ theme }) => theme.yellow};
+  margin: 0 1rem;
+  border: 1px solid ${({ theme }) => theme.yellow};
+  border-bottom: 10px solid ${({ theme }) => theme.yellow};
+  border-radius: 20px;
+  padding: 10px 20px;
+  &:hover {
+    background-color: ${({ theme }) => theme.yellow};
+    color: ${({ theme }) => theme.white};
+    border-bottom: 10px solid ${({ theme }) => theme.red};
+  }
+  @media (min-width: 769px) {
+    font-size: 30px;
+  }
+`
 
 export default function Home({ lang, location, data }) {
   const [rect, ref] = useClientRect()
@@ -275,18 +300,32 @@ export default function Home({ lang, location, data }) {
 
           <ClientList>
             <>
-              {clients.map(client => (
-                <LiftedLink
-                  to={`${findLink('Clienti', lang)}?section=${client.titolo[
-                    lang
-                  ]
-                    .replaceAll(' ', '')
-                    .toLowerCase()}`}
-                  key={client.titolo[lang]}
-                >
-                  {client.titolo[lang]}
-                </LiftedLink>
-              ))}
+              <>
+                <AnimatedButton buttons={clients}>
+                  {clients.map((client, index) => {
+                    return (
+                      <ItemContainer
+                        key={client.titolo[lang]}
+                        to={`${findLink(
+                          'Clienti',
+                          lang,
+                        )}?section=${client.titolo[lang]
+                          .replaceAll(' ', '')
+                          .toLowerCase()}`}
+                      >
+                        <Text>
+                          {/* {lang === 'it' ? 'Guarda tutte le news' : 'Watch all news'} */}
+                          {client.titolo[lang]}
+                        </Text>
+                        {clients.length === index + 1 ? null : (
+                          <StyledArrowRight />
+                        )}
+                      </ItemContainer>
+                      // </Wrapper>
+                    )
+                  })}
+                </AnimatedButton>
+              </>
             </>
           </ClientList>
 

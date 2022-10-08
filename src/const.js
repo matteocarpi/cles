@@ -28,13 +28,13 @@ export const departments = [
       en: 'Technical and administrative staff',
     },
   },
-  {
-    id: 'comitato',
-    title: {
-      it: 'Il comitato scientifico',
-      en: 'Scientific Committee',
-    },
-  },
+  // {
+  //   id: 'comitato',
+  //   title: {
+  //     it: 'Il comitato scientifico',
+  //     en: 'Scientific Committee',
+  //   },
+  // },
 ]
 
 export const projectCategories = {
