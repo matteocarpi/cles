@@ -17,7 +17,7 @@ const Wrapper = styled(Link)`
   }
 `
 
-const speed = 3
+const speed = 20
 
 const movementSpeed = 200 / speed
 
@@ -60,9 +60,7 @@ export default function AnimatedButton({ className, children, buttons }) {
   const mapper = repetition.map(i => ({ i, key: Math.random() }))
 
   return (
-    <Wrapper
-      className={className}
-    >
+    <Wrapper className={className}>
       <Container>{children}</Container>
     </Wrapper>
   )
