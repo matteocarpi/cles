@@ -17,14 +17,13 @@ const Wrapper = styled(Link)`
   }
 `
 
-const speed = 20
+const speed = 5
 
 const movementSpeed = 200 / speed
 
 const Container = styled.div`
   display: flex;
   animation: slide ${movementSpeed}s linear infinite;
-
   @keyframes slide {
     0% {
       transform: translateX(0%);
@@ -44,24 +43,51 @@ const ItemContainer = styled.div`
 const Text = styled.h4`
   color: ${({ theme }) => theme.yellow};
   margin: 0 2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 16px;
-  /* @media (min-width: 769px) {
-    font-size: 16px;
-  } */
+  border: 1px solid ${({ theme }) => theme.yellow};
+  border-bottom: 10px solid ${({ theme }) => theme.yellow};
+  border-radius: 20px;
+  padding: 10px 20px;
+  &:hover {
+    background-color: ${({ theme }) => theme.yellow};
+    color: ${({ theme }) => theme.white};
+    border-bottom: 10px solid ${({ theme }) => theme.red};
+  }
+
+  @media (min-width: 769px) {
+    font-size: 30px;
+  }
 `
 
-export default function AnimatedButton({ className, children, buttons }) {
+export default function AnimatedButton({ buttons }) {
   const repetition = Array.from(Array(20).keys())
 
   const { lang } = useLang()
 
   const mapper = repetition.map(i => ({ i, key: Math.random() }))
+  const btnArray = [
+    ...buttons,
+    ...buttons,
+    ...buttons,
+    ...buttons,
+    ...buttons,
+    ...buttons,
+  ]
 
   return (
-    <Wrapper className={className}>
-      <Container>{children}</Container>
+    <Wrapper to={lang === 'it' ? '/news' : `/${lang}/news`}>
+      <Container>
+        {btnArray.map((client, index) => {
+          return (
+            <ItemContainer key={client.titolo[lang]}>
+              <Text>
+                {/* {lang === 'it' ? 'Guarda tutte le news' : 'Watch all news'} */}
+                {client.titolo[lang]}
+              </Text>
+              <ArrowRight />
+            </ItemContainer>
+          )
+        })}
+      </Container>
     </Wrapper>
   )
 }

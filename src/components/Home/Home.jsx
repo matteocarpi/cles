@@ -196,29 +196,6 @@ const sections = [
   },
 ]
 
-const ItemContainer = styled(Link)`
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-`
-
-const Text = styled.h4`
-  color: ${({ theme }) => theme.yellow};
-  margin: 0 1rem;
-  border: 1px solid ${({ theme }) => theme.yellow};
-  border-bottom: 10px solid ${({ theme }) => theme.yellow};
-  border-radius: 20px;
-  padding: 10px 20px;
-  &:hover {
-    background-color: ${({ theme }) => theme.yellow};
-    color: ${({ theme }) => theme.white};
-    border-bottom: 10px solid ${({ theme }) => theme.red};
-  }
-  @media (min-width: 769px) {
-    font-size: 30px;
-  }
-`
-
 export default function Home({ lang, location, data }) {
   const [rect, ref] = useClientRect()
 
@@ -301,30 +278,7 @@ export default function Home({ lang, location, data }) {
           <ClientList>
             <>
               <>
-                <AnimatedButton buttons={clients}>
-                  {clients.map((client, index) => {
-                    return (
-                      <ItemContainer
-                        key={client.titolo[lang]}
-                        to={`${findLink(
-                          'Clienti',
-                          lang,
-                        )}?section=${client.titolo[lang]
-                          .replaceAll(' ', '')
-                          .toLowerCase()}`}
-                      >
-                        <Text>
-                          {/* {lang === 'it' ? 'Guarda tutte le news' : 'Watch all news'} */}
-                          {client.titolo[lang]}
-                        </Text>
-                        {clients.length === index + 1 ? null : (
-                          <StyledArrowRight />
-                        )}
-                      </ItemContainer>
-                      // </Wrapper>
-                    )
-                  })}
-                </AnimatedButton>
+                <AnimatedButton buttons={clients} />
               </>
             </>
           </ClientList>
