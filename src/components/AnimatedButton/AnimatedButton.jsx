@@ -17,7 +17,7 @@ const Wrapper = styled(Link)`
   }
 `
 
-const speed = 5
+const speed = 3
 
 const movementSpeed = 200 / speed
 
