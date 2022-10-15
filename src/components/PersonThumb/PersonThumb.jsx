@@ -11,9 +11,10 @@ const Container = styled.button`
   @media (max-width: 768px) {
     width: 100%;
   }
+
   &:after {
     content: '';
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     right: 0;
     left: 0;
@@ -27,7 +28,7 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   z-index: 2;
-
+  width: 100%;
   &:before {
     content: '';
     padding-bottom: 30%;
@@ -117,7 +118,7 @@ const Foto = styled(GatsbyImage)`
         z-index: 2;
       `}
   }
-  ${({ isHovered }) =>
+  /* ${({ isHovered }) =>
     isHovered &&
     css`
       &:before {
@@ -130,7 +131,7 @@ const Foto = styled(GatsbyImage)`
         background-color: ${({ theme }) => theme.transparentYellow};
         z-index: 1;
       }
-    `}
+    `} */
   @media (min-width: 1200px) {
     width: 50%;
   }
@@ -144,12 +145,21 @@ const FotoContainer = styled.div`
   div {
     width: 100%;
   }
-  p {
-    margin: 0;
-    color: black !important;
+`
+const NameElement = styled.h6`
+  margin: 0;
+  width: max-content;
+  color: ${({ theme }) => theme.yellow};
+  border: 1px solid ${({ theme }) => theme.yellow};
+  border-bottom: 10px solid ${({ theme }) => theme.yellow};
+  border-radius: 20px;
+  padding: 10px 20px;
+  &:hover {
+    background-color: ${({ theme }) => theme.yellow} !important;
+    color: ${({ theme }) => theme.white};
+    border-bottom: 10px solid ${({ theme }) => theme.red};
   }
 `
-
 export default function PersonThumb({
   nomeECognome,
   foto,
@@ -172,7 +182,6 @@ export default function PersonThumb({
   }, [isHovered, isMobile, isSelected])
 
   const image = getImage(foto && foto[mood]?.localFile?.childImageSharp)
-
   return (
     <>
       <Container
@@ -185,7 +194,7 @@ export default function PersonThumb({
         {!isSelected && (
           <FotoContainer>
             <div>
-              <p>{nomeECognome}</p>
+              <NameElement>{nomeECognome}</NameElement>
               {/* <p>{nomeECognome.split(' ')[1]}</p> */}
             </div>
             {/* <div>
