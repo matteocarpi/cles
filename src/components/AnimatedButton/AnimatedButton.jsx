@@ -4,8 +4,9 @@ import styled from 'styled-components'
 
 import ArrowRight from '../../assets/arrow-right.svg'
 import useLang from '../../hooks/useLang'
+import useNavigation from '../../hooks/useNavigation'
 
-const Wrapper = styled(Link)`
+const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 100vw;
@@ -34,7 +35,7 @@ const Container = styled.div`
   }
 `
 
-const ItemContainer = styled.div`
+const ItemContainer = styled(Link)`
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -72,13 +73,21 @@ export default function AnimatedButton({ buttons }) {
     ...buttons,
     ...buttons,
   ]
+  const { findLink } = useNavigation()
 
   return (
-    <Wrapper to={lang === 'it' ? '/news' : `/${lang}/news`}>
+    <Wrapper
+    // to={lang === 'it' ? '/news' : `/${lang}/news`}
+    >
       <Container>
         {btnArray.map((client, index) => {
           return (
-            <ItemContainer key={client.titolo[lang]}>
+            <ItemContainer
+              key={client.titolo[lang]}
+              to={`${findLink('Clienti', lang)}?section=${client.titolo[lang]
+                .replaceAll(' ', '')
+                .toLowerCase()}`}
+            >
               <Text>
                 {/* {lang === 'it' ? 'Guarda tutte le news' : 'Watch all news'} */}
                 {client.titolo[lang]}
